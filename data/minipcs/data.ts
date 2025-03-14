@@ -1,8 +1,11 @@
+import { MINI_PC_BRAND } from './brands'
+import { MINI_PC_ID } from './id'
+
 const miniPcsData: MiniPcInterface[] = [
   {
-    id: 'beelink-ser5-pro',
+    id: MINI_PC_ID.BeelinkSER5Pro,
     title: 'Beelink SER5 Pro',
-    brand: 'Beelink',
+    brand: MINI_PC_BRAND.Beelink,
     model: 'SER5 Pro',
     description:
       'Mini PC compacto con potente CPU Ryzen, ideal para uso doméstico y productividad.',
@@ -53,10 +56,10 @@ const miniPcsData: MiniPcInterface[] = [
     rating: 4.5,
   },
   {
-    id: 'msi-cubi-5',
+    id: MINI_PC_ID.MSICubi5,
     title: 'MSI Cubi 5',
-    brand: 'MSI',
-    model: 'Cubi 5 12M',
+    brand: MINI_PC_BRAND.Beelink,
+    model: 'Cubi 5',
     description: 'Pequeño, eficiente y silencioso, ideal para oficina y multimedia básica.',
     href: 'https://example.com/msi-cubi-5',
     imgSrc: '/static/images/MSICUBI5.jpeg',
