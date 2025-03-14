@@ -1,4 +1,4 @@
-import { CPU_BRAND, MINI_PC_BRAND } from './brands'
+import { CPU_BRAND, MINI_PC_BRAND, MINI_PC_PROVIDER } from './brands'
 import { MINI_PC_ID } from './id'
 
 const miniPcsData: MiniPcInterface[] = [
@@ -27,7 +27,13 @@ const miniPcsData: MiniPcInterface[] = [
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 1000,
         },
-        priceUsd: 999,
+        oferts: [
+          {
+            url: 'https://www.bee-link.com/products/beelink-ser9-ai-9-hx-370',
+            provider: MINI_PC_PROVIDER.BeelinkOfficialWebsite,
+            priceUsd: 999,
+          },
+        ],
       },
       {
         ramGB: 64,
@@ -36,7 +42,13 @@ const miniPcsData: MiniPcInterface[] = [
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 2000,
         },
-        priceUsd: 1119,
+        oferts: [
+          {
+            url: 'https://www.bee-link.com/products/beelink-ser9-ai-9-hx-370',
+            provider: MINI_PC_PROVIDER.BeelinkOfficialWebsite,
+            priceUsd: 1119,
+          },
+        ],
       },
     ],
     maxRAMCapacityGB: 96,
@@ -97,7 +109,13 @@ const miniPcsData: MiniPcInterface[] = [
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 1000,
         },
-        priceUsd: 929,
+        oferts: [
+          {
+            url: 'https://www.bee-link.com/products/beelink-ser9-pro-365',
+            provider: MINI_PC_PROVIDER.BeelinkOfficialWebsite,
+            priceUsd: 929,
+          },
+        ],
       },
     ],
     maxRAMCapacityGB: 96,
@@ -158,7 +176,13 @@ const miniPcsData: MiniPcInterface[] = [
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 1000,
         },
-        priceUsd: 879,
+        oferts: [
+          {
+            url: 'https://www.bee-link.com/products/beelink-gti14-ultra9-185h',
+            provider: MINI_PC_PROVIDER.BeelinkOfficialWebsite,
+            priceUsd: 879,
+          },
+        ],
       },
       {
         ramGB: 64,
@@ -167,7 +191,13 @@ const miniPcsData: MiniPcInterface[] = [
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 2000,
         },
-        priceUsd: 979,
+        oferts: [
+          {
+            url: 'https://www.bee-link.com/products/beelink-gti14-ultra9-185h',
+            provider: MINI_PC_PROVIDER.BeelinkOfficialWebsite,
+            priceUsd: 979,
+          },
+        ],
       },
       {
         ramGB: 96,
@@ -176,7 +206,13 @@ const miniPcsData: MiniPcInterface[] = [
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 2000,
         },
-        priceUsd: 1069,
+        oferts: [
+          {
+            url: 'https://www.bee-link.com/products/beelink-gti14-ultra9-185h',
+            provider: MINI_PC_PROVIDER.BeelinkOfficialWebsite,
+            priceUsd: 1069,
+          },
+        ],
       },
     ],
     maxRAMCapacityGB: 96,
@@ -235,7 +271,13 @@ const miniPcsData: MiniPcInterface[] = [
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 1000,
         },
-        priceUsd: 599,
+        oferts: [
+          {
+            url: 'https://www.bee-link.com/products/beelink-gti13-ultra-13900hk',
+            provider: MINI_PC_PROVIDER.BeelinkOfficialWebsite,
+            priceUsd: 599,
+          },
+        ],
       },
       {
         ramGB: 64,
@@ -244,7 +286,13 @@ const miniPcsData: MiniPcInterface[] = [
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 2000,
         },
-        priceUsd: 759,
+        oferts: [
+          {
+            url: 'https://www.bee-link.com/products/beelink-gti13-ultra-13900hk',
+            provider: MINI_PC_PROVIDER.BeelinkOfficialWebsite,
+            priceUsd: 759,
+          },
+        ],
       },
       {
         ramGB: 96,
@@ -253,7 +301,13 @@ const miniPcsData: MiniPcInterface[] = [
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 2000,
         },
-        priceUsd: 839,
+        oferts: [
+          {
+            url: 'https://www.bee-link.com/products/beelink-gti13-ultra-13900hk',
+            provider: MINI_PC_PROVIDER.BeelinkOfficialWebsite,
+            priceUsd: 839,
+          },
+        ],
       },
     ],
     maxRAMCapacityGB: 96,
@@ -299,8 +353,8 @@ const miniPcsData: MiniPcInterface[] = [
     cpu: {
       brand: CPU_BRAND.INTEL,
       model: 'Intel Core UItra 7 155H',
-      cores: 14,
-      threads: 20,
+      cores: 16,
+      threads: 22,
       baseClockGHz: 3.2,
       boostClockGHz: 4.8,
     },
@@ -312,7 +366,13 @@ const miniPcsData: MiniPcInterface[] = [
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 1000,
         },
-        priceUsd: 819,
+        oferts: [
+          {
+            url: 'https://www.bee-link.com/products/beelink-gti14-ultra7-155h',
+            provider: MINI_PC_PROVIDER.BeelinkOfficialWebsite,
+            priceUsd: 819,
+          },
+        ],
       },
     ],
     maxRAMCapacityGB: 96,

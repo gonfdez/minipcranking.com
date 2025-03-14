@@ -21,7 +21,11 @@ interface MiniPcInterface {
       type: string
       capacityGB: number
     }
-    priceUsd?: number
+    oferts: {
+      provider: string
+      url: string
+      priceUsd?: number
+    }[]
   }[]
   maxRAMCapacityGB?: number
   maxStorageGB?: number
