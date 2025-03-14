@@ -1,4 +1,4 @@
 export enum MINI_PC_ID {
-  BeelinkSER5Pro = 'Beelink SER5 Pro',
-  MSICubi5 = 'MSI Cubi 5',
+  BeelinkSER9ProAMDRyzenAI9HX370 = 'Beelink SER9 Pro AMD Ryzen™ AI 9 HX 370',
+  BeelinkSER9ProAMDRyzenAI9365 = 'Beelink SER9 Pro AMD Ryzen™ AI 9 365',
 }

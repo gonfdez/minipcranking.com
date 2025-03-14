@@ -21,15 +21,21 @@ interface MiniPcInterface {
     integrated: boolean
     brand?: string
     model?: string
+    frequencyMHz?: number
   }
+  integratedMicrophone: boolean
   storage: {
-    type: 'SSD' | 'HDD' | 'eMMC' | 'SSD + HDD'
+    type: string
     capacityGB: number
+    maxCapacityGB: number
   }
   ports: {
-    usbA?: number
-    usbC?: number
+    usb4?: number
+    usb3?: number
+    usb2?: number
     hdmi?: number
+    dp1?: number
+    typeC?: number
     displayPort?: number
     ethernet?: number
     audioJack?: boolean
