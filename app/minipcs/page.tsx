@@ -1,4 +1,4 @@
-import Card from '@/components/Card'
+import MiniPcCard from '@/components/MiniPcCard'
 import { genPageMetadata } from 'app/seo'
 import miniPcsData from '@/data/minipcs/data'
 
@@ -14,15 +14,9 @@ export default function Projects() {
           </p>
         </div>
         <div className="container py-12">
-          <div className="-m-4 flex flex-wrap">
+          <div className="w-full space-y-4">
             {miniPcsData.map((d) => (
-              <Card
-                key={d.title}
-                title={d.title}
-                description={d.description}
-                imgSrc={d.imgSrc}
-                href={d.href}
-              />
+              <MiniPcCard miniPcData={d} key={d.id} />
             ))}
           </div>
         </div>
