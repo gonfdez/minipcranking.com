@@ -1,33 +1,38 @@
 /** @type {import("pliny/config").PlinyConfig } */
 const siteMetadata = {
-  title: 'Mini Pc Ranking',
+  title: 'Mini PC Ranking - Best Mini PCs Reviewed and Compared',
   author: 'gfs-studio',
   headerTitle: 'Mini Pc Ranking',
-  description: "Blog and compare of Mini Pc's",
+  description:
+    'Expert reviews, comparisons, buying guides, and rankings of the best Mini PCs for all budgets and use cases. Discover which Mini PC fits your needs perfectly.',
   language: 'en-us',
   theme: 'system', // system, dark or light
   siteUrl: 'https://minipcranking.com',
   siteLogo: `${process.env.BASE_PATH || ''}/static/images/logo.png`,
   socialBanner: `${process.env.BASE_PATH || ''}/static/images/twitter-card.png`,
   email: 'contact@minipcranking.com',
-  github: 'https://github.com/gfs-studio',
   locale: 'en-US',
   // set to true if you want a navbar fixed to the top
   stickyNav: false,
   search: {
-    provider: 'kbar', // kbar or algolia
+    provider: 'kbar',
     kbarConfig: {
       searchDocumentsPath: `${process.env.BASE_PATH || ''}/search.json`, // path to load documents to search
     },
-    // provider: 'algolia',
-    // algoliaConfig: {
-    //   // The application ID provided by Algolia
-    //   appId: 'R2IYF7ETH7',
-    //   // Public API key: it is safe to commit it
-    //   apiKey: '599cec31baffa4868cae4e79f180729b',
-    //   indexName: 'docsearch',
-    // },
   },
+  keywords: [
+    'Mini PC',
+    'best Mini PCs',
+    'Mini PC reviews',
+    'Mini PC comparisons',
+    'Mini PC buying guide',
+    'compact computers',
+    'mini computers',
+    'desktop alternatives',
+    'budget Mini PCs',
+    'Mini PC deals',
+    'small form factor PC',
+  ],
 }
 
 module.exports = siteMetadata
