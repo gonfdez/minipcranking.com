@@ -1,6 +1,6 @@
 import Card from '@/components/Card'
 import { genPageMetadata } from 'app/seo'
-import miniPcsData from '@/data/minipcsData'
+import miniPcsData from '@/data/minipcs/data'
 
 export const metadata = genPageMetadata({ title: "Mini Pc's" })
 
