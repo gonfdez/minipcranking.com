@@ -5,4 +5,5 @@ export enum MINI_PC_BRAND {
 
 export enum CPU_BRAND {
   AMD = 'AMD',
+  INTEL = 'Intel',
 }

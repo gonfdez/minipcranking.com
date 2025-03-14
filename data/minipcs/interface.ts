@@ -14,9 +14,17 @@ interface MiniPcInterface {
     baseClockGHz: number
     boostClockGHz?: number
   }
-  ramGB: number
-  ramType: string
-  maxRamGB?: number
+  variants: {
+    ramGB: number
+    ramType: string
+    storage: {
+      type: string
+      capacityGB: number
+    }
+    priceUsd?: number
+  }[]
+  maxRAMCapacityGB?: number
+  maxStorageGB?: number
   graphics: {
     integrated: boolean
     brand?: string
@@ -24,18 +32,13 @@ interface MiniPcInterface {
     frequencyMHz?: number
   }
   integratedMicrophone: boolean
-  storage: {
-    type: string
-    capacityGB: number
-    maxCapacityGB: number
-  }
   ports: {
     usb4?: number
     usb3?: number
     usb2?: number
     hdmi?: number
     dp1?: number
-    typeC?: number
+    usbC?: number
     displayPort?: number
     ethernet?: number
     audioJack?: boolean
@@ -52,8 +55,5 @@ interface MiniPcInterface {
   }
   weightKg: number
   powerConsumptionW?: number
-  osIncluded?: string
   releaseYear?: number
-  priceUsd?: number
-  rating?: number // valoración promedio del usuario
 }
