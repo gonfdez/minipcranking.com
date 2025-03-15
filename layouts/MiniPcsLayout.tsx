@@ -1,25 +1,50 @@
 'use client'
 
-import { JSX } from 'react'
-import { Pagination, PaginationProps } from '@/components/Pagination'
+import { useState, useEffect } from 'react'
+import MiniPcCard from '@/components/MiniPcCard'
+import miniPcsData from '@/data/minipcs/data'
+import { Pagination } from '@/components/Pagination'
 
-interface MiniPcsLayoutProps {
-  initialCards?: JSX.Element[]
-  pagination?: PaginationProps
-}
+const CARDS_PER_PAGE = 3
 
-export default function MiniPcsLayout({ initialCards, pagination }: MiniPcsLayoutProps) {
+export function MiniPcsLayout({ pagination }) {
+  const [searchValue, setSearchValue] = useState('')
+  const [filteredData, setFilteredData] = useState(miniPcsData)
+
+  // Filtrar los datos cuando cambia la búsqueda
+  useEffect(() => {
+    if (!searchValue.trim()) {
+      setFilteredData(miniPcsData)
+    } else {
+      const lowerSearch = searchValue.toLowerCase()
+      setFilteredData(
+        miniPcsData.filter(({ title, brand, description }) =>
+          [title, brand, description].some((field) => field.toLowerCase().includes(lowerSearch))
+        )
+      )
+    }
+  }, [searchValue])
+
+  // Si hay búsqueda activa, mostrar todos los resultados sin paginación
+  const paginatedData = searchValue.trim()
+    ? filteredData
+    : filteredData.slice(
+        CARDS_PER_PAGE * (pagination?.currentPage - 1),
+        CARDS_PER_PAGE * pagination?.currentPage
+      )
+
   return (
     <div className="divide-y divide-gray-300 dark:divide-gray-700">
       <div className="space-y-2 pt-6 pb-8 md:space-y-5">
         <div className="relative">
           <label>
-            <span className="sr-only">Search Mini Pc's</span>
+            <span className="sr-only">Search Mini PCs</span>
             <input
-              aria-label="Search articles"
+              aria-label="Search Mini PCs"
               type="text"
-              onChange={() => null}
-              placeholder="Search Mini Pc's"
+              value={searchValue}
+              onChange={(e) => setSearchValue(e.target.value)}
+              placeholder="Search Mini PCs"
               className="focus:border-primary-500 focus:ring-primary-500 block w-full rounded-md border border-gray-300 bg-white px-4 py-2 text-gray-900 dark:border-gray-900 dark:bg-gray-800 dark:text-gray-100"
             />
           </label>
@@ -39,10 +64,20 @@ export default function MiniPcsLayout({ initialCards, pagination }: MiniPcsLayou
           </svg>
         </div>
       </div>
+
       <div className="container py-4">
-        <div className="w-full space-y-4">{initialCards}</div>
-        {pagination && pagination.totalPages > 1 && (
-          <Pagination currentPage={pagination.currentPage} totalPages={pagination.totalPages} />
+        <div className="w-full space-y-4">
+          {paginatedData.length > 0 ? (
+            paginatedData.map((data) => <MiniPcCard miniPcData={data} key={data.id} />)
+          ) : (
+            <p className="text-center text-gray-500">No Mini PCs found.</p>
+          )}
+        </div>
+        {!searchValue.trim() && pagination && filteredData.length > CARDS_PER_PAGE && (
+          <Pagination
+            currentPage={pagination.currentPage}
+            totalPages={Math.ceil(filteredData.length / CARDS_PER_PAGE)}
+          />
         )}
       </div>
     </div>

@@ -1,21 +1,17 @@
-import MiniPcCard from '@/components/MiniPcCard'
 import { genPageMetadata } from 'app/seo'
 import miniPcsData from '@/data/minipcs/data'
-import MiniPcsLayout from '@/layouts/MiniPcsLayout'
+import { MiniPcsLayout } from '@/layouts/MiniPcsLayout'
 
 export const metadata = genPageMetadata({ title: "Mini Pc's" })
 
-const CARDS_PER_PAGE = 3
+export const CARDS_PER_PAGE = 3
 
 export default function MiniPcsPage() {
   const pageNumber = 1
   const totalPages = Math.ceil(miniPcsData.length / CARDS_PER_PAGE)
-  const initialCards = miniPcsData
-    .slice(0, CARDS_PER_PAGE * pageNumber)
-    .map((d) => <MiniPcCard miniPcData={d} key={d.id} />)
   const pagination = {
     currentPage: pageNumber,
     totalPages: totalPages,
   }
-  return <MiniPcsLayout initialCards={initialCards} pagination={pagination} />
+  return <MiniPcsLayout pagination={pagination} />
 }
