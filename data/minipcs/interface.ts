@@ -11,6 +11,7 @@ interface MiniPcInterface {
     model: string
     cores: number
     threads: number
+    baseClockGHz?: number
     boostClockGHz?: number
     cache?: {
       type: string
@@ -80,9 +81,10 @@ interface MiniPcInterface {
     bluetooth: string // ej: "Bluetooth 5.2"
   }
   dimensions: {
-    widthMm: number
-    heightMm: number
-    depthMm: number
+    widthMm?: number
+    heightMm?: number
+    depthMm?: number
+    volumeL?: number
   }
   weightKg: number
   powerConsumptionW?: number
