@@ -80,7 +80,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
           </div>
         )}
 
-        <div className="w-full p-4 md:p-6">
+        <div className="w-full md:p-6">
           {data.brand}
           <h1 className="mb-2 text-xl font-bold tracking-tight md:text-2xl">{data.model}</h1>
           <MiniPCModelVariants data={data} />

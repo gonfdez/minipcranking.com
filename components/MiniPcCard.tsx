@@ -35,8 +35,7 @@ const MiniPcCard = ({ miniPcData }: MiniPcCardProps) => {
               <span className="text-gray-800 dark:text-gray-200">
                 {miniPcData.graphics.integrated ? 'Integrated ' : ''} GPU
               </span>{' '}
-              {miniPcData.graphics.brand} {miniPcData.graphics.model} (
-              {miniPcData.graphics.frequencyMHz} MHz)
+              {miniPcData.graphics.brand} {miniPcData.graphics.model}
             </p>
           </div>
         </div>
