@@ -4,9 +4,9 @@ import { MINI_PC_ID } from './id'
 const miniPcsData: MiniPcInterface[] = [
   {
     id: MINI_PC_ID.BeelinkSER9ProAMDRyzenAI9HX370,
-    title: 'Beelink SER9 Pro AMD Ryzen™ AI 9 HX 370',
+    title: 'Beelink SER9 Pro AMD Ryzen AI 9 HX 370',
     brand: MINI_PC_BRAND.Beelink,
-    model: 'SER9 Pro AMD Ryzen™ AI 9 HX 370',
+    model: 'SER9 Pro AMD Ryzen AI 9 HX 370',
     description:
       "12 Zen5 CPU cores, combined with a new Radeon™ 890M iGPU, a new generation XDNA 2 NPU and 80 AI TOPS, the Ryzen™ AI 9 HX370 processor's fully upgraded architecture significantly boosts the SER9's overall performance, delivering a faster, smarter, and more secure Al PC experience!",
     href: 'https://example.com/beelink-ser5-pro',
@@ -16,13 +16,18 @@ const miniPcsData: MiniPcInterface[] = [
       model: 'Ryzen AI 9 HX 370',
       cores: 12,
       threads: 24,
-      baseClockGHz: 3.2,
       boostClockGHz: 5.1,
+      cache: {
+        type: 'L2+L3 Cache',
+        capacityMB: 36,
+      },
     },
     variants: [
       {
-        ramGB: 32,
-        ramType: 'LPDDR5X 7500MHz',
+        ram: {
+          capacityGB: 32,
+          type: 'LPDDR5X 7500MHz',
+        },
         storage: {
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 1000,
@@ -36,8 +41,10 @@ const miniPcsData: MiniPcInterface[] = [
         ],
       },
       {
-        ramGB: 64,
-        ramType: 'LPDDR5X 8000MHz',
+        ram: {
+          capacityGB: 64,
+          type: 'LPDDR5X 7500MHz',
+        },
         storage: {
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 2000,
@@ -52,27 +59,41 @@ const miniPcsData: MiniPcInterface[] = [
       },
     ],
     maxRAMCapacityGB: 96,
-    maxStorageGB: 8000,
+    maxStorageCapacityGB: 8000,
     graphics: {
       integrated: true,
       brand: CPU_BRAND.AMD,
       model: 'Radeon 890M',
       frequencyMHz: 2900,
+      displayPorts: {
+        dp: {
+          amount: 1,
+          type: 'v1.4 4K 120Hz',
+        },
+        hdmi: {
+          amount: 1,
+          type: '4K 120Hz',
+        },
+        usb4: {
+          amount: 1,
+          type: '40Gbps/TBT3/PD/DP1.4',
+        },
+      },
     },
     ports: {
+      imageSrc: '/static/images/beelink/BeelinkSER9ProAMDRyzenAI9HX370Ports.webp',
       usb3: 2,
       usb2: 1,
       usb4: 1,
-      hdmi: 1,
       ethernet: 1,
       usbC: 1,
       audioJack: true,
       sdCardReader: false,
-      dp1: 1,
     },
-    integratedMicrophone: true,
+    builtinMicrophone: true,
+    builtinSpeakers: true,
     connectivity: {
-      wifi: 'Wi-Fi 6',
+      wifi: 'Wi-Fi 6 Intel AX200 2.4Gbps',
       bluetooth: 'Bluetooth 5.2',
     },
     dimensions: {
@@ -86,7 +107,7 @@ const miniPcsData: MiniPcInterface[] = [
   },
   {
     id: MINI_PC_ID.BeelinkSER9ProAMDRyzenAI9365,
-    title: 'Beelink SER9 Pro AMD Ryzen™ AI 9 365',
+    title: 'Beelink SER9 Pro AMD Ryzen AI 9 365',
     brand: MINI_PC_BRAND.Beelink,
     model: 'SER9 Pro AMD Ryzen™ AI 9 365',
     description:
@@ -98,13 +119,14 @@ const miniPcsData: MiniPcInterface[] = [
       model: 'Ryzen AI 9 365',
       cores: 10,
       threads: 20,
-      baseClockGHz: 3.2,
       boostClockGHz: 5.0,
     },
     variants: [
       {
-        ramGB: 32,
-        ramType: 'LPDDR5X 7500MHz',
+        ram: {
+          capacityGB: 32,
+          type: 'LPDDR5X 7500MHz',
+        },
         storage: {
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 1000,
@@ -119,25 +141,40 @@ const miniPcsData: MiniPcInterface[] = [
       },
     ],
     maxRAMCapacityGB: 96,
-    maxStorageGB: 8000,
+    maxStorageCapacityGB: 8000,
     graphics: {
       integrated: true,
       brand: CPU_BRAND.AMD,
       model: 'Radeon 880M',
       frequencyMHz: 2900,
+      graphicCoresCU: 12,
+      displayPorts: {
+        dp: {
+          amount: 1,
+          type: 'v1.4 4K 240Hz',
+        },
+        hdmi: {
+          amount: 1,
+          type: '4K 240Hz',
+        },
+        usb4: {
+          amount: 1,
+          type: '40Gbps/TBT3/PD/DP1.4',
+        },
+      },
     },
     ports: {
+      imageSrc: '/static/images/beelink/BeelinkSER9ProAMDRyzenAI9365Ports.webp',
       usb3: 2,
       usb2: 1,
       usb4: 1,
-      hdmi: 1,
       usbC: 1,
       ethernet: 1,
       audioJack: true,
       sdCardReader: false,
-      dp1: 1,
     },
-    integratedMicrophone: true,
+    builtinMicrophone: true,
+    builtinSpeakers: true,
     connectivity: {
       wifi: 'Wi-Fi 6',
       bluetooth: 'Bluetooth 5.2',
@@ -161,17 +198,22 @@ const miniPcsData: MiniPcInterface[] = [
     href: 'https://example.com/beelink-ser5-pro',
     imgSrc: '/static/images/beelink/BeelinkGTi14UltraAIPCIntelCoreUItra9185H.webp',
     cpu: {
-      brand: CPU_BRAND.AMD,
+      brand: CPU_BRAND.INTEL,
       model: 'Intel Core UItra 9 185H',
       cores: 16,
       threads: 22,
-      baseClockGHz: 3.2,
       boostClockGHz: 5.1,
+      cache: {
+        capacityMB: 24,
+        type: 'Intel Smart Cache',
+      },
     },
     variants: [
       {
-        ramGB: 32,
-        ramType: 'Dual SO-DIMM DDR5 5600MHz',
+        ram: {
+          capacityGB: 32,
+          type: 'Dual SO-DIMM DDR5 5600MHz',
+        },
         storage: {
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 1000,
@@ -185,8 +227,10 @@ const miniPcsData: MiniPcInterface[] = [
         ],
       },
       {
-        ramGB: 64,
-        ramType: 'Dual SO-DIMM DDR5 5600MHz',
+        ram: {
+          capacityGB: 64,
+          type: 'Dual SO-DIMM DDR5 5600MHz',
+        },
         storage: {
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 2000,
@@ -200,8 +244,10 @@ const miniPcsData: MiniPcInterface[] = [
         ],
       },
       {
-        ramGB: 96,
-        ramType: 'Dual SO-DIMM DDR5 5600MHz',
+        ram: {
+          capacityGB: 96,
+          type: 'Dual SO-DIMM DDR5 5600MHz',
+        },
         storage: {
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 2000,
@@ -216,23 +262,38 @@ const miniPcsData: MiniPcInterface[] = [
       },
     ],
     maxRAMCapacityGB: 96,
-    maxStorageGB: 8000,
+    maxStorageCapacityGB: 8000,
     graphics: {
       integrated: true,
       brand: CPU_BRAND.INTEL,
       model: 'Intel Arc Graphics',
       frequencyMHz: 2350,
+      maxTOPS: 34.5,
+      displayPorts: {
+        dp: {
+          amount: 1,
+          type: 'v1.4 4K 144Hz',
+        },
+        thunderbolt: {
+          amount: 1,
+          type: 'v4 40Gbps/TBT4/PD/DP1.4',
+        },
+        hdmi: {
+          amount: 1,
+          type: '4K 60Hz',
+        },
+      },
     },
     ports: {
+      imageSrc: '/static/images/beelink/BeelinkGTi14UltraAIPCIntelCoreUItra9185HPorts.webp',
       usb3: 5,
-      hdmi: 1,
       usbC: 2,
       ethernet: 2,
       audioJack: true,
       sdCardReader: true,
-      dp1: 1,
     },
-    integratedMicrophone: true,
+    builtinMicrophone: true,
+    builtinSpeakers: true,
     connectivity: {
       wifi: 'Wi-Fi 6',
       bluetooth: 'Bluetooth 5.2',
@@ -250,7 +311,7 @@ const miniPcsData: MiniPcInterface[] = [
     id: MINI_PC_ID.BeelinkGTi13UltraIntelCorei913900HK,
     title: 'Beelink GTi13 Ultra Intel Core i9-13900HK',
     brand: MINI_PC_BRAND.Beelink,
-    model: 'GTi13 Ultra Intel® Core™ i9-13900HK',
+    model: 'GTi13 Ultra Intel Core i9-13900HK',
     description:
       'Seamless multitasking with a hybrid CPU architecture of performance and efficiency cores, intelligent scheduling between apps for smooth transitions.',
     href: 'https://example.com/beelink-ser5-pro',
@@ -260,13 +321,14 @@ const miniPcsData: MiniPcInterface[] = [
       model: 'Intel Core i9-13900HK',
       cores: 14,
       threads: 20,
-      baseClockGHz: 3.2,
       boostClockGHz: 5.4,
     },
     variants: [
       {
-        ramGB: 32,
-        ramType: 'Dual SO-DIMM DDR5 5200MHz',
+        ram: {
+          capacityGB: 32,
+          type: 'Dual SO-DIMM DDR5 5200MHz',
+        },
         storage: {
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 1000,
@@ -280,8 +342,10 @@ const miniPcsData: MiniPcInterface[] = [
         ],
       },
       {
-        ramGB: 64,
-        ramType: 'Dual SO-DIMM DDR5 5200MHz',
+        ram: {
+          capacityGB: 64,
+          type: 'Dual SO-DIMM DDR5 5200MHz',
+        },
         storage: {
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 2000,
@@ -295,8 +359,10 @@ const miniPcsData: MiniPcInterface[] = [
         ],
       },
       {
-        ramGB: 96,
-        ramType: 'Dual SO-DIMM DDR5 5200MHz',
+        ram: {
+          capacityGB: 96,
+          type: 'Dual SO-DIMM DDR5 5200MHz',
+        },
         storage: {
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 2000,
@@ -311,23 +377,38 @@ const miniPcsData: MiniPcInterface[] = [
       },
     ],
     maxRAMCapacityGB: 96,
-    maxStorageGB: 8000,
+    maxStorageCapacityGB: 8000,
     graphics: {
       integrated: true,
       brand: CPU_BRAND.INTEL,
       model: 'Intel Iris Xe Graphics eligible',
       frequencyMHz: 1500,
+      displayPorts: {
+        dp: {
+          amount: 1,
+          type: 'v1.4 4K 144Hz',
+        },
+        thunderbolt: {
+          amount: 1,
+          type: 'v4 40Gbps/TBT4/PD/DP1.4',
+        },
+        hdmi: {
+          amount: 1,
+          type: '4K 60Hz',
+        },
+      },
     },
     ports: {
+      imageSrc: '/static/images/beelink/BeelinkGTi13UltraIntelCorei913900HKPorts.webp',
       usb3: 5,
-      hdmi: 1,
       usbC: 2,
       ethernet: 2,
       audioJack: true,
       sdCardReader: true,
-      dp1: 1,
     },
-    integratedMicrophone: true,
+    builtinMicrophone: true,
+    builtinSpeakers: true,
+    supportExternalDiscreteGraphicsCard: true,
     connectivity: {
       wifi: 'Wi-Fi 6',
       bluetooth: 'Bluetooth 5.2',
@@ -355,13 +436,14 @@ const miniPcsData: MiniPcInterface[] = [
       model: 'Intel Core UItra 7 155H',
       cores: 16,
       threads: 22,
-      baseClockGHz: 3.2,
       boostClockGHz: 4.8,
     },
     variants: [
       {
-        ramGB: 32,
-        ramType: 'Dual SO-DIMM DDR5 5200MHz',
+        ram: {
+          capacityGB: 32,
+          type: 'Dual SO-DIMM DDR5 5600MHz',
+        },
         storage: {
           type: 'Dual M.2 2280 PCle4.0 X4',
           capacityGB: 1000,
@@ -376,23 +458,38 @@ const miniPcsData: MiniPcInterface[] = [
       },
     ],
     maxRAMCapacityGB: 96,
-    maxStorageGB: 8000,
+    maxStorageCapacityGB: 8000,
     graphics: {
       integrated: true,
       brand: CPU_BRAND.INTEL,
       model: 'Intel Arc Graphics',
       frequencyMHz: 2250,
+      maxTOPS: 32,
+      displayPorts: {
+        dp: {
+          amount: 1,
+          type: 'v1.4 4K 144Hz',
+        },
+        thunderbolt: {
+          amount: 1,
+          type: 'v4 40Gbps/TBT4/PD/DP1.4',
+        },
+        hdmi: {
+          amount: 1,
+          type: '4K 60Hz',
+        },
+      },
     },
     ports: {
+      imageSrc: '/static/images/beelink/BeelinkGTi14UltraAIPCIntelCoreUItra7155HPorts.webp',
       usb3: 5,
-      hdmi: 1,
       usbC: 2,
       ethernet: 2,
       audioJack: true,
       sdCardReader: true,
-      dp1: 1,
     },
-    integratedMicrophone: true,
+    builtinMicrophone: true,
+    builtinSpeakers: true,
     connectivity: {
       wifi: 'Wi-Fi 6',
       bluetooth: 'Bluetooth 5.2',

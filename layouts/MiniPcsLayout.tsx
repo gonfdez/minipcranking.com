@@ -35,7 +35,7 @@ export function MiniPcsLayout({ pagination }) {
 
   return (
     <div className="divide-y divide-gray-300 dark:divide-gray-700">
-      <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+      <div className="space-y-2 pb-8 md:space-y-5">
         <div className="relative">
           <label>
             <span className="sr-only">Search Mini PCs</span>

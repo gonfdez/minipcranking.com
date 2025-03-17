@@ -1,5 +1,7 @@
 export enum MINI_PC_BRAND {
   Beelink = 'Beelink',
+  Geekom = 'Geekom',
+  MinisForum = 'MINISFORUM',
   MSI = 'MSI',
 }
 

@@ -8,6 +8,7 @@ import { MINI_PC_ID } from '@/data/minipcs/id'
 import Image from '@/components/Image'
 import siteMetadata from '@/data/siteMetadata'
 import { Metadata } from 'next'
+import MiniPCModelVariants from '@/components/MiniPcModelFeatures'
 
 export async function generateMetadata(props: {
   params: Promise<{ slug: string[] }>
@@ -79,12 +80,10 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
           </div>
         )}
 
-        <div className="flex w-full flex-col justify-center md:w-2/3">
-          <h1 className="text-3xl font-bold">{data.title}</h1>
-          <p className="mb-4 text-sm text-gray-500">
-            {data.brand} - {data.model}
-          </p>
-          <p className="mb-4 text-gray-700 dark:text-gray-300">{data.description}</p>
+        <div className="w-full p-4 md:p-6">
+          {data.brand}
+          <h1 className="mb-2 text-xl font-bold tracking-tight md:text-2xl">{data.model}</h1>
+          <MiniPCModelVariants data={data} />
         </div>
       </div>
 
@@ -98,7 +97,6 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
           <p>
             {data.cpu.cores} cores / {data.cpu.threads} threads
           </p>
-          <p>{data.cpu.baseClockGHz} GHz</p>
           {data.cpu.boostClockGHz && <p>Boost: {data.cpu.boostClockGHz} GHz</p>}
         </div>
 
@@ -115,7 +113,7 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         <div>
           <h2 className="mb-2 border-b pb-2 text-lg font-semibold">Memory & Storage</h2>
           <p>
-            RAM: {data.variants[0].ramGB} GB ({data.variants[0].ramType})
+            RAM: {data.variants[0].ram.capacityGB} GB ({data.variants[0].ram.type})
           </p>
           <p>
             {data.variants[0].storage.capacityGB} GB {data.variants[0].storage.type}
@@ -131,7 +129,6 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         <div>
           <h2 className="mb-2 border-b pb-2 text-lg font-semibold">Ports</h2>
           {data.ports.usb3 && <p>USB 3.0: {data.ports.usb3}</p>}
-          {data.ports.hdmi && <p>HDMI: {data.ports.hdmi}</p>}
           {data.ports.ethernet && <p>Ethernet: {data.ports.ethernet}</p>}
         </div>
 

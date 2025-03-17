@@ -1,6 +1,6 @@
 import Image from './Image'
 import Link from './Link'
-import MiniPCModelFeatures from './MiniPcModelFeatures'
+import MiniPCModelVariants from './MiniPcModelFeatures'
 
 interface MiniPcCardProps {
   miniPcData: MiniPcInterface
@@ -12,7 +12,7 @@ const MiniPcCard = ({ miniPcData }: MiniPcCardProps) => {
       <Link href={`/minipcs/${miniPcData.id.replaceAll(' ', '')}`} target="_self">
         <div className="flex flex-col items-center overflow-hidden rounded-md border border-gray-300 md:flex-row md:items-start dark:border-gray-700">
           {miniPcData.imgSrc && (
-            <div className="h-[180px] w-full flex-shrink-0 overflow-hidden md:h-[200px] md:w-[200px]">
+            <div className="h-[80px] w-full flex-shrink-0 overflow-hidden md:h-[150px] md:w-[150px]">
               <Image
                 alt={miniPcData.model}
                 src={miniPcData.imgSrc}
@@ -27,7 +27,17 @@ const MiniPcCard = ({ miniPcData }: MiniPcCardProps) => {
             <h2 className="mb-2 text-xl font-bold tracking-tight md:text-2xl">
               {miniPcData.model}
             </h2>
-            <MiniPCModelFeatures data={miniPcData} />
+            <p className="text-sm text-gray-600 md:text-base dark:text-gray-400">
+              <span className="text-gray-800 dark:text-gray-200">CPU</span> {miniPcData.cpu.brand}{' '}
+              {miniPcData.cpu.model}
+            </p>
+            <p className="text-sm text-gray-600 md:text-base dark:text-gray-400">
+              <span className="text-gray-800 dark:text-gray-200">
+                {miniPcData.graphics.integrated ? 'Integrated ' : ''} GPU
+              </span>{' '}
+              {miniPcData.graphics.brand} {miniPcData.graphics.model} (
+              {miniPcData.graphics.frequencyMHz} MHz)
+            </p>
           </div>
         </div>
       </Link>
