@@ -83,9 +83,22 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         <div className="w-full md:p-6">
           {data.brand}
           <h1 className="mb-2 text-xl font-bold tracking-tight md:text-2xl">{data.model}</h1>
-          <MiniPCModelVariants data={data} />
+          <div className="mt-2">
+            <p className="text-sm text-gray-600 md:text-base dark:text-gray-400">
+              <span className="font-semibold text-gray-800 dark:text-gray-200">CPU</span>{' '}
+              {data.cpu.brand} {data.cpu.model}
+            </p>
+            <p className="text-sm text-gray-600 md:text-base dark:text-gray-400">
+              <span className="font-semibold text-gray-800 dark:text-gray-200">
+                {data.graphics.integrated ? 'Integrated ' : ''} GPU
+              </span>{' '}
+              {data.graphics.brand} {data.graphics.model} ({data.graphics.frequencyMHz} MHz)
+            </p>
+          </div>
         </div>
       </div>
+
+      <MiniPCModelVariants data={data} />
 
       {/* Specifications */}
       <div className="grid w-full grid-cols-1 gap-6 rounded-lg bg-gray-100 p-6 md:grid-cols-3 dark:bg-gray-800">

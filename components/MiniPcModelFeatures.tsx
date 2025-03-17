@@ -2,18 +2,8 @@
 
 export default function MiniPCModelVariants({ data }: { data: MiniPcInterface }) {
   return (
-    <div className="mt-2">
-      <p className="text-sm text-gray-600 md:text-base dark:text-gray-400">
-        <span className="font-semibold text-gray-800 dark:text-gray-200">CPU</span> {data.cpu.brand}{' '}
-        {data.cpu.model}
-      </p>
-      <p className="text-sm text-gray-600 md:text-base dark:text-gray-400">
-        <span className="font-semibold text-gray-800 dark:text-gray-200">
-          {data.graphics.integrated ? 'Integrated ' : ''} GPU
-        </span>{' '}
-        {data.graphics.brand} {data.graphics.model} ({data.graphics.frequencyMHz} MHz)
-      </p>
-
+    <div>
+      <span className="font-semobold text-lg">Options:</span>
       <div className="mt-2 grid grid-cols-1 gap-2 md:grid-cols-2">
         {data.variants.map((variant) => (
           <div
