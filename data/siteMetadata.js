@@ -2,7 +2,7 @@
 const siteMetadata = {
   title: 'Mini PC Ranking - Best Mini PCs Reviewed and Compared',
   author: 'gfs-studio',
-  headerTitle: 'Mini Pc Ranking',
+  headerTitle: 'minipcranking.com',
   description:
     'Expert reviews, comparisons, buying guides, and rankings of the best Mini PCs for all budgets and use cases. Discover which Mini PC fits your needs perfectly.',
   language: 'en-us',
