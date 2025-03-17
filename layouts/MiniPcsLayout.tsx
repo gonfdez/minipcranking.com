@@ -5,7 +5,7 @@ import MiniPcCard from '@/components/MiniPcCard'
 import miniPcsData from '@/data/minipcs/data'
 import { Pagination } from '@/components/Pagination'
 
-const CARDS_PER_PAGE = 3
+const CARDS_PER_PAGE = 6
 
 export function MiniPcsLayout({ pagination }) {
   const [searchValue, setSearchValue] = useState('')

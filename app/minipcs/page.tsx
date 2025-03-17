@@ -4,7 +4,7 @@ import { MiniPcsLayout } from '@/layouts/MiniPcsLayout'
 
 export const metadata = genPageMetadata({ title: "Mini Pc's" })
 
-export const CARDS_PER_PAGE = 3
+export const CARDS_PER_PAGE = 6
 
 export default function MiniPcsPage() {
   const pageNumber = 1
