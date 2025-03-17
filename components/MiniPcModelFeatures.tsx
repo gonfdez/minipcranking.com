@@ -3,7 +3,6 @@
 export default function MiniPCModelVariants({ data }: { data: MiniPcInterface }) {
   return (
     <div>
-      <span className="font-semobold text-lg">Options:</span>
       <div className="mt-2 grid grid-cols-1 gap-2 md:grid-cols-2">
         {data.variants.map((variant) => (
           <div
@@ -15,7 +14,10 @@ export default function MiniPCModelVariants({ data }: { data: MiniPcInterface })
                 RAM
               </span>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                <span className="text-primary-600 font-semibold">{variant.ram.capacityGB} GB</span>
+                <span className="text-primary-600 font-semibold">
+                  {variant.ram.capacityGB} GB{' '}
+                  <span className="text-gray-700 dark:text-gray-300">( {variant.ram.type} )</span>
+                </span>
               </span>
             </div>
 
@@ -25,7 +27,10 @@ export default function MiniPCModelVariants({ data }: { data: MiniPcInterface })
               </span>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 <span className="text-primary-600 font-semibold">
-                  {variant.storage.capacityGB} GB
+                  {variant.storage.capacityGB} GB{' '}
+                  <span className="text-gray-700 dark:text-gray-300">
+                    ( {variant.storage.type} )
+                  </span>
                 </span>
               </span>
             </div>
@@ -33,6 +38,9 @@ export default function MiniPCModelVariants({ data }: { data: MiniPcInterface })
             <div className="mt-2 flex justify-between border-t border-gray-300 pt-2 dark:border-gray-600">
               <span className="text-xs font-bold text-gray-500 uppercase dark:text-gray-400">
                 Best offert
+              </span>
+              <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
+                {variant.oferts[0].provider}
               </span>
               <span className="text-primary-600 text-sm font-semibold">
                 ${variant.oferts[0].priceUsd}
