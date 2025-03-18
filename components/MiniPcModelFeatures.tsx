@@ -47,7 +47,7 @@ export default function MiniPCModelVariants({
           <div className="mt-2 flex items-center justify-between border-t border-gray-300 pt-2 dark:border-gray-600">
             <span className="text-sm font-semibold uppercase">Best offer</span>
             <span
-              className="max-w-[100px] truncate overflow-hidden font-medium text-ellipsis whitespace-nowrap text-gray-700 dark:text-gray-300"
+              className="max-w-[156px] truncate overflow-hidden font-medium text-ellipsis whitespace-nowrap text-gray-700 dark:text-gray-300"
               title={variant.oferts[0].provider}
             >
               {variant.oferts[0].provider}
