@@ -1,7 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
-import MiniPcCard from '@/components/MiniPcCard'
+import MiniPcListItem from '@/components/MiniPcListItem'
 import miniPcsData from '@/data/minipcs/data'
 import { Pagination } from '@/components/Pagination'
 
@@ -68,7 +68,7 @@ export function MiniPcsLayout({ pagination }) {
       <div className="container py-4">
         <div className="w-full space-y-4">
           {paginatedData.length > 0 ? (
-            paginatedData.map((data) => <MiniPcCard miniPcData={data} key={data.id} />)
+            paginatedData.map((data) => <MiniPcListItem miniPcData={data} key={data.id} />)
           ) : (
             <p className="text-center text-gray-500">No Mini PCs found.</p>
           )}

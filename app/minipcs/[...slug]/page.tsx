@@ -140,7 +140,14 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         </div>
 
         <div>
-          <h2 className="mb-2 border-b pb-2 text-lg font-semibold">Ports</h2>
+          <h2 className="mb-2 flex items-center justify-between border-b pb-2 text-lg font-semibold">
+            Ports{' '}
+            {data.ports.imageSrc && (
+              <a className="text-primary-600 text-sm" href={data.ports.imageSrc} target="_blank">
+                See image
+              </a>
+            )}
+          </h2>
           {data.ports.usb3 && <p>USB 3.0: {data.ports.usb3}</p>}
           {data.ports.ethernet && <p>Ethernet: {data.ports.ethernet}</p>}
         </div>

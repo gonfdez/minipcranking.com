@@ -14,7 +14,7 @@ export default function MiniPCModelVariants({ data }: { data: MiniPcInterface })
                 RAM
               </span>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                <span className="text-primary-600 font-semibold">
+                <span className="font-semibold text-blue-600 dark:text-blue-400">
                   {variant.ram.capacityGB} GB{' '}
                   <span className="text-gray-700 dark:text-gray-300">( {variant.ram.type} )</span>
                 </span>
@@ -26,7 +26,7 @@ export default function MiniPCModelVariants({ data }: { data: MiniPcInterface })
                 Storage
               </span>
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                <span className="text-primary-600 font-semibold">
+                <span className="font-semibold text-blue-600 dark:text-blue-400">
                   {variant.storage.capacityGB} GB{' '}
                   <span className="text-gray-700 dark:text-gray-300">
                     ( {variant.storage.type} )
@@ -42,7 +42,7 @@ export default function MiniPCModelVariants({ data }: { data: MiniPcInterface })
               <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
                 {variant.oferts[0].provider}
               </span>
-              <span className="text-primary-600 text-sm font-semibold">
+              <span className="text-sm font-semibold text-blue-600 dark:text-blue-400">
                 ${variant.oferts[0].priceUsd}
               </span>
             </div>
