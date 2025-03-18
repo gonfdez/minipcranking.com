@@ -88,9 +88,11 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         </div>
       </div>
 
-      <div className="grid w-full grid-cols-1 gap-6 rounded-lg bg-gray-100 p-6 md:grid-cols-3 dark:bg-gray-800">
+      <div className="grid w-full grid-cols-1 gap-6 rounded-lg bg-gray-100 p-3 p-6 shadow-sm md:grid-cols-3 dark:bg-gray-800">
         <div>
-          <h2 className="mb-2 border-b pb-2 text-lg font-semibold">CPU</h2>
+          <h2 className="mb-2 border-b border-gray-300 pb-2 text-lg font-semibold dark:border-gray-600">
+            CPU
+          </h2>
           <p>
             {data.cpu.brand} {data.cpu.model}
           </p>
@@ -107,7 +109,9 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         </div>
 
         <div>
-          <h2 className="mb-2 border-b pb-2 text-lg font-semibold">Graphics</h2>
+          <h2 className="mb-2 border-b border-gray-300 pb-2 text-lg font-semibold dark:border-gray-600">
+            Graphics
+          </h2>
           <p>{data.graphics.integrated ? 'Integrated' : 'Discrete'} GPU</p>
           {data.graphics.brand && (
             <p>
@@ -119,7 +123,9 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         </div>
 
         <div>
-          <h2 className="mb-2 border-b pb-2 text-lg font-semibold">Memory & Storage</h2>
+          <h2 className="mb-2 border-b border-gray-300 pb-2 text-lg font-semibold dark:border-gray-600">
+            Memory & Storage
+          </h2>
           {data.variants.slice(0, 1).map((variant, index) => (
             <div key={index} className="mb-2">
               <div>
@@ -139,13 +145,15 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         </div>
 
         <div>
-          <h2 className="mb-2 border-b pb-2 text-lg font-semibold">Connectivity</h2>
+          <h2 className="mb-2 border-b border-gray-300 pb-2 text-lg font-semibold dark:border-gray-600">
+            Connectivity
+          </h2>
           <p>WiFi: {data.connectivity.wifi}</p>
           <p>Bluetooth: {data.connectivity.bluetooth}</p>
         </div>
 
         <div>
-          <h2 className="mb-2 flex items-center justify-between border-b pb-2 text-lg font-semibold">
+          <h2 className="mb-2 flex items-center justify-between border-b border-gray-300 pb-2 text-lg font-semibold dark:border-gray-600">
             Ports
             {data.ports.imageSrc && (
               <a className="text-primary-600 text-sm" href={data.ports.imageSrc} target="_blank">
@@ -168,7 +176,9 @@ export default async function Page(props: { params: Promise<{ slug: string[] }> 
         </div>
 
         <div>
-          <h2 className="mb-2 border-b pb-2 text-lg font-semibold">Dimensions & Weight</h2>
+          <h2 className="mb-2 border-b border-gray-300 pb-2 text-lg font-semibold dark:border-gray-600">
+            Dimensions & Weight
+          </h2>
           <p>
             Size: {data.dimensions.widthMm} x {data.dimensions.heightMm} x {data.dimensions.depthMm}{' '}
             mm
