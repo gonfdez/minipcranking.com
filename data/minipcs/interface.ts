@@ -38,8 +38,8 @@ interface MiniPcInterface {
   maxStorageCapacityGB?: number
   graphics: {
     integrated: boolean
-    brand?: string
-    model?: string
+    brand: string
+    model: string
     frequencyMHz?: number
     maxTOPS?: number
     graphicCoresCU?: number

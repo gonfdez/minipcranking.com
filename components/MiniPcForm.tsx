@@ -108,327 +108,118 @@ function MiniPcForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4 rounded-md bg-gray-800 p-4 text-white">
-      <h2 className="text-lg font-bold">Información General</h2>
-      <input
-        className="input-style"
-        type="text"
-        name="id"
-        placeholder="ID"
-        value={formData.id}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="input-style"
-        type="text"
-        name="title"
-        placeholder="Title"
-        value={formData.title}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="input-style"
-        type="text"
-        name="brand"
-        placeholder="Brand"
-        value={formData.brand}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="input-style"
-        type="text"
-        name="model"
-        placeholder="Model"
-        value={formData.model}
-        onChange={handleChange}
-        required
-      />
-      <textarea
-        className="input-style"
-        name="description"
-        placeholder="Description"
-        value={formData.description}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="input-style"
-        type="url"
-        name="imgSrc"
-        placeholder="Main Image URL"
-        value={formData.imgSrc}
-        onChange={handleChange}
-      />
+      <h1 className="border-b pb-2 text-lg font-bold">Información General</h1>
+      {[
+        { name: 'id', label: 'ID', required: true },
+        { name: 'title', label: 'Title', required: true },
+        { name: 'brand', label: 'Brand', required: true },
+        { name: 'model', label: 'Model', required: true },
+        { name: 'description', label: 'Description', required: true, type: 'textarea' },
+        { name: 'imgSrc', label: 'Main Image URL', type: 'url' },
+        { name: 'href', label: 'Product URL', type: 'url' },
+      ].map(({ name, label, required, type = 'text' }) => (
+        <div key={name} className="flex items-center space-x-2">
+          <label className="w-1/4 font-medium">
+            {label} {required && <span className="text-red-500">*</span>}
+          </label>
+          {type === 'textarea' ? (
+            <textarea
+              className="input-style w-3/4"
+              name={name}
+              value={formData[name]}
+              onChange={handleChange}
+              required={required}
+            />
+          ) : (
+            <input
+              className="input-style w-3/4"
+              type={type}
+              name={name}
+              value={formData[name]}
+              onChange={handleChange}
+              required={required}
+            />
+          )}
+        </div>
+      ))}
 
-      <h2 className="text-lg font-bold">CPU</h2>
-      <input
-        className="input-style"
-        type="text"
-        name="cpu.brand"
-        placeholder="CPU Brand"
-        value={formData.cpu.brand}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="input-style"
-        type="text"
-        name="cpu.model"
-        placeholder="CPU Model"
-        value={formData.cpu.model}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="cpu.cores"
-        placeholder="Cores"
-        value={formData.cpu.cores}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="cpu.threads"
-        placeholder="Threads"
-        value={formData.cpu.threads}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="cpu.baseClockGHz"
-        placeholder="Base Clock GHz"
-        value={formData.cpu.baseClockGHz || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="cpu.boostClockGHz"
-        placeholder="Boost Clock GHz"
-        value={formData.cpu.boostClockGHz || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="text"
-        name="cpu.cache.type"
-        placeholder="Cache Type"
-        value={formData.cpu.cache?.type || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="cpu.cache.capacityMB"
-        placeholder="Cache Capacity MB"
-        value={formData.cpu.cache?.capacityMB || ''}
-        onChange={handleChange}
-      />
-
-      <h2 className="text-lg font-bold">RAM & Storage Variants</h2>
-      {formData.variants.map((variant, index) => (
-        <div key={index} className="space-y-2 rounded-md border border-black p-2">
+      {/* <h1 className="border-b pb-2 text-lg font-bold">Variants</h1>
+      {['ram.capacityGB', 'ram.type', 'storage.type', 'storage.capacityGB'].map((field) => (
+        <div key={field} className="flex items-center space-x-2">
+          <label className="w-1/4 font-medium">{field.split('.').join(' ')}</label>
           <input
-            className="input-style"
-            type="number"
-            name={`variants[${index}].ram.capacityGB`}
-            placeholder="RAM Capacity GB"
-            value={variant.ram.capacityGB}
-            onChange={handleChange}
-          />
-          <input
-            className="input-style"
-            type="text"
-            name={`variants[${index}].ram.type`}
-            placeholder="RAM Type"
-            value={variant.ram.type}
-            onChange={handleChange}
-          />
-          <input
-            className="input-style"
-            type="text"
-            name={`variants[${index}].storage.type`}
-            placeholder="Storage Type"
-            value={variant.storage.type}
-            onChange={handleChange}
-          />
-          <input
-            className="input-style"
-            type="number"
-            name={`variants[${index}].storage.capacityGB`}
-            placeholder="Storage Capacity GB"
-            value={variant.storage.capacityGB}
+            className="input-style w-3/4"
+            type={field.includes('capacityGB') ? 'number' : 'text'}
+            name={field}
+            value={formData[field] || ''}
             onChange={handleChange}
           />
         </div>
       ))}
 
-      <h2 className="text-lg font-bold">Graphics</h2>
-      <label className="flex items-center">
-        <input
-          type="checkbox"
-          name="graphics.integrated"
-          checked={formData.graphics.integrated}
-          onChange={handleChange}
-        />
-        <span className="ml-2">Integrated Graphics</span>
-      </label>
-      <input
-        className="input-style"
-        type="text"
-        name="graphics.brand"
-        placeholder="Graphics Brand"
-        value={formData.graphics.brand || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="text"
-        name="graphics.model"
-        placeholder="Graphics Model"
-        value={formData.graphics.model || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="graphics.frequencyMHz"
-        placeholder="Frequency MHz"
-        value={formData.graphics.frequencyMHz || ''}
-        onChange={handleChange}
-      />
+      <h1 className="border-b pb-2 text-lg font-bold">Oferts</h1>
+      {['oferts.provider', 'oferts.url', 'oferts.priceUsd', 'oferts.warrantyYears'].map((field) => (
+        <div key={field} className="flex items-center space-x-2">
+          <label className="w-1/4 font-medium">{field.split('.').join(' ')}</label>
+          <input
+            className="input-style w-3/4"
+            type={field.includes('priceUsd') || field.includes('warrantyYears') ? 'number' : 'text'}
+            name={field}
+            value={formData[field] || ''}
+            onChange={handleChange}
+          />
+        </div>
+      ))} */}
 
-      <h2 className="text-lg font-bold">Connectivity</h2>
-      <input
-        className="input-style"
-        type="text"
-        name="connectivity.wifi"
-        placeholder="Wi-Fi Version"
-        value={formData.connectivity.wifi}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="input-style"
-        type="text"
-        name="connectivity.bluetooth"
-        placeholder="Bluetooth Version"
-        value={formData.connectivity.bluetooth}
-        onChange={handleChange}
-        required
-      />
+      <h1 className="border-b pb-2 text-lg font-bold">Graphics</h1>
+      {['graphics.integrated', 'graphics.brand', 'graphics.model', 'graphics.frequencyMHz'].map(
+        (field) => (
+          <div key={field} className="flex items-center space-x-2">
+            <label className="w-1/4 font-medium">{field.split('.').join(' ')}</label>
+            <input
+              className="input-style w-3/4"
+              type={field === 'graphics.integrated' ? 'checkbox' : 'text'}
+              name={field}
+              value={formData[field] || ''}
+              onChange={handleChange}
+            />
+          </div>
+        )
+      )}
 
-      <h2 className="text-lg font-bold">Ports</h2>
-      <input
-        className="input-style"
-        type="number"
-        name="ports.usb4"
-        placeholder="USB 4 Ports"
-        value={formData.ports.usb4 || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="ports.usb3"
-        placeholder="USB 3 Ports"
-        value={formData.ports.usb3 || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="ports.usb2"
-        placeholder="USB 2 Ports"
-        value={formData.ports.usb2 || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="ports.ethernet"
-        placeholder="Ethernet Ports"
-        value={formData.ports.ethernet || ''}
-        onChange={handleChange}
-      />
-      <label className="flex items-center">
-        <input
-          type="checkbox"
-          name="ports.audioJack"
-          checked={formData.ports.audioJack}
-          onChange={handleChange}
-        />
-        <span className="ml-2">Audio Jack</span>
-      </label>
-      <label className="flex items-center">
-        <input
-          type="checkbox"
-          name="ports.sdCardReader"
-          checked={formData.ports.sdCardReader}
-          onChange={handleChange}
-        />
-        <span className="ml-2">SD Card Reader</span>
-      </label>
+      <h1 className="border-b pb-2 text-lg font-bold">Dimensions & Weight</h1>
+      {[
+        'dimensions.widthMm',
+        'dimensions.heightMm',
+        'dimensions.depthMm',
+        'dimensions.volumeL',
+        'weightKg',
+      ].map((field) => (
+        <div key={field} className="flex items-center space-x-2">
+          <label className="w-1/4 font-medium">{field.split('.').join(' ')}</label>
+          <input
+            className="input-style w-3/4"
+            type="number"
+            name={field}
+            value={formData[field] || ''}
+            onChange={handleChange}
+          />
+        </div>
+      ))}
 
-      <h2 className="text-lg font-bold">Dimensions</h2>
-      <input
-        className="input-style"
-        type="number"
-        name="dimensions.widthMm"
-        placeholder="Width (mm)"
-        value={formData.dimensions.widthMm || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="dimensions.heightMm"
-        placeholder="Height (mm)"
-        value={formData.dimensions.heightMm || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="dimensions.depthMm"
-        placeholder="Depth (mm)"
-        value={formData.dimensions.depthMm || ''}
-        onChange={handleChange}
-      />
-
-      <h2 className="text-lg font-bold">Miscellaneous</h2>
-      <input
-        className="input-style"
-        type="number"
-        name="weightKg"
-        placeholder="Weight (kg)"
-        value={formData.weightKg}
-        onChange={handleChange}
-        required
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="powerConsumptionW"
-        placeholder="Power Consumption (W)"
-        value={formData.powerConsumptionW || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="releaseYear"
-        placeholder="Release Year"
-        value={formData.releaseYear || ''}
-        onChange={handleChange}
-      />
+      <h1 className="border-b pb-2 text-lg font-bold">Ports</h1>
+      {['usb4', 'usb3', 'usb2', 'usbC', 'ethernet', 'audioJack', 'sdCardReader'].map((field) => (
+        <div key={field} className="flex items-center space-x-2">
+          <label className="w-1/4 font-medium">{field.split('.').join(' ')}</label>
+          <input
+            className="input-style w-3/4"
+            type={field === 'audioJack' || field === 'sdCardReader' ? 'checkbox' : 'number'}
+            name={field}
+            value={formData[field] || ''}
+            onChange={handleChange}
+          />
+        </div>
+      ))}
 
       <button type="submit" className="w-full rounded bg-blue-600 p-2 text-white hover:bg-blue-700">
         Generate
