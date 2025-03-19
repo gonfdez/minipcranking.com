@@ -84,7 +84,8 @@ function MiniPcForm() {
   }
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, type, checked, value } = e.target
+    const { name, type, value } = e.target
+    const checked = (e.target as HTMLInputElement).checked
     setFormData((prev) => handleNestedChange(name, type === 'checkbox' ? checked : value, prev))
   }
 
