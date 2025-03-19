@@ -53,7 +53,6 @@ function MiniPcForm() {
       usb3: 0,
       usb2: 0,
       usbC: 0,
-      displayPort: 0,
       ethernet: 0,
       audioJack: false,
       sdCardReader: false,
@@ -108,10 +107,7 @@ function MiniPcForm() {
   }
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-4 rounded-md border bg-gray-800 p-4 text-white"
-    >
+    <form onSubmit={handleSubmit} className="space-y-4 rounded-md bg-gray-800 p-4 text-white">
       <h2 className="text-lg font-bold">Información General</h2>
       <input
         className="input-style"
@@ -238,7 +234,7 @@ function MiniPcForm() {
 
       <h2 className="text-lg font-bold">RAM & Storage Variants</h2>
       {formData.variants.map((variant, index) => (
-        <div key={index} className="space-y-2 rounded-md border p-2">
+        <div key={index} className="space-y-2 rounded-md border border-black p-2">
           <input
             className="input-style"
             type="number"
@@ -352,14 +348,6 @@ function MiniPcForm() {
         name="ports.usb2"
         placeholder="USB 2 Ports"
         value={formData.ports.usb2 || ''}
-        onChange={handleChange}
-      />
-      <input
-        className="input-style"
-        type="number"
-        name="ports.displayPort"
-        placeholder="DisplayPort"
-        value={formData.ports.displayPort || ''}
         onChange={handleChange}
       />
       <input

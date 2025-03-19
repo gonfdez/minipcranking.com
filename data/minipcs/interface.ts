@@ -71,7 +71,6 @@ interface MiniPcInterface {
     usb3?: number
     usb2?: number
     usbC?: number
-    displayPort?: number
     ethernet?: number
     audioJack?: boolean
     sdCardReader?: boolean
