@@ -431,7 +431,7 @@ function MiniPcForm() {
       />
 
       <button type="submit" className="w-full rounded bg-blue-600 p-2 text-white hover:bg-blue-700">
-        Generate ZIP
+        Generate
       </button>
     </form>
   )
