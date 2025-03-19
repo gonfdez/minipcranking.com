@@ -62,8 +62,8 @@ interface MiniPcInterface {
       }
     }
   }
-  builtinMicrophone: boolean
-  builtinSpeakers: boolean
+  builtinMicrophone?: boolean
+  builtinSpeakers?: boolean
   supportExternalDiscreteGraphicsCard?: boolean
   ports: {
     imageSrc?: string
