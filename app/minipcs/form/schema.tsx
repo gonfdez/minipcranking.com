@@ -1,4 +1,4 @@
-import { MINI_PC_BRAND } from '@/data/minipcs/brands'
+import { MINI_PC_BRAND, MINI_PC_PROVIDER } from '@/data/minipcs/brands'
 import { RJSFSchema } from '@rjsf/utils'
 
 export const miniPcSchema: RJSFSchema = {
@@ -160,7 +160,11 @@ export const miniPcSchema: RJSFSchema = {
             items: {
               type: 'object',
               properties: {
-                provider: { type: 'string', title: 'Proveedor' },
+                provider: {
+                  type: 'string',
+                  title: 'Proveedor',
+                  enum: Object.values(MINI_PC_PROVIDER),
+                },
                 priceUsd: { type: 'number', title: 'Precio (USD)' },
                 warrantyYears: { type: 'integer', title: 'Años de garantía' },
                 url: { type: 'string', title: 'URL de la oferta', format: 'uri' },
@@ -171,5 +175,15 @@ export const miniPcSchema: RJSFSchema = {
       },
     },
   },
-  required: ['id', 'title', 'brand', 'model', 'cpu', 'weightKg', 'connectivity'],
+  required: [
+    'id',
+    'title',
+    'brand',
+    'model',
+    'cpu',
+    'graphics',
+    'ports',
+    'weightKg',
+    'connectivity',
+  ],
 }
