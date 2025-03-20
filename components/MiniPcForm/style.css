@@ -33,7 +33,8 @@ form .form-group .checkbox label {
   flex-direction: row-reverse;
 }
 
-form input:not([type='checkbox']) {
+form input:not([type='checkbox']),
+form select {
   color: #111827; /* text-gray-900 */
   background-color: #f9fafb; /* bg-gray-100 */
   border-color: #d1d5db; /* border-gray-300 */
@@ -65,7 +66,8 @@ form input:not([type='checkbox']) {
   color: #f3f4f6; /* dark:text-gray-100 */
 }
 
-.dark form input:not([type='checkbox']) {
+.dark form input:not([type='checkbox']),
+.dark form select {
   color: #f3f4f6; /* dark:text-gray-100 */
   background-color: #1f2937; /* dark:bg-gray-800 */
   border-color: #374151; /* dark:border-gray-700 */
