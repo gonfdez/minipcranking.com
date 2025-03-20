@@ -123,6 +123,19 @@ export const miniPcSchema: RJSFSchema = {
               type: { type: 'string', title: 'Tipo' },
             },
           },
+          offers: {
+            type: 'array',
+            title: 'Oferta',
+            items: {
+              type: 'object',
+              properties: {
+                provider: { type: 'string', title: 'Proveedor' },
+                priceUsd: { type: 'number', title: 'Precio (USD)' },
+                warrantyYears: { type: 'integer', title: 'Años de garantía' },
+                url: { type: 'string', title: 'URL de la oferta', format: 'uri' },
+              },
+            },
+          },
         },
       },
     },

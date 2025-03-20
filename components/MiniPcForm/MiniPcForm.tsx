@@ -6,32 +6,40 @@ import { miniPcSchema } from '../../app/minipcs/form/schema'
 
 import './style.css'
 
-const ArrayFieldTemplate = ({ items, canAdd, onAddClick }) => (
-  <div className="w-full space-y-4">
-    <h2 className="form-title">Variantes</h2>
-    {items.map((element) => (
-      <div key={element.index} className="rounded-md border bg-gray-100 p-4 dark:bg-gray-800">
-        {element.children}
+const ArrayFieldTemplate = ({ items, canAdd, onAddClick, schema }) => {
+  const title = schema.title || 'Elemento' // Usa el título del schema o un valor por defecto
+
+  return (
+    <div className="w-full space-y-4">
+      <h2 className="form-title">{title}s</h2>
+      {items.map((element) => (
+        <div key={element.index} className="rounded-md border bg-gray-100 p-4 dark:bg-gray-800">
+          {element.children}
+          <button
+            type="button"
+            className="mt-2 rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600"
+            onClick={() => {
+              if (window.confirm(`¿Seguro que quieres eliminar ${title}-${element.index + 1}?`)) {
+                element.onDropIndexClick(element.index)()
+              }
+            }}
+          >
+            Eliminar {title}
+          </button>
+        </div>
+      ))}
+      {canAdd && (
         <button
           type="button"
-          className="mt-2 rounded bg-red-500 px-3 py-1 text-white hover:bg-red-600"
-          onClick={element.onDropIndexClick(element.index)}
+          className="rounded bg-green-500 px-3 py-1 text-white hover:bg-green-600"
+          onClick={onAddClick}
         >
-          Eliminar
+          Agregar {title}
         </button>
-      </div>
-    ))}
-    {canAdd && (
-      <button
-        type="button"
-        className="rounded bg-green-500 px-3 py-1 text-white hover:bg-green-600"
-        onClick={onAddClick}
-      >
-        Agregar Variante
-      </button>
-    )}
-  </div>
-)
+      )}
+    </div>
+  )
+}
 
 const uiSchema = {
   'ui:submitButtonOptions': {
@@ -44,6 +52,11 @@ const uiSchema = {
   },
   variants: {
     'ui:ArrayFieldTemplate': ArrayFieldTemplate,
+    items: {
+      offers: {
+        'ui:ArrayFieldTemplate': ArrayFieldTemplate,
+      },
+    },
   },
 }
 
