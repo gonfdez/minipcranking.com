@@ -1,0 +1,72 @@
+form legend,
+.form-title {
+  margin-bottom: 0.5rem;
+  border-bottom: 1px solid #d1d5db; /* border-gray-300 */
+  padding-bottom: 0.5rem;
+  font-size: 1.25rem; /* text-xl */
+  font-weight: bold;
+  color: #111827; /* text-gray-900 */
+  width: 100%;
+}
+
+form .form-group {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 5px 0px;
+}
+
+form .form-group .checkbox {
+  width: 100%;
+}
+
+input[type='checkbox'] {
+  width: 30px;
+  height: 30px;
+}
+
+form .form-group .checkbox label {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  margin: 5px 0px;
+  flex-direction: row-reverse;
+}
+
+form input:not([type='checkbox']) {
+  color: #111827; /* text-gray-900 */
+  background-color: #f9fafb; /* bg-gray-100 */
+  border-color: #d1d5db; /* border-gray-300 */
+  width: 100%;
+  max-width: 400px;
+  margin-left: 1rem;
+}
+
+.form-group fieldset {
+  width: 100%;
+  border: 1px solid #d1d5db; /* border-gray-300 */
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.75rem;
+}
+
+.dark .form-group fieldset {
+  border-color: #374151; /* border-gray-300 */
+}
+
+#root {
+  width: 100%;
+}
+
+/* ✅ Usa la clase `dark` en lugar de prefers-color-scheme */
+.dark form legend,
+.dark .form-title {
+  border-bottom-color: #374151; /* dark:border-gray-700 */
+  color: #f3f4f6; /* dark:text-gray-100 */
+}
+
+.dark form input:not([type='checkbox']) {
+  color: #f3f4f6; /* dark:text-gray-100 */
+  background-color: #1f2937; /* dark:bg-gray-800 */
+  border-color: #374151; /* dark:border-gray-700 */
+}
