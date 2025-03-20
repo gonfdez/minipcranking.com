@@ -60,16 +60,34 @@ const uiSchema = {
   },
 }
 
-export default function MiniPcForm() {
-  const onSubmit = (data: IChangeEvent) => {
-    console.log('Mini PC Registrado:', data.formData)
-  }
+const generateId = (brand: string, model: string) => {
+  if (!brand || !model) return ''
+  return `${brand}${model}`.replace(/[^A-Za-z0-9-]/g, '') // Mantiene mayúsculas
+}
 
+const generateTitle = (brand: string, model: string) => {
+  if (!brand || !model) return ''
+  return `${brand} ${model.replace(/[^A-Za-z0-9-]/g, '')}` // Mantiene mayúsculas
+}
+
+const handleChange = ({ formData, errors }: IChangeEvent) => {
+  if (formData.brand && formData.model) {
+    formData.id = generateId(formData.brand, formData.model)
+    formData.title = generateTitle(formData.brand, formData.model)
+  }
+}
+
+const onSubmit = (data: IChangeEvent) => {
+  console.log('Mini PC Registrado:', data.formData)
+}
+
+export default function MiniPcForm() {
   return (
     <Form
       schema={miniPcSchema}
       uiSchema={uiSchema}
       validator={validator}
+      onChange={handleChange} // ✅ Actualiza el id y title dinámicamente
       onSubmit={onSubmit}
       className="rounded-lg bg-white p-2 shadow-md dark:bg-gray-900"
     />

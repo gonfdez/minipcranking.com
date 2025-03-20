@@ -6,7 +6,7 @@ export const miniPcSchema: RJSFSchema = {
   type: 'object',
   properties: {
     id: { type: 'string', title: 'ID', readOnly: true },
-    title: { type: 'string', title: 'Título' },
+    title: { type: 'string', title: 'Título', readOnly: true },
     brand: {
       type: 'string',
       title: 'Marca',
@@ -15,6 +15,7 @@ export const miniPcSchema: RJSFSchema = {
     model: { type: 'string', title: 'Modelo' },
     description: { type: 'string', title: 'Descripción' },
     imgSrc: { type: 'string', title: 'URL de la imagen principal del producto', format: 'uri' },
+
     cpu: {
       type: 'object',
       title: 'Procesador',
@@ -38,7 +39,9 @@ export const miniPcSchema: RJSFSchema = {
           },
         },
       },
+      required: ['brand', 'model', 'cores', 'threads', 'baseClockGHz'],
     },
+
     graphics: {
       type: 'object',
       title: 'Gráficos',
@@ -57,46 +60,10 @@ export const miniPcSchema: RJSFSchema = {
         frequencyMHz: { type: 'number', title: 'Frecuencia (MHz)' },
         maxTOPS: { type: 'number', title: 'TOPS máximo' },
         graphicCoresCU: { type: 'integer', title: 'Núcleos gráficos (CU)' },
-        displayPorts: {
-          type: 'object',
-          title: 'Puertos de pantalla',
-          properties: {
-            thunderbolt: {
-              type: 'object',
-              title: 'Thunderbolt',
-              properties: {
-                amount: { type: 'integer', title: 'Cantidad' },
-                type: { type: 'string', title: 'Tipo' },
-              },
-            },
-            dp: {
-              type: 'object',
-              title: 'DisplayPort',
-              properties: {
-                amount: { type: 'integer', title: 'Cantidad' },
-                type: { type: 'string', title: 'Tipo' },
-              },
-            },
-            hdmi: {
-              type: 'object',
-              title: 'HDMI',
-              properties: {
-                amount: { type: 'integer', title: 'Cantidad' },
-                type: { type: 'string', title: 'Tipo' },
-              },
-            },
-            usb4: {
-              type: 'object',
-              title: 'USB4',
-              properties: {
-                amount: { type: 'integer', title: 'Cantidad' },
-                type: { type: 'string', title: 'Tipo' },
-              },
-            },
-          },
-        },
       },
+      required: ['brand', 'model'],
     },
+
     connectivity: {
       type: 'object',
       title: 'Conectividad',
@@ -104,7 +71,9 @@ export const miniPcSchema: RJSFSchema = {
         wifi: { type: 'string', title: 'WiFi' },
         bluetooth: { type: 'string', title: 'Bluetooth' },
       },
+      required: ['wifi', 'bluetooth'],
     },
+
     dimensions: {
       type: 'object',
       title: 'Dimensiones',
@@ -114,10 +83,13 @@ export const miniPcSchema: RJSFSchema = {
         depthMm: { type: 'number', title: 'Profundidad (mm)' },
         volumeL: { type: 'number', title: 'Volumen (L)' },
       },
+      // required: ['widthMm', 'heightMm', 'depthMm'],
     },
+
     weightKg: { type: 'number', title: 'Peso (Kg)' },
     powerConsumptionW: { type: 'number', title: 'Consumo de Energía (W)' },
     releaseYear: { type: 'integer', title: 'Año de lanzamiento' },
+
     ports: {
       type: 'object',
       title: 'Puertos',
@@ -131,7 +103,9 @@ export const miniPcSchema: RJSFSchema = {
         audioJack: { type: 'boolean', title: 'Jack de audio' },
         sdCardReader: { type: 'boolean', title: 'Lector de tarjetas SD' },
       },
+      required: ['usb4', 'usb3', 'usbC', 'ethernet'],
     },
+
     variants: {
       type: 'array',
       title: 'Variante',
@@ -145,6 +119,7 @@ export const miniPcSchema: RJSFSchema = {
               capacityGB: { type: 'integer', title: 'Capacidad (GB)' },
               type: { type: 'string', title: 'Tipo' },
             },
+            required: ['capacityGB', 'type'],
           },
           storage: {
             type: 'object',
@@ -153,6 +128,7 @@ export const miniPcSchema: RJSFSchema = {
               capacityGB: { type: 'integer', title: 'Capacidad (GB)' },
               type: { type: 'string', title: 'Tipo' },
             },
+            required: ['capacityGB', 'type'],
           },
           offers: {
             type: 'array',
@@ -169,12 +145,15 @@ export const miniPcSchema: RJSFSchema = {
                 warrantyYears: { type: 'integer', title: 'Años de garantía' },
                 url: { type: 'string', title: 'URL de la oferta', format: 'uri' },
               },
+              required: ['provider', 'priceUsd', 'url'],
             },
           },
         },
+        required: ['ram', 'storage'],
       },
     },
   },
+
   required: [
     'id',
     'title',
@@ -182,8 +161,9 @@ export const miniPcSchema: RJSFSchema = {
     'model',
     'cpu',
     'graphics',
+    'connectivity',
     'ports',
     'weightKg',
-    'connectivity',
+    'dimensions',
   ],
 }
