@@ -1,4 +1,4 @@
-import { MINI_PC_BRAND, MINI_PC_PROVIDER } from '@/data/minipcs/brands'
+import { CPU_BRAND, MINI_PC_BRAND, MINI_PC_PROVIDER } from '@/data/minipcs/brands'
 import { RJSFSchema } from '@rjsf/utils'
 
 export const miniPcSchema: RJSFSchema = {
@@ -23,7 +23,7 @@ export const miniPcSchema: RJSFSchema = {
         brand: {
           type: 'string',
           title: 'Marca',
-          enum: Object.values(MINI_PC_BRAND),
+          enum: Object.values(CPU_BRAND),
         },
         model: { type: 'string', title: 'Modelo' },
         cores: { type: 'integer', title: 'Núcleos' },
@@ -54,7 +54,7 @@ export const miniPcSchema: RJSFSchema = {
         brand: {
           type: 'string',
           title: 'Marca',
-          enum: Object.values(MINI_PC_BRAND),
+          enum: Object.values(CPU_BRAND),
         },
         model: { type: 'string', title: 'Modelo' },
         frequencyMHz: { type: 'number', title: 'Frecuencia (MHz)' },
