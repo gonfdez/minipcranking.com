@@ -5,7 +5,7 @@ interface MiniPcInterface {
   model: string
   description: string
   href?: string
-  imgSrc?: string
+  imgSrc: string
   cpu: {
     brand: string
     model: string

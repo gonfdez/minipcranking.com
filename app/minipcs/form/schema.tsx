@@ -34,8 +34,8 @@ export const miniPcSchema: RJSFSchema = {
           type: 'object',
           title: 'Caché del procesador (Si tiene)',
           properties: {
-            type: { type: 'string', title: 'Tipo' },
             capacityMB: { type: 'integer', title: 'Capacidad (MB)' },
+            type: { type: 'string', title: 'Tipo' },
           },
         },
       },
@@ -64,6 +64,45 @@ export const miniPcSchema: RJSFSchema = {
       required: ['brand', 'model'],
     },
 
+    displayPorts: {
+      type: 'object',
+      title: 'Propiedades de los puertos de video',
+      properties: {
+        thunderbolt: {
+          type: 'object',
+          title: 'Thunderbolt',
+          properties: {
+            amount: { type: 'integer', title: 'Cantidad' },
+            type: { type: 'string', title: 'Tipo' },
+          },
+        },
+        dp: {
+          type: 'object',
+          title: 'DisplayPort',
+          properties: {
+            amount: { type: 'integer', title: 'Cantidad' },
+            type: { type: 'string', title: 'Tipo' },
+          },
+        },
+        hdmi: {
+          type: 'object',
+          title: 'HDMI',
+          properties: {
+            amount: { type: 'integer', title: 'Cantidad' },
+            type: { type: 'string', title: 'Tipo' },
+          },
+        },
+        usb4: {
+          type: 'object',
+          title: 'USB4',
+          properties: {
+            amount: { type: 'integer', title: 'Cantidad' },
+            type: { type: 'string', title: 'Tipo' },
+          },
+        },
+      },
+    },
+
     connectivity: {
       type: 'object',
       title: 'Conectividad',
@@ -83,8 +122,13 @@ export const miniPcSchema: RJSFSchema = {
         depthMm: { type: 'number', title: 'Profundidad (mm)' },
         volumeL: { type: 'number', title: 'Volumen (L)' },
       },
-      // required: ['widthMm', 'heightMm', 'depthMm'],
     },
+
+    maxRamCapacityGB: { type: 'integer', title: 'Capacidad máxima de RAM (GB)' },
+    maxStorageCapacityGB: { type: 'integer', title: 'Capacidad máxima de almacenamiento (GB)' },
+
+    builtinMicrophone: { type: 'boolean', title: 'Micrófono incorporado' },
+    builtinSpeakers: { type: 'boolean', title: 'Altavoces incorporados' },
 
     weightKg: { type: 'number', title: 'Peso (Kg)' },
     powerConsumptionW: { type: 'number', title: 'Consumo de Energía (W)' },
@@ -103,7 +147,7 @@ export const miniPcSchema: RJSFSchema = {
         audioJack: { type: 'boolean', title: 'Jack de audio' },
         sdCardReader: { type: 'boolean', title: 'Lector de tarjetas SD' },
       },
-      required: ['usb4', 'usb3', 'usbC', 'ethernet'],
+      required: ['imageSrc'],
     },
 
     variants: {
@@ -159,11 +203,11 @@ export const miniPcSchema: RJSFSchema = {
     'title',
     'brand',
     'model',
+    'imgSrc',
     'cpu',
     'graphics',
     'connectivity',
     'ports',
     'weightKg',
-    'dimensions',
   ],
 }
