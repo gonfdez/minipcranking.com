@@ -52,10 +52,13 @@ async function getMarkdownFromURL(url: URL): Promise<string> {
 
 async function extractDataFromMarkdown(
   url: string,
-  html: string
+  md: string
 ): Promise<MiniPcExtractedData> {
+  // Pasar de el md al objeto con la info
+
   return {
     fromURL: url,
+    manualCollect: false,
   };
 }
 
