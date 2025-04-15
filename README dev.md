@@ -7,7 +7,7 @@ Monetización a través de enlaces de afiliados.
 
 El punto fuerte de esta web es tener una **amplia variedad de mini pcs registrados**.
 
-Para obtener toda esta informacion usaremos ’’weebseek’’. La **IA recorre las webs de mini pcs extrayendo toda la informacion** necesaria y guardándola en BBDD.
+Para obtener toda esta informacion usaremos ``weebseek``. La **IA recorre las webs de mini pcs extrayendo toda la informacion** necesaria y guardándola en BBDD.
 
 ### Arquitectura del proyecto
 
