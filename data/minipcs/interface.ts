@@ -1,10 +1,10 @@
 interface MiniPcInterface {
   id: string
-  title: string
   brand: string
   model: string
-  description: string
-  href?: string
+  description: Record<'en' | 'es', string> // min 100 palabras max 250
+  fromURL?: string
+  scrappedManual?: boolean
   imgSrc: string
   cpu: {
     brand: string
