@@ -1,4 +1,3 @@
-// Inicializa el cliente de Supabase
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "./database.types";
 
@@ -16,7 +15,6 @@ const supabase = createClient<Database>(
   process.env.SUPABASE_ANON_KEY
 );
 
-// Obtener lista de URLs del archivo urls.txt
 import { readFileSync } from "fs";
 import { join } from "path";
 
@@ -28,15 +26,37 @@ const urls = urlsFileContent
   .filter((url) => url !== "");
 console.log("URLs to scrape:", urls.length);
 
+import { WebButlerDriver, URL } from "@gfs-studio/webbutler-js";
+
+const driver = new WebButlerDriver({
+  browserServerURL: "http:/localhost:3000",
+});
+
+import { TurndownService } from "turndown";
+
+const turndownService = new TurndownService();
+
 // Obtener el html de cada URL
-async function getHTMLFromURL(url: string): Promise<string> {
-  return "";
+async function getMarkdownFromURL(url: URL): Promise<string> {
+  await driver.navigate(url);
+  await driver.waitForPageLoad(3000);
+  await driver.sleep(1250);
+  const scriptRes = await driver.executeScript(
+    `return document.querySelector('body').outerHTML;`,
+    false
+  );
+  const htmlString = scriptRes?.data?.return ?? null;
+  const markdown = turndownService.turndown(htmlString);
+  return markdown;
 }
 
-async function extractDataFromHTML(html: string): Promise<MiniPcExtractedData> {
-  // Aquí puedes usar un parser HTML como cheerio o jsdom para extraer los datos
-  // Por simplicidad, vamos a devolver un objeto vacío
-  return {} as any;
+async function extractDataFromMarkdown(
+  url: string,
+  html: string
+): Promise<MiniPcExtractedData> {
+  return {
+    fromURL: url,
+  };
 }
 
 async function saveDataToSupabase(data: MiniPcExtractedData): Promise<boolean> {
@@ -47,8 +67,8 @@ async function main() {
   let createdMiniPcsCount = 0;
   for (const url of urls) {
     try {
-      const html = await getHTMLFromURL(url);
-      const data = await extractDataFromHTML(html);
+      const md = await getMarkdownFromURL(url as URL);
+      const data = await extractDataFromMarkdown(url, md);
       const success = await saveDataToSupabase(data);
       if (!success) throw new Error(`Failed to save data from ${url}.`);
       console.log(`Data from ${url} saved successfully.`);

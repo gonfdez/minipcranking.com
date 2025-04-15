@@ -3,9 +3,9 @@ interface MiniPcExtractedData {
   brand: string;
   model: string;
   description: Record<"en" | "es", string>; // min 100 palabras max 250
-  fromURL?: string;
-  scrappedManual?: boolean;
-  imgSrc: string;
+  fromURL: string;
+  manualCollect: boolean;
+  mainImgHref: string;
   cpu: {
     brand: string;
     model: string;
