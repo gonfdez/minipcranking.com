@@ -7,7 +7,7 @@ JSON DOCUMENT FORMAT:
   id: string;
   brand: string;
   model: string;
-  description: Record<"en" | "es", string>; // min 100 words max 250. Must have one per option un Record key
+  description: Record<"en" | "es", string>; // min 100 words max 250. Must have one per option an Record key
   mainImgHref: string;
   cpu: {
     brand: string;
