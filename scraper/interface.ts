@@ -89,3 +89,5 @@ interface MiniPcExtractedData {
   powerConsumptionW?: number;
   releaseYear?: number;
 }
+
+export default MiniPcExtractedData;

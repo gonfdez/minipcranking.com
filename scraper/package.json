@@ -4,7 +4,7 @@
   "description": "Proyecto para extraer la información de `Mini Pc's` de diferentes páginas web",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "ts-node index.ts"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +12,13 @@
   "dependencies": {
     "@gfs-studio/webbutler-js": "^1.0.15",
     "@supabase/supabase-js": "^2.49.4",
+    "dotenv": "^16.5.0",
     "turndown": "^7.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.14.1",
+    "@types/turndown": "^5.0.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.8.3"
   }
 }

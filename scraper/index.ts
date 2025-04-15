@@ -1,3 +1,8 @@
+import * as dotenv from "dotenv";
+
+// Cargar las variables desde el archivo .env
+dotenv.config();
+
 import { createClient } from "@supabase/supabase-js";
 import { Database } from "./database.types";
 
@@ -32,7 +37,7 @@ const driver = new WebButlerDriver({
   browserServerURL: "http:/localhost:3000",
 });
 
-import { TurndownService } from "turndown";
+import TurndownService from "turndown";
 
 const turndownService = new TurndownService();
 
@@ -50,6 +55,8 @@ async function getMarkdownFromURL(url: URL): Promise<string> {
   return markdown;
 }
 
+import MiniPcExtractedData from "./interface";
+
 async function extractDataFromMarkdown(
   url: string,
   md: string
@@ -59,7 +66,7 @@ async function extractDataFromMarkdown(
   return {
     fromURL: url,
     manualCollect: false,
-  };
+  } as any;
 }
 
 async function saveDataToSupabase(data: MiniPcExtractedData): Promise<boolean> {
@@ -71,9 +78,10 @@ async function main() {
   for (const url of urls) {
     try {
       const md = await getMarkdownFromURL(url as URL);
-      const data = await extractDataFromMarkdown(url, md);
-      const success = await saveDataToSupabase(data);
-      if (!success) throw new Error(`Failed to save data from ${url}.`);
+      console.log(md);
+      // const data = await extractDataFromMarkdown(url, md);
+      // const success = await saveDataToSupabase(data);
+      // if (!success) throw new Error(`Failed to save data from ${url}.`);
       console.log(`Data from ${url} saved successfully.`);
       createdMiniPcsCount++;
     } catch (error) {
