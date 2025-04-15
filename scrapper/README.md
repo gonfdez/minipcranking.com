@@ -1,4 +1,4 @@
-# SCRAPPER
+# MINI PC's SCRAPPER
 
 Proyecto para extraer la información de `Mini Pc's` de diferentes páginas web y guardarla para nuestra web.
 
