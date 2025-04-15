@@ -4,7 +4,8 @@
   "description": "Proyecto para extraer la información de `Mini Pc's` de diferentes páginas web",
   "main": "index.js",
   "scripts": {
-    "start": "ts-node index.ts"
+    "start": "ts-node index.ts",
+    "schema": "typescript-json-schema interface.ts MiniPcExtractedData --required --out schema.json"
   },
   "keywords": [],
   "author": "",
@@ -13,7 +14,9 @@
     "@gfs-studio/webbutler-js": "^1.0.15",
     "@supabase/supabase-js": "^2.49.4",
     "dotenv": "^16.5.0",
-    "turndown": "^7.2.0"
+    "openai": "^4.94.0",
+    "turndown": "^7.2.0",
+    "typescript-json-schema": "^0.65.1"
   },
   "devDependencies": {
     "@types/node": "^22.14.1",
