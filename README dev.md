@@ -1,6 +1,6 @@
 # minipcranking.com
 
-Página web enfocada en comparar caracteristicas de mini pcs y obtener sus ofertas.
+Página web enfocada en comparar mini pcs.
 Monetización a través de enlaces de afiliados.
 
 ### Recopilar la información
