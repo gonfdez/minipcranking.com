@@ -3,7 +3,7 @@ Provide a JSON object listing the tools the assistant is going to use.
 If there is not information, the assistant must place undefined in the correspondant propiety on the JSON response.
 
 JSON DOCUMENT FORMAT:
-interface MiniPcExtractedData {
+{
   id: string;
   brand: string;
   model: string;
