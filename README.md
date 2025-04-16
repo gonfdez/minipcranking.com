@@ -12,5 +12,5 @@ Para obtener toda esta informacion usaremos `weebseek`. La **IA recorre las webs
 ### Arquitectura del proyecto
 
 - `WEB` : Aplicación web (server side rendering) con NextJS.
-- `BBDD` : Base de datos "on cloud" para guardar toda la información.
+- `BBDD` : Base de datos PostgreSQL en _Supabase_ para guardar toda la información.
 - `SCRAPPER` : scripts para extraer la información de las páginas web de mini pcs.
