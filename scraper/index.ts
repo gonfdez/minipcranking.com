@@ -238,7 +238,7 @@ async function extractDataFromMarkdown(
       type: "json_schema",
       json_schema: {
         ...schema,
-        name: "MiniPcExtractedData",
+        name: "MiniPcExtractedDataSchema",
         strict: true,
       },
     },
