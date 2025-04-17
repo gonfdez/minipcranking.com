@@ -223,7 +223,7 @@ async function extractDataFromMarkdown(
 
   const fileContent = fs.readFileSync(join(__dirname, "prompt.txt"), "utf8");
 
-  /*const response = await client.chat.completions.create({
+  const response = await client.chat.completions.create({
     model: "qwen/qwen2.5-vl-32b-instruct:free",
     messages: [
       { role: "system", content: fileContent },
@@ -240,10 +240,9 @@ async function extractDataFromMarkdown(
         ...schema,
         name: "MiniPcExtractedData",
         strict: true,
-      }
+      },
     },
   });
-
 
   // parse JsonData on a constant
   const jsonData = parseJsonData(response.choices[0].message.content);
@@ -254,14 +253,10 @@ async function extractDataFromMarkdown(
   }
 
   return {
-    ...jsonData as MiniPcExtractedData,
+    ...(jsonData as MiniPcExtractedData),
     fromURL: url,
     manualCollect: false,
-  };*/
-  return {
-    fromURL: url,
-    manualCollect: true,
-  } as any;
+  };
 }
 
 async function saveDataToSupabase(data: MiniPcExtractedData): Promise<boolean> {
@@ -272,20 +267,20 @@ async function main() {
   let createdMiniPcsCount = 0;
   for (const url of urls) {
     try {
+      if (createdMiniPcsCount > 1) break;
       const md = await getMarkdownFromURL(url as URL);
       console.log(md);
       const data = await extractDataFromMarkdown(url, md);
       console.log(data);
-      break;
       // const success = await saveDataToSupabase(data);
       // if (!success) throw new Error(`Failed to save data from ${url}.`);
-      console.log(`Data from ${url} saved successfully.`);
+      // console.log(`Data from ${url} saved successfully.`);
       createdMiniPcsCount++;
     } catch (error) {
       console.error(`Error processing ${url}:`, error);
-      break;
     } finally {
       console.log(`Created ${createdMiniPcsCount} Mini Pc's.`);
+      break;
     }
   }
 }
