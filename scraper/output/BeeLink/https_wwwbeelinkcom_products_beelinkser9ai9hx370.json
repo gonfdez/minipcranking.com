@@ -1,0 +1,110 @@
+{
+  "id": "beelink-ser9-pro-amd-ryzen-ai-9-hx-370",
+  "brand": "Beelink",
+  "model": "SER9 Pro",
+  "description": {
+    "en": "The Beelink SER9 Pro is a powerful mini PC featuring the AMD Ryzen™ AI 9 HX 370 processor, delivering exceptional performance for AI tasks, gaming, and multimedia. With 12 Zen5 CPU cores, a Radeon™ 890M GPU, and 80 AI TOPS, it offers a fast, smart, and secure computing experience. The built-in microphone supports Al voice interaction, providing 360° barrier-free voice recognition within 5 meters. The dual built-in speakers offer high volume and rich details, eliminating the need for external audio equipment. The MSC2.0 cooling system ensures near-silent operation at 65W TDP, with a compact and space-saving design. The SER9 Pro supports triple 4K displays via HDMI 2.1, DisplayPort 1.4, and USB4, making it versatile for various use cases. It comes with options for 32GB or 64GB of LPDDR5X 8000MHz RAM and dual M.2 2280 PCIe 4.0 SSD slots, supporting up to 8TB of storage. The product is equipped with WiFi 6 and Bluetooth 5.2 for seamless connectivity. The SER9 Pro is available in Frost Silver and Space Gray, with dimensions of 135x135x44.7mm and a weight of 780g, making it 1/40th the size of a desktop tower. The product is backed by a one-year warranty and includes features like AUTO POWER ON WOL.",
+    "es": "El Beelink SER9 Pro es una mini PC potente que cuenta con el procesador AMD Ryzen™ AI 9 HX 370, ofreciendo un rendimiento excepcional para tareas de IA, juegos y multimedia. Con 12 núcleos de CPU Zen5, una GPU Radeon™ 890M y 80 TOPS de IA, proporciona una experiencia de computación rápida, inteligente y segura. El micrófono integrado admite interacción de voz Al, ofreciendo reconocimiento de voz sin barreras de 360° dentro de 5 metros. Los dos altavoces integrados ofrecen un volumen alto y detalles ricos, eliminando la necesidad de equipos de audio externos. El sistema de refrigeración MSC2.0 garantiza un funcionamiento casi silencioso a un TDP de 65W, con un diseño compacto y ahorrador de espacio. El SER9 Pro admite tres pantallas 4K a través de HDMI 2.1, DisplayPort 1.4 y USB4, lo que lo hace versátil para diversos casos de uso. Viene con opciones de 32GB o 64GB de RAM LPDDR5X de 8000MHz y ranuras de SSD M.2 2280 PCIe 4.0, admitiendo hasta 8TB de almacenamiento. El producto está equipado con WiFi 6 y Bluetooth 5.2 para una conectividad sin problemas. El SER9 Pro está disponible en Plata Frost y Gris Espacial, con dimensiones de 135x135x44.7mm y un peso de 780g, lo que lo hace 1/40 de la tamaño de una torre de escritorio. El producto está respaldado por una garantía de un año y cuenta con características como AUTO POWER ON WOL."
+  },
+  "mainImgHref": "https://www.bee-link.com/cdn/shop/files/SER9.png?v=1743499983",
+  "cpu": {
+    "brand": "AMD",
+    "model": "Ryzen™ AI 9 HX 370",
+    "cores": 12,
+    "threads": 24,
+    "baseClockGHz": 5.1,
+    "boostClockGHz": 5.1,
+    "cache": {
+      "type": "L2+L3",
+      "capacityMB": 36
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "LPDDR5X 8000MHz"
+      },
+      "storage": {
+        "type": "M.2 2280 PCIe 4.0",
+        "capacityGB": 1024
+      },
+      "oferts": [
+        {
+          "provider": "Beelink",
+          "url": "https://www.bee-link.com/products/beelink-ser9-ai-9-hx-370",
+          "priceUsd": 949,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 64,
+        "type": "LPDDR5X 8000MHz"
+      },
+      "storage": {
+        "type": "M.2 2280 PCIe 4.0",
+        "capacityGB": 2048
+      },
+      "oferts": [
+        {
+          "provider": "Beelink",
+          "url": "https://www.bee-link.com/products/beelink-ser9-ai-9-hx-370",
+          "priceUsd": 949,
+          "warrantyYears": 1
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 64,
+  "maxStorageCapacityGB": 8192,
+  "graphics": {
+    "integrated": true,
+    "brand": "AMD",
+    "model": "Radeon™ 890M",
+    "frequencyMHz": 2900,
+    "maxTOPS": 80,
+    "graphicCoresCU": 16,
+    "displayPorts": {
+      "dp": {
+        "amount": 1,
+        "type": "DisplayPort 1.4"
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": "HDMI 2.1"
+      },
+      "usb4": {
+        "amount": 1,
+        "type": "USB4 (40Gbps/TBT3/PD/DP1.4)"
+      }
+    }
+  },
+  "builtinMicrophone": true,
+  "builtinSpeakers": true,
+  "supportExternalDiscreteGraphicsCard": false,
+  "ports": {
+    "portImgSrc": "https://www.bee-link.com/cdn/shop/files/1_59e534cc-1ebb-44c3-9135-03d975057700.png?v=1706255968",
+    "usb4": 1,
+    "usb3": 0,
+    "usb2": 0,
+    "usbC": 0,
+    "ethernet": 0,
+    "audioJack": false,
+    "sdCardReader": false
+  },
+  "connectivity": {
+    "wifi": "WiFi 6",
+    "bluetooth": "Bluetooth 5.2"
+  },
+  "dimensions": {
+    "widthMm": 135,
+    "heightMm": 135,
+    "depthMm": 44.7,
+    "volumeL": 0.085
+  },
+  "weightKg": 0.78,
+  "powerConsumptionW": 65,
+  "releaseYear": 2024
+}

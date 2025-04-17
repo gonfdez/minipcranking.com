@@ -1,17 +1,17 @@
 Assistant must scrape all relevant information from the markdown document provided by the user.
 Provide a JSON object listing the tools the assistant is going to use.
-If there is not information, the assistant must place undefined in the correspondant propiety on the JSON response.
+If there is not information, the assistant must place "null" in the correspondant propiety on the JSON response.
 
 JSON DOCUMENT FORMAT:
 {
   id: string;
-  brand: string;
-  model: string;
+  brand: string; // Without special characters
+  model: string; // Without special characters
   description: Record<"en" | "es", string>; // min 100 words max 250. Must have one per option in Record key
   mainImgHref: string;
   cpu: {
-    brand: string;
-    model: string;
+    brand: string; // Without special characters
+    model: string; // Without special characters
     cores: number;
     threads: number;
     baseClockGHz?: number;
@@ -41,8 +41,8 @@ JSON DOCUMENT FORMAT:
   maxStorageCapacityGB?: number;
   graphics: {
     integrated: boolean;
-    brand: string;
-    model: string;
+    brand: string; // Without special characters
+    model: string; // Without special characters
     frequencyMHz?: number;
     maxTOPS?: number;
     graphicCoresCU?: number;
@@ -69,7 +69,7 @@ JSON DOCUMENT FORMAT:
   builtinSpeakers?: boolean;
   supportExternalDiscreteGraphicsCard?: boolean;
   ports: {
-    imageSrc?: string;
+    portImgSrc?: string; // Imagen de los puertos del Mini PC
     usb4?: number;
     usb3?: number;
     usb2?: number;
