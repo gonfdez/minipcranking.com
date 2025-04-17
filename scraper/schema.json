@@ -229,7 +229,7 @@
                 "ethernet": {
                     "type": "number"
                 },
-                "imageSrc": {
+                "portsImgHref": {
                     "type": "string"
                 },
                 "sdCardReader": {

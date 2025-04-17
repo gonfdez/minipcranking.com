@@ -66,7 +66,7 @@ interface MiniPcExtractedData {
   builtinSpeakers?: boolean;
   supportExternalDiscreteGraphicsCard?: boolean;
   ports: {
-    imageSrc?: string;
+    portsImgHref?: string;
     usb4?: number;
     usb3?: number;
     usb2?: number;
