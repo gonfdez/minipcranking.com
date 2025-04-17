@@ -42,9 +42,8 @@ async function extractDataFromMarkdown(
   md: string
 ): Promise<MiniPcExtractedData> {
   const client = new OpenAI({
-    baseURL: "https://openrouter.ai/api/v1",
-    apiKey:
-      "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",
+    baseURL: process.env.OPENAI_BASE_URL,
+    apiKey: process.env.OPENAI_API_KEY,
   });
 
   const propmt = fs.readFileSync(
