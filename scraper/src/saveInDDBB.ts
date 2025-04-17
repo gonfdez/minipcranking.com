@@ -1,6 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
-import { Database } from "../database.types";
-import MiniPcExtractedData from "../extractedData";
+import { Database } from "./database.types";
+import MiniPcExtractedData from "./miniPcExtractedData";
 
 if (
   process.env.SUPABASE_URL === undefined ||

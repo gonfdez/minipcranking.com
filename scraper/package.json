@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc --outDir dist",
     "start": "ts-node src/index.ts",
-    "schema": "typescript-json-schema extractedData.ts MiniPcExtractedData --required --out schema.json"
+    "schema": "typescript-json-schema src/miniPcExtractedData.ts MiniPcExtractedData --required --out data/schema.json"
   },
   "keywords": [],
   "author": "",

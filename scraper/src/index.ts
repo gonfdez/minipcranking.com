@@ -5,9 +5,9 @@ dotenv.config();
 import OpenAI from "openai";
 import fs from "fs";
 import { join } from "path";
-import MiniPcExtractedData from "../extractedData";
-import RAW_TARGETS from "../targets.json";
-import schema from "../schema.json";
+import MiniPcExtractedData from "./miniPcExtractedData";
+import RAW_TARGETS from "../data/targets.json";
+import schema from "../data/schema.json";
 import { getMarkdownFromURL } from "./extractMdFromURL";
 import { URL } from "@gfs-studio/webbutler-js";
 
@@ -47,15 +47,15 @@ async function extractDataFromMarkdown(
       "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",
   });
 
-  const fileContent = fs.readFileSync(
-    join(__dirname, "..", "prompt.txt"),
+  const propmt = fs.readFileSync(
+    join(__dirname, "..", "data", "prompt.txt"),
     "utf8"
   );
 
   const response = await client.chat.completions.create({
     model: "qwen/qwen2.5-vl-32b-instruct:free",
     messages: [
-      { role: "system", content: fileContent },
+      { role: "system", content: propmt },
       { role: "user", content: md },
     ],
     temperature: 0,
