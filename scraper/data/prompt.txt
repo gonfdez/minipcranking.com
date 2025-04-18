@@ -3,6 +3,7 @@ Provide a JSON object listing the tools the assistant is going to use.
 If there is not information, the assistant must place "null" in the correspondant propiety on the JSON response.
 
 JSON DOCUMENT FORMAT:
+```json
 {
   id: string;
   brand: string; // Without special characters
@@ -92,3 +93,4 @@ JSON DOCUMENT FORMAT:
   powerConsumptionW?: number;
   releaseYear?: number;
 }
+```

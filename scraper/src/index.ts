@@ -62,7 +62,6 @@ async function extractDataFromMarkdown(
     n: 1,
     stream: false,
     stop: null,
-    response_format: {'type': 'json_object'},
     // response_format: {
     //   type: "json_schema",
     //   json_schema: {
