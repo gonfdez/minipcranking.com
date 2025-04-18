@@ -139,6 +139,7 @@ export type Database = {
           maxRAMCapacityGB: number | null
           maxStorageCapacityGB: number | null
           model: string
+          ports: Json
           portsImgUrl: string | null
           powerConsumptionW: number | null
           releaseYear: number | null
@@ -162,6 +163,7 @@ export type Database = {
           maxRAMCapacityGB?: number | null
           maxStorageCapacityGB?: number | null
           model: string
+          ports: Json
           portsImgUrl?: string | null
           powerConsumptionW?: number | null
           releaseYear?: number | null
@@ -185,6 +187,7 @@ export type Database = {
           maxRAMCapacityGB?: number | null
           maxStorageCapacityGB?: number | null
           model?: string
+          ports?: Json
           portsImgUrl?: string | null
           powerConsumptionW?: number | null
           releaseYear?: number | null

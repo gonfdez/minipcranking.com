@@ -36,7 +36,7 @@ function checkResponseContent(jsonData: object | null): boolean {
   return true;
 }
 
-async function extractDataFromMarkdown(
+async function extractDataFromHTML(
   url: string,
   brand: string,
   md: string
@@ -121,7 +121,7 @@ async function main() {
       if (createdMiniPcsCount > 1) break;
       const md = await getHTMLFromURL(url as URL, brand);
 
-      const data = await extractDataFromMarkdown(url, brand, md);
+      const data = await extractDataFromHTML(url, brand, md);
 
       // const success = await saveDataToSupabase(data);
       // if (!success) throw new Error(`Failed to save data from ${url}.`);
