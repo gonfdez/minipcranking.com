@@ -69,11 +69,11 @@ async function cleanHtml(html: string): Promise<string> {
       }
     });
 
-    // Generar alt de las imágenes - MODIFICADO PARA PROCESAR DE FORMA ASÍNCRONA
-    const imgs = document.querySelectorAll("img");
-    console.log(`Detected ${imgs.length} images`);
+    let imgs = Array.from(document.querySelectorAll("img"));
 
-    // Usamos Promise.all para esperar a que todas las operaciones asíncronas terminen
+    console.log(`Processing ${imgs.length} images`);
+
+    // Procesar solo imágenes grandes
     for (const imgElem of imgs) {
       try {
         let imgSrc = imgElem.getAttribute("src");
