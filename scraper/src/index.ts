@@ -52,7 +52,7 @@ async function extractDataFromMarkdown(
   );
 
   const response = await client.chat.completions.create({
-    model: "qwen/qwen2.5-vl-32b-instruct:free",
+    model: "deepseek-reasoner",
     messages: [
       { role: "system", content: propmt },
       { role: "user", content: md },
@@ -62,14 +62,15 @@ async function extractDataFromMarkdown(
     n: 1,
     stream: false,
     stop: null,
-    response_format: {
-      type: "json_schema",
-      json_schema: {
-        ...schema,
-        name: "MiniPcExtractedDataSchema",
-        strict: true,
-      },
-    },
+    response_format: {'type': 'json_object'},
+    // response_format: {
+    //   type: "json_schema",
+    //   json_schema: {
+    //     ...schema,
+    //     name: "MiniPcExtractedDataSchema",
+    //     strict: true,
+    //   },
+    // },
   });
 
   // parse JsonData on a constant
