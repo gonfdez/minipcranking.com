@@ -1,6 +1,4 @@
 interface MiniPcExtractedData {
-  id: string;
-  brand: string;
   model: string;
   description: Record<"en" | "es", string>; // min 100 palabras max 250
   fromURL: string;

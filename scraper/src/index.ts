@@ -40,7 +40,7 @@ async function extractDataFromMarkdown(
   url: string,
   brand: string,
   md: string
-): Promise<MiniPcExtractedData> {
+): Promise<any> {
   const client = new OpenAI({
     baseURL: process.env.OPENAI_BASE_URL,
     apiKey: process.env.OPENAI_API_KEY,

@@ -5,8 +5,6 @@ If there is not information, the assistant must place "null" in the correspondan
 JSON DOCUMENT FORMAT:
 ```json
 {
-  id: string;
-  brand: string; // Without special characters
   model: string; // Without special characters
   description: Record<"en" | "es", string>; // Min 100 words max 200. Must have one per option in Record key, translate it in all the provided languages
   mainImgHref: string;  // Imagen principal del Mini Pc
