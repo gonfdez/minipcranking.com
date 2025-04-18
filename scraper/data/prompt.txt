@@ -1,4 +1,4 @@
-Assistant must scrape all relevant information from the markdown document provided by the user.
+Assistant must scrape all relevant information from the html document provided by the user.
 Provide a JSON object listing the tools the assistant is going to use.
 If there is not information, the assistant must place "null" in the correspondant propiety on the JSON response.
 
@@ -7,7 +7,7 @@ JSON DOCUMENT FORMAT:
   id: string;
   brand: string; // Without special characters
   model: string; // Without special characters
-  description: Record<"en" | "es", string>; // min 100 words max 250. Must have one per option in Record key
+  description: Record<"en" | "es", string>; // Min 100 words max 200. Must have one per option in Record key
   mainImgHref: string;
   cpu: {
     brand: string; // Without special characters

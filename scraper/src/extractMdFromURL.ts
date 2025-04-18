@@ -129,14 +129,14 @@ export async function getMarkdownFromURL(
   const cleanedHtml = cleanHtml(htmlString);
 
   // Convertir a markdown
-  const markdown = turndownService.turndown(cleanedHtml);
+  // const markdown = turndownService.turndown(cleanedHtml);
 
   // Eliminar líneas vacías consecutivas para tener un markdown más limpio
-  const cleanMarkdown = markdown
-    .replace(/\n{3,}/g, "\n\n") // Reemplazar 3 o más saltos de línea con 2
-    .replace(/\n+$/g, ""); // Eliminar saltos de línea al final
+  // const cleanMarkdown = markdown
+  //   .replace(/\n{3,}/g, "\n\n") // Reemplazar 3 o más saltos de línea con 2
+  //   .replace(/\n+$/g, ""); // Eliminar saltos de línea al final
 
-  console.log(`Markdown from ${url} generated!`);
+  // console.log(`Markdown from ${url} generated!`);
 
   // Guardar el markdown en una carpeta con nombre de la marca y npmbre del markdown la url
   const fileName =
@@ -149,14 +149,14 @@ export async function getMarkdownFromURL(
   const path = await import("path");
 
   const outputDir = path.join(process.cwd(), "output", brand);
-  const outputFile = path.join(outputDir, `${fileName}.md`);
+  const outputFile = path.join(outputDir, `${fileName}.html`);
 
   try {
     await fs.mkdir(outputDir, { recursive: true });
-    await fs.writeFile(outputFile, cleanMarkdown, "utf8");
+    await fs.writeFile(outputFile, htmlString, "utf8");
     console.log(`Markdown saved to ${outputFile}`);
   } catch (error) {
     console.error("Error saving markdown:", error);
   }
-  return cleanMarkdown;
+  return htmlString;
 }
