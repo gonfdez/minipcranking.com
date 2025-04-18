@@ -1,14 +1,16 @@
 import { WebButlerDriver, URL } from "@gfs-studio/webbutler-js";
 import { JSDOM } from "jsdom";
 import { generateAltTextAPI } from "./imageAltGenerator";
-import { downloadImage } from "./downloadImg";
+import { downloadImage, removeDownloadedFile } from "./downloadImg";
+import path from "path";
+import fs from "fs/promises";
 
 const driver = new WebButlerDriver({
   browserServerURL: "http://localhost:3000/",
 });
 
 // Función para limpiar el HTML antes de convertirlo a markdown
-function cleanHtml(html: string): string {
+async function cleanHtml(html: string): Promise<string> {
   if (!html) return "";
 
   try {
@@ -67,23 +69,34 @@ function cleanHtml(html: string): string {
       }
     });
 
-    // Generar alt de las imagenes
+    // Generar alt de las imágenes - MODIFICADO PARA PROCESAR DE FORMA ASÍNCRONA
     const imgs = document.querySelectorAll("img");
-    imgs.forEach(async (imgElem) => {
-      try {
-        // Descargar la imagen y obtener el path
-        const imgSrc = imgElem.getAttribute("src");
-        if (!imgSrc) return;
-        const downloadRes = await downloadImage(imgSrc);
-        if (!downloadRes) return;
-        const imgAlt = await generateAltTextAPI(downloadRes.localPath);
-        if (!imgAlt) return;
-        imgElem.setAttribute("alt", imgAlt);
-        console.log(`Image alt generated: ${imgAlt}`);
-      } catch (e) {}
-    });
+    console.log(`Detected ${imgs.length} images`);
 
-    // Devolver el HTML limpio
+    // Usamos Promise.all para esperar a que todas las operaciones asíncronas terminen
+    for (const imgElem of imgs) {
+      try {
+        let imgSrc = imgElem.getAttribute("src");
+        if (!imgSrc || imgSrc.includes(".svg")) continue;
+
+        if (imgSrc.startsWith("//")) imgSrc = "https:" + imgSrc;
+        const downloadRes = await downloadImage(imgSrc);
+        if (!downloadRes) continue;
+
+        const imgAlt = await generateAltTextAPI(downloadRes.localPath);
+
+        await removeDownloadedFile(downloadRes.localPath);
+        if (!imgAlt || imgAlt === "null") continue;
+
+        imgElem.setAttribute("ia-generated-alt", imgAlt);
+        console.log("SETTED ia-generated-alt", imgAlt);
+      } catch (e) {
+        console.error("Error generando alt de imagen");
+        console.error(e);
+      }
+    }
+
+    // Devolver el HTML limpio DESPUÉS de que todas las operaciones asíncronas hayan terminado
     return document.body ? document.body.innerHTML : "";
   } catch (error) {
     console.error("Error al limpiar HTML:", error);
@@ -130,7 +143,7 @@ export async function getHTMLFromURL(url: URL, brand: string): Promise<string> {
   const htmlString = scriptRes?.data?.return ?? null;
 
   // Limpiar el HTML antes de convertirlo a markdown
-  let cleanedHtml = cleanHtml(htmlString);
+  let cleanedHtml = await cleanHtml(htmlString);
 
   // Convertir a markdown
   // const markdown = turndownService.turndown(cleanedHtml);
@@ -151,9 +164,6 @@ export async function getHTMLFromURL(url: URL, brand: string): Promise<string> {
       .replace(/\/+/g, "_")
       .replace(/[^a-zA-Z0-9_]/g, "")
       .replace(/^_+|_+$/g, "") || "index";
-
-  const fs = await import("fs/promises");
-  const path = await import("path");
 
   const outputDir = path.join(process.cwd(), "output", brand);
   const outputFile = path.join(outputDir, `${fileName}.html`);

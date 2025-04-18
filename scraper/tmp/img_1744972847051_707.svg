@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="23" height="23" viewBox="0 0 23 23">
-  <g id="bag-2" style="isolation: isolate">
-    <path id="Vector" d="M8.625,6.358V5.035A3.622,3.622,0,0,0,7.446,2.371a3.556,3.556,0,0,0-2.77-.91A3.874,3.874,0,0,0,1.438,5.227v.93a.724.724,0,0,1-.719.719A.724.724,0,0,1,0,6.157V5.217A5.313,5.313,0,0,1,4.543.023,4.972,4.972,0,0,1,8.414,1.307a5.05,5.05,0,0,1,1.648,3.728V6.358a.719.719,0,0,1-1.437,0Z" transform="translate(6.469 1.194)" fill="#292d32" style="isolation: isolate"/>
-    <path id="Vector-2" data-name="Vector" d="M6.233,14.854c-4.428,0-5.252-2.06-5.462-4.063L.051,5.05A4.548,4.548,0,0,1,.914,1.418C1.776.46,3.2,0,5.274,0h7.667c2.08,0,3.507.47,4.36,1.418a4.558,4.558,0,0,1,.862,3.613l-.719,5.76c-.211,2-1.035,4.063-5.462,4.063ZM1.978,2.386a3.1,3.1,0,0,0-.5,2.5l.719,5.74c.163,1.533.585,2.8,4.035,2.8h5.75c3.45,0,3.872-1.255,4.035-2.779l.719-5.76a3.107,3.107,0,0,0-.5-2.492c-.565-.642-1.677-.958-3.3-.958H5.274C3.655,1.438,2.543,1.754,1.978,2.386Z" transform="translate(2.392 6.948)" fill="#292d32" style="isolation: isolate"/>
-    <path id="Vector-3" data-name="Vector" d="M0,.958a.958.958,0,1,1,.968.958A.961.961,0,0,1,0,.958Z" transform="translate(13.81 10.685)" fill="#292d32" style="isolation: isolate"/>
-    <path id="Vector-4" data-name="Vector" d="M0,.958a.958.958,0,1,1,.968.958A.961.961,0,0,1,0,.958Z" transform="translate(7.101 10.685)" fill="#292d32" style="isolation: isolate"/>
-    <path id="Vector-5" data-name="Vector" d="M23,0V23H0V0Z" fill="none" opacity="0" style="isolation: isolate"/>
-  </g>
-</svg>
