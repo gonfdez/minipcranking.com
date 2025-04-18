@@ -7,9 +7,9 @@ import fs from "fs";
 import { join } from "path";
 import MiniPcExtractedData from "./miniPcExtractedData";
 import RAW_TARGETS from "../data/targets.json";
-import schema from "../data/schema.json";
-import { getMarkdownFromURL } from "./extractMdFromURL";
+import { getHTMLFromURL } from "./extractHTMLFromURL";
 import { URL } from "@gfs-studio/webbutler-js";
+import schema from "../data/schema.json";
 
 function parseJsonData(input: string | object | null): object | null {
   try {
@@ -119,7 +119,7 @@ async function main() {
   for (const { url, brand } of targets) {
     try {
       if (createdMiniPcsCount > 1) break;
-      const md = await getMarkdownFromURL(url as URL, brand);
+      const md = await getHTMLFromURL(url as URL, brand);
 
       const data = await extractDataFromMarkdown(url, brand, md);
 

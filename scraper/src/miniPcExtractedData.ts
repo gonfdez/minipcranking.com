@@ -3,8 +3,8 @@ interface MiniPcExtractedData {
   description: Record<"en" | "es", string>; // min 100 palabras max 250
   fromURL: string;
   manualCollect: boolean;
-  mainImgHref: string;
-  portsImgHref: string;
+  mainImgUrl: string;
+  portsImgUrl: string;
   cpu: {
     brand: string;
     model: string;
@@ -60,6 +60,15 @@ interface MiniPcExtractedData {
         type: string;
       };
     };
+  };
+  ports: {
+    usb4?: number;
+    usb3?: number;
+    usb2?: number;
+    usbC?: number;
+    ethernet?: number;
+    audioJack?: boolean;
+    sdCardReader?: boolean;
   };
   builtinMicrophone?: boolean;
   builtinSpeakers?: boolean;

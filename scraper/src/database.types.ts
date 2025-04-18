@@ -134,12 +134,12 @@ export type Database = {
           fromURL: string
           graphics: number
           id: number
-          mainImgHref: string
+          mainImgUrl: string
           manualCollect: boolean
           maxRAMCapacityGB: number | null
           maxStorageCapacityGB: number | null
           model: string
-          portsImgHref: string | null
+          portsImgUrl: string | null
           powerConsumptionW: number | null
           releaseYear: number | null
           supportExternalDiscreteGraphicsCard: boolean | null
@@ -157,12 +157,12 @@ export type Database = {
           fromURL: string
           graphics: number
           id?: number
-          mainImgHref: string
+          mainImgUrl: string
           manualCollect: boolean
           maxRAMCapacityGB?: number | null
           maxStorageCapacityGB?: number | null
           model: string
-          portsImgHref?: string | null
+          portsImgUrl?: string | null
           powerConsumptionW?: number | null
           releaseYear?: number | null
           supportExternalDiscreteGraphicsCard?: boolean | null
@@ -180,12 +180,12 @@ export type Database = {
           fromURL?: string
           graphics?: number
           id?: number
-          mainImgHref?: string
+          mainImgUrl?: string
           manualCollect?: boolean
           maxRAMCapacityGB?: number | null
           maxStorageCapacityGB?: number | null
           model?: string
-          portsImgHref?: string | null
+          portsImgUrl?: string | null
           powerConsumptionW?: number | null
           releaseYear?: number | null
           supportExternalDiscreteGraphicsCard?: boolean | null

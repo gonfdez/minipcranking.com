@@ -1,19 +1,10 @@
 import { WebButlerDriver, URL } from "@gfs-studio/webbutler-js";
-import TurndownService from "turndown";
 import { JSDOM } from "jsdom";
+import { generateAltTextAPI } from "./imageAltGenerator";
+import { downloadImage } from "./downloadImg";
 
 const driver = new WebButlerDriver({
   browserServerURL: "http://localhost:3000/",
-});
-
-// Configurar turndown con opciones personalizadas
-const turndownService = new TurndownService({
-  headingStyle: "atx", // Use # style headings
-  hr: "---", // Use --- for horizontal rules
-  bulletListMarker: "-", // Use - for bullet lists
-  codeBlockStyle: "fenced", // Use ```lang blocks for code
-  emDelimiter: "_", // Use _ for emphasis
-  strongDelimiter: "**", // Use ** for strong
 });
 
 // Función para limpiar el HTML antes de convertirlo a markdown
@@ -76,6 +67,22 @@ function cleanHtml(html: string): string {
       }
     });
 
+    // Generar alt de las imagenes
+    const imgs = document.querySelectorAll("img");
+    imgs.forEach(async (imgElem) => {
+      try {
+        // Descargar la imagen y obtener el path
+        const imgSrc = imgElem.getAttribute("src");
+        if (!imgSrc) return;
+        const downloadRes = await downloadImage(imgSrc);
+        if (!downloadRes) return;
+        const imgAlt = await generateAltTextAPI(downloadRes.localPath);
+        if (!imgAlt) return;
+        imgElem.setAttribute("alt", imgAlt);
+        console.log(`Image alt generated: ${imgAlt}`);
+      } catch (e) {}
+    });
+
     // Devolver el HTML limpio
     return document.body ? document.body.innerHTML : "";
   } catch (error) {
@@ -84,10 +91,7 @@ function cleanHtml(html: string): string {
   }
 }
 
-export async function getMarkdownFromURL(
-  url: URL,
-  brand: string
-): Promise<string> {
+export async function getHTMLFromURL(url: URL, brand: string): Promise<string> {
   await driver.navigate(url);
   await driver.waitForPageLoad(3000);
   await driver.sleep(3000);
