@@ -1,94 +1,105 @@
-Assistant must scrape all relevant information from the html document provided by the user.
-Provide a JSON object listing the tools the assistant is going to use.
-If there is not information, the assistant must place "null" in the correspondant propiety on the JSON response.
+The assistant must extract all relevant information from the provided HTML document about a mini PC.
+
+IMPORTANT ABOUT IMAGES:
+- The HTML contains images with a custom attribute "ia-generated-alt" that describes the content.
+- For "mainImgUrl", select the image with an "ia-generated-alt" that indicates it's the main/front view of the mini PC.
+- For "portsImgUrl", select the image with an "ia-generated-alt" that specifically describes all the ports.
+
+Please provide a JSON object with the following specifications:
+- If information is not available for a particular field, use "null" in the corresponding property.
+- For text fields, ensure there are no special characters.
+- For the description, provide between 100-200 words in both English and Spanish.
 
 JSON DOCUMENT FORMAT:
 ```json
 {
-  model: string; // Without special characters
-  description: Record<"en" | "es", string>; // Min 100 words max 200. Must have one per option in Record key, translate it in all the provided languages
-  mainImgUrl: string;  // Front image of the computer
-  portsImgUrl: string;  // Image of the ports of the computer. Have to show the ports directly
-  cpu: {
-    brand: string; // Without special characters
-    model: string; // Without special characters
-    cores: number;
-    threads: number;
-    baseClockGHz?: number;
-    boostClockGHz?: number;
-    cache?: {
-      type: string;
-      capacityMB?: number;
-    };
-  };
-  variants: {
-    ram: {
-      capacityGB: number;
-      type: string;
-    };
-    storage: {
-      type: string;
-      capacityGB: number;
-    };
-    oferts: {
-      provider: string; // Could be: BeeLink, AMD, ASUS, Geekom, MinisForum, Gigabyte, MundoNuc, Intel, Lenovo and HP
-      url: string;
-      priceUsd?: number;
-      warrantyYears?: number;
-    }[];
-  }[];
-  maxRAMCapacityGB?: number;
-  maxStorageCapacityGB?: number;
-  graphics: {
-    integrated: boolean;
-    brand: string; // Without special characters
-    model: string; // Without special characters
-    frequencyMHz?: number;
-    graphicCoresCU?: number;
-    maxTOPS?: number;
-    displayPorts: {   
-      thunderbolt?: {
-        amount: number;
-        type: string;    // Describe the type of the port and capabilities
-      };
-      dp?: {
-        amount: number;
-        type: string;   // Describe the type of the port and capabilities
-      };
-      hdmi?: {
-        amount: number;
-        type: string;   // Describe the type of the port and capabilities
-      };
-      usb4?: {
-        amount: number;
-        type: string;  // Describe the type of the port and capabilities
-      };
-    };
-  };
-  ports: {
-    usb4?: number;
-    usb3?: number;
-    usb2?: number;
-    usbC?: number;
-    ethernet?: number;
-    audioJack?: boolean;
-    sdCardReader?: boolean;
-  };
-  builtinMicrophone?: boolean;
-  builtinSpeakers?: boolean;
-  supportExternalDiscreteGraphicsCard?: boolean;
-  connectivity: {
-    wifi: string; // Describe the type and capabilities
-    bluetooth: string; // Describe the type and capabilities
-  };
-  dimensions: {
-    widthMm?: number;
-    heightMm?: number;
-    depthMm?: number;
-    volumeL?: number;
-  };
-  weightKg: number;
-  powerConsumptionW?: number;
-  releaseYear?: number;
+  "model": string, // Name of the mini PC model without special characters
+  "description": Record<"en" | "es", string>, // 100-200 words description in both English and Spanish
+  "mainImgUrl": string, // URL of the front image of the mini PC (use the image with appropriate ia-generated-alt)
+  "portsImgUrl": string, // URL of the image showing the ports (use the image with appropriate ia-generated-alt)
+  "cpu": {
+    "brand": string, // CPU manufacturer without special characters (e.g., Intel, AMD)
+    "model": string, // CPU model without special characters
+    "cores": number, // Number of CPU cores
+    "threads": number, // Number of CPU threads
+    "baseClockGHz": number | null, // Base clock speed in GHz
+    "boostClockGHz": number | null, // Maximum boost clock speed in GHz
+    "cache": {
+      "type": string | null, // Type of cache (e.g., L3)
+      "capacityMB": number | null // Cache capacity in MB
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": number, // RAM capacity in GB
+        "type": string // RAM type (e.g., DDR4, DDR5)
+      },
+      "storage": {
+        "type": string, // Storage type (e.g., SSD, NVMe)
+        "capacityGB": number // Storage capacity in GB
+      },
+      "oferts": [
+        {
+          "provider": string, // Retailer/manufacturer (BeeLink, AMD, ASUS, Geekom, MinisForum, Gigabyte, MundoNuc, Intel, Lenovo, HP)
+          "url": string, // URL to purchase this variant
+          "priceUsd": number | null, // Price in USD
+          "warrantyYears": number | null // Warranty period in years
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": number | null, // Maximum supported RAM capacity in GB
+  "maxStorageCapacityGB": number | null, // Maximum supported storage capacity in GB
+  "graphics": {
+    "integrated": boolean, // Whether graphics are integrated
+    "brand": string, // Graphics brand without special characters
+    "model": string, // Graphics model without special characters
+    "frequencyMHz": number | null, // Graphics frequency in MHz
+    "graphicCoresCU": number | null, // Number of graphic cores/compute units
+    "maxTOPS": number | null, // Maximum TOPS performance
+    "displayPorts": {   
+      "thunderbolt": {
+        "amount": number | null, // Number of Thunderbolt ports
+        "type": string | null // Description of the Thunderbolt port type and capabilities
+      },
+      "dp": {
+        "amount": number | null, // Number of DisplayPort connections
+        "type": string | null // Description of the DisplayPort type and capabilities
+      },
+      "hdmi": {
+        "amount": number | null, // Number of HDMI ports
+        "type": string | null // Description of the HDMI port type and capabilities
+      },
+      "usb4": {
+        "amount": number | null, // Number of USB4 ports with display capabilities
+        "type": string | null // Description of the USB4 port type and display capabilities
+      }
+    }
+  },
+  "ports": {
+    "usb4": number | null, // Number of USB4 ports
+    "usb3": number | null, // Number of USB 3.x ports
+    "usb2": number | null, // Number of USB 2.0 ports
+    "usbC": number | null, // Number of USB-C ports
+    "ethernet": number | null, // Number of Ethernet ports
+    "audioJack": boolean | null, // Presence of audio jack
+    "sdCardReader": boolean | null // Presence of SD card reader
+  },
+  "builtinMicrophone": boolean | null, // Whether it has a built-in microphone
+  "builtinSpeakers": boolean | null, // Whether it has built-in speakers
+  "supportExternalDiscreteGraphicsCard": boolean | null, // Whether it supports external GPU
+  "connectivity": {
+    "wifi": string | null, // WiFi version and capabilities
+    "bluetooth": string | null // Bluetooth version and capabilities
+  },
+  "dimensions": {
+    "widthMm": number | null, // Width in millimeters
+    "heightMm": number | null, // Height in millimeters
+    "depthMm": number | null, // Depth in millimeters
+    "volumeL": number | null // Volume in liters
+  },
+  "weightKg": number | null, // Weight in kilograms
+  "powerConsumptionW": number | null, // Power consumption in watts
+  "releaseYear": number | null // Year of release
 }
-```
