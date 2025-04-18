@@ -3,16 +3,16 @@
   "brand": "Beelink",
   "model": "SER9 Pro",
   "description": {
-    "en": "Beelink SER9 Pro AMD Ryzen™ AI 9 HX 370 - A powerful and compact mini PC designed for AI applications. Equipped with AMD Ryzen™ AI 9 HX 370 processor, offering high performance and efficiency. Ideal for AI tasks, gaming, and multimedia applications. Features include dual M.2 PCle4.0 slots, up to 64GB RAM, and 2TB storage. Compact design with MSC 2.0 cooling system ensures silent operation. Supports triple display output with DP1.4, HDMI, and USB4. Available in Frost Silver and Space Gray. Worldwide free shipping, 24/7 customer service, return and exchange policy, and secure payments.",
-    "es": "Beelink SER9 Pro AMD Ryzen™ AI 9 HX 370 - Un mini PC potente y compacto diseñado para aplicaciones de IA. Equipado con el procesador AMD Ryzen™ AI 9 HX 370, ofrece alto rendimiento y eficiencia. Ideal para tareas de IA, juegos y aplicaciones multimedia. Características incluyen ranuras M.2 PCle4.0 dobles, hasta 64GB de RAM y 2TB de almacenamiento. Diseño compacto con sistema de refrigeración MSC 2.0 asegura operación silenciosa. Soporta salida de pantalla triple con DP1.4, HDMI y USB4. Disponible en plata helada y gris espacial. Envío gratis a nivel mundial, servicio al cliente las 24 horas, política de devolución y cambio, y pagos seguros."
+    "en": "The Beelink SER9 Pro AMD Ryzen™ AI 9 HX 370 is a powerhouse mini PC featuring a 12-core/24-thread Zen5 CPU, AMD Radeon™ 890M GPU, and a next-gen XDNA 2 NPU with 80 AI TOPS. Designed for efficiency, it operates at a near-silent 32dB with its MSC2.0 cooling system. Includes built-in dual speakers and a microphone for immersive audio, supports triple 4K displays via HDMI 2.1, DisplayPort 1.4, and USB4, and offers expandable storage up to 8TB with dual PCIe 4.0 slots. Ideal for AI computing, gaming, and multimedia with LPDDR5X 8000MHz RAM options up to 64GB.",
+    "es": "El Beelink SER9 Pro AMD Ryzen™ AI 9 HX 370 es una mini PC potente con un CPU Zen5 de 12 núcleos/24 hilos, GPU AMD Radeon™ 890M y una NPU XDNA 2 de próxima generación con 80 TOPS de IA. Diseñado para eficiencia, opera a 32dB casi silencioso gracias a su sistema de enfriamiento MSC2.0. Incluye altavoces duales y micrófono integrado para audio envolvente, soporta triple pantalla 4K mediante HDMI 2.1, DisplayPort 1.4 y USB4, y ofrece almacenamiento expandible hasta 8TB con ranuras PCIe 4.0 duales. Ideal para computación IA, gaming y multimedia con opciones de RAM LPDDR5X 8000MHz hasta 64GB."
   },
   "mainImgHref": "https://www.bee-link.com/cdn/shop/files/SER9.png?v=1743499983",
+  "portsImgHref": "https://www.bee-link.com/cdn/shop/files/SER9_-__01.png?v=1743499983",
   "cpu": {
     "brand": "AMD",
-    "model": "Ryzen™ AI 9 HX 370",
+    "model": "Ryzen AI 9 HX 370",
     "cores": 12,
     "threads": 24,
-    "baseClockGHz": 5.1,
     "boostClockGHz": 5.1,
     "cache": {
       "type": "L2+L3",
@@ -26,13 +26,15 @@
         "type": "LPDDR5X 8000MHz"
       },
       "storage": {
-        "type": "M.2 PCle4.0",
-        "capacityGB": 1000
+        "type": "PCIe 4.0",
+        "capacityGB": 1024
       },
-      "offers": [
+      "oferts": [
         {
           "provider": "Beelink",
-          "url": "https://www.bee-link.com/products/beelink-ser9-ai-9-hx-370"
+          "url": "https://www.bee-link.com/products/beelink-ser9-ai-9-hx-370",
+          "priceUsd": 949,
+          "warrantyYears": 1
         }
       ]
     },
@@ -42,63 +44,48 @@
         "type": "LPDDR5X 8000MHz"
       },
       "storage": {
-        "type": "M.2 PCle4.0",
-        "capacityGB": 2000
+        "type": "PCIe 4.0",
+        "capacityGB": 2048
       },
-      "offers": [
+      "oferts": [
         {
           "provider": "Beelink",
-          "url": "https://www.bee-link.com/products/beelink-ser9-ai-9-hx-370"
+          "url": "https://www.bee-link.com/products/beelink-ser9-ai-9-hx-370",
+          "warrantyYears": 1
         }
       ]
     }
   ],
-  "maxRAMCapacityGB": 64,
-  "maxStorageCapacityGB": 2000,
   "graphics": {
     "integrated": true,
     "brand": "AMD",
-    "model": "Radeon™ 890M",
+    "model": "Radeon 890M",
     "frequencyMHz": 2900,
-    "maxTOPS": 80,
-    "graphicCoresCU": 16,
     "displayPorts": {
-      "thunderbolt": {
+      "hdmi": {
         "amount": 1,
-        "type": "USB4"
+        "type": "2.1"
       },
       "dp": {
         "amount": 1,
-        "type": "DP1.4"
+        "type": "1.4"
       },
-      "hdmi": {
+      "usb4": {
         "amount": 1,
-        "type": "HDMI 2.1"
+        "type": "DP1.4"
       }
     }
   },
   "builtinMicrophone": true,
   "builtinSpeakers": true,
-  "supportExternalDiscreteGraphicsCard": false,
-  "ports": {
-    "portImgSrc": "https://cdn.shopify.com/s/files/1/0505/1360/8884/files/2_e1dff0a4-eb36-486f-a65c-8703d452b316.png?v=1736232622",
-    "usb4": 1,
-    "usb3": 0,
-    "usb2": 0,
-    "usbC": 0,
-    "ethernet": 0,
-    "audioJack": true,
-    "sdCardReader": false
-  },
   "connectivity": {
-    "wifi": "WiFi 6",
+    "wifi": "Wi-Fi 6 (Intel AX200)",
     "bluetooth": "Bluetooth 5.2"
   },
   "dimensions": {
     "widthMm": 135,
-    "heightMm": 135,
-    "depthMm": 44.7,
-    "volumeL": 0.08
+    "heightMm": 44.7,
+    "depthMm": 135
   },
   "weightKg": 0.78,
   "powerConsumptionW": 65,

@@ -6,7 +6,8 @@
   "scripts": {
     "build": "tsc --outDir dist",
     "start": "ts-node src/index.ts",
-    "schema": "typescript-json-schema src/miniPcExtractedData.ts MiniPcExtractedData --required --out data/schema.json"
+    "schema": "typescript-json-schema src/miniPcExtractedData.ts MiniPcExtractedData --required --out data/schema.json",
+    "database": "npx supabase gen types typescript --project-id \"whjfsusmhvfefxhxgzch\" --schema public > src/database.types.ts"
   },
   "keywords": [],
   "author": "",
@@ -16,7 +17,7 @@
     "@supabase/supabase-js": "^2.49.4",
     "dotenv": "^16.5.0",
     "jsdom": "^26.1.0",
-    "openai": "^4.94.0",
+    "openai": "^4.89.0",
     "turndown": "^7.2.0",
     "typescript-json-schema": "^0.65.1"
   },

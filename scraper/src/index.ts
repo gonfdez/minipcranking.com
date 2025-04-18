@@ -75,6 +75,9 @@ async function extractDataFromMarkdown(
   // parse JsonData on a constant
   const jsonData = parseJsonData(response.choices[0].message.content);
 
+  console.log("Razonamiento:");
+  console.log((response.choices[0].message as any).reasoning_content);
+
   console.log(`Data extracted from ${url}`);
   // Escribir el resultado en la carpeta de brand en un json con nombre url
   const fileName =

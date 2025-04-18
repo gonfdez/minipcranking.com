@@ -6,6 +6,7 @@ interface MiniPcExtractedData {
   fromURL: string;
   manualCollect: boolean;
   mainImgHref: string;
+  portsImgHref: string;
   cpu: {
     brand: string;
     model: string;
@@ -65,16 +66,6 @@ interface MiniPcExtractedData {
   builtinMicrophone?: boolean;
   builtinSpeakers?: boolean;
   supportExternalDiscreteGraphicsCard?: boolean;
-  ports: {
-    portsImgHref?: string;
-    usb4?: number;
-    usb3?: number;
-    usb2?: number;
-    usbC?: number;
-    ethernet?: number;
-    audioJack?: boolean;
-    sdCardReader?: boolean;
-  };
   connectivity: {
     wifi: string; // ej: "Wi-Fi 6E"
     bluetooth: string; // ej: "Bluetooth 5.2"

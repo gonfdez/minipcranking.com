@@ -8,8 +8,9 @@ JSON DOCUMENT FORMAT:
   id: string;
   brand: string; // Without special characters
   model: string; // Without special characters
-  description: Record<"en" | "es", string>; // Min 100 words max 200. Must have one per option in Record key
-  mainImgHref: string;
+  description: Record<"en" | "es", string>; // Min 100 words max 200. Must have one per option in Record key, translate it in all the provided languages
+  mainImgHref: string;  // Imagen principal del Mini Pc
+  portsImgHref: string;  // Imagen de los puertos del Mini PC
   cpu: {
     brand: string; // Without special characters
     model: string; // Without special characters
@@ -19,7 +20,7 @@ JSON DOCUMENT FORMAT:
     boostClockGHz?: number;
     cache?: {
       type: string;
-      capacityMB: number;
+      capacityMB?: number;
     };
   };
   variants: {
@@ -69,16 +70,6 @@ JSON DOCUMENT FORMAT:
   builtinMicrophone?: boolean;
   builtinSpeakers?: boolean;
   supportExternalDiscreteGraphicsCard?: boolean;
-  ports: {
-    portImgSrc?: string; // Imagen de los puertos del Mini PC
-    usb4?: number;
-    usb3?: number;
-    usb2?: number;
-    usbC?: number;
-    ethernet?: number;
-    audioJack?: boolean;
-    sdCardReader?: boolean;
-  };
   connectivity: {
     wifi: string; // ej: "Wi-Fi 6E"
     bluetooth: string; // ej: "Bluetooth 5.2"
