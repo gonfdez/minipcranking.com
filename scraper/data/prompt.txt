@@ -7,8 +7,8 @@ JSON DOCUMENT FORMAT:
 {
   model: string; // Without special characters
   description: Record<"en" | "es", string>; // Min 100 words max 200. Must have one per option in Record key, translate it in all the provided languages
-  mainImgUrl: string;  // Imagen principal del Mini Pc
-  portsImgUrl: string;  // Imagen de los puertos del Mini PC
+  mainImgUrl: string;  // Front image of the computer
+  portsImgUrl: string;  // Image of the ports of the computer. Have to show the ports directly
   cpu: {
     brand: string; // Without special characters
     model: string; // Without special characters
