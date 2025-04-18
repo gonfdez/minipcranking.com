@@ -27,7 +27,6 @@ interface MiniPcExtractedData {
       capacityGB: number;
     };
     oferts: {
-      provider: string;
       url: string;
       priceUsd?: number;
       warrantyYears?: number;

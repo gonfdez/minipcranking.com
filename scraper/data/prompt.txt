@@ -41,7 +41,6 @@ JSON DOCUMENT FORMAT:
       },
       "oferts": [
         {
-          "provider": string, // Retailer/manufacturer (BeeLink, AMD, ASUS, Geekom, MinisForum, Gigabyte, MundoNuc, Intel, Lenovo, HP)
           "url": string, // URL to purchase this variant
           "priceUsd": number | null, // Price in USD
           "warrantyYears": number | null // Warranty period in years
