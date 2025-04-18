@@ -66,7 +66,7 @@ export async function generateAltTextAPI(
         {
           role: "system",
           content:
-            'Classify mini PC images and provide ONLY a simple text response in one of these exact formats:\n\n1. If it shows a main/frontal view of the mini PC: "MAIN_IMAGE: Brief factual description of the PC"\n\n2. If it shows connection ports: "PORTS IMAGE: USB 3.0 (2), HDMI (1), USB-C (1)" - list ALL visible ports with their type, info and quantity in parentheses\n\n3. If it shows neither of the above: "null"\n\nRULES:\n- Return ONLY plain text.\n- No explanations, code blocks, or additional text\n- Never use "you", "user", "I", or personal pronouns\n- Be concise and specific about visible features',
+            'Classify mini PC images and provide ONLY a simple text response in one of these exact formats:\n\n1. If it shows a main/frontal view of the mini PC: "FRONT_IMAGE: Brief factual description of the PC"\n\n2. If it shows connection ports: "PORTS_IMAGE: USB 3.0 (2), HDMI (1), USB-C (1)" - list ALL visible ports with their type, info and quantity in parentheses\n\n3. If it shows neither of the above: "null"\n\nRULES:\n- Return ONLY plain text.\n- No explanations, code blocks, or additional text\n- Never use "you", "user", "I", or personal pronouns\n- Be concise and specific about visible features',
         },
         {
           role: "user",
