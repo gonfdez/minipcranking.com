@@ -31,7 +31,7 @@ JSON DOCUMENT FORMAT:
       capacityGB: number;
     };
     oferts: {
-      provider: string;
+      provider: string; // Could be: BeeLink, AMD, ASUS, Geekom, MinisForum, Gigabyte, MundoNuc, Intel, Lenovo and HP
       url: string;
       priceUsd?: number;
       warrantyYears?: number;
@@ -44,24 +44,24 @@ JSON DOCUMENT FORMAT:
     brand: string; // Without special characters
     model: string; // Without special characters
     frequencyMHz?: number;
-    maxTOPS?: number;
     graphicCoresCU?: number;
-    displayPorts: {
+    maxTOPS?: number;
+    displayPorts: {   
       thunderbolt?: {
         amount: number;
-        type: string;
+        type: string;    // Describe the type of the port and capabilities
       };
       dp?: {
         amount: number;
-        type: string;
+        type: string;   // Describe the type of the port and capabilities
       };
       hdmi?: {
         amount: number;
-        type: string;
+        type: string;   // Describe the type of the port and capabilities
       };
       usb4?: {
         amount: number;
-        type: string;
+        type: string;  // Describe the type of the port and capabilities
       };
     };
   };
@@ -69,8 +69,8 @@ JSON DOCUMENT FORMAT:
   builtinSpeakers?: boolean;
   supportExternalDiscreteGraphicsCard?: boolean;
   connectivity: {
-    wifi: string; // ej: "Wi-Fi 6E"
-    bluetooth: string; // ej: "Bluetooth 5.2"
+    wifi: string; // Describe the type and capabilities
+    bluetooth: string; // Describe the type and capabilities
   };
   dimensions: {
     widthMm?: number;
