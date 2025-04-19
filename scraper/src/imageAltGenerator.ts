@@ -54,8 +54,8 @@ export async function generateAltTextAPI(
 ): Promise<string | null> {
   try {
     const client = new OpenAI({
-      baseURL: process.env.OPENAI_BASE_URL_IMG,
-      apiKey: process.env.OPENAI_API_KEY_IMG,
+      baseURL: process.env.OPENROUTER_BASE_URL_IMG,
+      apiKey: process.env.OPENROUTER_API_KEY_IMG,
     });
 
     const completion = await client.chat.completions.create({
