@@ -29,10 +29,6 @@ async function cleanHtml(html: string): Promise<string> {
     const links = document.querySelectorAll('link[rel="stylesheet"]');
     links.forEach((link) => link.parentNode?.removeChild(link));
 
-    // Eliminar atributos de estilo inline
-    const elementsWithStyle = document.querySelectorAll("[style]");
-    elementsWithStyle.forEach((el) => el.removeAttribute("style"));
-
     // Eliminar etiquetas no deseadas (ajusta según necesites)
     const unwantedTags = ["iframe", "noscript", "svg", "canvas", "form"];
     unwantedTags.forEach((tag) => {
@@ -45,6 +41,7 @@ async function cleanHtml(html: string): Promise<string> {
     allElements.forEach((el) => {
       el.removeAttribute("class");
       el.removeAttribute("id");
+      el.removeAttribute("style");
     });
 
     // Filtrar contenido de estructuras de navegación y footer comunes
@@ -70,8 +67,7 @@ async function cleanHtml(html: string): Promise<string> {
     });
 
     let imgs = Array.from(document.querySelectorAll("img"));
-
-    console.log(`Processing ${imgs.length} images`);
+    console.log(`Founded ${imgs.length} images`);
 
     // Procesar solo imágenes grandes
     for (const imgElem of imgs) {
@@ -80,12 +76,12 @@ async function cleanHtml(html: string): Promise<string> {
         if (!imgSrc || imgSrc.includes(".svg")) continue;
 
         if (imgSrc.startsWith("//")) imgSrc = "https:" + imgSrc;
-        const downloadRes = await downloadImage(imgSrc);
-        if (!downloadRes) continue;
+        // const downloadRes = await downloadImage(imgSrc);
+        // if (!downloadRes) continue;
 
-        const imgAlt = await generateAltTextAPI(downloadRes.localPath);
+        const imgAlt = await generateAltTextAPI(imgSrc);
 
-        await removeDownloadedFile(downloadRes.localPath);
+        // await removeDownloadedFile(downloadRes.localPath);
         if (!imgAlt || imgAlt === "null") continue;
 
         imgElem.setAttribute("ia-generated-alt", imgAlt);
@@ -125,20 +121,65 @@ export async function getHTMLFromURL(url: URL, brand: string): Promise<string> {
         '.entry-content'
       ];
       
+      // Función para limpiar el contenido eliminando imágenes pequeñas y SVGs
+      function limpiarContenido(element) {
+        // Crear una copia del elemento para no modificar el original
+        const tempElement = element.cloneNode(true);
+        
+        // Eliminar todos los SVGs
+        const svgs = tempElement.querySelectorAll('svg');
+        svgs.forEach(svg => svg.remove());
+        
+        // Eliminar solo imágenes que estamos seguros que son pequeñas
+        const imgs = tempElement.querySelectorAll('img');
+        imgs.forEach(img => {
+          // Verificar el tamaño mediante atributos explícitos
+          const width = parseInt(img.getAttribute('width') || '0');
+          const height = parseInt(img.getAttribute('height') || '0');
+          
+          // Verificar el tamaño mediante estilo inline
+          const styleWidth = img.style.width ? parseInt(img.style.width) : 0;
+          const styleHeight = img.style.height ? parseInt(img.style.height) : 0;
+          
+          // Verificar clases que pueden indicar que es un ícono
+          const classes = img.className.toLowerCase();
+          const isIcon = classes.includes('icon') || 
+                        classes.includes('logo') || 
+                        classes.includes('avatar') ||
+                        classes.includes('thumbnail');
+          
+          // Verificar URLs que sugieren iconos
+          const src = img.getAttribute('src') || '';
+          const isIconUrl = src.includes('icon') || 
+                           src.includes('logo') || 
+                           src.includes('avatar');
+                           
+          // Solo eliminar si estamos seguros de que es una imagen pequeña o un ícono
+          if ((width > 0 && width < 100 && height > 0 && height < 100) || 
+              (styleWidth > 0 && styleWidth < 100 && styleHeight > 0 && styleHeight < 100) ||
+              (isIcon && (width < 150 || styleWidth < 150)) ||
+              isIconUrl) {
+            img.remove();
+          }
+        });
+        
+        return tempElement.outerHTML;
+      }
+      
       // Busca el primer elemento que exista
       for (const selector of mainSelectors) {
         const element = document.querySelector(selector);
         if (element && element.innerHTML.trim().length > 200) {
-          return element.outerHTML;
+          return limpiarContenido(element);
         }
       }
       
-      // Si no encuentra nada, devuelve el body completo
-      return document.querySelector('body').outerHTML;
+      // Si no encuentra nada, devuelve el body completo limpio
+      return limpiarContenido(document.querySelector('body'));
     }
     
     return getMainContent();
-  `);
+`);
 
   const htmlString = scriptRes?.data?.return ?? null;
 
