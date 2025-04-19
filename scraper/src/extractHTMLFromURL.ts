@@ -76,6 +76,9 @@ async function cleanHtml(html: string): Promise<string> {
         if (!imgSrc || imgSrc.includes(".svg")) continue;
 
         if (imgSrc.startsWith("//")) imgSrc = "https:" + imgSrc;
+        imgElem.setAttribute("src", imgSrc);
+
+        // ¿ Descargarla ver tamaño y decidir si procesarla ?
         // const downloadRes = await downloadImage(imgSrc);
         // if (!downloadRes) continue;
 
