@@ -85,7 +85,7 @@ async function cleanHtml(html: string): Promise<string> {
         if (!imgAlt || imgAlt === "null") continue;
 
         imgElem.setAttribute("ia-generated-alt", imgAlt);
-        console.log("SETTED ia-generated-alt", imgAlt);
+        console.log("SETTED ia-generated-alt: ", imgAlt);
       } catch (e) {
         console.error("Error generando alt de imagen");
         console.error(e);
