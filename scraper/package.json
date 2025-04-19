@@ -19,13 +19,11 @@
     "dotenv": "^16.5.0",
     "jsdom": "^26.1.0",
     "openai": "^4.89.0",
-    "turndown": "^7.2.0",
     "typescript-json-schema": "^0.65.1"
   },
   "devDependencies": {
     "@types/jsdom": "^21.1.7",
     "@types/node": "^22.14.1",
-    "@types/turndown": "^5.0.5",
     "ts-node": "^10.9.2",
     "typescript": "^5.8.3"
   }
