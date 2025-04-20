@@ -9,7 +9,7 @@ import MiniPcExtractedData from "./miniPcExtractedData";
 import RAW_TARGETS from "../data/targets.json";
 import { getHTMLFromURL } from "./extractHTMLFromURL";
 import { URL } from "@gfs-studio/webbutler-js";
-import schema from "../data/schema.json";
+// import schema from "../data/schema.json";
 
 function parseJsonData(input: string | object | null): object | null {
   try {
@@ -110,6 +110,8 @@ async function extractDataFromHTML(
   };
 }
 
+const LIMIT = 1;
+
 async function main() {
   const targets: { url: string; brand: string }[] = Object.entries(
     RAW_TARGETS
@@ -118,7 +120,7 @@ async function main() {
   let createdMiniPcsCount = 0;
   for (const { url, brand } of targets) {
     try {
-      if (createdMiniPcsCount > 1) break;
+      if (createdMiniPcsCount > LIMIT) break;
       const md = await getHTMLFromURL(url as URL, brand);
 
       const data = await extractDataFromHTML(url, brand, md);

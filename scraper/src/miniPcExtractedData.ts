@@ -3,8 +3,8 @@ interface MiniPcExtractedData {
   description: Record<"en" | "es", string>; // min 100 palabras max 250
   fromURL: string;
   manualCollect: boolean;
-  mainImgUrl: string;
-  portsImgUrl: string;
+  mainImgUrl: string[];
+  portsImgUrl: string[];
   cpu: {
     brand: string;
     model: string;

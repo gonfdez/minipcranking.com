@@ -2,8 +2,8 @@ The assistant must extract all relevant information from the provided HTML docum
 
 IMPORTANT ABOUT IMAGES:
 - The HTML contains images with a custom attribute "ia-generated-alt" that describes the content.
-- For "mainImgUrl", select the image with an "ia-generated-alt" that indicates it's the main/front view of the mini PC.
-- For "portsImgUrl", select the image with an "ia-generated-alt" that specifically describes all the ports.
+- For "mainImgUrls", select up to 5 images with an "ia-generated-alt" that indicates they show the mini PC from different angles (front, side, top, etc.). Prioritize images that best showcase the product's design.
+- For "portsImgUrls", select up to 5 images with an "ia-generated-alt" that specifically describe the ports, connectivity options, or I/O interfaces. Prioritize images that clearly show all available ports and connections.
 
 Please provide a JSON object with the following specifications:
 - If information is not available for a particular field, use "null" in the corresponding property.
@@ -15,8 +15,8 @@ JSON DOCUMENT FORMAT:
 {
   "model": string, // Name of the mini PC model without special characters
   "description": Record<"en" | "es", string>, // 100-200 words description in both English and Spanish
-  "mainImgUrl": string, // URL of the front image of the mini PC (use the image with appropriate ia-generated-alt)
-  "portsImgUrl": string, // URL of the image showing the ports (use the image with appropriate ia-generated-alt)
+  "mainImgUrls": string[], // Array of up to 5 URLs showing different views of the mini PC (use images with appropriate ia-generated-alt)
+  "portsImgUrls": string[], // Array of up to 5 URLs showing ports and connectivity (use images with appropriate ia-generated-alt)
   "cpu": {
     "brand": string, // CPU manufacturer without special characters (e.g., Intel, AMD)
     "model": string, // CPU model without special characters
@@ -102,3 +102,4 @@ JSON DOCUMENT FORMAT:
   "powerConsumptionW": number | null, // Power consumption in watts
   "releaseYear": number | null // Year of release
 }
+```

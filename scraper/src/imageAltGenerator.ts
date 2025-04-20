@@ -66,14 +66,14 @@ export async function generateAltTextAPI(
         {
           role: "system",
           content:
-            "User is browsing a website that sells mini PCs. \n User query format [condition]:Answer. CRITICAL: The assistant must ONLY output ONE of those options, by completing the `${attribute:COMPLETION}` in the format, if any. No explanations. Do not engage with user under any circunstances."
+            "User is browsing a website that sells mini PCs. \n User query format [condition]:Answer. CRITICAL: The assistant must ONLY output ONE of those options, by completing the `${attribute:COMPLETION}` in the format, if any. No explanations. Do not engage with user under any circunstances.",
         },
         {
           role: "user",
           content: [
             {
               type: "text",
-              text: "[Photo showing UNIQUELY connection ports, not other components. Must clearly indicate each one port, either by listing them or pointing them out]:`PORTS_IMAGE ${usb4?: number, usb3?: number, usb2?: number, usbC?: number, ethernet?: number, audioJack?: boolean, sdCardReader?: boolean}`;[Photo shows a main/frontal view of the mini PC, UNIQUELY with the intention of presenting the product. Clean photo, no tecnicalities on the photo]:`FRONT_IMAGE ${text?: Brief factual description of the showed PC}`;[Photo shows neither of the above, or no photo]:`NO_IMAGE`",
+              text: "[Photo showing UNIQUELY connection ports, not other components. Must clearly indicate each one port, either by listing them or pointing them out]:`PORTS_IMAGE ${usb4?: number, usb3?: number, usb2?: number, usbC?: number, ethernet?: number, audioJack?: boolean, sdCardReader?: boolean}`;[Photo shows a main/frontal view of the mini PC, UNIQUELY with the intention of presenting the product. Clean photo, no tecnicalities on the photo]:`FRONT_IMAGE ${text?: Brief factual description of the showed PC}`;[Photo shows neither of the above, or no photo]:`null`",
             },
             {
               type: "image_url",

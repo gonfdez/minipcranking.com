@@ -134,13 +134,13 @@ export type Database = {
           fromURL: string
           graphics: number
           id: number
-          mainImgUrl: string
+          mainImgUrl: string[]
           manualCollect: boolean
           maxRAMCapacityGB: number | null
           maxStorageCapacityGB: number | null
           model: string
           ports: Json
-          portsImgUrl: string | null
+          portsImgUrl: string[]
           powerConsumptionW: number | null
           releaseYear: number | null
           supportExternalDiscreteGraphicsCard: boolean | null
@@ -158,13 +158,13 @@ export type Database = {
           fromURL: string
           graphics: number
           id?: number
-          mainImgUrl: string
+          mainImgUrl: string[]
           manualCollect: boolean
           maxRAMCapacityGB?: number | null
           maxStorageCapacityGB?: number | null
           model: string
           ports: Json
-          portsImgUrl?: string | null
+          portsImgUrl: string[]
           powerConsumptionW?: number | null
           releaseYear?: number | null
           supportExternalDiscreteGraphicsCard?: boolean | null
@@ -182,13 +182,13 @@ export type Database = {
           fromURL?: string
           graphics?: number
           id?: number
-          mainImgUrl?: string
+          mainImgUrl?: string[]
           manualCollect?: boolean
           maxRAMCapacityGB?: number | null
           maxStorageCapacityGB?: number | null
           model?: string
           ports?: Json
-          portsImgUrl?: string | null
+          portsImgUrl?: string[]
           powerConsumptionW?: number | null
           releaseYear?: number | null
           supportExternalDiscreteGraphicsCard?: boolean | null

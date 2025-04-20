@@ -4,7 +4,8 @@ import * as https from "https";
 import * as http from "http";
 import { URL } from "url";
 import { IncomingMessage } from "http";
-const sizeOf = require("image-size");
+import { readFileSync } from "node:fs";
+import { imageSize } from "image-size";
 
 /**
  * Opciones para la descarga de imágenes
@@ -130,8 +131,8 @@ export async function downloadImage(
           fileStream.on("finish", () => {
             try {
               // Obtener las dimensiones de la imagen
-              const dimensions = sizeOf(localPath);
-
+              const buffer = readFileSync(localPath);
+              const dimensions = imageSize(buffer);
               resolve({
                 localPath,
                 extension,

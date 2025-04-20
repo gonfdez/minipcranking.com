@@ -109,14 +109,12 @@ async function cleanHtml(html: string): Promise<string> {
 
 export async function getHTMLFromURL(url: URL, brand: string): Promise<string> {
   await driver.navigate(url);
-  await driver.waitForPageLoad(3000);
   await driver.sleep(3000);
 
   // Extraer el contenido principal en lugar de todo el body
   // Esto intenta extraer solo el contenido principal de la página
   const scriptRes = await driver.executeScript(`
     function getMainContent() {
-      // Intenta encontrar el contenido principal usando selectores comunes
       const mainSelectors = [
         'main',
         'article',
@@ -127,41 +125,30 @@ export async function getHTMLFromURL(url: URL, brand: string): Promise<string> {
         '.article-content',
         '.entry-content'
       ];
-      
-      // Función para limpiar el contenido eliminando imágenes pequeñas y SVGs
       function limpiarContenido(element) {
-        // Crear una copia del elemento para no modificar el original
         const tempElement = element.cloneNode(true);
-        
-        // Eliminar todos los SVGs
         const svgs = tempElement.querySelectorAll('svg');
         svgs.forEach(svg => svg.remove());
         
-        // Eliminar solo imágenes que estamos seguros que son pequeñas
         const imgs = tempElement.querySelectorAll('img');
         imgs.forEach(img => {
-          // Verificar el tamaño mediante atributos explícitos
           const width = parseInt(img.getAttribute('width') || '0');
           const height = parseInt(img.getAttribute('height') || '0');
           
-          // Verificar el tamaño mediante estilo inline
           const styleWidth = img.style.width ? parseInt(img.style.width) : 0;
           const styleHeight = img.style.height ? parseInt(img.style.height) : 0;
           
-          // Verificar clases que pueden indicar que es un ícono
           const classes = img.className.toLowerCase();
           const isIcon = classes.includes('icon') || 
                         classes.includes('logo') || 
                         classes.includes('avatar') ||
                         classes.includes('thumbnail');
           
-          // Verificar URLs que sugieren iconos
           const src = img.getAttribute('src') || '';
           const isIconUrl = src.includes('icon') || 
                            src.includes('logo') || 
                            src.includes('avatar');
                            
-          // Solo eliminar si estamos seguros de que es una imagen pequeña o un ícono
           if ((width > 0 && width < 100 && height > 0 && height < 100) || 
               (styleWidth > 0 && styleWidth < 100 && styleHeight > 0 && styleHeight < 100) ||
               (isIcon && (width < 150 || styleWidth < 150)) ||
@@ -173,7 +160,6 @@ export async function getHTMLFromURL(url: URL, brand: string): Promise<string> {
         return tempElement.outerHTML;
       }
       
-      // Busca el primer elemento que exista
       for (const selector of mainSelectors) {
         const element = document.querySelector(selector);
         if (element && element.innerHTML.trim().length > 200) {
@@ -181,7 +167,6 @@ export async function getHTMLFromURL(url: URL, brand: string): Promise<string> {
         }
       }
       
-      // Si no encuentra nada, devuelve el body completo limpio
       return limpiarContenido(document.querySelector('body'));
     }
     
