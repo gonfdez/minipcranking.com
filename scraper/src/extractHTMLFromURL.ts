@@ -116,7 +116,7 @@ async function cleanHtml(html: string): Promise<string> {
 
 export async function getHTMLFromURL(url: URL, brand: string): Promise<string> {
   await driver.navigate(url);
-  await driver.sleep(3000);
+  await driver.sleep(5000);
 
   // Extraer el contenido principal en lugar de todo el body
   // Esto intenta extraer solo el contenido principal de la página

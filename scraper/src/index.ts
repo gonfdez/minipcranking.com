@@ -110,7 +110,7 @@ async function extractDataFromHTML(
   };
 }
 
-const LIMIT = 1;
+const LIMIT = 150;
 
 async function main() {
   const targets: { url: string; brand: string }[] = Object.entries(
