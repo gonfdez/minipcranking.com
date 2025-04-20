@@ -59,21 +59,21 @@ export async function generateAltTextAPI(
     });
 
     const completion = await client.chat.completions.create({
-      model: "meta-llama/llama-4-maverick:free",
+      model: process.env.IMG_MODEL as string,
       max_tokens: 50,
       temperature: 0.7,
       messages: [
         {
           role: "system",
           content:
-            'Classify mini PC images and provide ONLY a simple text response in one of these exact formats:\n\n1. If it shows a main/frontal view of the mini PC: "FRONT_IMAGE: Brief factual description of the PC"\n\n2. If it shows connection ports: "PORTS_IMAGE: USB 3.0 (2), HDMI (1), USB-C (1)" - list ALL visible ports with their type, info and quantity in parentheses\n\n3. If it shows neither of the above: "null"\n\nRULES:\n- Return ONLY plain text.\n- No explanations, code blocks, or additional text\n- Never use "you", "user", "I", or personal pronouns\n- Be concise and specific about visible features',
+            "User is browsing a website that sells mini PCs. \n User query format [condition]:Answer. CRITICAL: The assistant must ONLY output ONE of those options, by completing the `${attribute:COMPLETION}` in the format, if any. No explanations. Do not engage with user under any circunstances."
         },
         {
           role: "user",
           content: [
             {
               type: "text",
-              text: "Classify",
+              text: "[Photo showing UNIQUELY connection ports, not other components. Must clearly indicate each one port, either by listing them or pointing them out]:`PORTS_IMAGE ${usb4?: number, usb3?: number, usb2?: number, usbC?: number, ethernet?: number, audioJack?: boolean, sdCardReader?: boolean}`;[Photo shows a main/frontal view of the mini PC, UNIQUELY with the intention of presenting the product. Clean photo, no tecnicalities on the photo]:`FRONT_IMAGE ${text?: Brief factual description of the showed PC}`;[Photo shows neither of the above, or no photo]:`NO_IMAGE`",
             },
             {
               type: "image_url",
