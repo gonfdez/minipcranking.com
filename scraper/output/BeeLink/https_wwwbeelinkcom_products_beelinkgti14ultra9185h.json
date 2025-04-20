@@ -1,0 +1,139 @@
+{
+  "model": "GTi14 Ultra9 185H",
+  "description": {
+    "en": "The Beelink GTi14 Ultra AI PC is powered by the Intel Core Ultra 9 185H processor, combining CPU, GPU, and NPU for enhanced AI performance. Featuring 16 cores, 22 threads, and Intel Arc Graphics, it excels in multitasking, gaming, and AI computing. The compact design includes a near-silent 32dB operation, built-in speakers, microphone, and fingerprint sensor. Expandable up to 96GB DDR5 RAM and 8TB storage, it supports external GPUs via PCIe5.0. Connectivity includes WiFi 7, Bluetooth 5.4, Thunderbolt 4, HDMI, DP, and multiple USB ports. The 145W power supply ensures stable performance, while the dustproof design enhances durability.",
+    "es": "La Beelink GTi14 Ultra AI PC está impulsada por el procesador Intel Core Ultra 9 185H, combinando CPU, GPU y NPU para un rendimiento mejorado en IA. Con 16 núcleos, 22 hilos y gráficos Intel Arc, destaca en multitarea, juegos y cómputo de IA. Su diseño compacto incluye operación silenciosa de 32dB, altavoces integrados, micrófono y sensor de huellas. Ampliable hasta 96GB de RAM DDR5 y 8TB de almacenamiento, soporta GPU externas vía PCIe5.0. Conectividad con WiFi 7, Bluetooth 5.4, Thunderbolt 4, HDMI, DP y múltiples puertos USB. La fuente de 145W garantiza estabilidad, y su diseño antipolvo mejora la durabilidad."
+  },
+  "mainImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/13_0254d4d4-cb11-4d07-8566-db8c1ce3bd9d_large.png",
+    "https://www.bee-link.com/cdn/shop/files/GTi14_185_9b97f6c3-5357-4fb6-b865-270fe3626550.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra185H__01.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra185H__15_7bbf7e94-045e-4c29-89db-04e01f906eb0.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra185H__03_c0a556c0-d3cf-43d5-a188-c60b6eb50f2a.jpg"
+  ],
+  "portsImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/5_47640cf3-e06c-46a4-a852-ed8dca328710.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra185H__11.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra185H__09_383bd8e1-7b36-4c49-a544-4699a26f1e30.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra185H__13.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra185H__14.jpg"
+  ],
+  "cpu": {
+    "brand": "Intel",
+    "model": "Core Ultra 9 185H",
+    "cores": 16,
+    "threads": 22,
+    "baseClockGHz": 2.3,
+    "boostClockGHz": 5.1,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 24
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1024
+      },
+      "oferts": [
+        {
+          "url": "https://www.bee-link.com/products/beelink-gti14-ultra9-185h",
+          "priceUsd": 869,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 64,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 2048
+      },
+      "oferts": [
+        {
+          "url": "https://www.bee-link.com/products/beelink-gti14-ultra9-185h",
+          "priceUsd": null,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 96,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 2048
+      },
+      "oferts": [
+        {
+          "url": "https://www.bee-link.com/products/beelink-gti14-ultra9-185h",
+          "priceUsd": null,
+          "warrantyYears": 1
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 96,
+  "maxStorageCapacityGB": 8192,
+  "graphics": {
+    "integrated": true,
+    "brand": "Intel",
+    "model": "Arc",
+    "frequencyMHz": 2350,
+    "graphicCoresCU": null,
+    "maxTOPS": 34.5,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": 1,
+        "type": "Thunderbolt 4 (40Gbps, DP1.4)"
+      },
+      "dp": {
+        "amount": 1,
+        "type": "DP1.4a (4K 144Hz)"
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": "HDMI (4K 60Hz)"
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": 1,
+    "usb3": 2,
+    "usb2": null,
+    "usbC": 1,
+    "ethernet": 2,
+    "audioJack": true,
+    "sdCardReader": true
+  },
+  "builtinMicrophone": true,
+  "builtinSpeakers": true,
+  "supportExternalDiscreteGraphicsCard": true,
+  "connectivity": {
+    "wifi": "WiFi 7 (Intel BE200)",
+    "bluetooth": "Bluetooth 5.4"
+  },
+  "dimensions": {
+    "widthMm": 158,
+    "heightMm": 55.8,
+    "depthMm": 158,
+    "volumeL": 1.38
+  },
+  "weightKg": 1.29,
+  "powerConsumptionW": 145,
+  "releaseYear": 2024
+}

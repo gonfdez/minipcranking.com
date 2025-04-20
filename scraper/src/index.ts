@@ -4,10 +4,10 @@ dotenv.config();
 
 import OpenAI from "openai";
 import fs from "fs";
-import { join } from "path";
+import path, { join } from "path";
 import MiniPcExtractedData from "./miniPcExtractedData";
 import RAW_TARGETS from "../data/targets.json";
-import { getHTMLFromURL } from "./extractHTMLFromURL";
+import { checkIfAlreadyProcessed, getHTMLFromURL } from "./extractHTMLFromURL";
 import { URL } from "@gfs-studio/webbutler-js";
 // import schema from "../data/schema.json";
 
@@ -123,6 +123,11 @@ async function main() {
   for (const { url, brand } of targets) {
     try {
       if (createdMiniPcsCount > LIMIT) break;
+      if (checkIfAlreadyProcessed(url as URL, brand)) {
+        console.log(`Already processed ${url}`);
+        continue;
+      }
+
       const md = await getHTMLFromURL(url as URL, brand);
 
       const data = await extractDataFromHTML(url, brand, md);

@@ -1,0 +1,136 @@
+{
+  "model": "Beelink GTi13 Ultra",
+  "description": {
+    "en": "The Beelink GTi13 Ultra is a high-performance mini PC powered by the Intel® Core™ i9-13900HK processor, featuring 14 cores and 20 threads for seamless multitasking. It supports dual-channel DDR5 RAM up to 96GB and dual M.2 PCIe 4.0 SSDs for expandable storage up to 8TB. Designed for versatility, it includes a PCIe5.0 x8 slot for external GPUs via Beelink's EX Pro docking station. The mini PC operates at a near-silent 32dB with an advanced cooling system and features a built-in 145W power supply. Connectivity options include Thunderbolt 4, HDMI, DisplayPort, WiFi 6, and Bluetooth 5.2. Additional features include a fingerprint sensor, 360° microphone, dual speakers, and a dustproof design.",
+    "es": "El Beelink GTi13 Ultra es una mini PC de alto rendimiento equipada con el procesador Intel® Core™ i9-13900HK, con 14 núcleos y 20 hilos para multitarea fluida. Soporta RAM DDR5 de doble canal hasta 96 GB y doble SSD M.2 PCIe 4.0 para almacenamiento ampliable hasta 8 TB. Diseñado para versatilidad, incluye una ranura PCIe5.0 x8 para tarjetas gráficas externas mediante la estación de acoplamiento EX Pro de Beelink. Opera a 32 dB de ruido gracias a su sistema de enfriamiento avanzado y cuenta con una fuente de alimentación integrada de 145W. Conectividad incluye Thunderbolt 4, HDMI, DisplayPort, WiFi 6 y Bluetooth 5.2. Funciones adicionales: sensor de huella, micrófono omnidireccional, altavoces duales y diseño antipolvo."
+  },
+  "mainImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/2_13.png",
+    "https://www.bee-link.com/cdn/shop/files/GTi13.png",
+    "https://www.bee-link.com/cdn/shop/files/2_01.png",
+    "https://www.bee-link.com/cdn/shop/files/5_a8e4eeb1-28e6-444f-9d7f-40dbf1943ee6.jpg",
+    "https://www.bee-link.com/cdn/shop/files/2_11.png"
+  ],
+  "portsImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/539_07.jpg",
+    "https://www.bee-link.com/cdn/shop/files/2_12.png",
+    "https://www.bee-link.com/cdn/shop/files/2_10.png",
+    "https://www.bee-link.com/cdn/shop/files/4_b7a51c58-b943-495a-bb1b-98c73efc33a4.png",
+    "https://www.bee-link.com/cdn/shop/files/GTi12_1_1ace6ff1-cba6-4a61-8d32-b4d8a93ea21e.png"
+  ],
+  "cpu": {
+    "brand": "Intel",
+    "model": "i9-13900HK",
+    "cores": 14,
+    "threads": 20,
+    "baseClockGHz": null,
+    "boostClockGHz": 5.4,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 24
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1024
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-gti13-ultra-13900hk",
+          "priceUsd": null,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 64,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 2048
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-gti13-ultra-13900hk",
+          "priceUsd": null,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 96,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 2048
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-gti13-ultra-13900hk",
+          "priceUsd": null,
+          "warrantyYears": 1
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 96,
+  "maxStorageCapacityGB": 8192,
+  "graphics": {
+    "integrated": true,
+    "brand": "Intel",
+    "model": "Iris Xe",
+    "frequencyMHz": 1500,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": 1,
+        "type": "Thunderbolt 4 (40Gbps/TBT4/PD/DP1.4)"
+      },
+      "dp": {
+        "amount": 1,
+        "type": "DP1.4a (4K 144Hz)"
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": "4K 60Hz"
+      },
+      "usb4": null
+    }
+  },
+  "ports": {
+    "usb4": 1,
+    "usb3": 3,
+    "usb2": null,
+    "usbC": 2,
+    "ethernet": 2,
+    "audioJack": true,
+    "sdCardReader": true
+  },
+  "builtinMicrophone": true,
+  "builtinSpeakers": true,
+  "supportExternalDiscreteGraphicsCard": true,
+  "connectivity": {
+    "wifi": "WiFi6 (Intel AX200)",
+    "bluetooth": "5.2"
+  },
+  "dimensions": {
+    "widthMm": 158,
+    "heightMm": 55.8,
+    "depthMm": 158,
+    "volumeL": null
+  },
+  "weightKg": 1.29,
+  "powerConsumptionW": 145,
+  "releaseYear": null
+}

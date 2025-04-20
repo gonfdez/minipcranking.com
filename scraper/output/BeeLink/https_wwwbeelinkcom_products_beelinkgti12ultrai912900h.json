@@ -1,0 +1,137 @@
+{
+  "model": "Beelink GTi12 Ultra Intel Core i9 12900HHK",
+  "description": {
+    "en": "The Beelink GTi12 Ultra features the Intel Core i9-12900H/HK processor with 14 cores and 20 threads, offering seamless multitasking with a hybrid architecture. It supports up to 64GB DDR5 RAM and 8TB NVMe storage. The mini PC includes Intel Iris Xe Graphics, a built-in 145W PSU, and a fingerprint sensor for secure login. Its MSC 2.0 cooling system ensures quiet operation at 32dB. Connectivity options include Thunderbolt 4, HDMI, DisplayPort, USB 3.2 Gen2 ports, dual 2.5G Ethernet, WiFi 6, and Bluetooth 5.2. Designed with a dustproof build and dual-color options, it supports external GPUs via a PCIe5.0 x8 slot.",
+    "es": null
+  },
+  "mainImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/GTi12-12900H__01_ee02dc66-d7bc-4c95-afd6-b5a09186f9ad.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi12-12900H__13.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi12-12900H__07.jpg"
+  ],
+  "portsImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/12_97c0d12f-207a-4594-9ae2-92997f8f06c6.png",
+    "https://www.bee-link.com/cdn/shop/files/GTi12.png",
+    "https://www.bee-link.com/cdn/shop/files/GTi12__06_12e2bec3-0f64-4c2c-a5d6-3c397cbba36a.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi12-12900H__12.jpg",
+    "https://www.bee-link.com/cdn/shop/files/5_47640cf3-e06c-46a4-a852-ed8dca328710.jpg"
+  ],
+  "cpu": {
+    "brand": "Intel",
+    "model": "Core i9-12900HHK",
+    "cores": 14,
+    "threads": 20,
+    "baseClockGHz": null,
+    "boostClockGHz": 5,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 24
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1024
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-gti12-ultra-i9-12900h",
+          "priceUsd": 589,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1024
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-gti12-ultra-i9-12900h",
+          "priceUsd": null,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 64,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 2048
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-gti12-ultra-i9-12900h",
+          "priceUsd": null,
+          "warrantyYears": 1
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 64,
+  "maxStorageCapacityGB": 8192,
+  "graphics": {
+    "integrated": true,
+    "brand": "Intel",
+    "model": "Iris Xe",
+    "frequencyMHz": 1450,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": 1,
+        "type": "Thunderbolt 4 (40Gbps/TBT4/PD/DP1.4)"
+      },
+      "dp": {
+        "amount": 1,
+        "type": "DP1.4a (4K 144Hz)"
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": "4K 60Hz"
+      },
+      "usb4": {
+        "amount": 1,
+        "type": "Thunderbolt 4 compatible"
+      }
+    }
+  },
+  "ports": {
+    "usb4": 1,
+    "usb3": 3,
+    "usb2": null,
+    "usbC": 1,
+    "ethernet": 2,
+    "audioJack": true,
+    "sdCardReader": true
+  },
+  "builtinMicrophone": true,
+  "builtinSpeakers": true,
+  "supportExternalDiscreteGraphicsCard": true,
+  "connectivity": {
+    "wifi": "WiFi6 (Intel AX200)",
+    "bluetooth": "5.2"
+  },
+  "dimensions": {
+    "widthMm": 158,
+    "heightMm": 158,
+    "depthMm": 55.8,
+    "volumeL": 1.39
+  },
+  "weightKg": 1.29,
+  "powerConsumptionW": 65,
+  "releaseYear": 2024
+}

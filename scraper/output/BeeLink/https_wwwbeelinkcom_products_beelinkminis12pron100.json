@@ -1,0 +1,105 @@
+{
+  "model": "Beelink MINI S12 Intel Alder Lake N100",
+  "description": {
+    "en": "The Beelink MINI S12 PRO is a compact and powerful mini PC featuring the Intel Alder Lake N100 Processor with 4 cores and 4 threads, reaching up to 3.4 GHz. Ideal for home entertainment, office tasks, and light computing, it comes with 16GB DDR4 RAM and a 500GB SATA3 SSD, expandable up to 4TB. Dual HDMI 2.0 ports support 4K@60Hz output, enabling dual-screen setups for enhanced productivity. Equipped with WiFi6 (Intel AX101) and Bluetooth 5.2, it ensures fast and stable wireless connectivity. The ultra-quiet cooling system and VESA mount compatibility make it perfect for space-saving installations. With a sleek navy blue design, this mini PC is energy-efficient and versatile for various applications.",
+    "es": "El Beelink MINI S12 PRO es una mini PC compacta y potente con el procesador Intel Alder Lake N100 de 4 núcleos y 4 hilos, alcanzando hasta 3,4 GHz. Ideal para entretenimiento en el hogar, tareas de oficina y computación ligera, incluye 16GB de RAM DDR4 y un SSD SATA3 de 500GB, expandible hasta 4TB. Sus dos puertos HDMI 2.0 admiten salida 4K@60Hz, permitiendo configuraciones de doble pantalla para mayor productividad. Equipado con WiFi6 (Intel AX101) y Bluetooth 5.2, garantiza conectividad inalámbrica rápida y estable. El sistema de enfriamiento silencioso y compatibilidad con montaje VESA lo hacen perfecto para ahorrar espacio. Con un diseño azul marino elegante, esta mini PC es energéticamente eficiente y versátil para diversas aplicaciones."
+  },
+  "mainImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/10_ec11976c-e58e-49e5-a2fd-b0cf4163aa7c.png",
+    "https://www.bee-link.com/cdn/shop/files/MINI-S12-Pro--N100_-__01_d0e023f8-0c02-48cc-99fb-daca8cd13731.jpg",
+    "https://www.bee-link.com/cdn/shop/files/MINI-S12-Pro--N100_-__05_6e4072d9-887c-4b0f-b120-1e66ac26e27f.jpg",
+    "https://www.bee-link.com/cdn/shop/files/MINI-S12-Pro--N100_-__02_7b1004ee-092c-449f-898b-b25888f4232b.jpg",
+    "https://www.bee-link.com/cdn/shop/files/MINI-S12-Pro--N100_-__18_0fd2d123-7e2d-43bb-a72c-243cf4615452.jpg"
+  ],
+  "portsImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/MINI-S12-Pro--N100_-__10_9fa5e121-1c87-4c9b-a601-43fdbc338566.jpg",
+    "https://www.bee-link.com/cdn/shop/files/MINI-S12-Pro--N100_-__14_917ba92e-d80c-4407-9a37-601edfafe10d.jpg",
+    "https://www.bee-link.com/cdn/shop/files/MINI-S12-Pro--N100_-__16_e008ad18-220d-40ea-ae37-2a77591af846.jpg",
+    "https://www.bee-link.com/cdn/shop/files/MINI-S12-Pro--N100_-__18_0fd2d123-7e2d-43bb-a72c-243cf4615452.jpg",
+    "https://www.bee-link.com/cdn/shop/files/MINI-S12-PRO_1.png"
+  ],
+  "cpu": {
+    "brand": "Intel",
+    "model": "Alder Lake N100",
+    "cores": 4,
+    "threads": 4,
+    "baseClockGHz": null,
+    "boostClockGHz": 3.4,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 6
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 16,
+        "type": "DDR4"
+      },
+      "storage": {
+        "type": "SATA3 SSD",
+        "capacityGB": 500
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-mini-s12-pro-n100",
+          "priceUsd": 189,
+          "warrantyYears": 1
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 16,
+  "maxStorageCapacityGB": 4000,
+  "graphics": {
+    "integrated": true,
+    "brand": "Intel",
+    "model": "UHD Graphics 24EUs",
+    "frequencyMHz": 750,
+    "graphicCoresCU": 24,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": null,
+        "type": null
+      },
+      "hdmi": {
+        "amount": 2,
+        "type": "HDMI 2.0 (4K@60Hz)"
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 2,
+    "usb2": null,
+    "usbC": 1,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": "WiFi6 (Intel AX101)",
+    "bluetooth": "5.2"
+  },
+  "dimensions": {
+    "widthMm": 115,
+    "heightMm": 102,
+    "depthMm": 39,
+    "volumeL": 0.46
+  },
+  "weightKg": 0.28,
+  "powerConsumptionW": 36,
+  "releaseYear": null
+}

@@ -1,0 +1,122 @@
+{
+  "model": "EQi12",
+  "description": {
+    "en": "The Beelink EQi12 mini PC offers versatile performance with three Intel CPU options: Core 1220P (10C/12T), i5-12450H (8C/12T), and i7-12650H (10C/16T). Features 24GB LPDDR5 RAM, dual M.2 PCIe 4.0 SSD slots (up to 4TB), and near-silent 32dB operation. Includes built-in 85W PSU for clutter-free setup, dual 1000M LAN ports for network security, WiFi 6, and Bluetooth 5.2. Ideal for office use with dual 4K display support through HDMI ports and compact 126x126x44mm design.",
+    "es": "El mini PC Beelink EQi12 ofrece rendimiento versátil con tres opciones de CPU Intel: Core 1220P (10C/12T), i5-12450H (8C/12T) e i7-12650H (10C/16T). Incluye 24GB de RAM LPDDR5, doble ranura M.2 PCIe 4.0 (hasta 4TB) y operación silenciosa de 32dB. Cuenta con fuente de alimentación integrada de 85W, doble puerto LAN 1000M para seguridad, WiFi 6 y Bluetooth 5.2. Ideal para oficinas con soporte dual 4K mediante HDMI y diseño compacto de 126x126x44mm."
+  },
+  "mainImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/2_408d1436-90ca-4865-8c18-202e20b598c1_large.png",
+    "https://www.bee-link.com/cdn/shop/files/EQ_large.jpg",
+    "https://www.bee-link.com/cdn/shop/files/Beelink-EQI_12650H__01_large.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQi1220p__02_7579a20e-bf76-41f6-a5c2-653a7877b952_large.jpg",
+    "https://www.bee-link.com/cdn/shop/files/Beelink-EQI_1220P__01_large.jpg"
+  ],
+  "portsImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/Beelink-EQI_1220P__03_d42345a4-2cb4-412d-bb0b-bc7aeaab4a45_large.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQi1220p__12_large.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQi1220p__13_large.jpg",
+    "https://www.bee-link.com/cdn/shop/files/Beelink-EQI_1220P__04_large.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQi1220p__06_large.jpg"
+  ],
+  "cpu": {
+    "brand": "Intel",
+    "model": "1220P/12450H/12650H",
+    "cores": 10,
+    "threads": 16,
+    "baseClockGHz": null,
+    "boostClockGHz": null,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 24
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 24,
+        "type": "LPDDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 500
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-eqi12",
+          "priceUsd": 269,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 24,
+        "type": "LPDDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1000
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-eqi12",
+          "priceUsd": null,
+          "warrantyYears": 1
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 24,
+  "maxStorageCapacityGB": 4096,
+  "graphics": {
+    "integrated": true,
+    "brand": "Intel",
+    "model": "UHD Graphics",
+    "frequencyMHz": 1400,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": null,
+        "type": null
+      },
+      "hdmi": {
+        "amount": 2,
+        "type": "4K 60Hz"
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 3,
+    "usb2": 1,
+    "usbC": 1,
+    "ethernet": 2,
+    "audioJack": true,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": "WiFi 6 (802.11ax)",
+    "bluetooth": "5.2"
+  },
+  "dimensions": {
+    "widthMm": 126,
+    "heightMm": 126,
+    "depthMm": 44.2,
+    "volumeL": 0.7
+  },
+  "weightKg": 0.52,
+  "powerConsumptionW": null,
+  "releaseYear": null
+}

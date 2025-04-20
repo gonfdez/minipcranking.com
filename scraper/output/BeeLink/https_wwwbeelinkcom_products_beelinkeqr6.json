@@ -1,0 +1,139 @@
+{
+  "model": "Beelink EQR6",
+  "description": {
+    "en": "The Beelink EQR6 is a high-performance mini PC offering two CPU options: the AMD Ryzen 5 6600H (6 cores, 12 threads) and the AMD Ryzen 9 6900HX (8 cores, 16 threads). It supports up to 64GB DDR5 RAM and dual M.2 PCIe 4.0 SSDs for expandable storage up to 8TB. Designed for efficiency, it features a near-silent cooling system, built-in 85W power supply, and dual 1000M Ethernet ports for enhanced connectivity. Ideal for home, office, and multimedia use, it includes WiFi 6, Bluetooth 5.2, and multiple ports for versatile connectivity. Compact dimensions (126x126x45.5mm) make it space-saving while delivering robust performance.",
+    "es": "El Beelink EQR6 es una mini PC de alto rendimiento con dos opciones de CPU: AMD Ryzen 5 6600H (6 núcleos, 12 hilos) y AMD Ryzen 9 6900HX (8 núcleos, 16 hilos). Soporta hasta 64GB de RAM DDR5 y almacenamiento ampliable mediante doble M.2 PCIe 4.0 SSD hasta 8TB. Diseñado para eficiencia, incluye un sistema de refrigeración silencioso, fuente de alimentación integrada de 85W y doble puerto Ethernet 1000M para mayor conectividad. Ideal para hogar, oficina y multimedia, cuenta con WiFi 6, Bluetooth 5.2 y múltiples puertos. Sus dimensiones compactas (126x126x45.5mm) lo hacen ideal para espacios reducidos sin sacrificar rendimiento."
+  },
+  "mainImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/EQR7735HS__01.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQR7735HS__10.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQR7735HS__01_659f4236-21e4-4d34-b19e-6a500d133e01.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQR7735HS__03.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQR7735HS__02.jpg"
+  ],
+  "portsImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/EQR7735HS__06.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQR7735HS__07.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQR7735HS__11.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQR7735HS__01_659f4236-21e4-4d34-b19e-6a500d133e01.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQR6_1.png"
+  ],
+  "cpu": {
+    "brand": "AMD",
+    "model": "Ryzen 5 6600H / Ryzen 9 6900HX",
+    "cores": 6,
+    "threads": 12,
+    "baseClockGHz": 3.3,
+    "boostClockGHz": 4.5,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 16
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 16,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 500
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-eqr6",
+          "priceUsd": 279,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 24,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 500
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-eqr6",
+          "priceUsd": null,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 24,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1000
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-eqr6",
+          "priceUsd": null,
+          "warrantyYears": 1
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 64,
+  "maxStorageCapacityGB": 8000,
+  "graphics": {
+    "integrated": true,
+    "brand": "AMD",
+    "model": "Radeon 660M / 680M",
+    "frequencyMHz": 1900,
+    "graphicCoresCU": 6,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": null,
+        "type": null
+      },
+      "hdmi": {
+        "amount": 2,
+        "type": "4K 60Hz"
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 4,
+    "usb2": 1,
+    "usbC": 1,
+    "ethernet": 2,
+    "audioJack": true,
+    "sdCardReader": true
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": "WiFi 6 (AX200)",
+    "bluetooth": "5.2"
+  },
+  "dimensions": {
+    "widthMm": 126,
+    "heightMm": 126,
+    "depthMm": 45.5,
+    "volumeL": 0.72
+  },
+  "weightKg": 0.52,
+  "powerConsumptionW": 85,
+  "releaseYear": 2024
+}

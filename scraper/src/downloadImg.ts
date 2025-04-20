@@ -47,6 +47,10 @@ export async function downloadImage(
 ): Promise<DownloadImageResult | null> {
   return new Promise((resolve, reject) => {
     console.log("Downloading ", imgSrc);
+    if (!imgSrc || imgSrc.startsWith("data:")) {
+      resolve(null);
+      return;
+    }
     try {
       // Configurar opciones con valores predeterminados
       const outputDir: string =
