@@ -133,6 +133,7 @@ export async function downloadImage(
               // Obtener las dimensiones de la imagen
               const buffer = readFileSync(localPath);
               const dimensions = imageSize(buffer);
+              console.log("Image dimensions:", dimensions);
               resolve({
                 localPath,
                 extension,

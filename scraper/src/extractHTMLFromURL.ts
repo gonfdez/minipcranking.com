@@ -67,20 +67,27 @@ async function cleanHtml(html: string): Promise<string> {
     });
 
     let imgs = Array.from(document.querySelectorAll("img"));
+    console.log("IMGS detected in DOM: ", imgs.length);
     const validImgs = [];
     for (const imgElem of imgs) {
       let imgSrc = imgElem.getAttribute("src");
       if (!imgSrc || imgSrc.includes(".svg")) continue;
 
+      // Normalizar URL
       if (imgSrc.startsWith("//")) imgSrc = "https:" + imgSrc;
-      imgElem.setAttribute("src", imgSrc);
 
-      const downloadRes = await downloadImage(imgSrc);
+      // Eliminar parámetros de consulta
+      const cleanImgSrc = imgSrc.split("?")[0].split("#")[0];
+
+      // Actualizar el atributo src con la URL limpia
+      imgElem.setAttribute("src", cleanImgSrc);
+
+      const downloadRes = await downloadImage(cleanImgSrc);
       if (!downloadRes) continue;
       await removeDownloadedFile(downloadRes.localPath);
-      if (downloadRes.size.width < 200 && downloadRes.size.height < 200)
+      if (downloadRes.size.width < 400 && downloadRes.size.height < 400)
         continue;
-      validImgs.push({ imgElem, imgSrc });
+      validImgs.push({ imgElem, imgSrc: cleanImgSrc });
     }
 
     // Procesar solo imágenes grandes

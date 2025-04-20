@@ -1,11 +1,23 @@
 {
   "model": "Beelink SER9 Pro AMD Ryzen AI 9 HX 370",
   "description": {
-    "en": "The Beelink SER9 Pro AMD Ryzen AI 9 HX 370 mini PC is a powerhouse featuring a 12-core/24-thread AMD Ryzen AI 9 HX 370 processor with a boost clock up to 5.1GHz and 80 AI TOPS for advanced computing. It includes an AMD Radeon 890M GPU with 16 compute units for smooth graphics performance. Designed for efficiency, it operates at 32dB for near-silent operation and includes a built-in microphone with AI voice interaction and dual speakers for immersive audio. Storage options include dual PCIe 4.0 M.2 slots supporting up to 8TB, and LPDDR5X RAM up to 64GB. Connectivity features WiFi 6, Bluetooth 5.2, triple 4K display support via HDMI 2.1, DisplayPort 1.4, and USB4, plus multiple USB ports and a 2.5G Ethernet. Its compact design measures 135x135x44.7mm and weighs 780g.",
-    "es": "El mini PC Beelink SER9 Pro AMD Ryzen AI 9 HX 370 es una máquina potente con un procesador AMD Ryzen AI 9 HX 370 de 12 núcleos/24 hilos, frecuencia máxima de 5.1GHz y 80 TOPS de IA. Incluye una GPU AMD Radeon 890M con 16 unidades de cómputo para gráficos fluidos. Opera a 32dB para un funcionamiento silencioso, cuenta con micrófono integrado con interacción por voz IA y altavoces duales. Almacenamiento con ranuras duales PCIe 4.0 M.2 hasta 8TB y RAM LPDDR5X hasta 64GB. Conexiones incluyen WiFi 6, Bluetooth 5.2, triple pantalla 4K mediante HDMI 2.1, DisplayPort 1.4 y USB4, múltiples puertos USB y Ethernet 2.5G. Diseño compacto de 135x135x44.7mm y 780g de peso."
+    "en": "The Beelink SER9 Pro AMD Ryzen AI 9 HX 370 mini PC combines cutting-edge technology with a compact design. Powered by the AMD Ryzen AI 9 HX 370 processor with 12 Zen5 cores, 24 threads, and a boost clock up to 5.1GHz, it delivers exceptional performance for AI computing, gaming, and multimedia. Features include AMD Radeon 890M graphics (16 CU, 2900MHz), LPDDR5X 8000MHz RAM (up to 64GB), dual PCIe 4.0 NVMe storage (up to 8TB), and triple 4K display support via HDMI 2.1, DisplayPort 1.4, and USB4. The MSC 2.0 cooling system ensures 32dB near-silent operation, while built-in dual speakers and an AI-powered microphone enhance audio experiences. Connectivity includes WiFi 6, Bluetooth 5.2, and extensive I/O ports. Ideal for professionals and gamers seeking power in a space-saving form factor.",
+    "es": "El mini PC Beelink SER9 Pro AMD Ryzen AI 9 HX 370 combina tecnología de vanguardia con un diseño compacto. Equipado con el procesador AMD Ryzen AI 9 HX 370 de 12 núcleos Zen5, 24 hilos y velocidad turbo de hasta 5.1GHz, ofrece rendimiento excepcional para IA, gaming y multimedia. Incluye gráficos AMD Radeon 890M (16 CU, 2900MHz), RAM LPDDR5X 8000MHz (hasta 64GB), almacenamiento dual NVMe PCIe 4.0 (hasta 8TB) y soporte para triple pantalla 4K mediante HDMI 2.1, DisplayPort 1.4 y USB4. El sistema de refrigeración MSC 2.0 garantiza operación silenciosa de 32dB, mientras que los altavoces integrados y micrófono con IA mejoran el audio. Conectividad WiFi 6, Bluetooth 5.2 y amplios puertos E/S. Ideal para profesionales y gamers que buscan potencia en formato compacto."
   },
-  "mainImgUrl": "https://www.bee-link.com/cdn/shop/files/8_35ace666-24c1-4e94-88a4-147b36662b93_large.png",
-  "portsImgUrl": "https://www.bee-link.com/cdn/shop/files/SER9_-__08.jpg?v=1744995235",
+  "mainImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__15.png",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__03.png",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__01.png",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__16.png",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__05.png"
+  ],
+  "portsImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/SER9.png",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__08.jpg",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__06.jpg",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__04.jpg",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__05.jpg"
+  ],
   "cpu": {
     "brand": "AMD",
     "model": "Ryzen AI 9 HX 370",
@@ -25,12 +37,12 @@
         "type": "LPDDR5X"
       },
       "storage": {
-        "type": "PCIe 4.0",
+        "type": "NVMe",
         "capacityGB": 1024
       },
       "oferts": [
         {
-          "url": "/products/beelink-ser9-ai-9-hx-370",
+          "url": "https://www.bee-link.com/products/beelink-ser9-ai-9-hx-370",
           "priceUsd": 949,
           "warrantyYears": 1
         }
@@ -42,12 +54,12 @@
         "type": "LPDDR5X"
       },
       "storage": {
-        "type": "PCIe 4.0",
+        "type": "NVMe",
         "capacityGB": 2048
       },
       "oferts": [
         {
-          "url": "/products/beelink-ser9-ai-9-hx-370",
+          "url": "https://www.bee-link.com/products/beelink-ser9-ai-9-hx-370",
           "priceUsd": null,
           "warrantyYears": 1
         }
@@ -70,15 +82,15 @@
       },
       "dp": {
         "amount": 1,
-        "type": "DisplayPort 1.4 (4K 120Hz)"
+        "type": "1.4 (4K 120Hz)"
       },
       "hdmi": {
         "amount": 1,
-        "type": "HDMI 2.1 (4K 120Hz)"
+        "type": "2.1 (4K 120Hz)"
       },
       "usb4": {
         "amount": 1,
-        "type": "USB4 40Gbps with DP1.4/Thunderbolt 3 support"
+        "type": "40Gbps/DP1.4/PD"
       }
     }
   },
@@ -89,11 +101,11 @@
     "usbC": 1,
     "ethernet": 1,
     "audioJack": true,
-    "sdCardReader": null
+    "sdCardReader": false
   },
   "builtinMicrophone": true,
   "builtinSpeakers": true,
-  "supportExternalDiscreteGraphicsCard": true,
+  "supportExternalDiscreteGraphicsCard": null,
   "connectivity": {
     "wifi": "WiFi 6 (Intel AX200)",
     "bluetooth": "5.2"
@@ -102,9 +114,9 @@
     "widthMm": 135,
     "heightMm": 44.7,
     "depthMm": 135,
-    "volumeL": null
+    "volumeL": 0.81
   },
   "weightKg": 0.78,
-  "powerConsumptionW": 65,
+  "powerConsumptionW": 100,
   "releaseYear": 2024
 }
