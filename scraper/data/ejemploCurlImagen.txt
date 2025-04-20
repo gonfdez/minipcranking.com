@@ -3,7 +3,7 @@ curl -X POST "https://openrouter.ai/api/v1/chat/completions" \
 -H "Authorization: Bearer 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" \
 -d '{
   "model": "meta-llama/llama-4-scout", 
-  "temperature": 0,
+  "temperature": 0.35,
   "messages": [
     {
       "role": "system",
@@ -19,7 +19,7 @@ curl -X POST "https://openrouter.ai/api/v1/chat/completions" \
         {
           "type": "image_url",
           "image_url": {
-            "url": "https://www.bee-link.com/cdn/shop/files/2_46515751-7b93-43a2-b7e7-7ae75f94f68a.png?v=1743496099"
+            "url": "https://www.bee-link.com/cdn/shop/files/1_a3afb1e0-cb5a-446d-bed4-28d447134089.png?v=1743497325"
           }
         }
       ]

@@ -61,7 +61,7 @@ export async function generateAltTextAPI(
     const completion = await client.chat.completions.create({
       model: process.env.IMG_MODEL as string,
       max_tokens: 50,
-      temperature: 0.7,
+      temperature: 0.3,
       messages: [
         {
           role: "system",
