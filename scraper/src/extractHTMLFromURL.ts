@@ -67,24 +67,28 @@ async function cleanHtml(html: string): Promise<string> {
     });
 
     let imgs = Array.from(document.querySelectorAll("img"));
-    console.log(`Founded ${imgs.length} images`);
+    const validImgs = [];
+    for (const imgElem of imgs) {
+      let imgSrc = imgElem.getAttribute("src");
+      if (!imgSrc || imgSrc.includes(".svg")) continue;
+
+      if (imgSrc.startsWith("//")) imgSrc = "https:" + imgSrc;
+      imgElem.setAttribute("src", imgSrc);
+
+      const downloadRes = await downloadImage(imgSrc);
+      if (!downloadRes) continue;
+      await removeDownloadedFile(downloadRes.localPath);
+      if (downloadRes.size.width < 200 && downloadRes.size.height < 200)
+        continue;
+      validImgs.push({ imgElem, imgSrc });
+    }
 
     // Procesar solo imágenes grandes
-    for (const imgElem of imgs) {
+    console.log("IMGS to process: ", validImgs.length);
+    for (const { imgElem, imgSrc } of validImgs) {
       try {
-        let imgSrc = imgElem.getAttribute("src");
-        if (!imgSrc || imgSrc.includes(".svg")) continue;
-
-        if (imgSrc.startsWith("//")) imgSrc = "https:" + imgSrc;
-        imgElem.setAttribute("src", imgSrc);
-
-        // ¿ Descargarla ver tamaño y decidir si procesarla ?
-        // const downloadRes = await downloadImage(imgSrc);
-        // if (!downloadRes) continue;
-
         const imgAlt = await generateAltTextAPI(imgSrc);
 
-        // await removeDownloadedFile(downloadRes.localPath);
         if (!imgAlt || imgAlt === "null") continue;
 
         imgElem.setAttribute("ia-generated-alt", imgAlt);

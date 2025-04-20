@@ -4,6 +4,7 @@ import * as https from "https";
 import * as http from "http";
 import { URL } from "url";
 import { IncomingMessage } from "http";
+const sizeOf = require("image-size");
 
 /**
  * Opciones para la descarga de imágenes
@@ -29,6 +30,8 @@ interface DownloadImageResult {
   contentType: string;
   /** Nombre del archivo generado */
   fileName: string;
+  /** Tamaño de la imagen (ancho y alto) */
+  size: { width: number; height: number };
 }
 
 /**
@@ -125,12 +128,37 @@ export async function downloadImage(
 
           // Cuando termine de escribir
           fileStream.on("finish", () => {
-            resolve({
-              localPath,
-              extension,
-              contentType,
-              fileName,
-            });
+            try {
+              // Obtener las dimensiones de la imagen
+              const dimensions = sizeOf(localPath);
+
+              resolve({
+                localPath,
+                extension,
+                contentType,
+                fileName,
+                size: {
+                  width: dimensions.width || 0,
+                  height: dimensions.height || 0,
+                },
+              });
+            } catch (error) {
+              console.error(
+                "Error al obtener dimensiones de la imagen:",
+                error
+              );
+              // Si hay error al obtener las dimensiones, devolver valores por defecto
+              resolve({
+                localPath,
+                extension,
+                contentType,
+                fileName,
+                size: {
+                  width: 0,
+                  height: 0,
+                },
+              });
+            }
           });
 
           // Pipe la respuesta al archivo
