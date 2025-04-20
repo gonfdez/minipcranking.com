@@ -1,22 +1,22 @@
 {
   "model": "Beelink SER9 Pro AMD Ryzen AI 9 HX 370",
   "description": {
-    "en": "The Beelink SER9 Pro AMD Ryzen AI 9 HX 370 is a powerful mini PC featuring a 12-core/24-thread AMD Ryzen AI 9 HX 370 processor with Zen5 architecture and a 5.1GHz boost clock. It includes an AMD Radeon 890M GPU with 16 compute units, 80 AI TOPS performance, and supports triple 4K displays via HDMI 2.1, DisplayPort 1.4, and USB4. Designed for efficiency, it operates at 32dB noise levels, includes dual built-in speakers, a built-in microphone with AI noise cancellation, and dual M.2 PCIe 4.0 slots for up to 8TB storage. Connectivity includes WiFi 6, Bluetooth 5.2, and multiple USB ports.",
-    "es": "El Beelink SER9 Pro AMD Ryzen AI 9 HX 370 es una mini PC potente con un procesador AMD Ryzen AI 9 HX 370 de 12 núcleos/24 hilos y arquitectura Zen5, llegando hasta 5.1GHz. Incluye una GPU AMD Radeon 890M con 16 unidades de cómputo, 80 TOPS de rendimiento AI, y soporta triple pantalla 4K mediante HDMI 2.1, DisplayPort 1.4 y USB4. Diseñado para eficiencia, opera a 32dB de ruido, tiene altavoces integrados, micrófono con cancelación de ruido AI, y dos ranuras M.2 PCIe 4.0 para hasta 8TB de almacenamiento. Conectividad incluye WiFi 6, Bluetooth 5.2 y múltiples puertos USB."
+    "en": "The Beelink SER9 Pro features AMD's Ryzen AI 9 HX 370 processor with 12 Zen5 cores and 24 threads, reaching up to 5.1GHz burst frequency. Equipped with AMD Radeon 890M GPU (16 CU, 2900MHz) and 80 AI TOPS for enhanced performance. Includes built-in dual speakers, microphone with AI noise cancellation, and a 32dB silent cooling system. Supports dual M.2 PCIe 4.0 SSDs (up to 8TB) and LPDDR5X 8000MHz RAM (up to 64GB). Offers triple 4K display via HDMI 2.1, DisplayPort 1.4, and USB4. Compact design (135x135x44.7mm) with WiFi 6 and Bluetooth 5.2 connectivity.",
+    "es": "El Beelink SER9 Pro cuenta con el procesador AMD Ryzen AI 9 HX 370 de 12 núcleos Zen5 y 24 hilos, alcanzando hasta 5.1GHz. Incluye GPU Radeon 890M (16 CU, 2900MHz) y 80 TOPS de IA. Tiene altavoces integrados, micrófono con cancelación de ruido IA y sistema de enfriamiento silencioso de 32dB. Admite SSD dual M.2 PCIe 4.0 (hasta 8TB) y RAM LPDDR5X 8000MHz (hasta 64GB). Soporta triple pantalla 4K mediante HDMI 2.1, DisplayPort 1.4 y USB4. Diseño compacto (135x135x44.7mm) con WiFi 6 y Bluetooth 5.2."
   },
   "mainImgUrls": [
-    "https://www.bee-link.com/cdn/shop/files/SER9_large.png",
-    "https://www.bee-link.com/cdn/shop/files/SER9_-__04_large.png",
-    "https://www.bee-link.com/cdn/shop/files/SER9_-__21_large.png",
-    "https://www.bee-link.com/cdn/shop/files/SER9_-__05_large.png",
-    "https://www.bee-link.com/cdn/shop/files/SER9_-__08_large.jpg"
+    "https://www.bee-link.com/cdn/shop/files/SER9.png",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__04.jpg",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__01_3b01d232-b9a7-41b4-96d9-7de5768092ca.jpg",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__02.jpg",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__04.png"
   ],
   "portsImgUrls": [
-    "https://www.bee-link.com/cdn/shop/files/SER9_-__03_large.png",
-    "https://www.bee-link.com/cdn/shop/files/SER9_-__05_large.jpg",
-    "https://www.bee-link.com/cdn/shop/files/SER9_-__06_large.jpg",
-    "https://www.bee-link.com/cdn/shop/files/SER9_-__08_large.jpg",
-    "https://www.bee-link.com/cdn/shop/files/SER9_-__22_large.jpg"
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__03.png",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__05.png",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__06.jpg",
+    "https://www.bee-link.com/cdn/shop/files/SER9_-__08.jpg",
+    "https://www.bee-link.com/cdn/shop/files/8_35ace666-24c1-4e94-88a4-147b36662b93.png"
   ],
   "cpu": {
     "brand": "AMD",
@@ -42,7 +42,7 @@
       },
       "oferts": [
         {
-          "url": "/products/beelink-ser9-ai-9-hx-370",
+          "url": null,
           "priceUsd": 949,
           "warrantyYears": 1
         }
@@ -59,8 +59,8 @@
       },
       "oferts": [
         {
-          "url": "/products/beelink-ser9-ai-9-hx-370",
-          "priceUsd": 949,
+          "url": null,
+          "priceUsd": null,
           "warrantyYears": 1
         }
       ]
@@ -90,7 +90,7 @@
       },
       "usb4": {
         "amount": 1,
-        "type": "40Gbps/Thunderbolt 3/DP 1.4"
+        "type": "USB4 40Gbps (DisplayPort 1.4)"
       }
     }
   },
@@ -101,7 +101,7 @@
     "usbC": 1,
     "ethernet": 1,
     "audioJack": true,
-    "sdCardReader": true
+    "sdCardReader": null
   },
   "builtinMicrophone": true,
   "builtinSpeakers": true,
@@ -114,9 +114,9 @@
     "widthMm": 135,
     "heightMm": 44.7,
     "depthMm": 135,
-    "volumeL": null
+    "volumeL": 0.82
   },
   "weightKg": 0.78,
   "powerConsumptionW": 65,
-  "releaseYear": null
+  "releaseYear": 2024
 }

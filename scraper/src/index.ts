@@ -113,6 +113,8 @@ async function extractDataFromHTML(
 const LIMIT = 150;
 
 async function main() {
+  const startTime = Date.now();
+
   const targets: { url: string; brand: string }[] = Object.entries(
     RAW_TARGETS
   ).flatMap(([brand, urls]) => urls.map((url) => ({ url, brand })));
@@ -131,11 +133,17 @@ async function main() {
       createdMiniPcsCount++;
     } catch (error) {
       console.error(`Error processing ${url}:`, error);
-    } finally {
-      console.log(`Created ${createdMiniPcsCount} Mini Pc's.`);
-      break;
     }
   }
+
+  const endTime = Date.now();
+  const totalTime = (endTime - startTime) / 1000; // Convert to seconds
+  console.log(
+    `Total execution time: ${Math.floor(totalTime / 3600)}h ${Math.floor(
+      (totalTime % 3600) / 60
+    )}m ${Math.floor(totalTime % 60)}s`
+  );
+  console.log(`Created ${createdMiniPcsCount} Mini Pc's.`);
 }
 
 main()
