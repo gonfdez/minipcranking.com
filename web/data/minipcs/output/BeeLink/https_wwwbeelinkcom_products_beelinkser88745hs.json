@@ -1,0 +1,139 @@
+{
+  "model": "SER8",
+  "description": {
+    "en": "The Beelink SER8 mini PC is powered by the AMD Ryzen 7 8745HS processor with 8 cores, 16 threads, and a max turbo frequency of 4.9GHz, delivering exceptional performance for multitasking and demanding applications. Featuring AMD Radeon 780M integrated graphics with 12 cores at 2600MHz, it supports smooth gaming and 4K video output. The system includes dual-channel DDR5 5600MHz RAM support up to 256GB and dual M.2 PCIe 4.0 slots for expandable storage up to 8TB. Its innovative MSC 2.0 cooling system ensures near-silent operation at 32dB while maintaining 65W TDP. Connectivity options include triple display support via HDMI 2.1, DisplayPort 1.4, and USB4, along with WiFi 6 and Bluetooth 5.2. The compact, dustproof design with a metal filter enhances durability and airflow efficiency.",
+    "es": "El mini PC Beelink SER8 cuenta con el procesador AMD Ryzen 7 8745HS de 8 núcleos, 16 hilos y una frecuencia turbo máxima de 4.9GHz, ofreciendo un rendimiento excepcional para multitarea y aplicaciones exigentes. Incluye gráficos integrados AMD Radeon 780M con 12 núcleos a 2600MHz, soportando juegos fluidos y salida 4K. El sistema admite memoria DDR5 5600MHz de doble canal hasta 256GB y dos ranuras M.2 PCIe 4.0 para almacenamiento ampliable hasta 8TB. Su sistema de enfriamiento MSC 2.0 garantiza operación silenciosa a 32dB manteniendo 65W TDP. Conectividad incluye triple pantalla mediante HDMI 2.1, DisplayPort 1.4 y USB4, junto con WiFi 6 y Bluetooth 5.2. El diseño compacto y antipolvo con filtro metálico mejora durabilidad y flujo de aire."
+  },
+  "mainImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/8745.png",
+    "https://www.bee-link.com/cdn/shop/files/SER8-8745HS__03.jpg",
+    "https://www.bee-link.com/cdn/shop/files/SER8-8745HS__08_9fc0348a-d449-4af2-b4b7-d84782cd6a8e.jpg",
+    "https://www.bee-link.com/cdn/shop/files/1_11_c1740b1c-f1f5-4c88-a0b5-50269eca750a.jpg",
+    "https://www.bee-link.com/cdn/shop/files/SER8-8745HS__04.jpg"
+  ],
+  "portsImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/5_d5dfb4b0-3eb2-4251-bff3-18c2dcf99056.png",
+    "https://www.bee-link.com/cdn/shop/files/SER8-8745HS__09_b0762acb-9a4c-4b63-816b-008556c74a27.jpg",
+    "https://www.bee-link.com/cdn/shop/files/SER8-8745HS__11_9e64c8ee-bdd4-47bd-95e4-a37c9cf76a82.jpg",
+    "https://www.bee-link.com/cdn/shop/files/SER8-8745HS__06.jpg",
+    "https://www.bee-link.com/cdn/shop/files/3_1_b584acf0-cc30-41c3-b293-08501f606ed1.png"
+  ],
+  "cpu": {
+    "brand": "AMD",
+    "model": "Ryzen 7 8745HS",
+    "cores": 8,
+    "threads": 16,
+    "baseClockGHz": null,
+    "boostClockGHz": 4.9,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 16
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 24,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1000
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-ser8-8745hs",
+          "priceUsd": 479,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1000
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-ser8-8745hs",
+          "priceUsd": 479,
+          "warrantyYears": 1
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 64,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 2000
+      },
+      "oferts": [
+        {
+          "url": "/products/beelink-ser8-8745hs",
+          "priceUsd": 479,
+          "warrantyYears": 1
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 256,
+  "maxStorageCapacityGB": 8000,
+  "graphics": {
+    "integrated": true,
+    "brand": "AMD",
+    "model": "Radeon 780M",
+    "frequencyMHz": 2600,
+    "graphicCoresCU": 12,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": 1,
+        "type": "DP1.4 (4K 144Hz)"
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": "HDMI 2.1 (4K 120Hz)"
+      },
+      "usb4": {
+        "amount": 1,
+        "type": "USB4 40Gbps with DP1.4 support"
+      }
+    }
+  },
+  "ports": {
+    "usb4": 1,
+    "usb3": 3,
+    "usb2": 1,
+    "usbC": 1,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": "WiFi 6 (Intel AX200)",
+    "bluetooth": "5.2"
+  },
+  "dimensions": {
+    "widthMm": null,
+    "heightMm": null,
+    "depthMm": null,
+    "volumeL": 0.814
+  },
+  "weightKg": 0.75,
+  "powerConsumptionW": 65,
+  "releaseYear": null
+}

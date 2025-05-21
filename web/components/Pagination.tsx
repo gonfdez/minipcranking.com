@@ -6,20 +6,18 @@ import { usePathname } from 'next/navigation'
 export interface PaginationProps {
   totalPages: number
   currentPage: number
+  basePath: string
 }
 
-export function Pagination({ totalPages, currentPage }: PaginationProps) {
+export function Pagination({ totalPages, currentPage, basePath }: PaginationProps) {
   const pathname = usePathname()
   const segments = pathname.split('/')
   const lastSegment = segments[segments.length - 1]
-  const basePath = pathname
-    .replace(/^\//, '') // Remove leading slash
-    .replace(/\/page\/\d+$/, '') // Remove any trailing /page
   const prevPage = currentPage - 1 > 0
   const nextPage = currentPage + 1 <= totalPages
 
   return (
-    <div className="space-y-2 pt-6 pb-8 md:space-y-5">
+    <div className="mt-6 border-t border-gray-200 pt-6 pb-8 dark:border-gray-700">
       <nav className="flex justify-between">
         {!prevPage && (
           <button className="cursor-auto disabled:opacity-50" disabled={!prevPage}>

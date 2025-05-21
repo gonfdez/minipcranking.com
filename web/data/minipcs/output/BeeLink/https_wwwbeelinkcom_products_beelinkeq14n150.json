@@ -1,0 +1,105 @@
+{
+  "model": "Beelink EQ14",
+  "description": {
+    "en": "The Beelink EQ14 mini PC is powered by the Intel® Twin Lake N150 processor, featuring 4 cores and 4 threads with a max turbo frequency of 3.6GHz. Ideal for light office tasks and multimedia, it supports up to 16GB DDR4 RAM and dual M.2 PCIe 3.0 SSD slots for expandable storage up to 8TB. Designed for near-silent operation (32dB), it includes dual LAN ports, WiFi 6, Bluetooth 5.2, and seamless connectivity via Intel Unison for smartphone integration. The compact design (126x126x39mm) includes a built-in power supply for a clutter-free setup.",
+    "es": "El mini PC Beelink EQ14 cuenta con el procesador Intel® Twin Lake N150 de 4 núcleos y 4 hilos con una frecuencia máxima turbo de 3.6GHz. Ideal para oficina y multimedia, soporta hasta 16GB de RAM DDR4 y dos ranuras M.2 PCIe 3.0 para almacenamiento ampliable hasta 8TB. Opera de forma casi silenciosa (32dB) e incluye doble puerto LAN, WiFi 6, Bluetooth 5.2 y conectividad con dispositivos móviles vía Intel Unison. Su diseño compacto (126x126x39mm) incluye fuente de alimentación integrada."
+  },
+  "mainImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/55e675dfd3baf5de4ec123d9139e69e7.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQ14__01.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQ14__07.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQ14__04_5482d9c5-98a5-43a2-96bf-27695b2f98ec.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQ14__05_4b410d96-626d-4324-a6d5-adce3fafc05f.jpg"
+  ],
+  "portsImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/EQ14__03.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQ14__07_793289f2-1a3b-4115-8abb-2f0dd6408931.jpg",
+    "https://www.bee-link.com/cdn/shop/files/EQ14__05_4b410d96-626d-4324-a6d5-adce3fafc05f.jpg",
+    "https://www.bee-link.com/cdn/shop/files/3_49940631-f170-49cf-b522-80fa9c5d25d1.png",
+    "https://www.bee-link.com/cdn/shop/files/EQ14__16.jpg"
+  ],
+  "cpu": {
+    "brand": "Intel",
+    "model": "N150",
+    "cores": 4,
+    "threads": 4,
+    "baseClockGHz": null,
+    "boostClockGHz": 3.6,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 6
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 16,
+        "type": "DDR4"
+      },
+      "storage": {
+        "type": "SATA III SSD",
+        "capacityGB": 500
+      },
+      "oferts": [
+        {
+          "url": "https://www.bee-link.com/products/beelink-eq14-n150",
+          "priceUsd": 199,
+          "warrantyYears": 1
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 16,
+  "maxStorageCapacityGB": 8192,
+  "graphics": {
+    "integrated": true,
+    "brand": "Intel",
+    "model": "UHD Graphics 24EUs",
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": null,
+        "type": null
+      },
+      "hdmi": {
+        "amount": 2,
+        "type": "HDMI 2.0 (4K 60Hz)"
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 3,
+    "usb2": 1,
+    "usbC": 1,
+    "ethernet": 2,
+    "audioJack": true,
+    "sdCardReader": false
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": "WiFi 6 (Intel AX101)",
+    "bluetooth": "5.2"
+  },
+  "dimensions": {
+    "widthMm": 126,
+    "heightMm": 126,
+    "depthMm": 39,
+    "volumeL": 0.617,
+    "weightKg": 0.49
+  },
+  "powerConsumptionW": 48,
+  "releaseYear": null
+}

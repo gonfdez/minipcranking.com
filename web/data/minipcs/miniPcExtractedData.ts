@@ -1,11 +1,10 @@
-interface MiniPcInterface {
-  id: string
-  brand: string
+interface MiniPcExtractedData {
   model: string
   description: Record<'en' | 'es', string> // min 100 palabras max 250
-  fromURL?: string
-  scrappedManual?: boolean
-  imgSrc: string
+  fromURL: string
+  manualCollect: boolean
+  mainImgUrl: string[]
+  portsImgUrl: string[]
   cpu: {
     brand: string
     model: string
@@ -28,7 +27,6 @@ interface MiniPcInterface {
       capacityGB: number
     }
     oferts: {
-      provider: string
       url: string
       priceUsd?: number
       warrantyYears?: number
@@ -62,11 +60,7 @@ interface MiniPcInterface {
       }
     }
   }
-  builtinMicrophone?: boolean
-  builtinSpeakers?: boolean
-  supportExternalDiscreteGraphicsCard?: boolean
   ports: {
-    imageSrc?: string
     usb4?: number
     usb3?: number
     usb2?: number
@@ -75,6 +69,9 @@ interface MiniPcInterface {
     audioJack?: boolean
     sdCardReader?: boolean
   }
+  builtinMicrophone?: boolean
+  builtinSpeakers?: boolean
+  supportExternalDiscreteGraphicsCard?: boolean
   connectivity: {
     wifi: string // ej: "Wi-Fi 6E"
     bluetooth: string // ej: "Bluetooth 5.2"
@@ -89,3 +86,5 @@ interface MiniPcInterface {
   powerConsumptionW?: number
   releaseYear?: number
 }
+
+export default MiniPcExtractedData

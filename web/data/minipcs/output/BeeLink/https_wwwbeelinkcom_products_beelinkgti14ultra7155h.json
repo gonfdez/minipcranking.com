@@ -1,0 +1,105 @@
+{
+  "model": "Beelink GTi14 Ultra AI PC Intel Core Ultra 7 155H",
+  "description": {
+    "en": "The Beelink GTi14 Ultra AI PC features the Intel Core Ultra 7 155H processor with 16 cores, 22 threads, and Intel Arc graphics, delivering AI-enhanced performance for multitasking, gaming, and productivity. It includes 32GB DDR5 RAM (expandable to 96GB), 1TB PCIe 4.0 SSD (supports up to 8TB), and a 145W built-in power supply for stable performance. Connectivity options include WiFi 7, Bluetooth 5.4, Thunderbolt 4, HDMI 2.1, DisplayPort 1.4a, dual 2.5G Ethernet, and multiple USB ports. The compact design features a near-silent 32dB cooling system, fingerprint sensor, built-in microphone, speakers, and support for external GPUs via PCIe 5.0. Ideal for professionals and gamers seeking power in a small form factor.",
+    "es": "La Beelink GTi14 Ultra AI PC cuenta con el procesador Intel Core Ultra 7 155H de 16 núcleos y 22 hilos, junto con gráficos Intel Arc, ofreciendo rendimiento mejorado por IA para multitarea, juegos y productividad. Incluye 32GB de RAM DDR5 (ampliable a 96GB), 1TB SSD PCIe 4.0 (hasta 8TB) y una fuente de alimentación integrada de 145W. Conectividad: WiFi 7, Bluetooth 5.4, Thunderbolt 4, HDMI 2.1, DisplayPort 1.4a, doble Ethernet 2.5G y múltiples puertos USB. Diseño compacto con sistema de enfriamiento silencioso de 32dB, sensor de huellas, micrófono integrado, altavoces y soporte para GPU externas vía PCIe 5.0. Ideal para profesionales y gamers que buscan potencia en un formato reducido."
+  },
+  "mainImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra155H__01.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra155H__02.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra155H__03.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra155H__04.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra155H__05.jpg"
+  ],
+  "portsImgUrls": [
+    "https://www.bee-link.com/cdn/shop/files/5_47640cf3-e06c-46a4-a852-ed8dca328710.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra155H__09_2dbad659-7d85-4367-9f70-7c46eb26aace.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra155H__13.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi14-UItra155H__14.jpg",
+    "https://www.bee-link.com/cdn/shop/files/GTi12_1_b63d54eb-89fe-444b-ae17-d8a51ce71d3d.png"
+  ],
+  "cpu": {
+    "brand": "Intel",
+    "model": "Core Ultra 7 155H",
+    "cores": 16,
+    "threads": 22,
+    "baseClockGHz": null,
+    "boostClockGHz": 4.8,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 24
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1024
+      },
+      "oferts": [
+        {
+          "url": null,
+          "priceUsd": 819,
+          "warrantyYears": 1
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 96,
+  "maxStorageCapacityGB": 8192,
+  "graphics": {
+    "integrated": true,
+    "brand": "Intel",
+    "model": "Arc",
+    "frequencyMHz": 2250,
+    "graphicCoresCU": null,
+    "maxTOPS": 32,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": 1,
+        "type": "Thunderbolt 4 (40Gbps, DP1.4)"
+      },
+      "dp": {
+        "amount": 1,
+        "type": "DisplayPort 1.4a (4K 144Hz)"
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": "HDMI 2.1 (4K 60Hz)"
+      },
+      "usb4": {
+        "amount": 1,
+        "type": "Thunderbolt 4 (USB4 compatible)"
+      }
+    }
+  },
+  "ports": {
+    "usb4": 1,
+    "usb3": 3,
+    "usb2": null,
+    "usbC": 2,
+    "ethernet": 2,
+    "audioJack": true,
+    "sdCardReader": true
+  },
+  "builtinMicrophone": true,
+  "builtinSpeakers": true,
+  "supportExternalDiscreteGraphicsCard": true,
+  "connectivity": {
+    "wifi": "WiFi 7 (Intel BE200)",
+    "bluetooth": "Bluetooth 5.4"
+  },
+  "dimensions": {
+    "widthMm": 158,
+    "heightMm": 55.8,
+    "depthMm": 158,
+    "volumeL": null
+  },
+  "weightKg": 1.29,
+  "powerConsumptionW": 65,
+  "releaseYear": null
+}
