@@ -48,7 +48,7 @@ async function getMiniPcBySlug(slug: string): Promise<MiniPcExtractedData | unde
 export async function generateMetadata(props: {
   params: { slug: string[] }
 }): Promise<Metadata | undefined> {
-  const slug = decodeURI(props.params.slug.join('/'))
+  const slug = decodeURI(await props.params.slug.join('/'))
   const miniPc = await getMiniPcBySlug(slug)
 
   if (!miniPc) {
