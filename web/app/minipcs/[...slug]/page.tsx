@@ -36,8 +36,8 @@ export async function generateMetadata(props: PageProps): Promise<Metadata | und
   }
 
   const imageList =
-    miniPc.mainImgUrl && miniPc.mainImgUrl.length > 0
-      ? [miniPc.mainImgUrl[0]]
+    miniPc.mainImgUrls && miniPc.mainImgUrls.length > 0
+      ? [miniPc.mainImgUrls[0]]
       : [siteMetadata.socialBanner]
 
   const ogImages = imageList.map((img) => ({
@@ -91,11 +91,11 @@ export default async function Page(props: PageProps) {
   return (
     <div className="mx-auto flex w-full max-w-5xl flex-col gap-6 p-4">
       <div className="flex w-full flex-col gap-6 md:flex-row md:items-start">
-        {miniPc.mainImgUrl && miniPc.mainImgUrl.length > 0 && (
+        {miniPc.mainImgUrls && miniPc.mainImgUrls.length > 0 && (
           <div className="flex h-auto w-full justify-center md:w-1/3">
             <Image
               alt={miniPc.model}
-              src={miniPc.mainImgUrl[0]}
+              src={miniPc.mainImgUrls[0]}
               className="max-h-[300px] w-full rounded-md object-cover"
               width={300}
               height={300}
@@ -119,7 +119,7 @@ export default async function Page(props: PageProps) {
           <p>
             {miniPc.cpu.brand} {miniPc.cpu.model}
           </p>
-          <p>
+          <p className="font-semibold">
             {miniPc.cpu.cores} cores / {miniPc.cpu.threads} threads
           </p>
           {miniPc.cpu.baseClockGHz && <p>Base: {miniPc.cpu.baseClockGHz} GHz</p>}
@@ -137,7 +137,7 @@ export default async function Page(props: PageProps) {
           </h2>
           <p>{miniPc.graphics.integrated ? 'Integrated' : 'Discrete'} GPU</p>
           {miniPc.graphics.brand && (
-            <p>
+            <p className="font-semibold">
               {miniPc.graphics.brand} {miniPc.graphics.model}
             </p>
           )}
@@ -152,28 +152,40 @@ export default async function Page(props: PageProps) {
             <div className="mt-2">
               <p className="font-semibold">Display Ports:</p>
               <div className="pl-2">
-                {miniPc.graphics.displayPorts.thunderbolt && (
+                {miniPc.graphics.displayPorts.thunderbolt?.amount && (
                   <p>
-                    Thunderbolt {miniPc.graphics.displayPorts.thunderbolt.type} x{' '}
-                    {miniPc.graphics.displayPorts.thunderbolt.amount}
+                    Thunderbolt{' '}
+                    {miniPc.graphics.displayPorts.thunderbolt.type
+                      .toLocaleLowerCase()
+                      .replaceAll('thunderbolt', '')}{' '}
+                    x {miniPc.graphics.displayPorts.thunderbolt.amount}
                   </p>
                 )}
-                {miniPc.graphics.displayPorts.dp && (
+                {miniPc.graphics.displayPorts.dp?.amount && (
                   <p>
-                    DisplayPort {miniPc.graphics.displayPorts.dp.type} x{' '}
-                    {miniPc.graphics.displayPorts.dp.amount}
+                    DisplayPort{' '}
+                    {miniPc.graphics.displayPorts.dp.type
+                      .toLocaleLowerCase()
+                      .replaceAll('DisplayPort', '')}{' '}
+                    x {miniPc.graphics.displayPorts.dp.amount}
                   </p>
                 )}
-                {miniPc.graphics.displayPorts.hdmi && (
+                {miniPc.graphics.displayPorts.hdmi?.amount && (
                   <p>
-                    HDMI {miniPc.graphics.displayPorts.hdmi.type} x{' '}
-                    {miniPc.graphics.displayPorts.hdmi.amount}
+                    HDMI{' '}
+                    {miniPc.graphics.displayPorts.hdmi.type
+                      .toLocaleLowerCase()
+                      .replaceAll('hdmi', '')}{' '}
+                    x {miniPc.graphics.displayPorts.hdmi.amount}
                   </p>
                 )}
-                {miniPc.graphics.displayPorts.usb4 && (
+                {miniPc.graphics.displayPorts.usb4?.amount && (
                   <p>
-                    USB4 {miniPc.graphics.displayPorts.usb4.type} x{' '}
-                    {miniPc.graphics.displayPorts.usb4.amount}
+                    USB4{' '}
+                    {miniPc.graphics.displayPorts.usb4.type
+                      .toLocaleLowerCase()
+                      .replaceAll('usb4', '')}{' '}
+                    x {miniPc.graphics.displayPorts.usb4.amount}
                   </p>
                 )}
               </div>
@@ -188,14 +200,14 @@ export default async function Page(props: PageProps) {
           {miniPc.variants.slice(0, 1).map((variant, index) => (
             <div key={index} className="mb-2">
               <div>
-                <span className="text-gray-500">RAM: </span>
-                <span className="font-mono">
+                <span className="font-semibold">RAM: </span>
+                <span>
                   {variant.ram.capacityGB} GB ({variant.ram.type})
                 </span>
               </div>
               <div>
-                <span className="text-gray-500">Storage: </span>
-                <span className="font-mono">
+                <span className="font-semibold">Storage: </span>
+                <span>
                   {variant.storage.capacityGB} GB ({variant.storage.type})
                 </span>
               </div>
@@ -211,8 +223,15 @@ export default async function Page(props: PageProps) {
           <h2 className="mb-2 border-b border-gray-300 pb-2 text-lg font-semibold dark:border-gray-600">
             Connectivity
           </h2>
-          <p>WiFi: {miniPc.connectivity.wifi}</p>
-          <p>Bluetooth: {miniPc.connectivity.bluetooth}</p>
+          <p>
+            {!miniPc.connectivity.wifi.toLocaleLowerCase().includes('wifi') && 'WiFi '}
+            {miniPc.connectivity.wifi}
+          </p>
+          <p>
+            {!miniPc.connectivity.bluetooth.toLocaleLowerCase().includes('bluetooth') &&
+              'Bluetooth '}
+            {miniPc.connectivity.bluetooth}
+          </p>
           {miniPc.builtinMicrophone && <p>Built-in Microphone: Yes</p>}
           {miniPc.builtinSpeakers && <p>Built-in Speakers: Yes</p>}
         </div>
@@ -220,19 +239,19 @@ export default async function Page(props: PageProps) {
         <div>
           <h2 className="mb-2 flex items-center justify-between border-b border-gray-300 pb-2 text-lg font-semibold dark:border-gray-600">
             Ports
-            {miniPc.portsImgUrl && miniPc.portsImgUrl.length > 0 && (
-              <a className="text-primary-600 text-sm" href={miniPc.portsImgUrl[0]} target="_blank">
+            {miniPc.portsImgUrls && miniPc.portsImgUrls.length > 0 && (
+              <a className="text-primary-600 text-sm" href={miniPc.portsImgUrls[0]} target="_blank">
                 See image of all ports
               </a>
             )}
           </h2>
           <div className="grid grid-cols-2 gap-2">
             {Object.entries(miniPc.ports).map(([key, value]) => {
-              if (value === undefined) return null
+              if (!value) return null
               return (
                 <p key={key}>
                   {typeof value === 'boolean'
-                    ? `${key.replace(/([A-Z])/g, ' $1').trim()}`
+                    ? `With ${key.replace(/([A-Z])/g, ' $1').trim()}`
                     : `${key.replace(/([A-Z])/g, ' $1').trim()} x ${value}`}
                 </p>
               )

@@ -27,7 +27,7 @@ const MiniPcListItem = ({ miniPc }: MiniPcCardProps) => {
       : '$ --'
 
   // Obtener la imagen principal si existe
-  const imgSrc = miniPc.mainImgUrl && miniPc.mainImgUrl.length > 0 ? miniPc.mainImgUrl[0] : null
+  const imgSrc = miniPc.mainImgUrls && miniPc.mainImgUrls.length > 0 ? miniPc.mainImgUrls[0] : null
 
   return (
     <div className="w-full">
