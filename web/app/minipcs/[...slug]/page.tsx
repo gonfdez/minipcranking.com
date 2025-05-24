@@ -276,16 +276,6 @@ export default async function Page(props: PageProps) {
           {miniPc.supportExternalDiscreteGraphicsCard && <p>Supports External GPU: Yes</p>}
         </div>
       </div>
-
-      {/* Source information */}
-      <div className="mt-4 text-sm text-gray-500">
-        <p>
-          Source:{' '}
-          <a href={miniPc.fromURL} target="_blank" rel="noopener noreferrer" className="underline">
-            {miniPc.fromURL}
-          </a>
-        </p>
-      </div>
     </div>
   )
 }
