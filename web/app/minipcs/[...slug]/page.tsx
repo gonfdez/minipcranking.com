@@ -10,7 +10,11 @@ import MiniPCModelVariants from 'components/MiniPcModelFeatures'
 import fs from 'fs'
 import path from 'path'
 import type MiniPcExtractedData from 'data/minipcs/miniPcExtractedData'
-import { PageProps } from '.next/types/app/blog/[...slug]/page'
+
+interface PageProps {
+  params: Promise<{ slug: string[] }>
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
+}
 
 // Function to get all mini PC data files
 async function getAllMiniPcs(): Promise<MiniPcExtractedData[]> {
