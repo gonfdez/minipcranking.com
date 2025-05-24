@@ -7,41 +7,17 @@ import Image from 'components/Image'
 import siteMetadata from 'data/siteMetadata'
 import { Metadata } from 'next'
 import MiniPCModelVariants from 'components/MiniPcModelFeatures'
-import fs from 'fs'
-import path from 'path'
 import type MiniPcExtractedData from 'data/minipcs/miniPcExtractedData'
+import { getAllMiniPcs } from 'lib/minipcs'
+import MiniPcWithBrand from '@/data/minipcs/miniPcWithBrand'
 
 interface PageProps {
   params: Promise<{ slug: string[] }>
   searchParams?: Promise<{ [key: string]: string | string[] | undefined }>
 }
 
-// Function to get all mini PC data files
-async function getAllMiniPcs(): Promise<MiniPcExtractedData[]> {
-  const miniPcsDirectory = path.join(process.cwd(), 'data/minipcs/output')
-  const brands = fs.readdirSync(miniPcsDirectory)
-
-  const allMiniPcs: MiniPcExtractedData[] = []
-
-  for (const brand of brands) {
-    const brandPath = path.join(miniPcsDirectory, brand)
-    if (fs.statSync(brandPath).isDirectory()) {
-      const files = fs.readdirSync(brandPath).filter((file) => file.endsWith('.json'))
-
-      for (const file of files) {
-        const filePath = path.join(brandPath, file)
-        const fileContents = fs.readFileSync(filePath, 'utf8')
-        const miniPcData = JSON.parse(fileContents) as MiniPcExtractedData
-        allMiniPcs.push(miniPcData)
-      }
-    }
-  }
-
-  return allMiniPcs
-}
-
 // Function to get a specific mini PC by slug
-async function getMiniPcBySlug(slug: string): Promise<MiniPcExtractedData | undefined> {
+async function getMiniPcBySlug(slug: string): Promise<MiniPcWithBrand | undefined> {
   const allMiniPcs = await getAllMiniPcs()
   return allMiniPcs.find((pc) => {
     // Create a slug from the brand and model
