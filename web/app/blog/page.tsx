@@ -15,6 +15,7 @@ export default async function BlogPage(props: { searchParams: Promise<{ page: st
   const pagination = {
     currentPage: pageNumber,
     totalPages: totalPages,
+    basePath: './blog',
   }
 
   return (

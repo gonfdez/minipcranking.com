@@ -2,7 +2,7 @@ import { genPageMetadata } from 'app/seo'
 import { getAllMiniPcs } from 'lib/minipcs'
 import { notFound } from 'next/navigation'
 import { MiniPcsLayout } from '@/layouts/MiniPcsLayout'
-import { CARDS_PER_PAGE } from 'app/minipcs/page'
+import { CARDS_PER_PAGE } from 'lib/minipcs'
 
 export const metadata = genPageMetadata({ title: "Mini Pc's" })
 

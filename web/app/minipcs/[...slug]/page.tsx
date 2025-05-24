@@ -10,6 +10,7 @@ import MiniPCModelVariants from 'components/MiniPcModelFeatures'
 import fs from 'fs'
 import path from 'path'
 import type MiniPcExtractedData from 'data/minipcs/miniPcExtractedData'
+import { PageProps } from '.next/types/app/blog/[...slug]/page'
 
 // Function to get all mini PC data files
 async function getAllMiniPcs(): Promise<MiniPcExtractedData[]> {
@@ -45,10 +46,9 @@ async function getMiniPcBySlug(slug: string): Promise<MiniPcExtractedData | unde
   })
 }
 
-export async function generateMetadata(props: {
-  params: { slug: string[] }
-}): Promise<Metadata | undefined> {
-  const slug = decodeURI(await props.params.slug.join('/'))
+export async function generateMetadata(props: PageProps): Promise<Metadata | undefined> {
+  const params = await props.params
+  const slug = decodeURI(params.slug.join('/'))
   const miniPc = await getMiniPcBySlug(slug)
 
   if (!miniPc) {
@@ -99,8 +99,9 @@ export const generateStaticParams = async () => {
   return [...miniPcSlugs, ...blogSlugs]
 }
 
-export default async function Page(props: { params: { slug: string[] } }) {
-  const slug = decodeURI(props.params.slug.join('/'))
+export default async function Page(props: PageProps) {
+  const params = await props.params
+  const slug = decodeURI(params.slug.join('/'))
   const miniPc = await getMiniPcBySlug(slug)
 
   if (!miniPc) {

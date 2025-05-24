@@ -1,10 +1,8 @@
 import { genPageMetadata } from 'app/seo'
-import { getAllMiniPcs } from 'lib/minipcs'
+import { CARDS_PER_PAGE, getAllMiniPcs } from 'lib/minipcs'
 import { MiniPcsLayout } from '@/layouts/MiniPcsLayout'
 
 export const metadata = genPageMetadata({ title: "Mini Pc's" })
-
-export const CARDS_PER_PAGE = 6
 
 export default async function MiniPcsPage() {
   const miniPcsData = await getAllMiniPcs()

@@ -3,6 +3,8 @@ import path from 'path'
 import MiniPcExtractedData from '@/data/minipcs/miniPcExtractedData'
 import MiniPcWithBrand from '@/data/minipcs/miniPcWithBrand'
 
+export const CARDS_PER_PAGE = 6
+
 // Función auxiliar para leer archivos de manera recursiva
 function getFilesRecursively(directory: string): string[] {
   const filesInDirectory = fs.readdirSync(directory)

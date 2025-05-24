@@ -29,6 +29,7 @@ export default async function Page(props: { params: Promise<{ page: string }> })
   const pagination = {
     currentPage: pageNumber,
     totalPages: totalPages,
+    basePath: './blog',
   }
 
   return (
