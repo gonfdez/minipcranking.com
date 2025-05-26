@@ -68,7 +68,7 @@ function extractProviderFromUrl(url: string): string {
       hostname.replace('www.', '').split('.')[0].slice(1)
     )
   } catch (error) {
-    console.warn(`Error parsing URL: ${url}`, error)
+    // console.warn(`Error parsing URL: ${url}`, error)
     return 'Unknown'
   }
 }
@@ -110,9 +110,9 @@ export async function getAllMiniPcs(): Promise<MiniPcWithBrand[]> {
         const brand = path.basename(brandDir)
 
         // Procesa las variantes para añadir el provider
-        const processedVariants = miniPcData.variants.map((variant) => ({
+        const processedVariants = miniPcData.variants?.map((variant) => ({
           ...variant,
-          oferts: variant.oferts.map((offer) => ({
+          oferts: variant?.oferts.map((offer) => ({
             ...offer,
             provider: extractProviderFromUrl(offer.url),
           })),

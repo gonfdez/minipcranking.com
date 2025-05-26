@@ -1,0 +1,105 @@
+{
+  "model": "MINISFORUM AI X1 Pro",
+  "description": {
+    "en": "The MINISFORUM AI X1 Pro is a high-performance mini PC powered by the AMD Ryzen™ AI 9 HX 370 processor, designed for seamless multitasking and AI-enhanced productivity. It features dual DDR5-SODIMM slots supporting up to 128GB RAM and three M.2 PCIe 4.0 SSD slots for up to 12TB storage. Equipped with Radeon™ 890M graphics, it supports 4K/8K displays and offers USB4 ports for 40Gbps data transfer and external GPU connectivity. The compact design includes a 135W integrated power adapter, dual 2.5G Ethernet ports, Wi-Fi 7, Bluetooth 5.4, and a fingerprint sensor for security. Efficient cooling ensures stable performance under heavy loads.",
+    "es": "El MINISFORUM AI X1 Pro es una mini PC de alto rendimiento impulsada por el procesador AMD Ryzen™ AI 9 HX 370, diseñada para multitarea fluida y productividad potenciada por IA. Cuenta con dos ranuras DDR5-SODIMM que admiten hasta 128GB de RAM y tres ranuras M.2 PCIe 4.0 SSD para almacenamiento de hasta 12TB. Equipado con gráficos Radeon™ 890M, soporta pantallas 4K/8K y ofrece puertos USB4 para transferencia de datos a 40Gbps y conexión de GPU externa. Su diseño compacto incluye un adaptador de energía integrado de 135W, puertos Ethernet duales 2.5G, Wi-Fi 7, Bluetooth 5.4 y sensor de huella dactilar para seguridad. El sistema de enfriamiento eficiente garantiza rendimiento estable bajo cargas intensas."
+  },
+  "mainImgUrls": [
+    "https://www.minisforum.com/cdn/shop/files/AIX1PRO1_1120x.webp",
+    "https://www.minisforum.com/cdn/shop/files/AIXIPRO2_1120x.webp",
+    "https://www.minisforum.com/cdn/shop/files/AIXIPRO3_1120x.webp",
+    "https://www.minisforum.com/cdn/shop/files/AIXIPRO4_1120x.webp",
+    "https://www.minisforum.com/cdn/shop/files/AIXIPRO6_1120x.webp"
+  ],
+  "portsImgUrls": [
+    "https://www.minisforum.com/cdn/shop/files/SD.webp",
+    "https://www.minisforum.com/cdn/shop/files/02_1000x_3b7e5fed-a2a6-466c-a024-fab36b214993.webp",
+    "https://www.minisforum.com/cdn/shop/files/01_1000x_4a6a07b4-3b91-4f20-a59c-ba0bd2fb1a7b.webp",
+    "https://www.minisforum.com/cdn/shop/files/USB4_X1_PRO-8K_1400x_51af7095-e241-4066-afc5-2cb18994ed99.webp",
+    "https://www.minisforum.com/cdn/shop/files/USB4_X1_PRO-PD_1400x_d2e00c4b-66be-4d68-b930-fe185bda77b0.webp"
+  ],
+  "cpu": {
+    "brand": "AMD",
+    "model": "Ryzen AI 9 HX 370",
+    "cores": null,
+    "threads": null,
+    "baseClockGHz": null,
+    "boostClockGHz": null,
+    "cache": {
+      "type": null,
+      "capacityMB": null
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": null,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "PCIe 4.0 SSD",
+        "capacityGB": null
+      },
+      "oferts": [
+        {
+          "url": "https://www.minisforum.com/es/products/minisforum-ai-x1-pro",
+          "priceUsd": 899,
+          "warrantyYears": null
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 128,
+  "maxStorageCapacityGB": 12000,
+  "graphics": {
+    "integrated": true,
+    "brand": "AMD",
+    "model": "Radeon 890M",
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": 1,
+        "type": "DP2.0"
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": "HDMI 2.1 FRL"
+      },
+      "usb4": {
+        "amount": 2,
+        "type": "40Gbps, PD 15W/65-100W"
+      }
+    }
+  },
+  "ports": {
+    "usb4": 2,
+    "usb3": 2,
+    "usb2": 1,
+    "usbC": 2,
+    "ethernet": 2,
+    "audioJack": true,
+    "sdCardReader": true
+  },
+  "builtinMicrophone": true,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": true,
+  "connectivity": {
+    "wifi": "Wi-Fi 7",
+    "bluetooth": "Bluetooth 5.4"
+  },
+  "dimensions": {
+    "widthMm": null,
+    "heightMm": null,
+    "depthMm": null,
+    "volumeL": null
+  },
+  "weightKg": null,
+  "powerConsumptionW": 135,
+  "releaseYear": null
+}

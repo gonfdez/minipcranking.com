@@ -1,0 +1,137 @@
+{
+  "model": "ThinkCentre M90q Gen 5 (Intel) Tiny PC",
+  "description": {
+    "en": "The Lenovo ThinkCentre M90q Gen 5 (Intel) Tiny PC is a compact powerhouse designed for modern workspaces. Powered by up to 14th Gen Intel® Core™ i9 vPro® processors with Intel® Hardware Shield, it delivers enterprise-grade security and performance. Featuring a 1L chassis with tool-free upgrades, dust-proof shield, and AI-powered cooling, it ensures easy maintenance and reliability. Connectivity includes 9 USB ports (1x USB-C 20Gbps, 8x USB-A), HDMI 2.1, DisplayPort 1.4, and optional expansion slots for VGA/Serial/Ethernet. Supports up to 4 independent displays and Wi-Fi 7 connectivity. Built with 85% post-consumer recycled plastics and ENERGY STAR® 8.0 certified, it combines sustainability with MIL-SPEC durability.",
+    "es": "El Lenovo ThinkCentre M90q Gen 5 (Intel) Tiny PC es un equipo compacto y potente diseñado para espacios de trabajo modernos. Equipado con procesadores Intel® Core™ i9 vPro® de 14ª generación y Intel® Hardware Shield, ofrece seguridad empresarial y alto rendimiento. Su chasis de 1 litro permite actualizaciones sin herramientas, incluye un escudo antipolvo y ventilación con IA para mantenimiento sencillo. Conectividad con 9 puertos USB (1x USB-C 20Gbps, 8x USB-A), HDMI 2.1, DisplayPort 1.4 y ranuras de expansión opcionales para VGA/Serial/Ethernet. Soporta hasta 4 pantallas independientes y Wi-Fi 7. Fabricado con 85% plásticos reciclados y certificación ENERGY STAR® 8.0, combina sostenibilidad y resistencia MIL-SPEC."
+  },
+  "mainImgUrls": [
+    "https://p1-ofp.static.pub//fes/cms/2024/06/14/xjoeyfgdv7rtaaeqwqnkvsv8bngqol373561.png",
+    "https://p2-ofp.static.pub//fes/cms/2024/06/14/wf8lztm9dp8meb9whd3baoyptib2os358903.png",
+    "https://p3-ofp.static.pub//fes/cms/2024/06/14/fi232ysdzekra6f6dj6xijrwl4oceo854730.png",
+    "https://p3-ofp.static.pub//fes/cms/2024/06/14/2ri00fyddxwur1y0s6a0s5wh4zwklq615567.png",
+    "https://p2-ofp.static.pub//fes/cms/2024/06/14/x56l6lhiv3si3t3qab8se2cpjq2jsc897423.png"
+  ],
+  "portsImgUrls": [
+    "https://p3-ofp.static.pub//fes/cms/2024/07/29/76av1vvzaqc735243fitusilsvyaue065308.jpg",
+    "https://p3-ofp.static.pub//fes/cms/2024/06/14/2ri00fyddxwur1y0s6a0s5wh4zwklq615567.png",
+    "https://p1-ofp.static.pub//fes/cms/2024/06/14/xjoeyfgdv7rtaaeqwqnkvsv8bngqol373561.png"
+  ],
+  "cpu": {
+    "brand": "Intel",
+    "model": "Core i5-14500/i7-14700/i9-14900 vPro",
+    "cores": 14,
+    "threads": 20,
+    "baseClockGHz": null,
+    "boostClockGHz": 5.4,
+    "cache": {
+      "type": "L3",
+      "capacityMB": null
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 8,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacityGB": 256
+      },
+      "oferts": [
+        {
+          "url": "https://www.lenovo.com/es/es/p/desktops/thinkcentre/m-series-tiny/Lenovo-ThinkCentre-M90q-Gen-5-(Intel)-Tiny-PC/12thcto1wwes1",
+          "priceUsd": null,
+          "warrantyYears": 3
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 16,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacityGB": 512
+      },
+      "oferts": [
+        {
+          "url": "https://www.lenovo.com/es/es/p/desktops/thinkcentre/m-series-tiny/Lenovo-ThinkCentre-M90q-Gen-5-(Intel)-Tiny-PC/12thcto1wwes2",
+          "priceUsd": null,
+          "warrantyYears": 3
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacityGB": 1024
+      },
+      "oferts": [
+        {
+          "url": "https://www.lenovo.com/es/es/p/desktops/thinkcentre/m-series-tiny/Lenovo-ThinkCentre-M90q-Gen-5-(Intel)-Tiny-PC/12thcto1wwes3",
+          "priceUsd": null,
+          "warrantyYears": 3
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 32,
+  "maxStorageCapacityGB": null,
+  "graphics": {
+    "integrated": true,
+    "brand": "Intel",
+    "model": "UHD Graphics",
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": 1,
+        "type": "DisplayPort 1.4"
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": "HDMI 2.1"
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 9,
+    "usb2": null,
+    "usbC": 1,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": "Wi-Fi 6E/7, Intel AX211",
+    "bluetooth": null
+  },
+  "dimensions": {
+    "widthMm": 182.9,
+    "heightMm": 179,
+    "depthMm": 36.5,
+    "volumeL": 1
+  },
+  "weightKg": 1.25,
+  "powerConsumptionW": 230,
+  "releaseYear": 2024
+}

@@ -1,0 +1,100 @@
+{
+  "model": "EliteMini AI370",
+  "description": {
+    "en": null,
+    "es": null
+  },
+  "mainImgUrls": [
+    "https://www.minisforum.com/cdn/shop/files/ai370_1120x.png?v=1731310188",
+    "https://www.minisforum.com/cdn/shop/files/ai370-1_1120x.png?v=1731310188",
+    "https://www.minisforum.com/cdn/shop/files/ai370-2_1120x.png?v=1731310188"
+  ],
+  "portsImgUrls": [
+    "https://www.minisforum.com/cdn/shop/files/11_USB4.jpg?v=1737085344",
+    "https://www.minisforum.com/cdn/shop/files/12_66eacda1-4f6c-49ac-b0e6-a6b47990bfc8.jpg?v=1737085344"
+  ],
+  "cpu": {
+    "brand": "AMD",
+    "model": "Ryzen 7 7840HS",
+    "cores": 8,
+    "threads": 16,
+    "baseClockGHz": 3.8,
+    "boostClockGHz": 5.1,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 16
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1024
+      },
+      "oferts": [
+        {
+          "url": "https://www.minisforum.com/es/products/elitemini-ai370-a",
+          "priceUsd": 1000,
+          "warrantyYears": null
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 64,
+  "maxStorageCapacityGB": 2048,
+  "graphics": {
+    "integrated": true,
+    "brand": "AMD",
+    "model": "Radeon 780M",
+    "frequencyMHz": 2700,
+    "graphicCoresCU": 12,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": null,
+        "type": null
+      },
+      "hdmi": {
+        "amount": 2,
+        "type": "HDMI 2.1"
+      },
+      "usb4": {
+        "amount": 2,
+        "type": "USB4 with DisplayPort"
+      }
+    }
+  },
+  "ports": {
+    "usb4": 2,
+    "usb3": 2,
+    "usb2": null,
+    "usbC": null,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": true
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": true,
+  "connectivity": {
+    "wifi": "Wi-Fi 6E",
+    "bluetooth": "Bluetooth 5.3"
+  },
+  "dimensions": {
+    "widthMm": 128,
+    "heightMm": 128,
+    "depthMm": 60,
+    "volumeL": null
+  },
+  "weightKg": 0.8,
+  "powerConsumptionW": 65,
+  "releaseYear": 2023
+}

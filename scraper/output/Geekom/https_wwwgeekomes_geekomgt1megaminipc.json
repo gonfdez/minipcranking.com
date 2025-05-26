@@ -1,0 +1,136 @@
+{
+  "model": "GEEKOM GT1 Mega Mini PC",
+  "description": {
+    "en": "The GEEKOM GT1 Mega Mini PC is a compact and powerful computing solution featuring Intel® Core™ Ultra processors (up to Ultra 9 185H) with 16 cores, 22 threads, and Intel® Arc™ Graphics. It supports AI acceleration via an integrated NPU, offering 8x AI performance improvement. Equipped with DDR5 5600 MT/s dual-channel RAM (up to 64GB) and PCIe 4.0 NVMe storage (up to 2TB), it ensures seamless multitasking. Connectivity includes Wi-Fi 7, Bluetooth 5.4, dual 2.5G Ethernet, USB4 ports, and HDMI 2.0 for 8K display support. The IceBlast 2.0 cooling system maintains efficiency, while its VESA-mountable aluminum design saves space.",
+    "es": "La GEEKOM GT1 Mega Mini PC es una solución compacta y potente con procesadores Intel® Core™ Ultra (hasta Ultra 9 185H), 16 núcleos, 22 hilos y gráficos Intel® Arc™. Incluye NPU para aceleración de IA, mejorando 8 veces su rendimiento. Cuenta con RAM DDR5 5600 MT/s de doble canal (hasta 64GB) y almacenamiento PCIe 4.0 NVMe (hasta 2TB). Ofrece conectividad Wi-Fi 7, Bluetooth 5.4, doble Ethernet 2.5G, puertos USB4 y HDMI 2.0 para soporte de pantallas 8K. Su sistema de refrigeración IceBlast 2.0 garantiza eficiencia, y su diseño de aluminio montable VESA ahorra espacio."
+  },
+  "mainImgUrls": [
+    "GT1_MEGA_U9-185H_U5-125H_front.jpg",
+    "GT1_MEGA_1_side.jpg",
+    "GT1_MEGA_2_top.jpg",
+    "GT1_MEGA_3_rear.jpg",
+    "GT1_MEGA_4_angle.jpg"
+  ],
+  "portsImgUrls": [
+    "GT1_MEGA_5_ports.jpg",
+    "GT1_MEGA_6_connectivity.jpg"
+  ],
+  "cpu": {
+    "brand": "Intel",
+    "model": "Ultra 9 185H",
+    "cores": 16,
+    "threads": 22,
+    "baseClockGHz": 2.3,
+    "boostClockGHz": 5.1,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 24
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1024
+      },
+      "oferts": [
+        {
+          "url": "https://www.geekom.es/producto/gt1-mega-u5-125h-32gb-1tb",
+          "priceUsd": null,
+          "warrantyYears": 3
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1024
+      },
+      "oferts": [
+        {
+          "url": "https://www.geekom.es/producto/gt1-mega-u7-155h-32gb-1tb",
+          "priceUsd": null,
+          "warrantyYears": 3
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 2048
+      },
+      "oferts": [
+        {
+          "url": "https://www.geekom.es/producto/gt1-mega-u9-185h-32gb-2tb",
+          "priceUsd": null,
+          "warrantyYears": 3
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 64,
+  "maxStorageCapacityGB": 2048,
+  "graphics": {
+    "integrated": true,
+    "brand": "Intel",
+    "model": "Arc",
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": null,
+        "type": null
+      },
+      "hdmi": {
+        "amount": 2,
+        "type": "HDMI 2.0"
+      },
+      "usb4": {
+        "amount": 2,
+        "type": "USB4.0 with DP 1.4 support"
+      }
+    }
+  },
+  "ports": {
+    "usb4": 2,
+    "usb3": 5,
+    "usb2": 1,
+    "usbC": 2,
+    "ethernet": 2,
+    "audioJack": true,
+    "sdCardReader": true
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": true,
+  "connectivity": {
+    "wifi": "Wi-Fi 7",
+    "bluetooth": "Bluetooth 5.4"
+  },
+  "dimensions": {
+    "widthMm": 135,
+    "heightMm": 132,
+    "depthMm": 44.35,
+    "volumeL": 0.78
+  },
+  "weightKg": null,
+  "powerConsumptionW": 65,
+  "releaseYear": null
+}

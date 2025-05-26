@@ -1,0 +1,75 @@
+{
+  "model": "MINISFORUM UM880 Plus",
+  "description": {
+    "en": null,
+    "es": null
+  },
+  "mainImgUrls": [],
+  "portsImgUrls": [],
+  "cpu": {
+    "brand": null,
+    "model": null,
+    "cores": null,
+    "threads": null,
+    "baseClockGHz": null,
+    "boostClockGHz": null,
+    "cache": {
+      "type": null,
+      "capacityMB": null
+    }
+  },
+  "variants": [],
+  "maxRAMCapacityGB": null,
+  "maxStorageCapacityGB": null,
+  "graphics": {
+    "integrated": null,
+    "brand": null,
+    "model": null,
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": null,
+        "type": null
+      },
+      "hdmi": {
+        "amount": null,
+        "type": null
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": null,
+    "usb2": null,
+    "usbC": null,
+    "ethernet": null,
+    "audioJack": null,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": null,
+    "bluetooth": null
+  },
+  "dimensions": {
+    "widthMm": null,
+    "heightMm": null,
+    "depthMm": null,
+    "volumeL": null
+  },
+  "weightKg": null,
+  "powerConsumptionW": null,
+  "releaseYear": null
+}

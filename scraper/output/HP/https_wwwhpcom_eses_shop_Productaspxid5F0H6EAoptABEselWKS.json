@@ -1,0 +1,93 @@
+{
+  "model": "HP Z2 G9 Mini",
+  "description": {
+    "en": "The HP Z2 G9 Mini Workstation PC delivers high performance in a compact design, powered by an Intel® Core™ i9-12900 processor (12th Gen) with 16 cores and 24 threads, paired with an NVIDIA® RTX™ A2000 GPU (12 GB GDDR6) for professional-grade graphics. Ideal for rendering, simulation, and multitasking, it supports up to 8 displays at 4K resolution. The mini PC features tool-less access for easy upgrades, DDR5 memory, and a 1 TB SSD. Security is prioritized with HP Wolf Security Suite, BIOS-level protection, and MIL-STD tested durability. Its compact dimensions (21.1 x 21.8 x 6.9 cm) allow flexible placement, while 10 GbE Ethernet and multiple USB-C/DisplayPort connections ensure seamless connectivity.",
+    "es": "La Workstation PC HP Z2 G9 Mini ofrece alto rendimiento en un diseño compacto, equipada con un procesador Intel® Core™ i9-12900 (12.ª generación) de 16 núcleos y 24 subprocesos, junto con una GPU NVIDIA® RTX™ A2000 (12 GB GDDR6) para gráficos profesionales. Ideal para renderizado, simulación y multitarea, admite hasta 8 pantallas en resolución 4K. Su diseño permite actualizaciones sin herramientas, memoria DDR5 y un SSD de 1 TB. Incluye seguridad avanzada con HP Wolf Security Suite, protección a nivel de BIOS y resistencia certificada MIL-STD. Con dimensiones reducidas (21,1 x 21,8 x 6,9 cm), se adapta a cualquier espacio, mientras que su conexión Ethernet 10 GbE y puertos USB-C/DisplayPort garantizan conectividad óptima."
+  },
+  "mainImgUrls": [],
+  "portsImgUrls": [],
+  "cpu": {
+    "brand": "Intel",
+    "model": "Core i9-12900",
+    "cores": 16,
+    "threads": 24,
+    "baseClockGHz": 2.4,
+    "boostClockGHz": 5.1,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 30
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacityGB": 1000
+      },
+      "oferts": [
+        {
+          "url": null,
+          "priceUsd": 1949.9,
+          "warrantyYears": 3
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": null,
+  "maxStorageCapacityGB": null,
+  "graphics": {
+    "integrated": false,
+    "brand": "NVIDIA",
+    "model": "RTX A2000",
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": 2,
+        "type": "DisplayPort 1.4"
+      },
+      "hdmi": {
+        "amount": null,
+        "type": null
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 4,
+    "usb2": null,
+    "usbC": 2,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": true,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": null,
+    "bluetooth": null
+  },
+  "dimensions": {
+    "widthMm": 211,
+    "heightMm": 218,
+    "depthMm": 69,
+    "volumeL": 3.17
+  },
+  "weightKg": 2.4,
+  "powerConsumptionW": 280,
+  "releaseYear": 2022
+}

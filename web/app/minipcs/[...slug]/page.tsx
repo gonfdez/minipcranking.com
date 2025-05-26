@@ -41,7 +41,7 @@ export async function generateMetadata(props: PageProps): Promise<Metadata | und
       : [siteMetadata.socialBanner]
 
   const ogImages = imageList.map((img) => ({
-    url: img.includes('http') ? img : siteMetadata.siteUrl + img,
+    url: img && img.includes('http') ? img : siteMetadata.siteUrl + img,
   }))
 
   return {
@@ -155,8 +155,8 @@ export default async function Page(props: PageProps) {
                 {miniPc.graphics.displayPorts.thunderbolt?.amount && (
                   <p>
                     Thunderbolt{' '}
-                    {miniPc.graphics.displayPorts.thunderbolt.type
-                      .toLocaleLowerCase()
+                    {miniPc.graphics.displayPorts.thunderbolt?.type
+                      ?.toLocaleLowerCase()
                       .replaceAll('thunderbolt', '')}{' '}
                     x {miniPc.graphics.displayPorts.thunderbolt.amount}
                   </p>
@@ -164,8 +164,8 @@ export default async function Page(props: PageProps) {
                 {miniPc.graphics.displayPorts.dp?.amount && (
                   <p>
                     DisplayPort{' '}
-                    {miniPc.graphics.displayPorts.dp.type
-                      .toLocaleLowerCase()
+                    {miniPc.graphics.displayPorts.dp?.type
+                      ?.toLocaleLowerCase()
                       .replaceAll('DisplayPort', '')}{' '}
                     x {miniPc.graphics.displayPorts.dp.amount}
                   </p>
@@ -173,8 +173,8 @@ export default async function Page(props: PageProps) {
                 {miniPc.graphics.displayPorts.hdmi?.amount && (
                   <p>
                     HDMI{' '}
-                    {miniPc.graphics.displayPorts.hdmi.type
-                      .toLocaleLowerCase()
+                    {miniPc.graphics.displayPorts.hdmi?.type
+                      ?.toLocaleLowerCase()
                       .replaceAll('hdmi', '')}{' '}
                     x {miniPc.graphics.displayPorts.hdmi.amount}
                   </p>
@@ -182,8 +182,8 @@ export default async function Page(props: PageProps) {
                 {miniPc.graphics.displayPorts.usb4?.amount && (
                   <p>
                     USB4{' '}
-                    {miniPc.graphics.displayPorts.usb4.type
-                      .toLocaleLowerCase()
+                    {miniPc.graphics.displayPorts.usb4?.type
+                      ?.toLocaleLowerCase()
                       .replaceAll('usb4', '')}{' '}
                     x {miniPc.graphics.displayPorts.usb4.amount}
                   </p>
@@ -197,22 +197,27 @@ export default async function Page(props: PageProps) {
           <h2 className="mb-2 border-b border-gray-300 pb-2 text-lg font-semibold dark:border-gray-600">
             Memory & Storage
           </h2>
-          {miniPc.variants.slice(0, 1).map((variant, index) => (
-            <div key={index} className="mb-2">
-              <div>
-                <span className="font-semibold">RAM: </span>
-                <span>
-                  {variant.ram.capacityGB} GB ({variant.ram.type})
-                </span>
-              </div>
-              <div>
-                <span className="font-semibold">Storage: </span>
-                <span>
-                  {variant.storage.capacityGB} GB ({variant.storage.type})
-                </span>
-              </div>
-            </div>
-          ))}
+          {miniPc.variants &&
+            miniPc.variants.filter((a) => a != null).length > 0 &&
+            miniPc.variants
+              .filter((a) => a != null)
+              .slice(0, 1)
+              .map((variant, index) => (
+                <div key={index} className="mb-2">
+                  <div>
+                    <span className="font-semibold">RAM: </span>
+                    <span>
+                      {variant.ram.capacityGB} GB ({variant.ram.type})
+                    </span>
+                  </div>
+                  <div>
+                    <span className="font-semibold">Storage: </span>
+                    <span>
+                      {variant.storage.capacityGB} GB ({variant.storage.type})
+                    </span>
+                  </div>
+                </div>
+              ))}
           {miniPc.maxRAMCapacityGB && <p>Max RAM Capacity: {miniPc.maxRAMCapacityGB} GB</p>}
           {miniPc.maxStorageCapacityGB && (
             <p>Max Storage Capacity: {miniPc.maxStorageCapacityGB} GB</p>
@@ -224,11 +229,12 @@ export default async function Page(props: PageProps) {
             Connectivity
           </h2>
           <p>
-            {!miniPc.connectivity.wifi.toLocaleLowerCase().includes('wifi') && 'WiFi '}
+            {!miniPc.connectivity.wifi?.replaceAll('-', '').toLocaleLowerCase().includes('wifi') &&
+              'WiFi '}
             {miniPc.connectivity.wifi}
           </p>
           <p>
-            {!miniPc.connectivity.bluetooth.toLocaleLowerCase().includes('bluetooth') &&
+            {!miniPc.connectivity.bluetooth?.toLocaleLowerCase().includes('bluetooth') &&
               'Bluetooth '}
             {miniPc.connectivity.bluetooth}
           </p>
@@ -246,7 +252,7 @@ export default async function Page(props: PageProps) {
             )}
           </h2>
           <div className="grid grid-cols-2 gap-2">
-            {Object.entries(miniPc.ports).map(([key, value]) => {
+            {Object.entries(miniPc.ports || []).map(([key, value]) => {
               if (!value) return null
               return (
                 <p key={key}>

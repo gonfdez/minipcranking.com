@@ -1,0 +1,96 @@
+{
+  "model": "MINISFORUM UM880 Plus",
+  "description": {
+    "en": "The MINISFORUM UM880 Plus is a compact yet powerful mini PC designed for efficiency and versatility. Featuring the AMD Ryzen 7 8845HS processor with 8 cores and 16 threads, it delivers robust performance for multitasking, gaming, and productivity. With support for high-speed DDR5 RAM and NVMe storage, it ensures quick data access and smooth operation. The UM880 Plus includes multiple connectivity options such as USB 3.2, HDMI, and a 2.5G LAN port, making it ideal for both home and office use. Its sleek design and small footprint save space while offering expandable storage and memory capabilities.",
+    "es": "El MINISFORUM UM880 Plus es una mini PC compacta pero potente diseñada para eficiencia y versatilidad. Con el procesador AMD Ryzen 7 8845HS de 8 núcleos y 16 hilos, ofrece un rendimiento sólido para multitareas, juegos y productividad. Compatible con RAM DDR5 de alta velocidad y almacenamiento NVMe, garantiza acceso rápido a datos y funcionamiento fluido. Incluye múltiples opciones de conectividad como USB 3.2, HDMI y puerto LAN 2.5G, ideal para hogar y oficina. Su diseño elegante y tamaño reducido ahorran espacio, con capacidad para expandir almacenamiento y memoria."
+  },
+  "mainImgUrls": [],
+  "portsImgUrls": [
+    "https://www.minisforum.com/cdn/shop/files/134e45d3-84b2-4fc7-ae56-2f42b38e7c0c.__CR0_0_1464_600_PT0_SX1464_V1.jpg",
+    "https://www.minisforum.com/cdn/shop/files/134e45d3-84b2-4fc7-ae56-2f42b38e7c0c.__CR0_0_1464_600_PT0_SX1464_V1_85ffa29e-a30b-43b5-b90e-3dc51435412a.jpg"
+  ],
+  "cpu": {
+    "brand": "AMD",
+    "model": "Ryzen 7 8845HS",
+    "cores": 8,
+    "threads": 16,
+    "baseClockGHz": null,
+    "boostClockGHz": null,
+    "cache": {
+      "type": null,
+      "capacityMB": null
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": null,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": null
+      },
+      "oferts": [
+        {
+          "url": "https://www.minisforum.com/es/products/minisforum-um880-plus",
+          "priceUsd": 349.9,
+          "warrantyYears": null
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": null,
+  "maxStorageCapacityGB": null,
+  "graphics": {
+    "integrated": true,
+    "brand": "AMD",
+    "model": "Radeon 780M",
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": null,
+        "type": null
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": null
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 2,
+    "usb2": null,
+    "usbC": null,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": null,
+    "bluetooth": null
+  },
+  "dimensions": {
+    "widthMm": null,
+    "heightMm": null,
+    "depthMm": null,
+    "volumeL": null
+  },
+  "weightKg": null,
+  "powerConsumptionW": null,
+  "releaseYear": null
+}

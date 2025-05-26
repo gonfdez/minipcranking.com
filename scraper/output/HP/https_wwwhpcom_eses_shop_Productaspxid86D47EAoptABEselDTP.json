@@ -1,0 +1,93 @@
+{
+  "model": "HP Z2 Mini G9",
+  "description": {
+    "en": "The HP Z2 Mini G9 Workstation combines high performance with a compact design, featuring 13th Gen Intel® Core™ i7 processors and NVIDIA® RTX™ A2000 graphics. Ideal for demanding tasks like 3D rendering and simulations, it supports up to 64GB DDR5 RAM and offers expandable storage. Its advanced thermal management ensures quiet operation even under heavy loads. With MIL-STD 810H durability, ISV certifications, and HP Wolf Security, it prioritizes reliability and protection. The compact chassis (21.1 x 21.8 x 6.9 cm) fits seamlessly into any workspace, while multiple ports, including DisplayPort 1.4 and USB-C, enhance connectivity. Built with recycled materials, it meets EPEAT Gold and TCO certifications for sustainability.",
+    "es": "La Workstation HP Z2 Mini G9 ofrece alto rendimiento en un diseño compacto, con procesadores Intel® Core™ i7 de 13.ª generación y gráficos NVIDIA® RTX™ A2000. Ideal para diseño 3D y simulaciones, soporta hasta 64GB de RAM DDR5 y almacenamiento ampliable. Su tecnología térmica avanzada garantiza funcionamiento silencioso. Certificada MIL-STD 810H e ISV, e incluye HP Wolf Security para protección integral. Con dimensiones reducidas (21,1 x 21,8 x 6,9 cm), se adapta a cualquier entorno. Incluye puertos DisplayPort 1.4, USB-C y Ethernet 10G. Fabricada con materiales reciclados, cumple con EPEAT Gold y TCO para un impacto ambiental reducido."
+  },
+  "mainImgUrls": null,
+  "portsImgUrls": null,
+  "cpu": {
+    "brand": "Intel",
+    "model": "Core i7-13700",
+    "cores": 16,
+    "threads": 24,
+    "baseClockGHz": null,
+    "boostClockGHz": 5.2,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 30
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 16,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacityGB": 512
+      },
+      "oferts": [
+        {
+          "url": null,
+          "priceUsd": null,
+          "warrantyYears": 3
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 64,
+  "maxStorageCapacityGB": null,
+  "graphics": {
+    "integrated": false,
+    "brand": "NVIDIA",
+    "model": "RTX A2000",
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": 2,
+        "type": "DisplayPort 1.4"
+      },
+      "hdmi": {
+        "amount": null,
+        "type": null
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 4,
+    "usb2": null,
+    "usbC": 1,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": true,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": "Wi-Fi 6E AX211",
+    "bluetooth": "Bluetooth 5.3"
+  },
+  "dimensions": {
+    "widthMm": 211,
+    "heightMm": 69,
+    "depthMm": 218,
+    "volumeL": null
+  },
+  "weightKg": 2.4,
+  "powerConsumptionW": 280,
+  "releaseYear": null
+}

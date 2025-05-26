@@ -64,6 +64,7 @@ async function cleanHtml(html: string): Promise<string> {
     const allElements = document.querySelectorAll("*");
     allElements.forEach((el) => {
       el.removeAttribute("class");
+      el.removeAttribute("rel");
       el.removeAttribute("id");
       el.removeAttribute("style");
     });
@@ -153,6 +154,52 @@ async function cleanHtml(html: string): Promise<string> {
     return noCommentsHtml;
   } catch (error) {
     console.error("Error al limpiar HTML:", error);
+    // Asegurarnos con regex de eliminar tods las etiquetas script y todo JS que este en el html
+    html = html.replace(/<script[^>]*>[\s\S]*?<\/script>/gi, "");
+    html = html.replace(/<style[^>]*>[\s\S]*?<\/style>/gi, "");
+    html = html.replace(/<link[^>]*>/gi, "");
+    html = html.replace(/<noscript[^>]*>[\s\S]*?<\/noscript>/gi, "");
+    html = html.replace(/<iframe[^>]*>[\s\S]*?<\/iframe>/gi, "");
+    html = html.replace(/<svg[^>]*>[\s\S]*?<\/svg>/gi, "");
+    html = html.replace(/<canvas[^>]*>[\s\S]*?<\/canvas>/gi, "");
+    html = html.replace(/<form[^>]*>[\s\S]*?<\/form>/gi, "");
+    html = html.replace(/<nav[^>]*>[\s\S]*?<\/nav>/gi, "");
+    html = html.replace(/<header[^>]*>[\s\S]*?<\/header>/gi, "");
+    html = html.replace(/<footer[^>]*>[\s\S]*?<\/footer>/gi, "");
+    html = html.replace(/<meta[^>]*>/gi, "");
+
+    // Eliminar atributos de clase, id y estilo
+    html = html.replace(/ class="[^"]*"/g, "");
+    html = html.replace(/ id="[^"]*"/g, "");
+    html = html.replace(/ style="[^"]*"/g, "");
+    html = html.replace(/ rel="[^"]*"/g, "");
+    html = html.replace(/ data-[^=]*="[^"]*"/g, "");
+    html = html.replace(/ data-[^=]*='[^']*'/g, "");
+    html = html.replace(/ aria-[^=]*="[^"]*"/g, "");
+    html = html.replace(/ aria-[^=]*='[^']*'/g, "");
+    html = html.replace(/ src="[^"]*"/g, "");
+    html = html.replace(/ src='[^']*'/g, "");
+    html = html.replace(/ srcset="[^"]*"/g, "");
+    html = html.replace(/ srcset='[^']*'/g, "");
+    html = html.replace(/ href="[^"]*"/g, "");
+    html = html.replace(/ href='[^']*'/g, "");
+    html = html.replace(/ data-src="[^"]*"/g, "");
+    html = html.replace(/ data-src='[^']*'/g, "");
+    html = html.replace(/ data-href="[^"]*"/g, "");
+    html = html.replace(/ data-href='[^']*'/g, "");
+    html = html.replace(/ tabindex="[^"]*"/g, "");
+    html = html.replace(/ tabindex='[^']*'/g, "");
+    html = html.replace(/ role="[^"]*"/g, "");
+    html = html.replace(/ role='[^']*'/g, "");
+    html = html.replace(/ aria-label="[^"]*"/g, "");
+    html = html.replace(/ aria-label='[^']*'/g, "");
+    html = html.replace(/ aria-labelledby="[^"]*"/g, "");
+    html = html.replace(/ aria-labelledby='[^']*'/g, "");
+    html = html.replace(/ aria-describedby="[^"]*"/g, "");
+    html = html.replace(/ aria-describedby='[^']*'/g, "");
+    html = html.replace(/ sizes="[^"]*"/g, "");
+    html = html.replace(/ sizes='[^']*'/g, "");
+
     return html; // Devolver el HTML original si hay un error
   }
 }
@@ -177,6 +224,14 @@ export async function getHTMLFromURL(url: URL, brand: string): Promise<string> {
 
   // Esperar a que el DOM esté completamente cargado
   await driver.sleep(5000);
+
+  const cookies1 = await driver.findElementByText("Aceptar todos");
+  if (cookies1.length > 0) {
+    console.log("Cookies found, clicking to accept...");
+    // Aceptar cookies si el botón está presente
+    await driver.click(cookies1[0]);
+    await driver.sleep(2000);
+  }
 
   // Ejecutar un script para obtener el HTML completo
   const scriptRes = await driver.executeScript(

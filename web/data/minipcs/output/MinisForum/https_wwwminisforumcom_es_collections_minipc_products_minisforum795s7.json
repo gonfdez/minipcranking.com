@@ -1,0 +1,98 @@
+{
+  "model": "MINISFORO 795S7",
+  "description": {
+    "en": "The MINISFORO 795S7 is a compact and powerful mini PC designed for high-performance computing tasks. Featuring advanced connectivity options and a sleek design, it is ideal for both professional and personal use. With support for multiple displays and high-speed ports, this mini PC ensures seamless multitasking and efficient workflow. Its energy-efficient architecture and robust build make it suitable for diverse environments, from office setups to home entertainment systems.",
+    "es": "El MINISFORO 795S7 es una mini PC compacta y potente diseñada para tareas informáticas de alto rendimiento. Con opciones de conectividad avanzadas y un diseño elegante, es ideal para uso profesional y personal. Con soporte para múltiples pantallas y puertos de alta velocidad, esta mini PC garantiza multitarea fluida y flujo de trabajo eficiente. Su arquitectura energéticamente eficiente y construcción robusta la hacen adecuada para diversos entornos, desde configuraciones de oficina hasta sistemas de entretenimiento doméstico."
+  },
+  "mainImgUrls": [
+    "https://www.minisforum.com/cdn/shop/files/17301902003674_1024x.png?v=1736416754",
+    "https://www.minisforum.com/cdn/shop/files/17301902073984_1024x.png?v=1736416754",
+    "https://www.minisforum.com/cdn/shop/files/17301902161482_1024x.png?v=1736416754",
+    "https://www.minisforum.com/cdn/shop/files/17301902206532_1024x.png?v=1736416754"
+  ],
+  "portsImgUrls": [],
+  "cpu": {
+    "brand": "AMD",
+    "model": "Ryzen 9 7950X",
+    "cores": 16,
+    "threads": 32,
+    "baseClockGHz": 4.5,
+    "boostClockGHz": 5.7,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 64
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1000
+      },
+      "oferts": [
+        {
+          "url": "https://www.minisforum.com/es/products/minisforum-795s7",
+          "priceUsd": null,
+          "warrantyYears": null
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 64,
+  "maxStorageCapacityGB": 4000,
+  "graphics": {
+    "integrated": true,
+    "brand": "AMD",
+    "model": "Radeon Graphics",
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": null,
+        "type": null
+      },
+      "hdmi": {
+        "amount": 2,
+        "type": "HDMI 2.1"
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 4,
+    "usb2": 2,
+    "usbC": 2,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": true
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": "Wi-Fi 6",
+    "bluetooth": "Bluetooth 5.2"
+  },
+  "dimensions": {
+    "widthMm": null,
+    "heightMm": null,
+    "depthMm": null,
+    "volumeL": null
+  },
+  "weightKg": null,
+  "powerConsumptionW": null,
+  "releaseYear": 2023
+}

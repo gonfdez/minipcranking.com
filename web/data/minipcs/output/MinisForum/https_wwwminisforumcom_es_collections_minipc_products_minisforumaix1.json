@@ -1,0 +1,105 @@
+{
+  "model": "MINISFORUM AI X1",
+  "description": {
+    "en": "The MINISFORUM AI X1 is a compact yet powerful mini PC designed for multitasking, gaming, and demanding workflows. Equipped with an AMD Ryzen™ 7 260 processor, it delivers high-performance computing with support for up to 64GB of DDR5 5600 MHz RAM and a 4TB NVMe SSD for rapid data access. Its dual USB4 ports enable 40 Gbps data transfer and external GPU support, while WiFi 7 and a 2.5G Ethernet port ensure ultra-fast connectivity. The cooling system combines phase-change materials and copper heat pipes for efficient thermal management. With versatile display outputs, including HDMI 2.1 and DisplayPort 2.0, it supports multi-monitor setups. Ideal for creators, professionals, and gamers seeking portability without compromising power.",
+    "es": "El MINISFORUM AI X1 es una mini PC compacta y potente diseñada para multitarea, juegos y tareas exigentes. Equipado con un procesador AMD Ryzen™ 7 260, ofrece alto rendimiento con soporte para hasta 64 GB de RAM DDR5 5600 MHz y un SSD NVMe de 4 TB para acceso rápido a datos. Sus puertos USB4 duales permiten transferencias de 40 Gbps y conexión a GPU externas, mientras que WiFi 7 y un puerto Ethernet 2.5G garantizan conectividad ultrarrápida. Su sistema de refrigeración combina materiales de cambio de fase y tubos de calor de cobre para una gestión térmica eficiente. Con salidas de pantalla versátiles, incluyendo HDMI 2.1 y DisplayPort 2.0, soporta configuraciones multi-monitor. Ideal para creadores, profesionales y gamers que buscan portabilidad sin sacrificar potencia."
+  },
+  "mainImgUrls": [
+    "https://www.minisforum.com/cdn/shop/files/AIX1_.38_1024x.png?v=1742871001",
+    "https://www.minisforum.com/cdn/shop/files/AIX1_.37_1024x.png?v=1742871001",
+    "https://www.minisforum.com/cdn/shop/files/AIX1_.35_1024x.png?v=1742871001",
+    "https://www.minisforum.com/cdn/shop/files/AIX1_.28_1024x.png?v=1742871001",
+    "https://www.minisforum.com/cdn/shop/files/AI_X1_.18_1024x.png?v=1745475396"
+  ],
+  "portsImgUrls": [
+    "https://www.minisforum.com/cdn/shop/files/USB4-_2.png?v=1745825770",
+    "https://www.minisforum.com/cdn/shop/files/WIFI7.png?v=1742872943",
+    "https://www.minisforum.com/cdn/shop/files/d393737eba283ba85b50f839fc4ad22f_ac38c9ef-2245-498d-8530-95e1ce5838ec.webp?v=1742874241",
+    "https://www.minisforum.com/cdn/shop/files/6f5fc8181c9de5e9ad8fe16e3e20dab4_1000x_756aa1a0-5397-4ae2-b2a6-63a70d05d889.webp?v=1742874370",
+    "https://www.minisforum.com/cdn/shop/files/e113de90024137894c8bcdd22afd026d_1000x_5837c918-7c36-449d-bdc5-3783662785bd.webp?v=1742874438"
+  ],
+  "cpu": {
+    "brand": "AMD",
+    "model": "Ryzen 7 260",
+    "cores": null,
+    "threads": null,
+    "baseClockGHz": null,
+    "boostClockGHz": null,
+    "cache": {
+      "type": null,
+      "capacityMB": null
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 64,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 4000
+      },
+      "oferts": [
+        {
+          "url": "https://www.minisforum.com/es/products/minisforum-ai-x1",
+          "priceUsd": 439,
+          "warrantyYears": null
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 64,
+  "maxStorageCapacityGB": 4000,
+  "graphics": {
+    "integrated": true,
+    "brand": "AMD",
+    "model": "Radeon Graphics",
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": 1,
+        "type": "DisplayPort 2.0"
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": "HDMI 2.1"
+      },
+      "usb4": {
+        "amount": 2,
+        "type": "USB4 with 40 Gbps and display support"
+      }
+    }
+  },
+  "ports": {
+    "usb4": 2,
+    "usb3": 2,
+    "usb2": 1,
+    "usbC": 2,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": true,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": true,
+  "connectivity": {
+    "wifi": "WiFi 7",
+    "bluetooth": "Bluetooth 5.4"
+  },
+  "dimensions": {
+    "widthMm": null,
+    "heightMm": null,
+    "depthMm": null,
+    "volumeL": null
+  },
+  "weightKg": null,
+  "powerConsumptionW": null,
+  "releaseYear": null
+}

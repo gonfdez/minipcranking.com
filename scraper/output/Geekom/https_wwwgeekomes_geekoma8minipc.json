@@ -1,0 +1,116 @@
+{
+  "model": "GEEKOM A8 Mini PC",
+  "description": {
+    "en": "The GEEKOM A8 Mini PC is a powerful AI-enabled device featuring AMD Ryzen™ 9 8945HS or Ryzen™ 7 8745HS processors with 8 cores and 16 threads, delivering exceptional performance for multitasking and intensive workloads. Equipped with AMD Radeon™ 780M graphics, it handles HD multimedia and gaming effortlessly. It supports dual-channel DDR5 RAM up to 64GB and PCIe 4.0 NVMe storage up to 2TB. With Wi-Fi 6E, Bluetooth 5.2, and multiple connectivity ports including USB4 and HDMI 2.0, it offers versatile expansion. Its compact aluminum design (112.4 × 112.4 × 37 mm) and energy-efficient 45W TDP make it ideal for home, office, or creative use.",
+    "es": "El GEEKOM A8 Mini PC es un dispositivo potente con IA, equipado con procesadores AMD Ryzen™ 9 8945HS o Ryzen™ 7 8745HS de 8 núcleos y 16 hilos, ofreciendo rendimiento excepcional para multitarea y cargas intensivas. Con gráficos AMD Radeon™ 780M, maneja multimedia HD y juegos sin problemas. Soporta RAM DDR5 de doble canal hasta 64GB y almacenamiento NVMe PCIe 4.0 hasta 2TB. Con Wi-Fi 6E, Bluetooth 5.2 y múltiples puertos como USB4 y HDMI 2.0, permite expansión versátil. Su diseño compacto en aluminio (112,4 × 112,4 × 37 mm) y TDP eficiente de 45W lo hacen ideal para hogar, oficina o creativos."
+  },
+  "mainImgUrls": [
+    "https://example.com/img1.jpg",
+    "https://example.com/img2.jpg",
+    "https://example.com/img3.jpg",
+    "https://example.com/img4.jpg",
+    "https://example.com/img5.jpg"
+  ],
+  "portsImgUrls": null,
+  "cpu": {
+    "brand": "AMD",
+    "model": "Ryzen 9 8945HS / Ryzen 7 8745HS",
+    "cores": 8,
+    "threads": 16,
+    "baseClockGHz": 4,
+    "boostClockGHz": 5.2,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 16
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 1024
+      },
+      "oferts": [
+        {
+          "url": "https://www.geekom.es/product/geekom-a8-mini-pc/",
+          "priceUsd": null,
+          "warrantyYears": 3
+        }
+      ]
+    },
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "NVMe",
+        "capacityGB": 2048
+      },
+      "oferts": [
+        {
+          "url": "https://www.geekom.es/product/geekom-a8-mini-pc/",
+          "priceUsd": null,
+          "warrantyYears": 3
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 64,
+  "maxStorageCapacityGB": 2048,
+  "graphics": {
+    "integrated": true,
+    "brand": "AMD",
+    "model": "Radeon 780M",
+    "frequencyMHz": 2700,
+    "graphicCoresCU": null,
+    "maxTOPS": 38,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": null,
+        "type": null
+      },
+      "hdmi": {
+        "amount": 2,
+        "type": "HDMI 2.0 (4K@60Hz)"
+      },
+      "usb4": {
+        "amount": 1,
+        "type": "USB4 (8K@30Hz)"
+      }
+    }
+  },
+  "ports": {
+    "usb4": 1,
+    "usb3": 3,
+    "usb2": 1,
+    "usbC": 2,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": true
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": true,
+  "connectivity": {
+    "wifi": "Wi-Fi 6E",
+    "bluetooth": "5.2"
+  },
+  "dimensions": {
+    "widthMm": 112.4,
+    "heightMm": 112.4,
+    "depthMm": 37,
+    "volumeL": 0.47
+  },
+  "weightKg": 0.45,
+  "powerConsumptionW": 45,
+  "releaseYear": 2024
+}

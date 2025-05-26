@@ -1,0 +1,85 @@
+{
+  "model": "MINISFORUM MS-A1",
+  "description": {
+    "en": "The MINISFORUM MS-A1 is a compact and powerful mini PC designed for high-performance tasks. Featuring support for DDR5 dual-channel memory up to 96GB and four PCIe4.0 NVMe SSD slots with transfer speeds up to 7000MB/s, it offers exceptional storage and multitasking capabilities. Ideal for creative professionals and multimedia applications, it supports 8K resolution displays. The sleek design ensures efficient space utilization, while advanced connectivity options enhance productivity. With robust expandability and AMD architecture compatibility, this mini PC balances power and versatility in a compact form factor.",
+    "es": "El MINISFORUM MS-A1 es una mini PC compacta y potente diseñada para tareas de alto rendimiento. Con soporte para memoria DDR5 de doble canal de hasta 96GB y cuatro ranuras PCIe4.0 NVMe SSD con velocidades de transferencia de hasta 7000MB/s, ofrece capacidades excepcionales de almacenamiento y multitarea. Ideal para profesionales creativos y aplicaciones multimedia, soporta resoluciones de hasta 8K. Su diseño elegante garantiza un uso eficiente del espacio, mientras que sus opciones de conectividad avanzadas mejoran la productividad. Con una amplia expansibilidad y compatibilidad con arquitecturas AMD, esta mini PC equilibra potencia y versatilidad en un factor de forma compacto."
+  },
+  "mainImgUrls": [
+    "//www.minisforum.com/cdn/shop/files/MS_A1_3_1_3000x_0ad77dcb-9758-4fca-8637-8127c4ba12e8_1024x.webp?v=1743070455",
+    "//www.minisforum.com/cdn/shop/files/MS-A1_2500x_6ea21d49-3a25-4f06-86b4-6dde7eceebd2_1024x.webp?v=1743070527",
+    "//www.minisforum.com/cdn/shop/files/1-1_3000x_b8222d29-b618-4b83-ab8f-8a3eacc2be8a_1024x.webp?v=1743070527",
+    "//www.minisforum.com/cdn/shop/files/1-1_3000x_41adec3f-dcc9-4f76-9e30-2c42bb0759fa_1024x.webp?v=1743070527",
+    "//www.minisforum.com/cdn/shop/files/1-1_3000x_fcfbebfb-f2ca-42db-a35e-f7fd8e71e92a_1024x.webp?v=1743070527"
+  ],
+  "portsImgUrls": [
+    "//www.minisforum.com/cdn/shop/files/EN.jpg?v=1736839253",
+    "//www.minisforum.com/cdn/shop/files/8K_-1.jpg?v=1736839358",
+    "//www.minisforum.com/cdn/shop/files/8bcd72726418d27962b64468a697c496.jpg?v=1736839390"
+  ],
+  "cpu": {
+    "brand": "AMD",
+    "model": null,
+    "cores": null,
+    "threads": null,
+    "baseClockGHz": null,
+    "boostClockGHz": null,
+    "cache": {
+      "type": null,
+      "capacityMB": null
+    }
+  },
+  "variants": [],
+  "maxRAMCapacityGB": 96,
+  "maxStorageCapacityGB": null,
+  "graphics": {
+    "integrated": true,
+    "brand": "AMD",
+    "model": null,
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": null,
+        "type": null
+      },
+      "hdmi": {
+        "amount": null,
+        "type": "8K support"
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": null,
+    "usb2": null,
+    "usbC": null,
+    "ethernet": null,
+    "audioJack": null,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": null,
+    "bluetooth": null
+  },
+  "dimensions": {
+    "widthMm": null,
+    "heightMm": null,
+    "depthMm": null,
+    "volumeL": null
+  },
+  "weightKg": null,
+  "powerConsumptionW": null,
+  "releaseYear": null
+}

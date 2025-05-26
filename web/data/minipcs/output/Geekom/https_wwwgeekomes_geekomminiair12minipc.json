@@ -1,0 +1,105 @@
+{
+  "model": "GEEKOM Air12-N150",
+  "description": {
+    "en": "The GEEKOM Air12-N150 Mini PC features a compact design powered by the 12th Gen Intel® N150 processor with Intel® UHD Graphics. It supports up to 16GB DDR5 RAM and 2TB PCIe 3.0 x4 storage, ensuring efficient multitasking and fast data access. Equipped with WiFi 6, Bluetooth 5.2, and versatile ports including HDMI 2.0, Mini DP 1.4, and USB 3.2 Gen 2, it supports triple 8K displays for immersive visuals. Ideal for home, office, and multimedia use, it comes preinstalled with Windows 11 Pro and offers a sleek, space-saving design with VESA mount compatibility.",
+    "es": "El GEEKOM Air12-N150 Mini PC combina un diseño compacto con el procesador Intel® N150 de 12ª generación y gráficos Intel® UHD. Soporta hasta 16GB de RAM DDR5 y 2TB de almacenamiento PCIe 3.0 x4, garantizando multitarea eficiente y acceso rápido a datos. Con WiFi 6, Bluetooth 5.2 y puertos versátiles como HDMI 2.0, Mini DP 1.4 y USB 3.2 Gen 2, admite hasta tres pantallas 8K. Ideal para hogar, oficina y multimedia, incluye Windows 11 Pro y diseño elegante compatible con montaje VESA."
+  },
+  "mainImgUrls": [
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "portsImgUrls": [
+    null,
+    null,
+    null,
+    null,
+    null
+  ],
+  "cpu": {
+    "brand": "Intel",
+    "model": "N150",
+    "cores": 4,
+    "threads": 4,
+    "baseClockGHz": null,
+    "boostClockGHz": 3.6,
+    "cache": {
+      "type": null,
+      "capacityMB": null
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 16,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "PCIe 3.0 x4",
+        "capacityGB": 512
+      },
+      "oferts": [
+        {
+          "url": null,
+          "priceUsd": 259,
+          "warrantyYears": 3
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 16,
+  "maxStorageCapacityGB": 2000,
+  "graphics": {
+    "integrated": true,
+    "brand": "Intel",
+    "model": "UHD Graphics (24 EU)",
+    "frequencyMHz": 1000,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": 1,
+        "type": "Mini DP 1.4 (8K @30Hz)"
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": "HDMI 2.0 (4K @60Hz)"
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 3,
+    "usb2": null,
+    "usbC": 1,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": true
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": "WiFi 6",
+    "bluetooth": "5.2"
+  },
+  "dimensions": {
+    "widthMm": 117,
+    "heightMm": 112,
+    "depthMm": 34.2,
+    "volumeL": 0.45
+  },
+  "weightKg": null,
+  "powerConsumptionW": null,
+  "releaseYear": null
+}

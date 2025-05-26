@@ -1,0 +1,93 @@
+{
+  "model": "HP Elite Mini 800 G9",
+  "description": {
+    "en": "The HP Elite Mini 800 G9 is a compact yet powerful desktop PC designed for business efficiency. Equipped with a 13th Gen Intel® Core™ i7 processor, DDR5 memory, and Intel® UHD 770 graphics, it delivers responsive performance for complex tasks. Ideal for hybrid work environments, it features HP Wolf Pro Security for enhanced protection against threats. The mini PC supports multiple connectivity options, including Wi-Fi 6 and Bluetooth 5.3, and offers a sustainable design with at least 45% recycled plastic. Its small footprint (17.7 x 17.5 x 3.4 cm) makes it perfect for space-constrained setups while maintaining enterprise-grade security and manageability.",
+    "es": "El HP Elite Mini 800 G9 es un PC de escritorio compacto y potente diseñado para la eficiencia empresarial. Equipado con un procesador Intel® Core™ i7 de 13.ª generación, memoria DDR5 y gráficos Intel® UHD 770, ofrece rendimiento ágil para tareas complejas. Ideal para entornos de trabajo híbridos, incluye HP Wolf Pro Security para protección avanzada contra amenazas. Soporta múltiples opciones de conectividad, como Wi-Fi 6 y Bluetooth 5.3, y presenta un diseño sostenible con al menos 45% de plástico reciclado. Su tamaño reducido (17,7 x 17,5 x 3,4 cm) lo hace perfecto para espacios limitados, manteniendo seguridad y gestión empresarial."
+  },
+  "mainImgUrls": [],
+  "portsImgUrls": [],
+  "cpu": {
+    "brand": "Intel",
+    "model": "Core i7-13700",
+    "cores": 16,
+    "threads": 24,
+    "baseClockGHz": null,
+    "boostClockGHz": 5.2,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 30
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 16,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacityGB": 512
+      },
+      "oferts": [
+        {
+          "url": null,
+          "priceUsd": null,
+          "warrantyYears": 5
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": null,
+  "maxStorageCapacityGB": null,
+  "graphics": {
+    "integrated": true,
+    "brand": "Intel",
+    "model": "UHD 770",
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": 2,
+        "type": "DisplayPort 1.4"
+      },
+      "hdmi": {
+        "amount": 1,
+        "type": "HDMI 2.1"
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 6,
+    "usb2": null,
+    "usbC": 1,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": null,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": "Wi-Fi 6 (802.11ax)",
+    "bluetooth": "5.3"
+  },
+  "dimensions": {
+    "widthMm": 177,
+    "heightMm": 34,
+    "depthMm": 175,
+    "volumeL": 1.05
+  },
+  "weightKg": 1.42,
+  "powerConsumptionW": 120,
+  "releaseYear": 2023
+}

@@ -1,0 +1,99 @@
+{
+  "model": "HP Z2 Mini G9",
+  "description": {
+    "en": "The HP Z2 Mini G9 Workstation PC combines high performance with a compact design, ideal for professional environments. Featuring an Intel® Core™ i9-14900 processor (14th Gen) with 24 cores and 32 threads, it handles intensive tasks like rendering and simulations efficiently. Equipped with NVIDIA® RTX™ 2000 Ada Generation graphics (16 GB GDDR6), it supports up to 8 monitors at 4K resolution. Includes 32 GB DDR5 RAM and a 1 TB SSD for fast storage. MIL-STD 810H tested and ISV-certified for reliability. HP Wolf Security ensures protection against modern threats. Expandable up to 64 GB RAM and includes multiple ports for connectivity.",
+    "es": "La Workstation PC HP Z2 Mini G9 ofrece alto rendimiento en un diseño compacto, ideal para entornos profesionales. Con un procesador Intel® Core™ i9-14900 (14.ª generación) de 24 núcleos y 32 hilos, maneja tareas intensivas como renderizado y simulaciones. Incluye gráficos NVIDIA® RTX™ 2000 Ada Generation (16 GB GDDR6) y soporta hasta 8 monitores en 4K. Cuenta con 32 GB de RAM DDR5 y 1 TB SSD. Certificada ISV y probada bajo MIL-STD 810H para resistencia. HP Wolf Security brinda protección contra amenazas. Expandible hasta 64 GB de RAM y múltiples puertos de conexión."
+  },
+  "mainImgUrls": [
+    "image-url-1-front-view",
+    "image-url-2-side-view",
+    "image-url-3-top-view",
+    "image-url-4-rear-view",
+    "image-url-5-angle-view"
+  ],
+  "portsImgUrls": null,
+  "cpu": {
+    "brand": "Intel",
+    "model": "Core i9-14900",
+    "cores": 24,
+    "threads": 32,
+    "baseClockGHz": null,
+    "boostClockGHz": 5.4,
+    "cache": {
+      "type": "L3",
+      "capacityMB": 36
+    }
+  },
+  "variants": [
+    {
+      "ram": {
+        "capacityGB": 32,
+        "type": "DDR5"
+      },
+      "storage": {
+        "type": "SSD",
+        "capacityGB": 1000
+      },
+      "oferts": [
+        {
+          "url": "purchase-url",
+          "priceUsd": null,
+          "warrantyYears": 3
+        }
+      ]
+    }
+  ],
+  "maxRAMCapacityGB": 64,
+  "maxStorageCapacityGB": null,
+  "graphics": {
+    "integrated": false,
+    "brand": "NVIDIA",
+    "model": "RTX 2000 Ada Generation",
+    "frequencyMHz": null,
+    "graphicCoresCU": null,
+    "maxTOPS": null,
+    "displayPorts": {
+      "thunderbolt": {
+        "amount": null,
+        "type": null
+      },
+      "dp": {
+        "amount": 2,
+        "type": "DisplayPort 1.4"
+      },
+      "hdmi": {
+        "amount": null,
+        "type": null
+      },
+      "usb4": {
+        "amount": null,
+        "type": null
+      }
+    }
+  },
+  "ports": {
+    "usb4": null,
+    "usb3": 3,
+    "usb2": null,
+    "usbC": 2,
+    "ethernet": 1,
+    "audioJack": true,
+    "sdCardReader": null
+  },
+  "builtinMicrophone": null,
+  "builtinSpeakers": true,
+  "supportExternalDiscreteGraphicsCard": null,
+  "connectivity": {
+    "wifi": "Wi-Fi 6E AX211",
+    "bluetooth": "Bluetooth 5.3"
+  },
+  "dimensions": {
+    "widthMm": 211,
+    "heightMm": 69,
+    "depthMm": 218,
+    "volumeL": null
+  },
+  "weightKg": 2.4,
+  "powerConsumptionW": 280,
+  "releaseYear": null
+}
