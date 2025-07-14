@@ -16,6 +16,7 @@ import {
 } from "@/components/ui/select";
 import { BrandSelectAndCreate } from "./BrandSelectAndCreate";
 import { CPUSelectAndCreate } from "./CPUSelectAndCreate";
+import { GraphicsSelectAndCreate } from "./GraphicsSelectAndCreate";
 
 const formSchema = z.object({
   model: z.string().min(1),
@@ -59,13 +60,16 @@ export function MiniPCForm() {
   const cpuValue = watch("CPU");
   const onCPUChange = (value: string) => setValue("CPU", value);
 
+  const graphicsValue = watch("graphics");
+  const onGraphicsChange = (value: string) => setValue("graphics", value);
+
   const onSubmit = (data: FormData) => {
     console.log("Form data submitted:", data);
     // TODO: Integrate with Supabase insert
   };
 
   return (
-    <div className="max-w-xl mx-auto p-4">
+    <div className="w-full max-w-[800px] mx-auto p-6">
       <h1 className="text-2xl font-bold mb-6">Create a new MiniPC</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
@@ -96,15 +100,10 @@ export function MiniPCForm() {
 
         <div>
           <Label>Graphics</Label>
-          <Select onValueChange={(value) => setValue("graphics", value)}>
-            <SelectTrigger>
-              <SelectValue placeholder="Select a Graphics Card" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="1">Graphics 1</SelectItem>
-              <SelectItem value="2">Graphics 2</SelectItem>
-            </SelectContent>
-          </Select>
+          <GraphicsSelectAndCreate
+            value={graphicsValue}
+            onChange={onGraphicsChange}
+          />
           {errors.graphics && (
             <span className="text-red-500">{errors.graphics.message}</span>
           )}
