@@ -1,22 +1,16 @@
 "use client";
 
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/components/ui/select";
 import { BrandSelectAndCreate } from "./BrandSelectAndCreate";
 import { CPUSelectAndCreate } from "./CPUSelectAndCreate";
 import { GraphicsSelectAndCreate } from "./GraphicsSelectAndCreate";
+import { DescriptionInput } from "./DescriptionInput";
 
 const formSchema = z.object({
   model: z.string().min(1),
@@ -27,7 +21,19 @@ const formSchema = z.object({
   weightKg: z.number().positive().optional(),
   powerConsumptionW: z.number().positive().optional(),
   releaseYear: z.number().int().optional(),
-
+  mainImgUrl: z
+    .array(
+      z.object({
+        url: z.url().min(1),
+      })
+    )
+    .min(1, "At least one image URL is required"),
+  description: z.object({
+    es: z.string().min(1, "Spanish description is required"),
+    en: z.string().min(1, "English description is required"),
+    it: z.string().min(1, "Italian description is required"),
+    de: z.string().min(1, "German description is required"),
+  }),
   brand: z.string().optional(),
   CPU: z.string(),
   graphics: z.string(),
@@ -37,7 +43,7 @@ const formSchema = z.object({
   supportExternalDiscreteGraphicsCard: z.boolean().optional(),
 });
 
-type FormData = z.infer<typeof formSchema>;
+export type FormData = z.infer<typeof formSchema>;
 
 export function MiniPCForm() {
   const {
@@ -46,11 +52,13 @@ export function MiniPCForm() {
     formState: { errors },
     setValue,
     watch,
+    control,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       brand: "",
       manualCollect: true,
+      mainImgUrl: [{ url: "" }],
     },
   });
 
@@ -62,6 +70,11 @@ export function MiniPCForm() {
 
   const graphicsValue = watch("graphics");
   const onGraphicsChange = (value: string) => setValue("graphics", value);
+
+  const { fields, append, remove } = useFieldArray<FormData>({
+    name: "mainImgUrl",
+    control,
+  });
 
   const onSubmit = (data: FormData) => {
     console.log("Form data submitted:", data);
@@ -75,6 +88,9 @@ export function MiniPCForm() {
         <div>
           <Label>Brand</Label>
           <BrandSelectAndCreate value={brandValue} onChange={onBrandChange} />
+          {errors.brand && (
+            <span className="text-red-500">{errors.brand.message}</span>
+          )}
         </div>
 
         <div>
@@ -87,7 +103,36 @@ export function MiniPCForm() {
 
         <div>
           <Label>Main image URL</Label>
-          <span>TODO</span>
+          {fields.map((field, index) => (
+            <div key={field.id} className="flex items-center space-x-2 mb-2">
+              <Input
+                {...register(`mainImgUrl.${index}.url`)}
+                placeholder="https://example.com/minipc_main_image.jpg"
+              />
+              <Button
+                type="button"
+                variant="destructive"
+                onClick={() => remove(index)}
+                disabled={fields.length === 1}
+              >
+                Remove
+              </Button>
+            </div>
+          ))}
+
+          <Button
+            type="button"
+            onClick={() => append({ url: "" })}
+            className="mt-2"
+          >
+            + Add Image URL
+          </Button>
+
+          {errors.mainImgUrl && (
+            <span className="text-red-500">
+              {errors.mainImgUrl.message as string}
+            </span>
+          )}
         </div>
 
         <div>
@@ -118,8 +163,7 @@ export function MiniPCForm() {
         </div>
 
         <div>
-          <Label>Description</Label>
-          <span>TODO</span>
+          <DescriptionInput register={register} errors={errors} />
         </div>
 
         <div>
