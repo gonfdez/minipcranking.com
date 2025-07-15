@@ -178,27 +178,23 @@ export function GraphicsSelectAndCreate({
   return (
     <>
       <div className="flex space-x-2 items-center w-full">
-        <Select onValueChange={onChange} value={value}>
+        <Select
+          onValueChange={onChange}
+          value={value}
+          disabled={graphics.length === 0}
+        >
           <SelectTrigger className="w-full">
             <SelectValue
-              placeholder={
-                loading
-                  ? "Loading Graphics..."
-                  : graphics.length === 0
-                  ? "No Graphics available"
-                  : "Select Graphics"
-              }
+              placeholder={loading ? "Loading Graphics..." : "Select Graphics"}
             />
           </SelectTrigger>
-          {graphics.length > 0 && (
-            <SelectContent>
-              {graphics.map((g) => (
-                <SelectItem key={g.id} value={g.id.toString()}>
-                  {g.model}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          )}
+          <SelectContent>
+            {graphics.map((g) => (
+              <SelectItem key={g.id} value={g.id.toString()}>
+                {g.model}
+              </SelectItem>
+            ))}
+          </SelectContent>
         </Select>
 
         <Button

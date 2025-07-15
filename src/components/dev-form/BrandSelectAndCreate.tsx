@@ -143,27 +143,23 @@ export function BrandSelectAndCreate({ value, onChange }: Props) {
   return (
     <>
       <div className="flex space-x-2 items-center">
-        <Select onValueChange={onChange} value={value}>
+        <Select
+          onValueChange={onChange}
+          value={value}
+          disabled={brands.length === 0}
+        >
           <SelectTrigger className="w-full">
             <SelectValue
-              placeholder={
-                loading
-                  ? "Loading Brands..."
-                  : brands.length === 0
-                  ? "No Brands available"
-                  : "Select a Brand"
-              }
+              placeholder={loading ? "Loading Brands..." : "Select a Brand"}
             />
           </SelectTrigger>
-          {brands.length > 0 && (
-            <SelectContent>
-              {brands.map((brand) => (
-                <SelectItem key={brand.id} value={brand.id.toString()}>
-                  {brand.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          )}
+          <SelectContent>
+            {brands.map((brand) => (
+              <SelectItem key={brand.id} value={brand.id.toString()}>
+                {brand.name}
+              </SelectItem>
+            ))}
+          </SelectContent>
         </Select>
 
         <Button

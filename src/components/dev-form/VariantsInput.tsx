@@ -19,6 +19,7 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trash2, Plus } from "lucide-react";
 
+// Tipos para las variantes
 export type VariantOffer = {
   url: string;
   price: number;
@@ -32,6 +33,7 @@ export type Variant = {
   offers: VariantOffer[];
 };
 
+// Importa FormData desde el archivo principal
 import { FormData } from "./MiniPCForm";
 
 interface VariantsInputProps {
@@ -60,11 +62,11 @@ export function VariantsInput({
 
   const addVariant = () => {
     append({
-      RAMGB: NaN,
-      RAM_type: "",
-      storageGB: NaN,
-      storage_type: "",
-      offers: [{ url: "", price: NaN }],
+      RAMGB: 8,
+      RAM_type: "DDR4",
+      storageGB: 256,
+      storage_type: "SSD",
+      offers: [{ url: "", price: 0 }],
     });
   };
 
@@ -73,10 +75,10 @@ export function VariantsInput({
   };
 
   return (
-    <div className="border border-gray-300 rounded-xl p-4 space-y-4">
+    <div className="space-y-4">
       <div className="flex items-center justify-between">
-        <Label className="text-lg font-semibold">Variants</Label>
-        <Button type="button" onClick={addVariant}>
+        <Label className="text-lg font-semibold">Variants *</Label>
+        <Button type="button" onClick={addVariant} variant="outline">
           <Plus className="w-4 h-4 mr-2" />
           Add Variant
         </Button>

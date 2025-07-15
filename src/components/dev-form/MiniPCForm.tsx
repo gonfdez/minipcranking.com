@@ -183,7 +183,7 @@ export function MiniPCForm() {
       <h1 className="text-2xl font-bold mb-6">Create a new MiniPC</h1>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
-          <Label>Brand</Label>
+          <Label>Brand *</Label>
           <BrandSelectAndCreate value={brandValue} onChange={onBrandChange} />
           {errors.brand && (
             <span className="text-red-500">{errors.brand.message}</span>
@@ -191,7 +191,7 @@ export function MiniPCForm() {
         </div>
 
         <div>
-          <Label>Model name</Label>
+          <Label>Model name *</Label>
           <Input {...register("model")} />
           {errors.model && (
             <span className="text-red-500">{errors.model.message}</span>
@@ -199,7 +199,34 @@ export function MiniPCForm() {
         </div>
 
         <div>
-          <Label>Product Images URL</Label>
+          <Label>CPU *</Label>
+          <CPUSelectAndCreate value={cpuValue} onChange={onCPUChange} />
+          {errors.CPU && (
+            <span className="text-red-500">{errors.CPU.message}</span>
+          )}
+        </div>
+
+        <div>
+          <Label>Graphics *</Label>
+          <GraphicsSelectAndCreate
+            value={graphicsValue}
+            onChange={onGraphicsChange}
+          />
+          {errors.graphics && (
+            <span className="text-red-500">{errors.graphics.message}</span>
+          )}
+        </div>
+
+        <div>
+          <Label>Product URL *</Label>
+          <Input {...register("fromURL")} />
+          {errors.fromURL && (
+            <span className="text-red-500">{errors.fromURL.message}</span>
+          )}
+        </div>
+
+        <div>
+          <Label>Product Images URL *</Label>
           {fields.map((field, index) => (
             <div key={field.id} className="flex items-center space-x-2 mb-2">
               <Input
@@ -233,29 +260,66 @@ export function MiniPCForm() {
         </div>
 
         <div>
-          <Label>CPU</Label>
-          <CPUSelectAndCreate value={cpuValue} onChange={onCPUChange} />
-          {errors.CPU && (
-            <span className="text-red-500">{errors.CPU.message}</span>
+          <Label>Ports Images URL *</Label>
+          {portsImagesFields.map((field, index) => (
+            <div key={field.id} className="flex items-center space-x-2 mb-2">
+              <Input
+                {...register(`portsImgUrl.${index}.url`)}
+                placeholder="https://example.com/minipc_ports_image.jpg"
+              />
+              <Button
+                type="button"
+                variant="destructive"
+                onClick={() => removePortsImage(index)}
+                disabled={portsImagesFields.length === 1}
+              >
+                Remove
+              </Button>
+            </div>
+          ))}
+
+          <Button
+            type="button"
+            onClick={() => appendPortsImage({ url: "" })}
+            className="mt-2"
+          >
+            + Add Ports Image
+          </Button>
+
+          {errors.portsImgUrl && (
+            <span className="text-red-500">{errors.portsImgUrl.message}</span>
           )}
         </div>
 
+        <div className="border border-gray-300 rounded-xl p-4 space-y-4">
+          <Label className="text-lg font-semibold block">
+            Ports Quantity *
+          </Label>
+          <div className="grid grid-cols-2 gap-4 mt-2">
+            {Object.keys(defaultValues.ports).map((portKey) => (
+              <div key={portKey}>
+                <Label>{portKey.toUpperCase()}</Label>
+                <Input
+                  type="number"
+                  min="0"
+                  {...register(
+                    `ports.${portKey as keyof typeof defaultValues.ports}`,
+                    { valueAsNumber: true }
+                  )}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+
         <div>
-          <Label>Graphics</Label>
-          <GraphicsSelectAndCreate
-            value={graphicsValue}
-            onChange={onGraphicsChange}
+          <Label>Connectivity *</Label>
+          <ConnectivitySelectAndCreate
+            value={connectivityValue}
+            onChange={onConnectivityChange}
           />
-          {errors.graphics && (
-            <span className="text-red-500">{errors.graphics.message}</span>
-          )}
-        </div>
-
-        <div>
-          <Label>Product URL</Label>
-          <Input {...register("fromURL")} />
-          {errors.fromURL && (
-            <span className="text-red-500">{errors.fromURL.message}</span>
+          {errors.connectivity && (
+            <span className="text-red-500">{errors.connectivity.message}</span>
           )}
         </div>
 
@@ -307,70 +371,6 @@ export function MiniPCForm() {
           />
         </div>
 
-        {/* Ports Images Section */}
-        <div>
-          <Label>Ports Images URL</Label>
-          {portsImagesFields.map((field, index) => (
-            <div key={field.id} className="flex items-center space-x-2 mb-2">
-              <Input
-                {...register(`portsImgUrl.${index}.url`)}
-                placeholder="https://example.com/ports_image.jpg"
-              />
-              <Button
-                type="button"
-                variant="destructive"
-                onClick={() => removePortsImage(index)}
-                disabled={portsImagesFields.length === 1}
-              >
-                Remove
-              </Button>
-            </div>
-          ))}
-
-          <Button
-            type="button"
-            onClick={() => appendPortsImage({ url: "" })}
-            className="mt-2"
-          >
-            + Add Ports Image
-          </Button>
-
-          {errors.portsImgUrl && (
-            <span className="text-red-500">{errors.portsImgUrl.message}</span>
-          )}
-        </div>
-
-        {/* Ports Types Quantities */}
-        <div className="border border-gray-300 rounded-xl p-4 space-y-4">
-          <Label className="text-lg font-semibold block">Ports Quantity</Label>
-          <div className="grid grid-cols-2 gap-4 mt-2">
-            {Object.keys(defaultValues.ports).map((portKey) => (
-              <div key={portKey}>
-                <Label>{portKey.toUpperCase()}</Label>
-                <Input
-                  type="number"
-                  min="0"
-                  {...register(
-                    `ports.${portKey as keyof typeof defaultValues.ports}`,
-                    { valueAsNumber: true }
-                  )}
-                />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div>
-          <Label>Connectivity</Label>
-          <ConnectivitySelectAndCreate
-            value={connectivityValue}
-            onChange={onConnectivityChange}
-          />
-          {errors.connectivity && (
-            <span className="text-red-500">{errors.connectivity.message}</span>
-          )}
-        </div>
-
         <div>
           <VariantsInput
             control={control}
@@ -388,7 +388,7 @@ export function MiniPCForm() {
             onCheckedChange={(checked) => setValue("manualCollect", !!checked)}
             disabled
           />
-          <Label id="manualCollect">Manual Collect</Label>
+          <Label id="manualCollect">Manual Collect *</Label>
         </div>
 
         <div className="flex items-center space-x-2">
@@ -426,7 +426,9 @@ export function MiniPCForm() {
           </Label>
         </div>
 
-        <Button type="submit">Submit</Button>
+        <Button type="submit" size={"lg"}>
+          Submit
+        </Button>
       </form>
     </div>
   );

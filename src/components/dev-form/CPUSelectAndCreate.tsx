@@ -159,27 +159,23 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
   return (
     <>
       <div className="flex space-x-2 items-center">
-        <Select onValueChange={onChange} value={value}>
+        <Select
+          onValueChange={onChange}
+          value={value}
+          disabled={cpus.length === 0}
+        >
           <SelectTrigger className="w-full">
             <SelectValue
-              placeholder={
-                loading
-                  ? "Loading CPUs..."
-                  : cpus.length === 0
-                  ? "No CPUs available"
-                  : "Select a CPU"
-              }
+              placeholder={loading ? "Loading CPUs..." : "Select a CPU"}
             />
           </SelectTrigger>
-          {cpus.length > 0 && (
-            <SelectContent>
-              {cpus.map((cpu) => (
-                <SelectItem key={cpu.id} value={cpu.id.toString()}>
-                  {cpu.model}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          )}
+          <SelectContent>
+            {cpus.map((cpu) => (
+              <SelectItem key={cpu.id} value={cpu.id.toString()}>
+                {cpu.model}
+              </SelectItem>
+            ))}
+          </SelectContent>
         </Select>
 
         <Button
