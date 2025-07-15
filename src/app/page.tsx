@@ -1,14 +1,9 @@
-import Link from "next/link";
-import { Button } from "@/components/ui/button";
+import { MiniPCForm } from "@/components/dev-form/MiniPCForm";
 
 export default function Home() {
   return (
-    <main className="min-h-[calc(100vh-64px)] flex flex-col">
-      <section className="flex-grow flex items-center justify-center">
-        <Link href="/admin/dev-form">
-          <Button>Go to Mini PC's Form</Button>
-        </Link>
-      </section>
+    <main className="p-8 flex items-center justify-center min-h-screen">
+      <MiniPCForm />
     </main>
   );
 }

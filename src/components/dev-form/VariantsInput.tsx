@@ -78,7 +78,7 @@ export function VariantsInput({
     <div className="space-y-4">
       <div className="flex items-center justify-between">
         <Label className="text-lg font-semibold">Variants *</Label>
-        <Button type="button" onClick={addVariant} variant="outline">
+        <Button type="button" onClick={addVariant}>
           <Plus className="w-4 h-4 mr-2" />
           Add Variant
         </Button>
