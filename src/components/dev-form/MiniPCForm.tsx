@@ -11,6 +11,8 @@ import { BrandSelectAndCreate } from "./BrandSelectAndCreate";
 import { CPUSelectAndCreate } from "./CPUSelectAndCreate";
 import { GraphicsSelectAndCreate } from "./GraphicsSelectAndCreate";
 import { DescriptionInput } from "./DescriptionInput";
+import { DimensionsInput } from "./DimensionsInput";
+import { ConnectivitySelectAndCreate } from "./ConnectivitySelectAndCreate";
 
 const formSchema = z.object({
   model: z.string().min(1),
@@ -34,10 +36,37 @@ const formSchema = z.object({
     it: z.string().min(1, "Italian description is required"),
     de: z.string().min(1, "German description is required"),
   }),
-  brand: z.string().optional(),
+  brand: z.string(),
   CPU: z.string(),
   graphics: z.string(),
-
+  dimensions: z.object({
+    widthMM: z.number().int().positive().nullable().optional(),
+    heightMM: z.number().int().positive().nullable().optional(),
+  }),
+  portsImgUrl: z
+    .array(
+      z.object({
+        url: z.url().min(1),
+      })
+    )
+    .min(1, "At least one port image URL is required"),
+  ports: z.object({
+    usb3: z.number().int().nonnegative().nullable().optional(),
+    usb2: z.number().int().nonnegative().nullable().optional(),
+    usbC: z.number().int().nonnegative().nullable().optional(),
+    hdmi: z.number().int().nonnegative().nullable().optional(),
+    displayPort: z.number().int().nonnegative().nullable().optional(),
+    ethernet: z.number().int().nonnegative().nullable().optional(),
+    jack35mm: z.number().int().nonnegative().nullable().optional(),
+    sdCard: z.number().int().nonnegative().nullable().optional(),
+    microSD: z.number().int().nonnegative().nullable().optional(),
+    vga: z.number().int().nonnegative().nullable().optional(),
+    dvi: z.number().int().nonnegative().nullable().optional(),
+    thunderbolt: z.number().int().nonnegative().nullable().optional(),
+  }),
+  connectivity: z
+    .array(z.number().int().positive())
+    .min(1, "At least one connectivity option is required"),
   builtinMicrophone: z.boolean().optional(),
   builtinSpeakers: z.boolean().optional(),
   supportExternalDiscreteGraphicsCard: z.boolean().optional(),
@@ -46,6 +75,32 @@ const formSchema = z.object({
 export type FormData = z.infer<typeof formSchema>;
 
 export function MiniPCForm() {
+  const defaultValues = {
+    brand: "",
+    manualCollect: true,
+    mainImgUrl: [{ url: "" }],
+    dimensions: {
+      widthMM: null,
+      heightMM: null,
+    },
+    portsImgUrl: [{ url: "" }],
+    ports: {
+      usb3: null,
+      usb2: null,
+      usbC: null,
+      hdmi: null,
+      displayPort: null,
+      ethernet: null,
+      jack35mm: null,
+      sdCard: null,
+      microSD: null,
+      vga: null,
+      dvi: null,
+      thunderbolt: null,
+    },
+    connectivity: [],
+  };
+
   const {
     register,
     handleSubmit,
@@ -55,11 +110,7 @@ export function MiniPCForm() {
     control,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      brand: "",
-      manualCollect: true,
-      mainImgUrl: [{ url: "" }],
-    },
+    defaultValues,
   });
 
   const brandValue = watch("brand");
@@ -71,8 +122,21 @@ export function MiniPCForm() {
   const graphicsValue = watch("graphics");
   const onGraphicsChange = (value: string) => setValue("graphics", value);
 
+  const connectivityValue = watch("connectivity");
+  const onConnectivityChange = (value: number[]) =>
+    setValue("connectivity", value);
+
   const { fields, append, remove } = useFieldArray<FormData>({
     name: "mainImgUrl",
+    control,
+  });
+
+  const {
+    fields: portsImagesFields,
+    append: appendPortsImage,
+    remove: removePortsImage,
+  } = useFieldArray<FormData>({
+    name: "portsImgUrl",
     control,
   });
 
@@ -102,7 +166,7 @@ export function MiniPCForm() {
         </div>
 
         <div>
-          <Label>Main image URL</Label>
+          <Label>Product Images URL</Label>
           {fields.map((field, index) => (
             <div key={field.id} className="flex items-center space-x-2 mb-2">
               <Input
@@ -191,8 +255,7 @@ export function MiniPCForm() {
         </div>
 
         <div>
-          <Label>Dimensions</Label>
-          <span>TODO</span>
+          <DimensionsInput errors={errors} register={register} />
         </div>
 
         <div>
@@ -211,14 +274,67 @@ export function MiniPCForm() {
           />
         </div>
 
+        {/* Ports Images Section */}
         <div>
-          <Label>Ports</Label>
-          <span>TODO ports images array and pc ports </span>
+          <Label>Ports Images URL</Label>
+          {portsImagesFields.map((field, index) => (
+            <div key={field.id} className="flex items-center space-x-2 mb-2">
+              <Input
+                {...register(`portsImgUrl.${index}.url`)}
+                placeholder="https://example.com/ports_image.jpg"
+              />
+              <Button
+                type="button"
+                variant="destructive"
+                onClick={() => removePortsImage(index)}
+                disabled={portsImagesFields.length === 1}
+              >
+                Remove
+              </Button>
+            </div>
+          ))}
+
+          <Button
+            type="button"
+            onClick={() => appendPortsImage({ url: "" })}
+            className="mt-2"
+          >
+            + Add Ports Image
+          </Button>
+
+          {errors.portsImgUrl && (
+            <span className="text-red-500">
+              {errors.portsImgUrl.message as string}
+            </span>
+          )}
+        </div>
+
+        {/* Ports Types Quantities */}
+        <div className="border border-gray-300 rounded-xl p-4 space-y-4">
+          <Label className="text-lg font-semibold block">Ports Quantity</Label>
+          <div className="grid grid-cols-2 gap-4 mt-2">
+            {Object.keys(defaultValues.ports).map((portKey) => (
+              <div key={portKey}>
+                <Label>{portKey.toUpperCase()}</Label>
+                <Input
+                  type="number"
+                  min="0"
+                  {...register(
+                    `ports.${portKey as keyof typeof defaultValues.ports}`,
+                    { valueAsNumber: true }
+                  )}
+                />
+              </div>
+            ))}
+          </div>
         </div>
 
         <div>
           <Label>Connectivity</Label>
-          <span>TODO connectivity array</span>
+          <ConnectivitySelectAndCreate
+            value={connectivityValue}
+            onChange={onConnectivityChange}
+          />
         </div>
 
         <div>

@@ -16,7 +16,6 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Textarea } from "@/components/ui/textarea";
 import { supabase } from "@/lib/supabaseClient";
 import { toast } from "sonner";
 import { BrandSelectAndCreate } from "./BrandSelectAndCreate";
@@ -39,7 +38,6 @@ type Props = {
 
 export function CPUSelectAndCreate({ value, onChange }: Props) {
   const [cpus, setCpus] = useState<CPU[]>([]);
-  const [brands, setBrands] = useState<Brand[]>([]);
   const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [formCpuId, setFormCpuId] = useState<number | null>(null);
@@ -55,17 +53,8 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
   });
 
   useEffect(() => {
-    fetchBrands();
     fetchCPUs();
   }, []);
-
-  async function fetchBrands() {
-    const { data, error } = await supabase
-      .from("Brands")
-      .select("id, name")
-      .order("name");
-    if (!error && data) setBrands(data);
-  }
 
   async function fetchCPUs() {
     setLoading(true);
