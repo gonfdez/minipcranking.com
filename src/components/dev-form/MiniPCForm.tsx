@@ -13,6 +13,7 @@ import { GraphicsSelectAndCreate } from "./GraphicsSelectAndCreate";
 import { DescriptionInput } from "./DescriptionInput";
 import { DimensionsInput } from "./DimensionsInput";
 import { ConnectivitySelectAndCreate } from "./ConnectivitySelectAndCreate";
+import { VariantsInput } from "./VariantsInput";
 
 const formSchema = z.object({
   model: z.string().min(1),
@@ -70,37 +71,69 @@ const formSchema = z.object({
   builtinMicrophone: z.boolean().optional(),
   builtinSpeakers: z.boolean().optional(),
   supportExternalDiscreteGraphicsCard: z.boolean().optional(),
+  // Nueva sección de variantes
+  variants: z
+    .array(
+      z.object({
+        RAMGB: z
+          .number()
+          .int()
+          .positive()
+          .min(1, "RAM capacity must be at least 1GB"),
+        RAM_type: z.string().min(1, "RAM type is required"),
+        storageGB: z
+          .number()
+          .int()
+          .positive()
+          .min(1, "Storage capacity must be at least 1GB"),
+        storage_type: z.string().min(1, "Storage type is required"),
+        offers: z
+          .array(
+            z.object({
+              url: z.url().min(1, "Offer URL is required"),
+              price: z
+                .number()
+                .positive()
+                .min(0.01, "Price must be greater than 0"),
+            })
+          )
+          .min(1, "At least one offer is required for each variant"),
+      })
+    )
+    .min(1, "At least one variant is required"),
 });
 
 export type FormData = z.infer<typeof formSchema>;
 
-export function MiniPCForm() {
-  const defaultValues = {
-    brand: "",
-    manualCollect: true,
-    mainImgUrl: [{ url: "" }],
-    dimensions: {
-      widthMM: null,
-      heightMM: null,
-    },
-    portsImgUrl: [{ url: "" }],
-    ports: {
-      usb3: null,
-      usb2: null,
-      usbC: null,
-      hdmi: null,
-      displayPort: null,
-      ethernet: null,
-      jack35mm: null,
-      sdCard: null,
-      microSD: null,
-      vga: null,
-      dvi: null,
-      thunderbolt: null,
-    },
-    connectivity: [],
-  };
+const defaultValues = {
+  brand: "",
+  manualCollect: true,
+  mainImgUrl: [{ url: "" }],
+  dimensions: {
+    widthMM: null,
+    heightMM: null,
+  },
+  portsImgUrl: [{ url: "" }],
+  ports: {
+    usb3: null,
+    usb2: null,
+    usbC: null,
+    hdmi: null,
+    displayPort: null,
+    ethernet: null,
+    jack35mm: null,
+    sdCard: null,
+    microSD: null,
+    vga: null,
+    dvi: null,
+    thunderbolt: null,
+  },
+  connectivity: [],
+  // Nuevos valores por defecto para variantes
+  variants: [],
+};
 
+export function MiniPCForm() {
   const {
     register,
     handleSubmit,
@@ -303,9 +336,7 @@ export function MiniPCForm() {
           </Button>
 
           {errors.portsImgUrl && (
-            <span className="text-red-500">
-              {errors.portsImgUrl.message as string}
-            </span>
+            <span className="text-red-500">{errors.portsImgUrl.message}</span>
           )}
         </div>
 
@@ -335,11 +366,19 @@ export function MiniPCForm() {
             value={connectivityValue}
             onChange={onConnectivityChange}
           />
+          {errors.connectivity && (
+            <span className="text-red-500">{errors.connectivity.message}</span>
+          )}
         </div>
 
         <div>
-          <Label>Variants</Label>
-          <span>TODO</span>
+          <VariantsInput
+            control={control}
+            errors={errors}
+            register={register}
+            setValue={setValue}
+            watch={watch}
+          />
         </div>
 
         <div className="flex items-center space-x-2">
