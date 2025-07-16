@@ -58,7 +58,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
     );
   }
 
-  // Si no hay usuario autenticado, mostrar login
+  // If no authenticated user, show login
   if (!user) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-gray-50">
@@ -69,13 +69,13 @@ export default function AuthGuard({ children }: AuthGuardProps) {
     );
   }
 
-  // Usuario autenticado - mostrar la aplicación
+  // Authenticated user - show application
   return (
     <div>
       <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <h1 className="text-xl font-semibold">Panel de Desarrolladores</h1>
+            <h1 className="text-xl font-semibold">Developer Panel</h1>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-muted-foreground">
                 {user.email}
@@ -86,7 +86,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
                 onClick={handleLogout}
               >
                 <LogOut className="h-4 w-4 mr-2" />
-                Cerrar sesión
+                Sign Out
               </Button>
             </div>
           </div>
@@ -97,7 +97,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
   );
 }
 
-// Componente de login
+// Login component
 function LoginForm({
   onLoginSuccess,
 }: {
@@ -134,10 +134,10 @@ function LoginForm({
           <Lock className="h-6 w-6 text-primary" />
         </div>
         <CardTitle className="text-2xl text-center">
-          Acceso de Desarrolladores
+          Developer Access
         </CardTitle>
         <CardDescription className="text-center">
-          Ingresa tus credenciales para acceder al panel
+          Enter your credentials to access the panel
         </CardDescription>
       </CardHeader>
 
@@ -150,13 +150,13 @@ function LoginForm({
               type="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              placeholder="tu-email@empresa.com"
+              placeholder="your-email@company.com"
               required
             />
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password">Contraseña</Label>
+            <Label htmlFor="password">Password</Label>
             <Input
               id="password"
               type="password"
@@ -177,10 +177,10 @@ function LoginForm({
             {isLoading ? (
               <>
                 <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-                Iniciando sesión...
+                Signing in...
               </>
             ) : (
-              "Iniciar sesión"
+              "Sign In"
             )}
           </Button>
         </form>
