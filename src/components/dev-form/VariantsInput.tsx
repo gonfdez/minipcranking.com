@@ -62,11 +62,11 @@ export function VariantsInput({
 
   const addVariant = () => {
     append({
-      RAMGB: 8,
+      RAMGB: NaN,
       RAM_type: "DDR4",
-      storageGB: 256,
+      storageGB: NaN,
       storage_type: "SSD",
-      offers: [{ url: "", price: 0 }],
+      offers: [{ url: "", price: NaN }],
     });
   };
 
@@ -104,7 +104,7 @@ export function VariantsInput({
       ))}
 
       {errors.variants && (
-        <span className="text-red-500 text-sm">{errors.variants.message}</span>
+        <span className="text-red-500">{errors.variants.message}</span>
       )}
     </div>
   );
@@ -176,7 +176,7 @@ function VariantCard({
               })}
             />
             {errors.variants?.[variantIndex]?.RAMGB && (
-              <span className="text-red-500 text-sm">
+              <span className="text-red-500">
                 {errors.variants[variantIndex].RAMGB.message}
               </span>
             )}
@@ -202,7 +202,7 @@ function VariantCard({
               </SelectContent>
             </Select>
             {errors.variants?.[variantIndex]?.RAM_type && (
-              <span className="text-red-500 text-sm">
+              <span className="text-red-500">
                 {errors.variants[variantIndex].RAM_type.message}
               </span>
             )}
@@ -222,7 +222,7 @@ function VariantCard({
               })}
             />
             {errors.variants?.[variantIndex]?.storageGB && (
-              <span className="text-red-500 text-sm">
+              <span className="text-red-500">
                 {errors.variants[variantIndex].storageGB.message}
               </span>
             )}
@@ -248,7 +248,7 @@ function VariantCard({
               </SelectContent>
             </Select>
             {errors.variants?.[variantIndex]?.storage_type && (
-              <span className="text-red-500 text-sm">
+              <span className="text-red-500">
                 {errors.variants[variantIndex].storage_type.message}
               </span>
             )}
@@ -315,7 +315,7 @@ function VariantCard({
           ))}
 
           {errors.variants?.[variantIndex]?.offers && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500">
               {errors.variants[variantIndex].offers.message}
             </span>
           )}

@@ -16,8 +16,8 @@ import { ConnectivitySelectAndCreate } from "./ConnectivitySelectAndCreate";
 import { VariantsInput } from "./VariantsInput";
 
 const formSchema = z.object({
-  model: z.string().min(1),
-  fromURL: z.url(),
+  model: z.string().min(1, "Model name is required"),
+  fromURL: z.url("Product URL is required"),
   manualCollect: z.boolean(),
   maxRAMCapacityGB: z.number().int().nonnegative().optional(),
   maxStorageCapacityGB: z.number().int().nonnegative().optional(),
@@ -37,9 +37,9 @@ const formSchema = z.object({
     it: z.string().min(1, "Italian description is required"),
     de: z.string().min(1, "German description is required"),
   }),
-  brand: z.string(),
-  CPU: z.string(),
-  graphics: z.string(),
+  brand: z.string().min(1, "Brand is required"),
+  CPU: z.string().min(1, "CPU is required"),
+  graphics: z.string().min(1, "Graphics is required"),
   dimensions: z.object({
     widthMM: z.number().int().positive().nullable().optional(),
     heightMM: z.number().int().positive().nullable().optional(),
@@ -71,7 +71,6 @@ const formSchema = z.object({
   builtinMicrophone: z.boolean().optional(),
   builtinSpeakers: z.boolean().optional(),
   supportExternalDiscreteGraphicsCard: z.boolean().optional(),
-  // Nueva sección de variantes
   variants: z
     .array(
       z.object({
