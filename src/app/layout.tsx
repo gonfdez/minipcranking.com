@@ -15,7 +15,8 @@ const geistMono = Geist_Mono({
 
 export const metadata: Metadata = {
   title: "Mini PC Ranking - Best Mini PCs Reviewed and Compared",
-  description: "Expert reviews, comparisons, buying guides, and rankings of the best Mini PCs for all budgets and use cases. Discover which Mini PC fits your needs perfectly.",
+  description:
+    "Expert reviews, comparisons, buying guides, and rankings of the best Mini PCs for all budgets and use cases. Discover which Mini PC fits your needs perfectly.",
 };
 
 export default function RootLayout({
@@ -29,7 +30,9 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         {/* Header */}
-        <header className="p-4 text-lg font-bold">minipcranking.com</header>
+        <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
+          <h1 className="text-2xl font-bold">minipcranking.com</h1>
+        </header>
         {children}
         <Toaster />
       </body>
