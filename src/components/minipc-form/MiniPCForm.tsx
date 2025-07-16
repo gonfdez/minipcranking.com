@@ -411,16 +411,6 @@ export function MiniPCForm() {
           />
         </div>
 
-        <div>
-          <VariantsInput
-            control={control}
-            errors={errors}
-            register={register}
-            setValue={setValue}
-            watch={watch}
-          />
-        </div>
-
         <div className="flex items-center space-x-2">
           <Checkbox
             id="manualCollect"
@@ -464,6 +454,16 @@ export function MiniPCForm() {
           <Label htmlFor="supportExternalDiscreteGraphicsCard">
             Supports External Discrete Graphics Card
           </Label>
+        </div>
+
+        <div>
+          <VariantsInput
+            control={control}
+            errors={errors}
+            register={register}
+            setValue={setValue}
+            watch={watch}
+          />
         </div>
 
         <Button type="submit" size={"lg"}>
