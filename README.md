@@ -23,3 +23,4 @@ Visit [minipcranking.com](https://minipcranking.com) to explore the platform.
 - **Authentication**: Supabase Auth with Row Level Security (RLS)
 - **Deployment**: [Vercel](https://vercel.com/)
 - **Icons**: [Lucide React](https://lucide.dev/)
+- **AI Assistant**: [Claude](https://claude.ai/) for development assistance
