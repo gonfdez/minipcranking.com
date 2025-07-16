@@ -291,7 +291,7 @@ function VariantCard({
                   type="number"
                   step="0.01"
                   min="0"
-                  placeholder="Price"
+                  placeholder="Price USD"
                   {...register(
                     `variants.${variantIndex}.offers.${offerIndex}.price`,
                     {
