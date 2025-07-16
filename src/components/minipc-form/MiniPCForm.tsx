@@ -27,7 +27,7 @@ const formSchema = z.object({
   mainImgUrl: z
     .array(
       z.object({
-        url: z.url().min(1),
+        url: z.url("Image URL cannot be empty and must be a valid URL"),
       })
     )
     .min(1, "At least one image URL is required"),
@@ -47,7 +47,7 @@ const formSchema = z.object({
   portsImgUrl: z
     .array(
       z.object({
-        url: z.url().min(1),
+        url: z.url("Port image URL cannot be empty and must be a valid URL"),
       })
     )
     .min(1, "At least one port image URL is required"),
@@ -106,13 +106,15 @@ export type FormData = z.infer<typeof formSchema>;
 
 const defaultValues = {
   brand: "",
+  CPU: "",
+  graphics: "",
   manualCollect: true,
   mainImgUrl: [{ url: "" }],
+  portsImgUrl: [{ url: "" }],
   dimensions: {
     widthMM: null,
     heightMM: null,
   },
-  portsImgUrl: [{ url: "" }],
   ports: {
     usb3: null,
     usb2: null,
@@ -128,7 +130,6 @@ const defaultValues = {
     thunderbolt: null,
   },
   connectivity: [],
-  // Nuevos valores por defecto para variantes
   variants: [],
 };
 
@@ -226,67 +227,107 @@ export function MiniPCForm() {
 
         <div>
           <Label>Product Images URL *</Label>
+          {fields.length === 0 && (
+            <Button
+              type="button"
+              onClick={() => append({ url: "" })}
+              className="mt-1"
+            >
+              + Add First Image URL
+            </Button>
+          )}
+
           {fields.map((field, index) => (
-            <div key={field.id} className="flex items-center space-x-2 mb-2">
-              <Input
-                {...register(`mainImgUrl.${index}.url`)}
-                placeholder="https://example.com/minipc_main_image.jpg"
-              />
-              <Button
-                type="button"
-                variant="destructive"
-                onClick={() => remove(index)}
-                disabled={fields.length === 1}
-              >
-                Remove
-              </Button>
+            <div key={field.id} className="mb-2">
+              <div className="flex items-center space-x-2">
+                <Input
+                  {...register(`mainImgUrl.${index}.url`)}
+                  placeholder="https://example.com/minipc_main_image.jpg"
+                />
+                <Button
+                  type="button"
+                  variant="destructive"
+                  onClick={() => remove(index)}
+                  disabled={fields.length === 1}
+                >
+                  Remove
+                </Button>
+              </div>
+              {errors.mainImgUrl?.[index]?.url && (
+                <span className="text-red-500 block mt-1">
+                  {errors.mainImgUrl[index].url.message}
+                </span>
+              )}
             </div>
           ))}
 
-          <Button
-            type="button"
-            onClick={() => append({ url: "" })}
-            className="mt-2"
-          >
-            + Add Image URL
-          </Button>
+          {fields.length > 0 && (
+            <Button
+              type="button"
+              onClick={() => append({ url: "" })}
+              className="mt-1"
+            >
+              + Add Image URL
+            </Button>
+          )}
 
           {errors.mainImgUrl && (
-            <span className="text-red-500">
-              {errors.mainImgUrl.message as string}
+            <span className="text-red-500 block mt-1">
+              {errors.mainImgUrl.message}
             </span>
           )}
         </div>
 
         <div>
           <Label>Ports Images URL *</Label>
+          {portsImagesFields.length === 0 && (
+            <Button
+              type="button"
+              onClick={() => appendPortsImage({ url: "" })}
+              className="mt-1"
+            >
+              + Add First Port Image URL
+            </Button>
+          )}
+
           {portsImagesFields.map((field, index) => (
-            <div key={field.id} className="flex items-center space-x-2 mb-2">
-              <Input
-                {...register(`portsImgUrl.${index}.url`)}
-                placeholder="https://example.com/minipc_ports_image.jpg"
-              />
-              <Button
-                type="button"
-                variant="destructive"
-                onClick={() => removePortsImage(index)}
-                disabled={portsImagesFields.length === 1}
-              >
-                Remove
-              </Button>
+            <div key={field.id} className="mb-2">
+              <div className="flex items-center space-x-2">
+                <Input
+                  {...register(`portsImgUrl.${index}.url`)}
+                  placeholder="https://example.com/minipc_ports_image.jpg"
+                />
+                <Button
+                  type="button"
+                  variant="destructive"
+                  onClick={() => removePortsImage(index)}
+                  disabled={portsImagesFields.length === 1}
+                >
+                  Remove
+                </Button>
+              </div>
+              {errors.portsImgUrl?.[index]?.url && (
+                <span className="text-red-500 block mt-1">
+                  {errors.portsImgUrl[index].url.message}
+                </span>
+              )}
             </div>
           ))}
 
-          <Button
-            type="button"
-            onClick={() => appendPortsImage({ url: "" })}
-            className="mt-2"
-          >
-            + Add Ports Image
-          </Button>
+          {portsImagesFields.length > 0 && (
+            <Button
+              type="button"
+              onClick={() => appendPortsImage({ url: "" })}
+              className="mt-1"
+            >
+              + Add Port Image URL
+            </Button>
+          )}
 
           {errors.portsImgUrl && (
-            <span className="text-red-500">{errors.portsImgUrl.message}</span>
+            <span className="text-red-500 block mt-1">
+              {errors.portsImgUrl.message}
+            </span>
           )}
         </div>
 
