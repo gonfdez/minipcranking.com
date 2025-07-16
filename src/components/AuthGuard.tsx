@@ -61,7 +61,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
   // If no authenticated user, show login
   if (!user) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-gray-50">
+      <div className="flex items-center justify-center min-h-screen bg-background">
         <div className="w-full max-w-md">
           <LoginForm onLoginSuccess={(user) => setUser(user)} />
         </div>
@@ -133,9 +133,7 @@ function LoginForm({
         <div className="flex items-center justify-center mb-2">
           <Lock className="h-6 w-6 text-primary" />
         </div>
-        <CardTitle className="text-2xl text-center">
-          Developer Access
-        </CardTitle>
+        <CardTitle className="text-2xl text-center">Developer Access</CardTitle>
         <CardDescription className="text-center">
           Enter your credentials to access the panel
         </CardDescription>

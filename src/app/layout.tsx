@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "@/components/ThemeProvider";
+import { ThemeToggle } from "@/components/ThemeToggle";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -25,16 +27,24 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {/* Header */}
-        <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2">
-          <h1 className="text-2xl font-bold">minipcranking.com</h1>
-        </header>
-        {children}
-        <Toaster />
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          {/* Header */}
+          <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between">
+            <h1 className="text-2xl font-bold">minipcranking.com</h1>
+            <ThemeToggle />
+          </header>
+          {children}
+          <Toaster />
+        </ThemeProvider>
       </body>
     </html>
   );
