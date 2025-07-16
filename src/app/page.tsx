@@ -1,5 +1,5 @@
 import AuthGuard from "@/components/AuthGuard";
-import { MiniPCForm } from "@/components/dev-form/MiniPCForm";
+import { MiniPCForm } from "@/components/minipc-form/MiniPCForm";
 
 export default function Home() {
   return (
