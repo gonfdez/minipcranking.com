@@ -17,7 +17,7 @@ export function DescriptionInput({ register, errors }: DescriptionInputProps) {
         <Label>Spanish (ES) *</Label>
         <Textarea
           {...register("description.es")}
-          placeholder="Descripción en español"
+          placeholder="Description in Spanish"
         />
         {errors.description?.es && (
           <span className="text-red-500">{errors.description.es.message}</span>
