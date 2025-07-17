@@ -165,13 +165,10 @@ function VariantCard({
       <CardContent className="space-y-4">
         {/* RAM Configuration */}
         <div className="space-y-2">
-          <Label className="text-sm font-medium">RAM Configuration *</Label>
+          <Label className=" font-medium">RAM Configuration *</Label>
           <div className="flex gap-4">
             <div className="w-1/2">
-              <Label
-                htmlFor={`ram-capacity-${variantIndex}`}
-                className="text-sm"
-              >
+              <Label htmlFor={`ram-capacity-${variantIndex}`} className="">
                 Capacity (GB)
               </Label>
               <Input
@@ -185,14 +182,14 @@ function VariantCard({
                 })}
               />
               {errors.variants?.[variantIndex]?.RAMGB && (
-                <span className="text-red-500 text-sm">
+                <span className="text-red-500 ">
                   {errors.variants[variantIndex].RAMGB.message}
                 </span>
               )}
             </div>
 
             <div className="w-1/2">
-              <Label htmlFor={`ram-type-${variantIndex}`} className="text-sm">
+              <Label htmlFor={`ram-type-${variantIndex}`} className="">
                 Type
               </Label>
               <Select
@@ -216,7 +213,7 @@ function VariantCard({
                 </SelectContent>
               </Select>
               {errors.variants?.[variantIndex]?.RAM_type && (
-                <span className="text-red-500 text-sm">
+                <span className="text-red-500 ">
                   {errors.variants[variantIndex].RAM_type.message}
                 </span>
               )}
@@ -226,13 +223,10 @@ function VariantCard({
 
         {/* Storage Configuration */}
         <div className="space-y-2">
-          <Label className="text-sm font-medium">Storage Configuration *</Label>
+          <Label className=" font-medium">Storage Configuration *</Label>
           <div className="flex gap-4">
             <div className="w-1/2">
-              <Label
-                htmlFor={`storage-capacity-${variantIndex}`}
-                className="text-sm"
-              >
+              <Label htmlFor={`storage-capacity-${variantIndex}`} className="">
                 Capacity (GB)
               </Label>
               <Input
@@ -246,17 +240,14 @@ function VariantCard({
                 })}
               />
               {errors.variants?.[variantIndex]?.storageGB && (
-                <span className="text-red-500 text-sm">
+                <span className="text-red-500 ">
                   {errors.variants[variantIndex].storageGB.message}
                 </span>
               )}
             </div>
 
             <div className="w-1/2">
-              <Label
-                htmlFor={`storage-type-${variantIndex}`}
-                className="text-sm"
-              >
+              <Label htmlFor={`storage-type-${variantIndex}`} className="">
                 Type
               </Label>
               <Select
@@ -280,7 +271,7 @@ function VariantCard({
                 </SelectContent>
               </Select>
               {errors.variants?.[variantIndex]?.storage_type && (
-                <span className="text-red-500 text-sm">
+                <span className="text-red-500 ">
                   {errors.variants[variantIndex].storage_type.message}
                 </span>
               )}
@@ -306,15 +297,15 @@ function VariantCard({
           {/* Headers para las columnas de ofertas */}
           <div className="grid grid-cols-12 gap-2 mb-2">
             <div className="col-span-8">
-              <Label className="text-xs font-medium text-gray-600">URL</Label>
+              <Label className="font-medium text-gray-600">URL</Label>
             </div>
             <div className="col-span-3">
-              <Label className="text-xs font-medium text-gray-600">
+              <Label className="font-medium text-gray-600">
                 Price (USD)
               </Label>
             </div>
             <div className="col-span-1">
-              <Label className="text-xs font-medium text-gray-600">
+              <Label className="font-medium text-gray-600">
                 Action
               </Label>
             </div>
@@ -336,7 +327,7 @@ function VariantCard({
                   )}
                 />
                 {errors.variants?.[variantIndex]?.offers?.[offerIndex]?.url && (
-                  <span className="text-red-500 text-xs block mt-1">
+                  <span className="text-red-500 block mt-1">
                     {
                       errors.variants[variantIndex].offers[offerIndex].url
                         .message
@@ -360,7 +351,7 @@ function VariantCard({
                 />
                 {errors.variants?.[variantIndex]?.offers?.[offerIndex]
                   ?.price && (
-                  <span className="text-red-500 text-xs block mt-1">
+                  <span className="text-red-500 block mt-1">
                     {
                       errors.variants[variantIndex].offers[offerIndex].price
                         .message
@@ -384,7 +375,7 @@ function VariantCard({
           ))}
 
           {errors.variants?.[variantIndex]?.offers && (
-            <span className="text-red-500 text-sm">
+            <span className="text-red-500 ">
               {errors.variants[variantIndex].offers.message}
             </span>
           )}
