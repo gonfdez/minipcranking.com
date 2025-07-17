@@ -249,7 +249,7 @@ export function MiniPCForm() {
 
       if (result.success) {
         toast.success("Success!", {
-          description: "MiniPC created successfully",
+          description: "Mini PC created successfully",
         });
 
         // Limpiar el formulario
@@ -258,11 +258,11 @@ export function MiniPCForm() {
         setFormDataToSubmit(null);
       } else {
         toast.error("Error", {
-          description: result.error || "Failed to create MiniPC",
+          description: result.error || "Failed to create Mini PC",
         });
       }
     } catch (error) {
-      console.error("Error creating MiniPC:", error);
+      console.error("Error creating Mini PC:", error);
       toast.error("Error", {
         description: "An unexpected error occurred. Please try again.",
       });
@@ -279,7 +279,7 @@ export function MiniPCForm() {
   return (
     <div className="w-full mx-auto">
       <div className="flex justify-between">
-        <h1 className="text-2xl font-bold mb-6">Create a new MiniPC</h1>
+        <h1 className="text-2xl font-bold mb-6">Create a new Mini PC</h1>
         <Button variant={'outline'} onClick={() => (window.location.href = "/minipcs")}>
           Go to Mini PC's Table
         </Button>
@@ -612,7 +612,7 @@ export function MiniPCForm() {
         </div>
 
         <Button type="submit" size={"lg"} disabled={isSubmitting}>
-          {isSubmitting ? "Validating..." : "Create MiniPC"}
+          {isSubmitting ? "Validating..." : "Create Mini PC"}
         </Button>
       </form>
 
