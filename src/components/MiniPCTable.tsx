@@ -101,37 +101,16 @@ export function MiniPCTable() {
         .order("created_at", { ascending: false });
 
       if (error) {
-        toast.error(`Error fetching MiniPCs: ${error.message}`);
+        toast.error(`Error fetching Mini PC's: ${error.message}`);
         return;
       }
 
       setMiniPCs(data || []);
     } catch (err) {
       toast.error("An unexpected error occurred");
-      console.error("Error fetching MiniPCs:", err);
+      console.error("Error fetching Mini PC's:", err);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleDelete = async (id: number) => {
-    if (!confirm("Are you sure you want to delete this MiniPC?")) {
-      return;
-    }
-
-    try {
-      const { error } = await supabase.from("MiniPCs").delete().eq("id", id);
-
-      if (error) {
-        toast.error(`Error deleting MiniPC: ${error.message}`);
-        return;
-      }
-
-      toast.success("MiniPC deleted successfully");
-      fetchMiniPCs();
-    } catch (err) {
-      toast.error("An unexpected error occurred");
-      console.error("Error deleting MiniPC:", err);
     }
   };
 
@@ -151,7 +130,7 @@ export function MiniPCTable() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="text-lg">Loading MiniPCs...</div>
+        <div className="text-lg">Loading Mini PC's...</div>
       </div>
     );
   }
@@ -159,7 +138,7 @@ export function MiniPCTable() {
   return (
     <div className="container mx-auto">
       <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">MiniPCs</h1>
+        <h1 className="text-3xl font-bold">Mini PC's</h1>
         <Button
           variant={"outline"}
           onClick={() => (window.location.href = "/")}
@@ -173,7 +152,7 @@ export function MiniPCTable() {
         <div className="relative w-full">
           <Search className="absolute left-3 top-3 h-4 w-4 text-gray-400" />
           <Input
-            placeholder="Search MiniPCs..."
+            placeholder="Search Mini PC's..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
             className="pl-10"
@@ -204,8 +183,8 @@ export function MiniPCTable() {
                   className="text-center py-8 text-gray-500"
                 >
                   {searchTerm
-                    ? "No MiniPCs found matching your search."
-                    : "No MiniPCs found."}
+                    ? "No Mini PC's found matching your search."
+                    : "No Mini PC's found."}
                 </TableCell>
               </TableRow>
             ) : (
