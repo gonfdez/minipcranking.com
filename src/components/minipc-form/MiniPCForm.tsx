@@ -192,7 +192,7 @@ export function MiniPCForm() {
 
         <div>
           <Label>Model name *</Label>
-          <Input {...register("model")} />
+          <Input {...register("model")} placeholder="Model name of the Mini PC" />
           {errors.model && (
             <span className="text-red-500">{errors.model.message}</span>
           )}
@@ -219,7 +219,7 @@ export function MiniPCForm() {
 
         <div>
           <Label>Product URL *</Label>
-          <Input {...register("fromURL")} />
+          <Input {...register("fromURL")} placeholder="URL of the product where you are taking the data" />
           {errors.fromURL && (
             <span className="text-red-500">{errors.fromURL.message}</span>
           )}

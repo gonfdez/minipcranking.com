@@ -139,7 +139,7 @@ function VariantCard({
   });
 
   const addOffer = () => {
-    appendOffer({ url: "", price: 0 });
+    appendOffer({ url: "", price: NaN });
   };
 
   const currentRAMType = watch(`variants.${variantIndex}.RAM_type`);
