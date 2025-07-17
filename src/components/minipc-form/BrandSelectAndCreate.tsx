@@ -200,7 +200,7 @@ export function BrandSelectAndCreate({ value, onChange }: Props) {
           if (!open) resetForm();
         }}
       >
-        <DialogContent>
+        <DialogContent onInteractOutside={(e) => e.preventDefault()}>
           <DialogHeader>
             <DialogTitle>
               {formBrandId ? "Edit Brand" : "Add New Brand"}

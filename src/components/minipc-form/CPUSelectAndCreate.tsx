@@ -211,7 +211,7 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
           if (!open) resetForm();
         }}
       >
-        <DialogContent>
+        <DialogContent  onInteractOutside={(e) => e.preventDefault()}>
           <DialogHeader>
             <DialogTitle>{formCpuId ? "Edit CPU" : "Add New CPU"}</DialogTitle>
           </DialogHeader>

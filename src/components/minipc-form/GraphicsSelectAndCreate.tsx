@@ -230,7 +230,7 @@ export function GraphicsSelectAndCreate({
           if (!open) resetForm();
         }}
       >
-        <DialogContent>
+        <DialogContent onInteractOutside={(e) => e.preventDefault()}>
           <DialogHeader>
             <DialogTitle>
               {formData.id ? "Edit Graphics" : "Add New Graphics"}

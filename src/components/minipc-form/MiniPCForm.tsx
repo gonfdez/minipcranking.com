@@ -3,10 +3,12 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
+import { useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
+import { toast } from "sonner";
 import { BrandSelectAndCreate } from "./BrandSelectAndCreate";
 import { CPUSelectAndCreate } from "./CPUSelectAndCreate";
 import { GraphicsSelectAndCreate } from "./GraphicsSelectAndCreate";
@@ -14,16 +16,45 @@ import { DescriptionInput } from "./DescriptionInput";
 import { DimensionsInput } from "./DimensionsInput";
 import { ConnectivitySelectAndCreate } from "./ConnectivitySelectAndCreate";
 import { VariantsInput } from "./VariantsInput";
+import { ConfirmationDialog } from "./ConfirmationDialog";
+import {
+  createMiniPC,
+  validateReferences,
+  getFormDataWithLabels,
+  FormDataWithLabels,
+} from "./supabase-functions";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model name is required"),
   fromURL: z.url("Product URL is required"),
   manualCollect: z.boolean(),
-  maxRAMCapacityGB: z.number().int().nonnegative().optional(),
-  maxStorageCapacityGB: z.number().int().nonnegative().optional(),
-  weightKg: z.number().positive().optional(),
-  powerConsumptionW: z.number().positive().optional(),
-  releaseYear: z.number().int().optional(),
+  maxRAMCapacityGB: z
+    .number()
+    .int()
+    .nonnegative()
+    .optional()
+    .or(z.nan().transform(() => undefined)),
+  maxStorageCapacityGB: z
+    .number()
+    .int()
+    .nonnegative()
+    .optional()
+    .or(z.nan().transform(() => undefined)),
+  weightKg: z
+    .number()
+    .positive()
+    .optional()
+    .or(z.nan().transform(() => undefined)),
+  powerConsumptionW: z
+    .number()
+    .positive()
+    .optional()
+    .or(z.nan().transform(() => undefined)),
+  releaseYear: z
+    .number()
+    .int()
+    .optional()
+    .or(z.nan().transform(() => undefined)),
   mainImgUrl: z
     .array(
       z.object({
@@ -134,6 +165,11 @@ const defaultValues = {
 };
 
 export function MiniPCForm() {
+  const [showConfirmation, setShowConfirmation] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formDataToSubmit, setFormDataToSubmit] =
+    useState<FormDataWithLabels | null>(null);
+
   const {
     register,
     handleSubmit,
@@ -141,6 +177,7 @@ export function MiniPCForm() {
     setValue,
     watch,
     control,
+    reset,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues,
@@ -173,9 +210,70 @@ export function MiniPCForm() {
     control,
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log("Form data submitted:", data);
-    // TODO: Integrate with Supabase insert
+  const onSubmit = async (data: FormData) => {
+    console.log("Form data:", data);
+    console.log("Form errors:", errors);
+
+    try {
+      // Validar referencias antes de mostrar el diálogo
+      const validation = await validateReferences(data);
+
+      if (!validation.isValid) {
+        toast.error("Validation Error", {
+          description: validation.errors.join(", "),
+        });
+        return;
+      }
+
+      // Obtener los labels para mostrar información legible
+      const formDataWithLabels = await getFormDataWithLabels(data);
+
+      // Guardar los datos y mostrar el diálogo de confirmación
+      setFormDataToSubmit(formDataWithLabels);
+      setShowConfirmation(true);
+    } catch (error) {
+      console.error("Error during validation:", error);
+      toast.error("Error", {
+        description: "An error occurred during validation. Please try again.",
+      });
+    }
+  };
+
+  const handleConfirmSubmit = async () => {
+    if (!formDataToSubmit) return;
+
+    setIsSubmitting(true);
+
+    try {
+      const result = await createMiniPC(formDataToSubmit);
+
+      if (result.success) {
+        toast.success("Success!", {
+          description: "MiniPC created successfully",
+        });
+
+        // Limpiar el formulario
+        reset();
+        setShowConfirmation(false);
+        setFormDataToSubmit(null);
+      } else {
+        toast.error("Error", {
+          description: result.error || "Failed to create MiniPC",
+        });
+      }
+    } catch (error) {
+      console.error("Error creating MiniPC:", error);
+      toast.error("Error", {
+        description: "An unexpected error occurred. Please try again.",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
+
+  const handleCloseConfirmation = () => {
+    setShowConfirmation(false);
+    setFormDataToSubmit(null);
   };
 
   return (
@@ -192,7 +290,10 @@ export function MiniPCForm() {
 
         <div>
           <Label>Model name *</Label>
-          <Input {...register("model")} placeholder="Model name of the Mini PC" />
+          <Input
+            {...register("model")}
+            placeholder="Model name of the Mini PC"
+          />
           {errors.model && (
             <span className="text-red-500">{errors.model.message}</span>
           )}
@@ -219,7 +320,10 @@ export function MiniPCForm() {
 
         <div>
           <Label>Product URL *</Label>
-          <Input {...register("fromURL")} placeholder="URL of the product where you are taking the data" />
+          <Input
+            {...register("fromURL")}
+            placeholder="URL of the product where you are taking the data"
+          />
           {errors.fromURL && (
             <span className="text-red-500">{errors.fromURL.message}</span>
           )}
@@ -371,24 +475,46 @@ export function MiniPCForm() {
           <Label>Max RAM Capacity (GB)</Label>
           <Input
             type="number"
-            {...register("maxRAMCapacityGB", { valueAsNumber: true })}
+            {...register("maxRAMCapacityGB", {
+              valueAsNumber: true,
+              setValueAs: (value) => (value === "" ? undefined : Number(value)),
+            })}
           />
+          {errors.maxRAMCapacityGB && (
+            <span className="text-red-500">
+              {errors.maxRAMCapacityGB.message}
+            </span>
+          )}
         </div>
 
         <div>
           <Label>Max Storage Capacity (GB)</Label>
           <Input
             type="number"
-            {...register("maxStorageCapacityGB", { valueAsNumber: true })}
+            {...register("maxStorageCapacityGB", {
+              valueAsNumber: true,
+              setValueAs: (value) => (value === "" ? undefined : Number(value)),
+            })}
           />
+          {errors.maxStorageCapacityGB && (
+            <span className="text-red-500">
+              {errors.maxStorageCapacityGB.message}
+            </span>
+          )}
         </div>
 
         <div>
           <Label>Weight (Kg)</Label>
           <Input
             type="number"
-            {...register("weightKg", { valueAsNumber: true })}
+            {...register("weightKg", {
+              valueAsNumber: true,
+              setValueAs: (value) => (value === "" ? undefined : Number(value)),
+            })}
           />
+          {errors.weightKg && (
+            <span className="text-red-500">{errors.weightKg.message}</span>
+          )}
         </div>
 
         <div>
@@ -399,16 +525,30 @@ export function MiniPCForm() {
           <Label>Power Consumption (W)</Label>
           <Input
             type="number"
-            {...register("powerConsumptionW", { valueAsNumber: true })}
+            {...register("powerConsumptionW", {
+              valueAsNumber: true,
+              setValueAs: (value) => (value === "" ? undefined : Number(value)),
+            })}
           />
+          {errors.powerConsumptionW && (
+            <span className="text-red-500">
+              {errors.powerConsumptionW.message}
+            </span>
+          )}
         </div>
 
         <div>
           <Label>Release Year</Label>
           <Input
             type="number"
-            {...register("releaseYear", { valueAsNumber: true })}
+            {...register("releaseYear", {
+              valueAsNumber: true,
+              setValueAs: (value) => (value === "" ? undefined : Number(value)),
+            })}
           />
+          {errors.releaseYear && (
+            <span className="text-red-500">{errors.releaseYear.message}</span>
+          )}
         </div>
 
         <div className="flex items-center space-x-2">
@@ -418,7 +558,7 @@ export function MiniPCForm() {
             onCheckedChange={(checked) => setValue("manualCollect", !!checked)}
             disabled
           />
-          <Label id="manualCollect">Manual Collect *</Label>
+          <Label htmlFor="manualCollect">Manual Collect *</Label>
         </div>
 
         <div className="flex items-center space-x-2">
@@ -466,10 +606,21 @@ export function MiniPCForm() {
           />
         </div>
 
-        <Button type="submit" size={"lg"}>
-          Submit
+        <Button type="submit" size={"lg"} disabled={isSubmitting}>
+          {isSubmitting ? "Validating..." : "Create MiniPC"}
         </Button>
       </form>
+
+      {/* Diálogo de confirmación */}
+      {formDataToSubmit && (
+        <ConfirmationDialog
+          isOpen={showConfirmation}
+          onClose={handleCloseConfirmation}
+          onConfirm={handleConfirmSubmit}
+          formData={formDataToSubmit}
+          isLoading={isSubmitting}
+        />
+      )}
     </div>
   );
 }

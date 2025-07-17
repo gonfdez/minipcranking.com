@@ -177,7 +177,7 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
           if (!open) resetForm();
         }}
       >
-        <DialogContent>
+        <DialogContent  onInteractOutside={(e) => e.preventDefault()}>
           <DialogHeader>
             <DialogTitle>Add New Connectivity</DialogTitle>
           </DialogHeader>
