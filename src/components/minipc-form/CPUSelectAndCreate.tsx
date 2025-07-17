@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -179,6 +180,7 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
         </Select>
 
         <Button
+          type="button"
           onClick={() => {
             if (!value) {
               toast.error("Select a CPU to edit");
@@ -192,6 +194,7 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
         </Button>
 
         <Button
+          type="button"
           onClick={() => {
             resetForm();
             setOpenModal(true);
@@ -213,60 +216,87 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
             <DialogTitle>{formCpuId ? "Edit CPU" : "Add New CPU"}</DialogTitle>
           </DialogHeader>
 
-          <div className="space-y-3">
-            <BrandSelectAndCreate
-              value={formData.brand || undefined}
-              onChange={(newBrandId) => {
-                setFormData((prev) => ({
-                  ...prev,
-                  brand: newBrandId,
-                }));
-              }}
-            />
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="cpu-brand">Brand *</Label>
+              <BrandSelectAndCreate
+                value={formData.brand || undefined}
+                onChange={(newBrandId) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    brand: newBrandId,
+                  }));
+                }}
+              />
+            </div>
 
-            <Input
-              placeholder="Model"
-              value={formData.model}
-              onChange={(e) =>
-                setFormData({ ...formData, model: e.target.value })
-              }
-            />
+            <div className="space-y-2">
+              <Label htmlFor="cpu-model">Model *</Label>
+              <Input
+                id="cpu-model"
+                placeholder="Enter CPU model"
+                value={formData.model}
+                onChange={(e) =>
+                  setFormData({ ...formData, model: e.target.value })
+                }
+              />
+            </div>
 
-            <Input
-              placeholder="Cores"
-              type="number"
-              value={formData.cores}
-              onChange={(e) =>
-                setFormData({ ...formData, cores: e.target.value })
-              }
-            />
-            <Input
-              placeholder="Threads"
-              type="number"
-              value={formData.threads}
-              onChange={(e) =>
-                setFormData({ ...formData, threads: e.target.value })
-              }
-            />
-            <Input
-              placeholder="Base Clock (GHz)"
-              type="number"
-              value={formData.baseClockGHz}
-              onChange={(e) =>
-                setFormData({ ...formData, baseClockGHz: e.target.value })
-              }
-            />
-            <Input
-              placeholder="Boost Clock (GHz)"
-              type="number"
-              value={formData.boostClockGHz}
-              onChange={(e) =>
-                setFormData({ ...formData, boostClockGHz: e.target.value })
-              }
-            />
+            <div className="space-y-2">
+              <Label htmlFor="cpu-cores">Cores *</Label>
+              <Input
+                id="cpu-cores"
+                placeholder="Number of cores"
+                type="number"
+                value={formData.cores}
+                onChange={(e) =>
+                  setFormData({ ...formData, cores: e.target.value })
+                }
+              />
+            </div>
 
-            {error && <p className="text-red-600">{error}</p>}
-            <div className="flex justify-end space-x-2">
+            <div className="space-y-2">
+              <Label htmlFor="cpu-threads">Threads *</Label>
+              <Input
+                id="cpu-threads"
+                placeholder="Number of threads"
+                type="number"
+                value={formData.threads}
+                onChange={(e) =>
+                  setFormData({ ...formData, threads: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="cpu-base-clock">Base Clock (GHz)</Label>
+              <Input
+                id="cpu-base-clock"
+                placeholder="Base clock frequency"
+                type="number"
+                value={formData.baseClockGHz}
+                onChange={(e) =>
+                  setFormData({ ...formData, baseClockGHz: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="cpu-boost-clock">Boost Clock (GHz)</Label>
+              <Input
+                id="cpu-boost-clock"
+                placeholder="Boost clock frequency"
+                type="number"
+                value={formData.boostClockGHz}
+                onChange={(e) =>
+                  setFormData({ ...formData, boostClockGHz: e.target.value })
+                }
+              />
+            </div>
+
+            {error && <p className="text-red-600 text-sm">{error}</p>}
+
+            <div className="flex justify-end space-x-2 pt-4">
               <Button
                 variant="outline"
                 onClick={() => {

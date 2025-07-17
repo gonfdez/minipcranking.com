@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -85,6 +86,10 @@ export function BrandSelectAndCreate({ value, onChange }: Props) {
       setError("Brand name must be at least 2 characters.");
       return;
     }
+    if (!newBrandImgHref.trim()) {
+      setError("Image URL is required.");
+      return;
+    }
     if (newBrandImgHref && !isValidUrl(newBrandImgHref)) {
       setError("Image URL is invalid.");
       return;
@@ -96,7 +101,7 @@ export function BrandSelectAndCreate({ value, onChange }: Props) {
         .from("Brands")
         .update({
           name: newBrandName.trim(),
-          imgHref: newBrandImgHref || null,
+          imgHref: newBrandImgHref.trim(),
         })
         .eq("id", formBrandId);
 
@@ -111,7 +116,7 @@ export function BrandSelectAndCreate({ value, onChange }: Props) {
       // Create new
       const { data, error: createError } = await supabase
         .from("Brands")
-        .insert({ name: newBrandName.trim(), imgHref: newBrandImgHref || null })
+        .insert({ name: newBrandName.trim(), imgHref: newBrandImgHref.trim() })
         .select()
         .single();
 
@@ -202,18 +207,29 @@ export function BrandSelectAndCreate({ value, onChange }: Props) {
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            <Input
-              placeholder="Brand name"
-              value={newBrandName}
-              onChange={(e) => setNewBrandName(e.target.value)}
-            />
-            <Input
-              placeholder="Image URL (optional)"
-              value={newBrandImgHref}
-              onChange={(e) => setNewBrandImgHref(e.target.value)}
-            />
-            {error && <p className="text-red-600">{error}</p>}
-            <div className="flex justify-end space-x-2">
+            <div className="space-y-2">
+              <Label htmlFor="brand-name">Brand Name *</Label>
+              <Input
+                id="brand-name"
+                placeholder="Enter brand name"
+                value={newBrandName}
+                onChange={(e) => setNewBrandName(e.target.value)}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="brand-image">Image URL *</Label>
+              <Input
+                id="brand-image"
+                placeholder="https://example.com/image.jpg"
+                value={newBrandImgHref}
+                onChange={(e) => setNewBrandImgHref(e.target.value)}
+              />
+            </div>
+
+            {error && <p className="text-red-600 text-sm">{error}</p>}
+
+            <div className="flex justify-end space-x-2 pt-4">
               <Button
                 variant="outline"
                 onClick={() => {
@@ -224,7 +240,7 @@ export function BrandSelectAndCreate({ value, onChange }: Props) {
                 Cancel
               </Button>
               <Button onClick={handleSave}>
-                {formBrandId ? "Save Changes" : "Create"}
+                {formBrandId ? "Save Changes" : "Create Brand"}
               </Button>
             </div>
           </div>

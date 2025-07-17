@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
@@ -48,7 +49,7 @@ export function GraphicsSelectAndCreate({
   const [openModal, setOpenModal] = useState(false);
   const [formData, setFormData] = useState<FormData>({
     id: null,
-    integrated: false,
+    integrated: true,
     brand: "",
     model: "",
     frequencyMHz: "",
@@ -103,7 +104,7 @@ export function GraphicsSelectAndCreate({
   function resetForm() {
     setFormData({
       id: null,
-      integrated: false,
+      integrated: true,
       brand: "",
       model: "",
       frequencyMHz: "",
@@ -116,13 +117,13 @@ export function GraphicsSelectAndCreate({
   async function handleSave() {
     setError(null);
 
-    if (!formData.model.trim()) {
-      setError("Model is required.");
+    if (!formData.brand.trim()) {
+      setError("Brand is required.");
       return;
     }
 
-    if (!formData.brand.trim()) {
-      setError("Brand is required.");
+    if (!formData.model.trim()) {
+      setError("Model is required.");
       return;
     }
 
@@ -198,6 +199,7 @@ export function GraphicsSelectAndCreate({
         </Select>
 
         <Button
+          type="button"
           onClick={() => {
             if (!value) {
               toast.error("Select a Graphics to edit");
@@ -235,58 +237,97 @@ export function GraphicsSelectAndCreate({
             </DialogTitle>
           </DialogHeader>
 
-          <div className="space-y-2">
-            <BrandSelectAndCreate
-              value={formData.brand || undefined}
-              onChange={(newBrandId) => {
-                setFormData((prev) => ({
-                  ...prev,
-                  brand: newBrandId,
-                }));
-              }}
-            />
-            <Input
-              placeholder="Model"
-              value={formData.model}
-              onChange={(e) =>
-                setFormData({ ...formData, model: e.target.value })
-              }
-            />
-            <Checkbox
-              checked={formData.integrated}
-              onCheckedChange={(checked) =>
-                setFormData({ ...formData, integrated: !!checked })
-              }
-            />{" "}
-            Integrated
-            <Input
-              placeholder="Frequency (MHz)"
-              value={formData.frequencyMHz}
-              onChange={(e) =>
-                setFormData({ ...formData, frequencyMHz: e.target.value })
-              }
-            />
-            <Input
-              placeholder="Max TOPS"
-              value={formData.maxTOPS}
-              onChange={(e) =>
-                setFormData({ ...formData, maxTOPS: e.target.value })
-              }
-            />
-            <Input
-              placeholder="Graphic Cores CU"
-              value={formData.graphicCoresCU}
-              onChange={(e) =>
-                setFormData({ ...formData, graphicCoresCU: e.target.value })
-              }
-            />
-            {error && <p className="text-red-500">{error}</p>}
-            <div className="flex justify-end space-x-2">
-              <Button variant="outline" onClick={() => setOpenModal(false)}>
+          <div className="space-y-4">
+            <div className="space-y-2">
+              <Label htmlFor="graphics-brand">Brand *</Label>
+              <BrandSelectAndCreate
+                value={formData.brand || undefined}
+                onChange={(newBrandId) => {
+                  setFormData((prev) => ({
+                    ...prev,
+                    brand: newBrandId,
+                  }));
+                }}
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="graphics-model">Model *</Label>
+              <Input
+                id="graphics-model"
+                placeholder="Enter graphics model"
+                value={formData.model}
+                onChange={(e) =>
+                  setFormData({ ...formData, model: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="flex items-center space-x-2">
+              <Checkbox
+                id="graphics-integrated"
+                checked={formData.integrated}
+                onCheckedChange={(checked) =>
+                  setFormData({ ...formData, integrated: !!checked })
+                }
+              />
+              <Label htmlFor="graphics-integrated">Integrated</Label>
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="graphics-frequency">Frequency (MHz)</Label>
+              <Input
+                id="graphics-frequency"
+                placeholder="Enter frequency in MHz"
+                type="number"
+                value={formData.frequencyMHz}
+                onChange={(e) =>
+                  setFormData({ ...formData, frequencyMHz: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="graphics-max-tops">Max TOPS</Label>
+              <Input
+                id="graphics-max-tops"
+                placeholder="Enter max TOPS"
+                type="number"
+                value={formData.maxTOPS}
+                onChange={(e) =>
+                  setFormData({ ...formData, maxTOPS: e.target.value })
+                }
+              />
+            </div>
+
+            <div className="space-y-2">
+              <Label htmlFor="graphics-cores">Graphic Cores CU</Label>
+              <Input
+                id="graphics-cores"
+                placeholder="Enter number of graphic cores"
+                type="number"
+                value={formData.graphicCoresCU}
+                onChange={(e) =>
+                  setFormData({ ...formData, graphicCoresCU: e.target.value })
+                }
+              />
+            </div>
+
+            {error && <p className="text-red-600 text-sm">{error}</p>}
+
+            <div className="flex justify-end space-x-2 pt-4">
+              <Button
+                type="button"
+                variant="outline"
+                onClick={() => {
+                  setOpenModal(false);
+                  resetForm();
+                }}
+              >
                 Cancel
               </Button>
-              <Button onClick={handleSave}>
-                {formData.id ? "Save Changes" : "Create"}
+              <Button type="button" onClick={handleSave}>
+                {formData.id ? "Save Changes" : "Create Graphics"}
               </Button>
             </div>
           </div>

@@ -147,7 +147,7 @@ function VariantCard({
 
   return (
     <Card className="relative">
-      <CardHeader className="pb-3">
+      <CardHeader>
         <div className="flex items-center justify-between">
           <CardTitle className="text-lg">Variant {variantIndex + 1}</CardTitle>
           <Button
@@ -164,101 +164,134 @@ function VariantCard({
 
       <CardContent className="space-y-4">
         {/* RAM Configuration */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label>RAM Capacity (GB)</Label>
-            <Input
-              type="number"
-              min="1"
-              {...register(`variants.${variantIndex}.RAMGB`, {
-                valueAsNumber: true,
-                required: "RAM capacity is required",
-              })}
-            />
-            {errors.variants?.[variantIndex]?.RAMGB && (
-              <span className="text-red-500">
-                {errors.variants[variantIndex].RAMGB.message}
-              </span>
-            )}
-          </div>
+        <div className="space-y-2">
+          <Label className="text-sm font-medium">RAM Configuration *</Label>
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <Label
+                htmlFor={`ram-capacity-${variantIndex}`}
+                className="text-sm"
+              >
+                Capacity (GB)
+              </Label>
+              <Input
+                id={`ram-capacity-${variantIndex}`}
+                type="number"
+                min="1"
+                placeholder="e.g., 16"
+                {...register(`variants.${variantIndex}.RAMGB`, {
+                  valueAsNumber: true,
+                  required: "RAM capacity is required",
+                })}
+              />
+              {errors.variants?.[variantIndex]?.RAMGB && (
+                <span className="text-red-500 text-sm">
+                  {errors.variants[variantIndex].RAMGB.message}
+                </span>
+              )}
+            </div>
 
-          <div>
-            <Label>RAM Type</Label>
-            <Select
-              value={currentRAMType}
-              onValueChange={(value) =>
-                setValue(`variants.${variantIndex}.RAM_type`, value)
-              }
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select RAM type" />
-              </SelectTrigger>
-              <SelectContent>
-                {RAM_TYPES.map((type) => (
-                  <SelectItem key={type} value={type}>
-                    {type}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.variants?.[variantIndex]?.RAM_type && (
-              <span className="text-red-500">
-                {errors.variants[variantIndex].RAM_type.message}
-              </span>
-            )}
+            <div className="w-1/2">
+              <Label htmlFor={`ram-type-${variantIndex}`} className="text-sm">
+                Type
+              </Label>
+              <Select
+                value={currentRAMType}
+                onValueChange={(value) =>
+                  setValue(`variants.${variantIndex}.RAM_type`, value)
+                }
+              >
+                <SelectTrigger
+                  id={`ram-type-${variantIndex}`}
+                  className="w-full"
+                >
+                  <SelectValue placeholder="Select RAM type" />
+                </SelectTrigger>
+                <SelectContent>
+                  {RAM_TYPES.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {type}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.variants?.[variantIndex]?.RAM_type && (
+                <span className="text-red-500 text-sm">
+                  {errors.variants[variantIndex].RAM_type.message}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
         {/* Storage Configuration */}
-        <div className="grid grid-cols-2 gap-4">
-          <div>
-            <Label>Storage Capacity (GB)</Label>
-            <Input
-              type="number"
-              min="1"
-              {...register(`variants.${variantIndex}.storageGB`, {
-                valueAsNumber: true,
-                required: "Storage capacity is required",
-              })}
-            />
-            {errors.variants?.[variantIndex]?.storageGB && (
-              <span className="text-red-500">
-                {errors.variants[variantIndex].storageGB.message}
-              </span>
-            )}
-          </div>
+        <div className="space-y-2">
+          <Label className="text-sm font-medium">Storage Configuration *</Label>
+          <div className="flex gap-4">
+            <div className="w-1/2">
+              <Label
+                htmlFor={`storage-capacity-${variantIndex}`}
+                className="text-sm"
+              >
+                Capacity (GB)
+              </Label>
+              <Input
+                id={`storage-capacity-${variantIndex}`}
+                type="number"
+                min="1"
+                placeholder="e.g., 512"
+                {...register(`variants.${variantIndex}.storageGB`, {
+                  valueAsNumber: true,
+                  required: "Storage capacity is required",
+                })}
+              />
+              {errors.variants?.[variantIndex]?.storageGB && (
+                <span className="text-red-500 text-sm">
+                  {errors.variants[variantIndex].storageGB.message}
+                </span>
+              )}
+            </div>
 
-          <div>
-            <Label>Storage Type</Label>
-            <Select
-              value={currentStorageType}
-              onValueChange={(value) =>
-                setValue(`variants.${variantIndex}.storage_type`, value)
-              }
-            >
-              <SelectTrigger>
-                <SelectValue placeholder="Select storage type" />
-              </SelectTrigger>
-              <SelectContent>
-                {STORAGE_TYPES.map((type) => (
-                  <SelectItem key={type} value={type}>
-                    {type}
-                  </SelectItem>
-                ))}
-              </SelectContent>
-            </Select>
-            {errors.variants?.[variantIndex]?.storage_type && (
-              <span className="text-red-500">
-                {errors.variants[variantIndex].storage_type.message}
-              </span>
-            )}
+            <div className="w-1/2">
+              <Label
+                htmlFor={`storage-type-${variantIndex}`}
+                className="text-sm"
+              >
+                Type
+              </Label>
+              <Select
+                value={currentStorageType}
+                onValueChange={(value) =>
+                  setValue(`variants.${variantIndex}.storage_type`, value)
+                }
+              >
+                <SelectTrigger
+                  id={`storage-type-${variantIndex}`}
+                  className="w-full"
+                >
+                  <SelectValue placeholder="Select storage type" />
+                </SelectTrigger>
+                <SelectContent>
+                  {STORAGE_TYPES.map((type) => (
+                    <SelectItem key={type} value={type}>
+                      {type}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+              {errors.variants?.[variantIndex]?.storage_type && (
+                <span className="text-red-500 text-sm">
+                  {errors.variants[variantIndex].storage_type.message}
+                </span>
+              )}
+            </div>
           </div>
         </div>
 
         {/* Offers Section */}
         <div className="border-t pt-4">
           <div className="flex items-center justify-between mb-3">
-            <Label className="font-medium">Offers</Label>
+            <Label className="font-medium">Offers *</Label>
             <Button
               type="button"
               onClick={addOffer}
@@ -270,14 +303,31 @@ function VariantCard({
             </Button>
           </div>
 
+          {/* Headers para las columnas de ofertas */}
+          <div className="grid grid-cols-12 gap-2 mb-2">
+            <div className="col-span-8">
+              <Label className="text-xs font-medium text-gray-600">URL</Label>
+            </div>
+            <div className="col-span-3">
+              <Label className="text-xs font-medium text-gray-600">
+                Price (USD)
+              </Label>
+            </div>
+            <div className="col-span-1">
+              <Label className="text-xs font-medium text-gray-600">
+                Action
+              </Label>
+            </div>
+          </div>
+
           {offerFields.map((offerField, offerIndex) => (
             <div
               key={offerField.id}
-              className="flex items-center space-x-2 mb-3"
+              className="grid grid-cols-12 gap-2 mb-3 items-start"
             >
-              <div className="flex-1">
+              <div className="col-span-8">
                 <Input
-                  placeholder="Offer URL"
+                  placeholder="https://example.com/product"
                   {...register(
                     `variants.${variantIndex}.offers.${offerIndex}.url`,
                     {
@@ -285,13 +335,21 @@ function VariantCard({
                     }
                   )}
                 />
+                {errors.variants?.[variantIndex]?.offers?.[offerIndex]?.url && (
+                  <span className="text-red-500 text-xs block mt-1">
+                    {
+                      errors.variants[variantIndex].offers[offerIndex].url
+                        .message
+                    }
+                  </span>
+                )}
               </div>
-              <div className="w-32">
+              <div className="col-span-3">
                 <Input
                   type="number"
                   step="0.01"
                   min="0"
-                  placeholder="Price USD"
+                  placeholder="299.99"
                   {...register(
                     `variants.${variantIndex}.offers.${offerIndex}.price`,
                     {
@@ -300,22 +358,33 @@ function VariantCard({
                     }
                   )}
                 />
+                {errors.variants?.[variantIndex]?.offers?.[offerIndex]
+                  ?.price && (
+                  <span className="text-red-500 text-xs block mt-1">
+                    {
+                      errors.variants[variantIndex].offers[offerIndex].price
+                        .message
+                    }
+                  </span>
+                )}
               </div>
-              <Button
-                type="button"
-                variant="ghost"
-                size="sm"
-                onClick={() => removeOffer(offerIndex)}
-                disabled={offerFields.length === 1}
-                className="text-red-500 hover:text-red-700"
-              >
-                <Trash2 className="w-4 h-4" />
-              </Button>
+              <div className="col-span-1 flex justify-center">
+                <Button
+                  type="button"
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => removeOffer(offerIndex)}
+                  disabled={offerFields.length === 1}
+                  className="text-red-500 hover:text-red-700 h-8 w-8 p-0"
+                >
+                  <Trash2 className="w-4 h-4" />
+                </Button>
+              </div>
             </div>
           ))}
 
           {errors.variants?.[variantIndex]?.offers && (
-            <span className="text-red-500">
+            <span className="text-red-500 text-sm">
               {errors.variants[variantIndex].offers.message}
             </span>
           )}

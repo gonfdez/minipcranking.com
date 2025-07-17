@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
 import {
   Select,
   SelectContent,
@@ -116,6 +117,7 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
               >
                 <span>{connectivity.type}</span>
                 <button
+                  type="button"
                   onClick={() => handleRemoveConnectivity(id)}
                   className="text-red-600 hover:text-red-800"
                   aria-label="Remove connectivity"
@@ -180,14 +182,21 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
             <DialogTitle>Add New Connectivity</DialogTitle>
           </DialogHeader>
           <div className="space-y-4">
-            <Input
-              placeholder="Connectivity type (e.g., Bluetooth 5.2)"
-              value={newConnectivityType}
-              onChange={(e) => setNewConnectivityType(e.target.value)}
-            />
-            {error && <p className="text-red-600">{error}</p>}
-            <div className="flex justify-end space-x-2">
+            <div className="space-y-2">
+              <Label htmlFor="connectivity-type">Connectivity Type *</Label>
+              <Input
+                id="connectivity-type"
+                placeholder="e.g., Bluetooth 5.2, WiFi 6E"
+                value={newConnectivityType}
+                onChange={(e) => setNewConnectivityType(e.target.value)}
+              />
+            </div>
+            
+            {error && <p className="text-red-600 text-sm">{error}</p>}
+            
+            <div className="flex justify-end space-x-2 pt-4">
               <Button
+                type="button"
                 variant="outline"
                 onClick={() => {
                   setOpenModal(false);
@@ -196,7 +205,9 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
               >
                 Cancel
               </Button>
-              <Button onClick={handleSave}>Create</Button>
+              <Button type="button" onClick={handleSave}>
+                Create Connectivity
+              </Button>
             </div>
           </div>
         </DialogContent>
