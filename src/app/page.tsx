@@ -4,9 +4,9 @@ import { MiniPCForm } from "@/components/minipc-form/MiniPCForm";
 export default function Home() {
   return (
     <AuthGuard>
-      <main className="flex items-center justify-center min-h-screen">
+      <div className="flex items-center justify-center min-h-screen">
         <MiniPCForm />
-      </main>
+      </div>
     </AuthGuard>
   );
 }

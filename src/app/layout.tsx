@@ -29,7 +29,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
         <ThemeProvider
           attribute="class"
@@ -38,11 +38,11 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {/* Header */}
-          <header className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex justify-between">
+          <header className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
             <h1 className="text-2xl font-bold">minipcranking.com</h1>
             <ThemeToggle />
           </header>
-          {children}
+          <main className="flex-grow flex flex-col">{children}</main>
           <Toaster />
         </ThemeProvider>
       </body>

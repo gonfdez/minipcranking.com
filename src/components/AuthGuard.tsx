@@ -61,7 +61,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
   // If no authenticated user, show login
   if (!user) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-background">
+      <div className="flex flex-1 items-center justify-center bg-background">
         <div className="w-full max-w-md">
           <LoginForm onLoginSuccess={(user) => setUser(user)} />
         </div>
