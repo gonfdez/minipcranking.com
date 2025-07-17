@@ -277,7 +277,7 @@ export function MiniPCForm() {
   };
 
   return (
-    <div className="w-full max-w-[800px] mx-auto p-3 sm:p-6">
+    <div className="w-full mx-auto">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold mb-6">Create a new MiniPC</h1>
         <Button variant={'outline'} onClick={() => (window.location.href = "/minipcs")}>
