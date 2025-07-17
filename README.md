@@ -21,7 +21,7 @@ Visit [minipcranking.com](https://minipcranking.com) to explore the platform.
 
 ## 🛠️ Tech Stack
 
-- **Frontend**: [Next.js 14](https://nextjs.org/) with App Router
+- **Frontend**: [Next.js 15](https://nextjs.org/) with App Router
 - **UI Components**: [shadcn/ui](https://ui.shadcn.com/) + [Tailwind CSS](https://tailwindcss.com/)
 - **Database**: [Supabase](https://supabase.com/) (PostgreSQL)
 - **Authentication**: Supabase Auth with Row Level Security (RLS)
