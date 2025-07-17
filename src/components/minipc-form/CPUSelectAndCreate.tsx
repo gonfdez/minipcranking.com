@@ -138,18 +138,20 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
         if (error) throw error;
         toast.success("CPU updated successfully");
       } else {
-        // Insert
+        // Insert case
         const { data, error } = await supabase
           .from("CPUs")
           .insert(payload)
           .select()
           .single();
         if (error) throw error;
-        setCpus((prev) => [...prev, data]);
-        onChange(data.id.toString());
+
+        await fetchCPUs();
         toast.success("CPU created successfully");
+        setTimeout(() => {
+          onChange(data.id.toString());
+        }, 100);
       }
-      fetchCPUs();
       resetForm();
       setOpenModal(false);
     } catch (err: any) {
@@ -211,7 +213,7 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
           if (!open) resetForm();
         }}
       >
-        <DialogContent  onInteractOutside={(e) => e.preventDefault()}>
+        <DialogContent onInteractOutside={(e) => e.preventDefault()}>
           <DialogHeader>
             <DialogTitle>{formCpuId ? "Edit CPU" : "Add New CPU"}</DialogTitle>
           </DialogHeader>

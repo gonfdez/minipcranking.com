@@ -127,8 +127,10 @@ export function BrandSelectAndCreate({ value, onChange }: Props) {
 
       if (data) {
         setBrands((prev) => [...prev, data]);
-        onChange(data.id.toString());
         toast.success(`Brand "${data.name}" created successfully`);
+        setTimeout(() => {
+          onChange(data.id.toString());
+        }, 100);
       }
     }
 

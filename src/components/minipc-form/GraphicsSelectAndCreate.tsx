@@ -152,8 +152,9 @@ export function GraphicsSelectAndCreate({
       }
 
       toast.success("Graphics updated successfully");
-      fetchGraphics();
+      await fetchGraphics();
     } else {
+      // Insert case
       const { data, error } = await supabase
         .from("Graphics")
         .insert(payload)
@@ -166,9 +167,11 @@ export function GraphicsSelectAndCreate({
       }
 
       if (data) {
-        setGraphics((prev) => [...prev, data]);
-        onChange(data.id.toString());
+        await fetchGraphics();
         toast.success("Graphics created successfully");
+        setTimeout(() => {
+          onChange(data.id.toString());
+        }, 100);
       }
     }
 
