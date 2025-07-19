@@ -63,7 +63,7 @@ Use MDX syntax and add React components like ... or ... where appropriate.
 
 ---
 
-✅ Step 4: Publish and Monitor
+## ✅ Step 4: Publish and Monitor
 
 1. Commit the MDX file to the repository.
 
