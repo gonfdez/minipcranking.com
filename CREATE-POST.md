@@ -86,7 +86,7 @@ Example MDX structure:
 ## Conclusion
 
 If you're looking for compact power, mini PCs are the future of gaming. Explore more models on our [Mini PC Store](/store).
-
+```
 
 ---
 
