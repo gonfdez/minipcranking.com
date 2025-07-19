@@ -79,7 +79,7 @@ Use MDX syntax and add React components like ... or ... where appropriate.
 
 ---
 
-✅ Bonus Tips
+## ✅ Bonus Tips
 
 Refresh articles every 6-12 months for relevance.
 
