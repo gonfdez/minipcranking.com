@@ -19,9 +19,9 @@ This guide describes the step-by-step process to create and publish SEO-optimize
 
 ---
 
-## ✅ Step 2: Content Generation with ChatGPT
+## ✅ Step 2: Content Generation with AI
 
-1. Use ChatGPT (Free or Plus) to generate the base article.
+1. Use AI to generate the base article.
 2. Prompt example:
 
 Write an SEO-optimized article in MDX format about "Best Mini PCs for Gaming in 2025". Include:
@@ -38,7 +38,7 @@ A conclusion with a call to action
 
 Real-world product examples if available
 
-Use MDX syntax and add React components like <YoutubeEmbed /> or <ProductCard /> where appropriate.
+Use MDX syntax and add React components like ... or ... where appropriate.
 
 
 ---
@@ -63,34 +63,7 @@ Use MDX syntax and add React components like <YoutubeEmbed /> or <ProductCard />
 
 ---
 
-## ✅ Step 4: Finalize MDX Structure
-
-Example MDX structure:
-
-```mdx
-# Best Mini PCs for Gaming in 2025
-
-<YoutubeEmbed videoId="dQw4w9WgXcQ" />
-
-## Why Choose a Mini PC for Gaming?
-
-- Compact size
-- Energy efficient
-- Easy to upgrade
-
-## Top Models Reviewed
-
-<ProductCard title="Beelink SER6 Pro" price="$699" />
-<ProductCard title="Intel NUC 13 Extreme" price="$1099" />
-
-## Conclusion
-
-If you're looking for compact power, mini PCs are the future of gaming. Explore more models on our [Mini PC Store](/store).
-```
-
----
-
-✅ Step 5: Publish and Monitor
+✅ Step 4: Publish and Monitor
 
 1. Commit the MDX file to the repository.
 
@@ -102,8 +75,6 @@ If you're looking for compact power, mini PCs are the future of gaming. Explore 
 
 
 4. Optionally, re-audit with Lighthouse post-deployment.
-
-
 
 
 ---
