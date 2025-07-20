@@ -1,0 +1,102 @@
+---
+title: "Testing y Debugging en Next.js"
+date: "2024-12-20"
+description: "Aprende las mejores prácticas para testing y debugging en aplicaciones Next.js modernas"
+tags: ["testing", "debugging", "nextjs", "jest", "cypress"]
+---
+
+# Testing y Debugging en Next.js
+
+Este es mi segundo post, **más reciente** que el primero (fecha 2024-12-20 vs 2024-12-15), por lo que debería aparecer **primero** en la lista del blog.
+
+## Introducción al Testing
+
+El testing es una parte fundamental del desarrollo moderno. En Next.js tenemos varias opciones:
+
+### Unit Testing con Jest
+
+```javascript
+// __tests__/utils.test.js
+import { formatDate } from "../utils/formatDate";
+
+describe("formatDate", () => {
+  test("formatea correctamente una fecha", () => {
+    const fecha = new Date("2024-12-20");
+    expect(formatDate(fecha)).toBe("20 de diciembre de 2024");
+  });
+});
+```
+
+### Component Testing con React Testing Library
+
+```tsx
+// __tests__/Button.test.tsx
+import { render, screen, fireEvent } from "@testing-library/react";
+import { Button } from "@/components/ui/button";
+
+test("el botón ejecuta onClick cuando se hace clic", () => {
+  const handleClick = jest.fn();
+
+  render(<Button onClick={handleClick}>Hacer clic</Button>);
+
+  fireEvent.click(screen.getByText("Hacer clic"));
+  expect(handleClick).toHaveBeenCalledTimes(1);
+});
+```
+
+## E2E Testing con Cypress
+
+Para testing end-to-end, Cypress es excelente:
+
+```javascript
+// cypress/e2e/blog.cy.js
+describe("Blog Navigation", () => {
+  it("debería navegar entre posts", () => {
+    cy.visit("/blog");
+    cy.contains("Testing y Debugging en Next.js").click();
+    cy.url().should("include", "/blog/segundo-post-testing");
+    cy.contains("Testing y Debugging en Next.js");
+  });
+});
+```
+
+## Debugging Tips
+
+### 1. Console.log Estratégico
+
+```javascript
+console.log("🔍 Debug - Variable:", variable);
+console.table(arrayData); // Para arrays/objetos
+console.time("operacion"); // Medir rendimiento
+// ... código ...
+console.timeEnd("operacion");
+```
+
+### 2. Next.js Debug Mode
+
+```bash
+# Ejecutar en modo debug
+NODE_OPTIONS='--inspect' npm run dev
+```
+
+### 3. React Developer Tools
+
+Las React DevTools son esenciales para debugging de componentes y estado.
+
+## Herramientas Recomendadas
+
+| Herramienta           | Propósito         | Dificultad |
+| --------------------- | ----------------- | ---------- |
+| Jest                  | Unit Testing      | ⭐⭐       |
+| React Testing Library | Component Testing | ⭐⭐⭐     |
+| Cypress               | E2E Testing       | ⭐⭐⭐⭐   |
+| Playwright            | E2E Testing       | ⭐⭐⭐     |
+
+## Conclusión
+
+Un buen setup de testing y debugging te ahorrará **horas** de frustración. Invierte tiempo al inicio del proyecto para configurar estas herramientas.
+
+> "Debugging es como ser detective en una novela de crimen donde tú también eres el asesino."
+> — Filipe Fortes
+
+¡En el próximo post hablaremos sobre deployment y CI/CD!
