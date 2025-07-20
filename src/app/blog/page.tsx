@@ -29,7 +29,7 @@ async function getBlogPosts(): Promise<BlogPost[]> {
       const slug = filename.replace(".mdx", "");
       const filepath = path.join(contentDirectory, filename);
       const fileContent = fs.readFileSync(filepath, "utf8");
-      const { data } = matter(fileContent); // ← Aquí usa gray-matter
+      const { data } = matter(fileContent);
 
       return {
         slug,
