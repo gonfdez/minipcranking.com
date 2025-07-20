@@ -141,7 +141,7 @@ export function MiniPCTable() {
         <h1 className="text-3xl font-bold">Mini PC's</h1>
         <Button
           variant={"outline"}
-          onClick={() => (window.location.href = "/")}
+          onClick={() => (window.location.href = "/dev/minipc-form")}
         >
           + Add New MiniPC
         </Button>
