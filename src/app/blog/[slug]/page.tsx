@@ -60,7 +60,7 @@ export default async function Page({
 
   return (
     <div className="container mx-auto px-4 py-8 md:max-w-3xl lg:max-w-4xl">
-      <article className="prose prose-lg dark:prose-invert">
+      <article className="prose prose-lg dark:prose-invert pt-9">
         <MDXRemote source={content} components={components} />
       </article>
     </div>
