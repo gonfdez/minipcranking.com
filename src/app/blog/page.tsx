@@ -48,18 +48,16 @@ export default async function BlogHomePage() {
   const posts = await getBlogPosts();
 
   return (
-    <div className="container mx-auto py-8 px-4">
-      <div className="mb-8">
-        <h1 className="text-4xl font-bold tracking-tight">Blog</h1>
-        <p className="text-muted-foreground mt-2">
-          Últimos artículos y tutoriales
-        </p>
-      </div>
-
-      <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+    <div className="container mx-auto px-4 py-8 md:max-w-3xl lg:max-w-4xl">
+      {/* Eliminamos las clases de grid-cols aquí para que cada post ocupe su propia línea */}
+      <div className="flex flex-col gap-6">
+        {" "}
+        {/* Usamos flex-col para apilar los elementos y gap-6 para el espacio */}
         {posts.map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`}>
-            <Card className="h-full hover:shadow-lg transition-shadow cursor-pointer">
+            <Card className="w-full hover:shadow-lg transition-shadow cursor-pointer">
+              {" "}
+              {/* Aseguramos que la tarjeta ocupe todo el ancho */}
               <CardHeader>
                 <CardTitle className="line-clamp-2">{post.title}</CardTitle>
                 <CardDescription>
@@ -70,7 +68,6 @@ export default async function BlogHomePage() {
                   })}
                 </CardDescription>
               </CardHeader>
-
               {post.description && (
                 <CardContent>
                   <p className="text-sm text-muted-foreground line-clamp-3">

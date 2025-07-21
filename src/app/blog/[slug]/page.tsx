@@ -9,22 +9,24 @@ export default async function Page({
   const { slug } = await params;
   const { default: Post } = await import(`@/blog-content/${slug}.mdx`);
 
-  return <Post />;
+  return (
+    <div className="container mx-auto px-4 py-8 md:max-w-3xl lg:max-w-4xl">
+      <article className="prose prose-lg dark:prose-invert">
+        <Post />
+      </article>
+    </div>
+  );
 }
 
 export function generateStaticParams() {
-  // Obtener la ruta del directorio de contenido
   const contentDirectory = path.join(process.cwd(), "src/blog-content");
 
-  // Leer todos los archivos del directorio
   const filenames = fs.readdirSync(contentDirectory);
 
-  // Filtrar solo archivos .mdx y obtener el slug
   const slugs = filenames
     .filter((filename) => filename.endsWith(".mdx"))
     .map((filename) => filename.replace(".mdx", ""));
 
-  // Retornar array de params
   return slugs.map((slug) => ({
     slug: slug,
   }));
