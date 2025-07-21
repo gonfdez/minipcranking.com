@@ -57,11 +57,11 @@ const metadata: Metadata = {
 
   // Twitter Cards
   twitter: {
-    // card: "summary_large_image",
+    card: "summary_large_image",
     title: "Mini PC Blog - Reviews & Comparisons",
     description:
       "Discover the best mini PCs on the market with our detailed comparisons and technical analysis",
-    // images: ["/twitter-minipc-blog.jpg"]
+    images: ["/twitter-minipc-blog.jpg"],
   },
 
   // Additional structured data
