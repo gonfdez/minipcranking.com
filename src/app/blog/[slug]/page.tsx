@@ -15,9 +15,9 @@ interface PostMetadata {
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const { slug } = params;
+  const { slug } = await params;
   const filePath = path.join(process.cwd(), `src/blog-content/${slug}.mdx`);
   const fileContent = fs.readFileSync(filePath, "utf8");
   const { data } = matter(fileContent);
