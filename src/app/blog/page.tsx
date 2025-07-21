@@ -1,15 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
-import Link from "next/link";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
+import BlogClient from "./BlogClient";
 
 interface BlogPost {
   slug: string;
@@ -49,45 +41,7 @@ export default async function BlogHomePage() {
 
   return (
     <div className="container mx-auto px-4 py-8 md:max-w-3xl lg:max-w-4xl">
-      <div className="flex flex-col gap-6">
-        {posts.map((post) => (
-          <Link key={post.slug} href={`/blog/${post.slug}`}>
-            <Card className="w-full hover:shadow-lg transition-shadow cursor-pointer">
-              <CardHeader>
-                <CardTitle className="line-clamp-2">{post.title}</CardTitle>
-                <CardDescription>
-                  {new Date(post.date).toLocaleDateString("es-ES", {
-                    year: "numeric",
-                    month: "long",
-                    day: "numeric",
-                  })}
-                </CardDescription>
-              </CardHeader>
-              {post.description && (
-                <CardContent>
-                  <p className="text-sm text-muted-foreground line-clamp-3">
-                    {post.description}
-                  </p>
-
-                  {post.tags && post.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1 mt-3">
-                      {post.tags.map((tag) => (
-                        <Badge
-                          key={tag}
-                          variant="secondary"
-                          className="text-xs"
-                        >
-                          {tag}
-                        </Badge>
-                      ))}
-                    </div>
-                  )}
-                </CardContent>
-              )}
-            </Card>
-          </Link>
-        ))}
-      </div>
+      <BlogClient posts={posts} />
     </div>
   );
 }

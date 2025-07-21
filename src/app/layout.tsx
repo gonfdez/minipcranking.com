@@ -4,6 +4,7 @@ import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
+import Link from "next/link";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -39,8 +40,39 @@ export default function RootLayout({
         >
           {/* Header */}
           <header className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
-            <h1 className="text-2xl font-bold">minipcranking.com</h1>
-            <ThemeToggle />
+            <Link
+              href="/"
+              className="text-2xl font-bold hover:text-primary transition-colors"
+            >
+              minipcranking.com
+            </Link>
+
+            <div className="flex items-center gap-6">
+              <nav className="hidden sm:block">
+                <ul className="flex items-center space-x-6">
+                  <li>
+                    <Link
+                      href="/blog"
+                      className="text-sm font-medium hover:text-primary transition-colors"
+                    >
+                      Blog
+                    </Link>
+                  </li>
+                </ul>
+              </nav>
+
+              {/* Mobile navigation */}
+              <nav className="sm:hidden">
+                <Link
+                  href="/blog"
+                  className="text-sm font-medium hover:text-primary transition-colors"
+                >
+                  Blog
+                </Link>
+              </nav>
+
+              <ThemeToggle />
+            </div>
           </header>
           <main className="flex-grow flex flex-col">{children}</main>
           <Toaster />
