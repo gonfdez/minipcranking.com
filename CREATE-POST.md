@@ -22,24 +22,11 @@ This guide describes the step-by-step process to create and publish SEO-optimize
 ## ✅ Step 2: Content Generation with AI
 
 1. Use AI to generate the base article.
-2. Prompt example:
+2. Prompt template:
 
-Write an SEO-optimized article in MDX format about "Best Mini PCs for Gaming in 2025". Include:
-
-A catchy H1 title
-
-A brief introduction
-
-H2 and H3 headings for structure
-
-Bullet point lists
-
-A conclusion with a call to action
-
-Real-world product examples if available
-
-Use MDX syntax and add React components like ... or ... where appropriate.
-
+```txt
+TODO
+```
 
 ---
 
