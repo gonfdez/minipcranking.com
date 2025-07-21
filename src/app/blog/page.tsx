@@ -13,10 +13,11 @@ interface BlogPost {
 }
 
 // SEO Metadata
-export const metadata: Metadata = {
+const metadata: Metadata = {
   title: "Mini PC Blog - Reviews, Comparisons & Complete Buying Guides",
-  description: "Discover everything about mini PCs: detailed comparisons, spec analysis, reviews of Intel NUC, ASUS, Beelink and more brands. Your complete guide to choosing the perfect mini PC.",
-  
+  description:
+    "Discover everything about mini PCs: detailed comparisons, spec analysis, reviews of Intel NUC, ASUS, Beelink and more brands. Your complete guide to choosing the perfect mini PC.",
+
   keywords: [
     "mini pc",
     "mini computer",
@@ -30,15 +31,16 @@ export const metadata: Metadata = {
     "gaming mini pc",
     "office mini pc",
     "compact computer",
-    "small form factor pc"
+    "small form factor pc",
   ],
 
   authors: [{ name: "gfs-studio" }],
-  
+
   // Open Graph for social media
   openGraph: {
     title: "Mini PC Blog - Reviews & Comparisons | MiniPCRanking",
-    description: "The ultimate guide to mini PCs: comparisons, specifications and reviews of all major brands",
+    description:
+      "The ultimate guide to mini PCs: comparisons, specifications and reviews of all major brands",
     url: "https://minipcranking.com/blog",
     siteName: "MiniPCRanking",
     type: "website",
@@ -48,16 +50,17 @@ export const metadata: Metadata = {
         url: "/og-minipc-blog.jpg", // 1200x630px image
         width: 1200,
         height: 630,
-        alt: "Mini PC Blog - Reviews and Comparisons | MiniPCRanking"
-      }
-    ]
+        alt: "Mini PC Blog - Reviews and Comparisons | MiniPCRanking",
+      },
+    ],
   },
 
   // Twitter Cards
   twitter: {
     // card: "summary_large_image",
     title: "Mini PC Blog - Reviews & Comparisons",
-    description: "Discover the best mini PCs on the market with our detailed comparisons and technical analysis",
+    description:
+      "Discover the best mini PCs on the market with our detailed comparisons and technical analysis",
     // images: ["/twitter-minipc-blog.jpg"]
   },
 
@@ -65,7 +68,7 @@ export const metadata: Metadata = {
   other: {
     "og:type": "blog",
     "article:section": "Technology",
-    "article:tag": "Mini PC, Comparisons, Hardware Reviews"
+    "article:tag": "Mini PC, Comparisons, Hardware Reviews",
   },
 
   // Robot configuration
@@ -83,13 +86,33 @@ export const metadata: Metadata = {
 
   // Canonical URL
   alternates: {
-    canonical: "https://minipcranking.com/blog"
+    canonical: "https://minipcranking.com/blog",
   },
 
   // Additional configuration
   category: "technology",
-  classification: "Mini PCs, Hardware, Technology Reviews"
+  classification: "Mini PCs, Hardware, Technology Reviews",
 };
+
+// You can also generate dynamic metadata if you need to include recent posts information
+export async function generateMetadata(): Promise<Metadata> {
+  const posts = await getBlogPosts();
+  const latestPosts = posts.slice(0, 3);
+
+  const dynamicDescription = `Latest articles: ${latestPosts
+    .map((post) => post.title)
+    .join(
+      ", "
+    )}. Detailed comparisons and analysis of mini PCs from all major brands.`;
+
+  return {
+    ...metadata,
+    description:
+      dynamicDescription.length > 160
+        ? "Discover everything about mini PCs: detailed comparisons, spec analysis and reviews of all major brands. Your complete guide."
+        : dynamicDescription,
+  };
+}
 
 async function getBlogPosts(): Promise<BlogPost[]> {
   const contentDirectory = path.join(process.cwd(), "src/blog-content");
@@ -114,21 +137,6 @@ async function getBlogPosts(): Promise<BlogPost[]> {
     .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
   return posts;
-}
-
-// You can also generate dynamic metadata if you need to include recent posts information
-export async function generateMetadata(): Promise<Metadata> {
-  const posts = await getBlogPosts();
-  const latestPosts = posts.slice(0, 3);
-  
-  const dynamicDescription = `Latest articles: ${latestPosts.map(post => post.title).join(', ')}. Detailed comparisons and analysis of mini PCs from all major brands.`;
-
-  return {
-    ...metadata,
-    description: dynamicDescription.length > 160 ? 
-      "Discover everything about mini PCs: detailed comparisons, spec analysis and reviews of all major brands. Your complete guide." : 
-      dynamicDescription
-  };
 }
 
 export default async function BlogHomePage() {
