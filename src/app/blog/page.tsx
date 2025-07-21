@@ -49,15 +49,10 @@ export default async function BlogHomePage() {
 
   return (
     <div className="container mx-auto px-4 py-8 md:max-w-3xl lg:max-w-4xl">
-      {/* Eliminamos las clases de grid-cols aquí para que cada post ocupe su propia línea */}
       <div className="flex flex-col gap-6">
-        {" "}
-        {/* Usamos flex-col para apilar los elementos y gap-6 para el espacio */}
         {posts.map((post) => (
           <Link key={post.slug} href={`/blog/${post.slug}`}>
             <Card className="w-full hover:shadow-lg transition-shadow cursor-pointer">
-              {" "}
-              {/* Aseguramos que la tarjeta ocupe todo el ancho */}
               <CardHeader>
                 <CardTitle className="line-clamp-2">{post.title}</CardTitle>
                 <CardDescription>
