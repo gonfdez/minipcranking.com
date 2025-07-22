@@ -22,8 +22,29 @@ export const metadata: Metadata = {
     "Expert reviews, comparisons, buying guides, and rankings of the best Mini PCs for all budgets and use cases. Discover which Mini PC fits your needs perfectly.",
 
   icons: {
-    icon: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%22 y=%2270%22 font-size=%2270%22 text-anchor=%22middle%22>🏆</text></svg>",
+    icon: [
+      {
+        url: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%22 y=%2270%22 font-size=%2270%22 text-anchor=%22middle%22>🏆</text></svg>",
+        sizes: "32x32",
+        type: "image/svg+xml",
+      },
+      {
+        url: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%22 y=%2270%22 font-size=%2270%22 text-anchor=%22middle%22>🏆</text></svg>",
+        sizes: "16x16",
+        type: "image/svg+xml",
+      },
+    ],
+    apple: [
+      {
+        url: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%22 y=%2270%22 font-size=%2270%22 text-anchor=%22middle%22>🏆</text></svg>",
+        sizes: "180x180",
+        type: "image/svg+xml",
+      },
+    ],
   },
+
+  // Para PWA y Android
+  manifest: "/manifest.json", // Si tienes uno
 };
 
 export default function RootLayout({
