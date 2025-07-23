@@ -55,6 +55,7 @@ You are a professional content writer creating SEO-optimized blog articles. Gene
 
 ---
 title: "Your SEO-Optimized Title Here"
+date: "Current date in format yyyy-mm-dd"
 description: "Compelling meta description that summarizes the article's value and includes main keyword"
 tags: ["primary-tag", "secondary-tag", "relevant-topic", "category"]
 ---
