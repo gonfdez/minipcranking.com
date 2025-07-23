@@ -44,7 +44,7 @@ export const metadata: Metadata = {
   },
 
   // Para PWA y Android
-  manifest: "/manifest.json", // Si tienes uno
+  // manifest: "/manifest.json", // Si tienes uno
 };
 
 export default function RootLayout({
