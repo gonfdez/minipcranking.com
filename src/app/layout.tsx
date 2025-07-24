@@ -20,31 +20,6 @@ export const metadata: Metadata = {
   title: "Mini PC Ranking - Best Mini PCs Reviewed and Compared",
   description:
     "Expert reviews, comparisons, buying guides, and rankings of the best Mini PCs for all budgets and use cases. Discover which Mini PC fits your needs perfectly.",
-
-  icons: {
-    icon: [
-      {
-        url: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%22 y=%2270%22 font-size=%2270%22 text-anchor=%22middle%22>🏆</text></svg>",
-        sizes: "32x32",
-        type: "image/svg+xml",
-      },
-      {
-        url: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%22 y=%2270%22 font-size=%2270%22 text-anchor=%22middle%22>🏆</text></svg>",
-        sizes: "16x16",
-        type: "image/svg+xml",
-      },
-    ],
-    apple: [
-      {
-        url: "data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text x=%2250%22 y=%2270%22 font-size=%2270%22 text-anchor=%22middle%22>🏆</text></svg>",
-        sizes: "180x180",
-        type: "image/svg+xml",
-      },
-    ],
-  },
-
-  // Para PWA y Android
-  // manifest: "/manifest.json", // Si tienes uno
 };
 
 export default function RootLayout({
@@ -54,6 +29,10 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased flex flex-col min-h-screen`}
       >
@@ -69,22 +48,13 @@ export default function RootLayout({
               href="/"
               className="text-2xl font-bold hover:text-primary transition-colors flex items-center gap-2"
             >
-              <svg
+              <img
+                src="/favicon.svg"
+                alt="Trophy"
                 width="32"
                 height="32"
-                viewBox="0 0 100 100"
                 className="inline-block"
-              >
-                <text
-                  x="50"
-                  y="50"
-                  fontSize="60"
-                  textAnchor="middle"
-                  dominantBaseline="central"
-                >
-                  🏆
-                </text>
-              </svg>
+              />
               minipcranking.com
             </Link>
 
