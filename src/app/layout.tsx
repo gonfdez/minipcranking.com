@@ -5,6 +5,7 @@ import { Toaster } from "@/components/ui/sonner";
 import { ThemeProvider } from "@/components/ThemeProvider";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import Link from "next/link";
+import Image from 'next/image'
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -48,11 +49,11 @@ export default function RootLayout({
               href="/"
               className="text-2xl font-bold hover:text-primary transition-colors flex items-center gap-2"
             >
-              <img
+              <Image
                 src="/favicon.svg"
                 alt="Trophy"
-                width="32"
-                height="32"
+                width={32}
+                height={32}
                 className="inline-block"
               />
               minipcranking.com
