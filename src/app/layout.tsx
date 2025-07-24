@@ -32,7 +32,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
         <link rel="icon" href="/favicon.ico" sizes="any" />
         <link
           rel="apple-touch-icon"
@@ -69,7 +68,7 @@ export default function RootLayout({
               className="text-2xl font-bold hover:text-primary transition-colors flex items-center gap-2"
             >
               <Image
-                src="/favicon.svg"
+                src="/android-chrome-192x192.png"
                 alt="Trophy"
                 width={32}
                 height={32}
