@@ -95,9 +95,9 @@ Data loss hurts. Use your mini PC to automate backups to the cloud or other devi
 1. Install Rclone on your server.
 2. Run `rclone config` to link your cloud storage.
 3. Create a cron job or systemd timer to back up critical folders daily:
-   ```bash
+```bash
    rclone sync /srv/data gdrive:/home-backup --progress
-````
+```
 
 Bonus: Enable encryption on your cloud backups using Rclone’s built-in crypt feature.
 
