@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { MDXRemote } from "next-mdx-remote-client/rsc";
+import remarkGfm from "remark-gfm";
 import { useMDXComponents } from "@/mdx-components";
 import type { Metadata } from "next"; // Importa el tipo Metadata
 
@@ -61,7 +62,15 @@ export default async function Page({
   return (
     <div className="container mx-auto px-4 py-8 md:max-w-3xl lg:max-w-4xl">
       <article className="prose prose-lg dark:prose-invert pt-9">
-        <MDXRemote source={content} components={components} />
+        <MDXRemote
+          source={content}
+          components={components}
+          options={{
+            mdxOptions: {
+              remarkPlugins: [remarkGfm],
+            },
+          }}
+        />
       </article>
     </div>
   );
