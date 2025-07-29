@@ -6,7 +6,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "gen-prompts": "node ./src/scripts/generate-prompts.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^5.1.1",
