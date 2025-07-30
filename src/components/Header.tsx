@@ -82,7 +82,7 @@ export function Header() {
                     <li key={item.href}>
                       <Link
                         href={item.href}
-                        className="block text-base font-medium hover:text-primary transition-colors py-3 px-3 rounded-md hover:bg-accent"
+                        className="block text-base font-medium hover:text-primary transition-colors py-3 px-3 rounded-md hover:bg-accent border border-1"
                         onClick={() => setIsOpen(false)}
                       >
                         {item.label}
