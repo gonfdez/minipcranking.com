@@ -94,7 +94,7 @@ export function GraphicsSelectAndCreate({
           brand: data.brand.toString(),
           model: data.model,
           frequencyMHz: data.frequencyMHz?.toString() || "",
-          maxTOPS: data.maxTOPS?.toString() || "",
+          maxTOPS: data.maxTOPS !== null && data.maxTOPS !== undefined ? data.maxTOPS.toString() : "",
           graphicCoresCU: data.graphicCoresCU?.toString() || "",
         });
         setOpenModal(true);
@@ -134,7 +134,7 @@ export function GraphicsSelectAndCreate({
       frequencyMHz: formData.frequencyMHz
         ? Number(formData.frequencyMHz)
         : null,
-      maxTOPS: formData.maxTOPS ? Number(formData.maxTOPS) : null,
+      maxTOPS: formData.maxTOPS ? parseFloat(formData.maxTOPS) : null,
       graphicCoresCU: formData.graphicCoresCU
         ? Number(formData.graphicCoresCU)
         : null,
@@ -296,6 +296,8 @@ export function GraphicsSelectAndCreate({
                 id="graphics-max-tops"
                 placeholder="Enter max TOPS"
                 type="number"
+                min={0}
+                step={0.1}
                 value={formData.maxTOPS}
                 onChange={(e) =>
                   setFormData({ ...formData, maxTOPS: e.target.value })

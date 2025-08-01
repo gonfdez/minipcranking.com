@@ -63,10 +63,10 @@ const formSchema = z.object({
     )
     .min(1, "At least one image URL is required"),
   description: z.object({
-    es: z.string().min(1, "Spanish description is required"),
+    // es: z.string().min(1, "Spanish description is required"),
     en: z.string().min(1, "English description is required"),
-    it: z.string().min(1, "Italian description is required"),
-    de: z.string().min(1, "German description is required"),
+    // it: z.string().min(1, "Italian description is required"),
+    // de: z.string().min(1, "German description is required"),
   }),
   brand: z.string().min(1, "Brand is required"),
   CPU: z.string().min(1, "CPU is required"),

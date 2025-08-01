@@ -13,7 +13,7 @@ export function DescriptionInput({ register, errors }: DescriptionInputProps) {
     <div className="border border-gray-300 rounded-xl p-4 space-y-4">
       <Label className="text-lg">Product Description *</Label>
 
-      <div>
+      {/* <div>
         <Label>Spanish (ES) *</Label>
         <Textarea
           {...register("description.es")}
@@ -22,7 +22,7 @@ export function DescriptionInput({ register, errors }: DescriptionInputProps) {
         {errors.description?.es && (
           <span className="text-red-500">{errors.description.es.message}</span>
         )}
-      </div>
+      </div> */}
 
       <div>
         <Label>English (EN) *</Label>
@@ -35,7 +35,7 @@ export function DescriptionInput({ register, errors }: DescriptionInputProps) {
         )}
       </div>
 
-      <div>
+      {/* <div>
         <Label>Italian (IT) *</Label>
         <Textarea
           {...register("description.it")}
@@ -55,7 +55,7 @@ export function DescriptionInput({ register, errors }: DescriptionInputProps) {
         {errors.description?.de && (
           <span className="text-red-500">{errors.description.de.message}</span>
         )}
-      </div>
+      </div> */}
     </div>
   );
 }
