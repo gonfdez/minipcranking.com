@@ -24,6 +24,10 @@ import { X } from "lucide-react";
 type Connectivity = {
   id: number;
   type: string;
+  speed?: {
+    value: number;
+    units: string;
+  } | null;
 };
 
 type Props = {
@@ -31,12 +35,18 @@ type Props = {
   onChange: (value: number[]) => void;
 };
 
+const speedUnits = ["Mbps", "Gbps", "MHz", "GHz", "kHz"];
+
 export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
   const [connectivities, setConnectivities] = useState<Connectivity[]>([]);
   const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
   const [newConnectivityType, setNewConnectivityType] = useState("");
   const [error, setError] = useState<string | null>(null);
+  
+  // Campos para speed opcional
+  const [speedValue, setSpeedValue] = useState<string>("");
+  const [speedUnitsValue, setSpeedUnitsValue] = useState<string>("");
 
   useEffect(() => {
     fetchConnectivities();
@@ -46,7 +56,7 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
     setLoading(true);
     const { data, error } = await supabase
       .from("Connectivity")
-      .select("id, type")
+      .select("id, type, speed")
       .order("type");
 
     if (error) {
@@ -59,6 +69,8 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
 
   function resetForm() {
     setNewConnectivityType("");
+    setSpeedValue("");
+    setSpeedUnitsValue("");
     setError(null);
   }
 
@@ -70,9 +82,36 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
       return;
     }
 
+    // Validar speed si se proporcionó
+    let speedData = null;
+    if (speedValue.trim()) {
+      const numericValue = parseFloat(speedValue);
+      if (isNaN(numericValue) || numericValue <= 0) {
+        setError("Speed value must be a positive number.");
+        return;
+      }
+      if (!speedUnitsValue.trim()) {
+        setError("Speed units are required when speed value is provided.");
+        return;
+      }
+      speedData = {
+        value: numericValue,
+        units: speedUnitsValue
+      };
+    }
+
+    // Preparar datos para insertar
+    const insertData: any = {
+      type: newConnectivityType.trim()
+    };
+
+    if (speedData) {
+      insertData.speed = speedData;
+    }
+
     const { data, error: createError } = await supabase
       .from("Connectivity")
-      .insert({ type: newConnectivityType.trim() })
+      .insert(insertData)
       .select()
       .single();
 
@@ -115,7 +154,14 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
                 key={id}
                 className="flex items-center space-x-1 bg-gray-200 px-2 py-1 rounded-full text-sm"
               >
-                <span>{connectivity.type}</span>
+                <span>
+                  {connectivity.type}
+                  {connectivity.speed && (
+                    <span className="text-blue-600 ml-1">
+                      ({connectivity.speed.value} {connectivity.speed.units})
+                    </span>
+                  )}
+                </span>
                 <button
                   type="button"
                   onClick={() => handleRemoveConnectivity(id)}
@@ -151,6 +197,11 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
                   {availableOptions.map((c) => (
                     <SelectItem key={c.id} value={c.id.toString()}>
                       {c.type}
+                      {c.speed && (
+                        <span className="text-blue-600 ml-1">
+                          ({c.speed.value} {c.speed.units})
+                        </span>
+                      )}
                     </SelectItem>
                   ))}
                 </SelectContent>
@@ -177,7 +228,7 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
           if (!open) resetForm();
         }}
       >
-        <DialogContent  onInteractOutside={(e) => e.preventDefault()}>
+        <DialogContent onInteractOutside={(e) => e.preventDefault()}>
           <DialogHeader>
             <DialogTitle>Add New Connectivity</DialogTitle>
           </DialogHeader>
@@ -190,6 +241,38 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
                 value={newConnectivityType}
                 onChange={(e) => setNewConnectivityType(e.target.value)}
               />
+            </div>
+
+            <div className="space-y-2">
+              <Label className="text-sm font-medium">Speed (Optional)</Label>
+              <div className="grid grid-cols-2 gap-2">
+                <div>
+                  <Input
+                    type="number"
+                    step="0.1"
+                    placeholder="e.g., 2.5"
+                    value={speedValue}
+                    onChange={(e) => setSpeedValue(e.target.value)}
+                  />
+                </div>
+                <div>
+                  <Select
+                    value={speedUnitsValue}
+                    onValueChange={setSpeedUnitsValue}
+                  >
+                    <SelectTrigger>
+                      <SelectValue placeholder="Units" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {speedUnits.map((unit) => (
+                        <SelectItem key={unit} value={unit}>
+                          {unit}
+                        </SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
             </div>
             
             {error && <p className="text-red-600 text-sm">{error}</p>}

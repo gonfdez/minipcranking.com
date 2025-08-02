@@ -12,7 +12,7 @@ export function DimensionsInput({ register, errors }: DimensionsInputProps) {
   return (
     <div className="border border-gray-300 rounded-xl p-4 space-y-4">
       <Label className="text-lg font-semibold block">Dimensions (mm)</Label>
-      <div className="flex items-center space-x-4">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="flex-1">
           <Label
             htmlFor="dimensions.widthMM"
@@ -22,6 +22,7 @@ export function DimensionsInput({ register, errors }: DimensionsInputProps) {
           </Label>
           <Input
             type="number"
+            step={0.1}
             {...register("dimensions.widthMM", {
               valueAsNumber: true,
               setValueAs: (v) => (v === "" || v === 0 || isNaN(v) ? null : v),
@@ -35,6 +36,29 @@ export function DimensionsInput({ register, errors }: DimensionsInputProps) {
           )}
         </div>
 
+         <div className="flex-1">
+          <Label
+            htmlFor="dimensions.lengthMM"
+            className="block text-sm font-medium"
+          >
+            Length (mm)
+          </Label>
+          <Input
+            type="number"
+            step={0.1}
+            {...register("dimensions.lengthMM", {
+              valueAsNumber: true,
+              setValueAs: (v) => (v === "" || v === 0 || isNaN(v) ? null : v),
+            })}
+            placeholder="e.g. 200"
+          />
+          {errors.dimensions?.lengthMM && (
+            <span className="text-red-500 text-sm">
+              {errors.dimensions.lengthMM.message}
+            </span>
+          )}
+        </div>
+
         <div className="flex-1">
           <Label
             htmlFor="dimensions.heightMM"
@@ -44,6 +68,7 @@ export function DimensionsInput({ register, errors }: DimensionsInputProps) {
           </Label>
           <Input
             type="number"
+            step={0.1}
             {...register("dimensions.heightMM", {
               valueAsNumber: true,
               setValueAs: (v) => (v === "" || v === 0 || isNaN(v) ? null : v),

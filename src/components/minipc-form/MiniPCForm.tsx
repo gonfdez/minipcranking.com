@@ -27,6 +27,7 @@ import {
 const formSchema = z.object({
   model: z.string().min(1, "Model name is required"),
   fromURL: z.url("Product URL is required"),
+  manualURL: z.url("Manual URL must be a valid URL").nullable().optional(),
   manualCollect: z.boolean(),
   maxRAMCapacityGB: z
     .number()
@@ -72,8 +73,9 @@ const formSchema = z.object({
   CPU: z.string().min(1, "CPU is required"),
   graphics: z.string().min(1, "Graphics is required"),
   dimensions: z.object({
-    widthMM: z.number().int().positive().nullable().optional(),
-    heightMM: z.number().int().positive().nullable().optional(),
+    widthMM: z.number().positive().nullable().optional(),
+    heightMM: z.number().positive().nullable().optional(),
+    lengthMM: z.number().positive().nullable().optional(),
   }),
   portsImgUrl: z
     .array(
@@ -140,11 +142,13 @@ const defaultValues = {
   CPU: "",
   graphics: "",
   manualCollect: true,
+  manualURL: null,
   mainImgUrl: [{ url: "" }],
   portsImgUrl: [{ url: "" }],
   dimensions: {
     widthMM: null,
     heightMM: null,
+    lengthMM: null
   },
   ports: {
     usb3: null,
@@ -280,7 +284,10 @@ export function MiniPCForm() {
     <div className="w-full mx-auto">
       <div className="flex justify-between">
         <h1 className="text-2xl font-bold mb-6">Create a new Mini PC</h1>
-        <Button variant={'outline'} onClick={() => (window.location.href = "/dev/minipc-table")}>
+        <Button
+          variant={"outline"}
+          onClick={() => (window.location.href = "/dev/minipc-table")}
+        >
           Go to Mini PC's Table
         </Button>
       </div>
@@ -320,6 +327,17 @@ export function MiniPCForm() {
           />
           {errors.graphics && (
             <span className="text-red-500">{errors.graphics.message}</span>
+          )}
+        </div>
+
+        <div>
+          <Label>Product manual URL</Label>
+          <Input
+            {...register("manualURL")}
+            placeholder="URL of the product manual "
+          />
+          {errors.manualURL && (
+            <span className="text-red-500">{errors.manualURL.message}</span>
           )}
         </div>
 

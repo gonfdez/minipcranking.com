@@ -30,6 +30,7 @@ export async function createMiniPC(
       model: formData.model,
       description: formData.description,
       fromURL: formData.fromURL,
+      manualURL: formData.manualURL,
       manualCollect: formData.manualCollect,
       mainImgUrl: formData.mainImgUrl.map((img) => img.url),
       CPU: parseInt(formData.CPU), // Asumiendo que es un ID numérico
@@ -44,6 +45,7 @@ export async function createMiniPC(
       dimensions: {
         widthMM: formData.dimensions.widthMM,
         heightMM: formData.dimensions.heightMM,
+        lengthMM: formData.dimensions.lengthMM
       },
       weightKg: formData.weightKg || null,
       powerConsumptionW: formData.powerConsumptionW || null,

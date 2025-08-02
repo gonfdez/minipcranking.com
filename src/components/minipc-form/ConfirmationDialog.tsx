@@ -59,17 +59,30 @@ export function ConfirmationDialog({
                 <span className="font-medium">Graphics:</span>{" "}
                 {formData.graphicsLabel || formData.graphics}
               </div>
-              <div>
+              <div className="col-span-2">
                 <span className="font-medium">Product URL:</span>{" "}
                 <a
                   href={formData.fromURL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
+                  className="text-blue-600 hover:underline break-all"
                 >
                   {formData.fromURL}
                 </a>
               </div>
+              {formData.manualURL && (
+                <div className="col-span-2">
+                  <span className="font-medium">Manual URL:</span>{" "}
+                  <a
+                    href={formData.manualURL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-blue-600 hover:underline break-all"
+                  >
+                    {formData.manualURL}
+                  </a>
+                </div>
+              )}
               <div>
                 <span className="font-medium">Manual Collect:</span>{" "}
                 {formData.manualCollect ? "Yes" : "No"}
@@ -115,10 +128,10 @@ export function ConfirmationDialog({
           </div>
 
           {/* Dimensions */}
-          {(formData.dimensions.widthMM || formData.dimensions.heightMM) && (
+          {(formData.dimensions.widthMM || formData.dimensions.heightMM || formData.dimensions.lengthMM) && (
             <div className="border rounded-lg p-4">
               <h3 className="font-semibold mb-3">Dimensions</h3>
-              <div className="grid grid-cols-2 gap-4">
+              <div className="grid grid-cols-3 gap-4">
                 {formData.dimensions.widthMM && (
                   <div>
                     <span className="font-medium">Width:</span>{" "}
@@ -129,6 +142,12 @@ export function ConfirmationDialog({
                   <div>
                     <span className="font-medium">Height:</span>{" "}
                     {formData.dimensions.heightMM} mm
+                  </div>
+                )}
+                {formData.dimensions.lengthMM && (
+                  <div>
+                    <span className="font-medium">Length:</span>{" "}
+                    {formData.dimensions.lengthMM} mm
                   </div>
                 )}
               </div>
@@ -206,7 +225,7 @@ export function ConfirmationDialog({
                         href={img.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline"
+                        className="text-blue-600 hover:underline break-all"
                       >
                         {img.url}
                       </a>
@@ -223,7 +242,7 @@ export function ConfirmationDialog({
                         href={img.url}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-blue-600 hover:underline"
+                        className="text-blue-600 hover:underline break-all"
                       >
                         {img.url}
                       </a>
@@ -276,7 +295,7 @@ export function ConfirmationDialog({
                             href={offer.url}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-blue-600 hover:underline"
+                            className="text-blue-600 hover:underline break-all"
                           >
                             {offer.url}
                           </a>
