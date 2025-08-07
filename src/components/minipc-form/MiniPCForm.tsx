@@ -3,7 +3,7 @@
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -23,6 +23,13 @@ import {
   getFormDataWithLabels,
   FormDataWithLabels,
 } from "./supabase-functions";
+import { supabase } from "@/lib/supabaseClient";
+import {
+  BrandData,
+  ConnectivityData,
+  CPUWithBrand,
+  GraphicsWithBrand,
+} from "./types";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model name is required"),
@@ -148,7 +155,7 @@ const defaultValues = {
   dimensions: {
     widthMM: null,
     heightMM: null,
-    lengthMM: null
+    lengthMM: null,
   },
   ports: {
     usb3: null,
@@ -173,6 +180,14 @@ export function MiniPCForm() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formDataToSubmit, setFormDataToSubmit] =
     useState<FormDataWithLabels | null>(null);
+
+  const [centralData, setCentralData] = useState({
+    brands: [] as BrandData[],
+    cpus: [] as CPUWithBrand[],
+    graphics: [] as GraphicsWithBrand[],
+    connectivity: [] as ConnectivityData[],
+    loading: true,
+  });
 
   const {
     register,
@@ -213,6 +228,51 @@ export function MiniPCForm() {
     name: "portsImgUrl",
     control,
   });
+
+  const fetchAllCentralData = async () => {
+    setCentralData((prev) => ({ ...prev, loading: true }));
+
+    try {
+      const [brandsRes, cpusRes, graphicsRes, connectivityRes] =
+        await Promise.all([
+          supabase.from("Brands").select("id, name, imgHref").order("name"),
+          supabase
+            .from("CPUs")
+            .select(
+              `
+          id, brand, model, cores, threads, baseClockGHz, boostClockGHz,
+          brandData:Brands(id, name)
+        `
+            )
+            .order("model"),
+          supabase
+            .from("Graphics")
+            .select(
+              `
+          id, model, integrated, brand, frequencyMHz, maxTOPS, graphicCoresCU,
+          brandData:Brands(id, name)
+        `
+            )
+            .order("model"),
+          supabase.from("Connectivity").select("id, type, speed").order("type"),
+        ]);
+
+      setCentralData({
+        brands: brandsRes.data || [],
+        cpus: (cpusRes.data as any) || [],
+        graphics: (graphicsRes.data as any) || [],
+        connectivity: connectivityRes.data || [],
+        loading: false,
+      });
+    } catch (error) {
+      console.error("Error fetching central data:", error);
+      setCentralData((prev) => ({ ...prev, loading: false }));
+    }
+  };
+
+  useEffect(() => {
+    fetchAllCentralData();
+  }, []);
 
   const onSubmit = async (data: FormData) => {
     console.log("Form data:", data);
@@ -294,7 +354,13 @@ export function MiniPCForm() {
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
         <div>
           <Label>Brand *</Label>
-          <BrandSelectAndCreate value={brandValue} onChange={onBrandChange} />
+          <BrandSelectAndCreate
+            value={brandValue}
+            onChangeAction={onBrandChange}
+            brands={centralData.brands}
+            onDataUpdateAction={fetchAllCentralData}
+            loading={centralData.loading}
+          />
           {errors.brand && (
             <span className="text-red-500">{errors.brand.message}</span>
           )}
@@ -313,7 +379,14 @@ export function MiniPCForm() {
 
         <div>
           <Label>CPU *</Label>
-          <CPUSelectAndCreate value={cpuValue} onChange={onCPUChange} />
+          <CPUSelectAndCreate
+            value={cpuValue}
+            onChangeAction={onCPUChange}
+            cpus={centralData.cpus}
+            brands={centralData.brands}
+            onDataUpdateAction={fetchAllCentralData}
+            loading={centralData.loading}
+          />
           {errors.CPU && (
             <span className="text-red-500">{errors.CPU.message}</span>
           )}
@@ -323,7 +396,11 @@ export function MiniPCForm() {
           <Label>Graphics *</Label>
           <GraphicsSelectAndCreate
             value={graphicsValue}
-            onChange={onGraphicsChange}
+            onChangeAction={onGraphicsChange}
+            graphics={centralData.graphics}
+            brands={centralData.brands}
+            onDataUpdateAction={fetchAllCentralData}
+            loading={centralData.loading}
           />
           {errors.graphics && (
             <span className="text-red-500">{errors.graphics.message}</span>
@@ -483,7 +560,10 @@ export function MiniPCForm() {
           <Label>Connectivity *</Label>
           <ConnectivitySelectAndCreate
             value={connectivityValue}
-            onChange={onConnectivityChange}
+            onChangeAction={onConnectivityChange}
+            connectivity={centralData.connectivity}
+            onDataUpdateAction={fetchAllCentralData}
+            loading={centralData.loading}
           />
           {errors.connectivity && (
             <span className="text-red-500">{errors.connectivity.message}</span>

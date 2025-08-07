@@ -18,22 +18,6 @@ import {
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Trash2, Plus } from "lucide-react";
-
-// Tipos para las variantes
-export type VariantOffer = {
-  url: string;
-  price: number;
-};
-
-export type Variant = {
-  RAMGB: number;
-  RAM_type: string;
-  storageGB: number;
-  storage_type: string;
-  offers: VariantOffer[];
-};
-
-// Importa FormData desde el archivo principal
 import { FormData } from "./MiniPCForm";
 
 interface VariantsInputProps {

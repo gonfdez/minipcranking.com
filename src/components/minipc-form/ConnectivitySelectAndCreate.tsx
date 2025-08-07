@@ -20,52 +20,31 @@ import {
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabaseClient";
 import { X } from "lucide-react";
-
-type Connectivity = {
-  id: number;
-  type: string;
-  speed?: {
-    value: number;
-    units: string;
-  } | null;
-};
+import { ConnectivityData } from "./types";
 
 type Props = {
   value: number[];
-  onChange: (value: number[]) => void;
+  onChangeAction: (value: number[]) => void;
+  connectivity: ConnectivityData[];
+  onDataUpdateAction: () => Promise<void>;
+  loading: boolean;
 };
 
 const speedUnits = ["Mbps", "Gbps", "MHz", "GHz", "kHz"];
 
-export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
-  const [connectivities, setConnectivities] = useState<Connectivity[]>([]);
-  const [loading, setLoading] = useState(true);
+export function ConnectivitySelectAndCreate({
+  value,
+  onChangeAction,
+  connectivity,
+  onDataUpdateAction,
+  loading,
+}: Props) {
   const [openModal, setOpenModal] = useState(false);
   const [newConnectivityType, setNewConnectivityType] = useState("");
   const [error, setError] = useState<string | null>(null);
-  
-  // Campos para speed opcional
+
   const [speedValue, setSpeedValue] = useState<string>("");
   const [speedUnitsValue, setSpeedUnitsValue] = useState<string>("");
-
-  useEffect(() => {
-    fetchConnectivities();
-  }, []);
-
-  async function fetchConnectivities() {
-    setLoading(true);
-    const { data, error } = await supabase
-      .from("Connectivity")
-      .select("id, type, speed")
-      .order("type");
-
-    if (error) {
-      console.error("Error fetching connectivity types:", error);
-    } else {
-      setConnectivities(data || []);
-    }
-    setLoading(false);
-  }
 
   function resetForm() {
     setNewConnectivityType("");
@@ -96,13 +75,13 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
       }
       speedData = {
         value: numericValue,
-        units: speedUnitsValue
+        units: speedUnitsValue,
       };
     }
 
     // Preparar datos para insertar
     const insertData: any = {
-      type: newConnectivityType.trim()
+      type: newConnectivityType.trim(),
     };
 
     if (speedData) {
@@ -121,8 +100,8 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
     }
 
     if (data) {
-      setConnectivities((prev) => [...prev, data]);
-      onChange([...value, data.id]);
+      await onDataUpdateAction();
+      onChangeAction([...value, data.id]);
       toast.success(`Connectivity "${data.type}" created successfully`);
     }
 
@@ -132,33 +111,34 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
 
   function handleAddConnectivity(id: number) {
     if (!value.includes(id)) {
-      onChange([...value, id]);
+      onChangeAction([...value, id]);
     }
   }
 
   function handleRemoveConnectivity(id: number) {
-    onChange(value.filter((v) => v !== id));
+    onChangeAction(value.filter((v) => v !== id));
   }
 
-  const availableOptions = connectivities.filter((c) => !value.includes(c.id));
+  const availableOptions = connectivity.filter((c) => !value.includes(c.id));
 
   return (
     <>
       <div className="space-y-2 mt-2">
         <div className="flex flex-wrap gap-2">
           {value.map((id) => {
-            const connectivity = connectivities.find((c) => c.id === id);
-            if (!connectivity) return null;
+            const connectivityItem = connectivity.find((c) => c.id === id);
+            if (!connectivityItem) return null;
             return (
               <span
                 key={id}
-                className="flex items-center space-x-1 bg-gray-200 px-2 py-1 rounded-full text-sm"
+                className="flex items-center space-x-1 bg-gray-200 px-2 py-1 rounded-full text-sm text-black"
               >
                 <span>
-                  {connectivity.type}
-                  {connectivity.speed && (
+                  {connectivityItem.type}
+                  {connectivityItem.speed && (
                     <span className="text-blue-600 ml-1">
-                      ({connectivity.speed.value} {connectivity.speed.units})
+                      ({connectivityItem.speed.value}{" "}
+                      {connectivityItem.speed.units})
                     </span>
                   )}
                 </span>
@@ -274,9 +254,9 @@ export function ConnectivitySelectAndCreate({ value, onChange }: Props) {
                 </div>
               </div>
             </div>
-            
+
             {error && <p className="text-red-600 text-sm">{error}</p>}
-            
+
             <div className="flex justify-end space-x-2 pt-4">
               <Button
                 type="button"

@@ -19,44 +19,28 @@ import {
 } from "@/components/ui/dialog";
 import { supabase } from "@/lib/supabaseClient";
 import { toast } from "sonner";
-
-type Brand = {
-  id: number;
-  name: string;
-  imgHref?: string | null;
-};
+import { BrandData } from "./types";
 
 type Props = {
   value: string | undefined;
-  onChange: (value: string) => void;
+  onChangeAction: (value: string) => void;
+  brands: BrandData[];
+  onDataUpdateAction: () => Promise<void>;
+  loading: boolean;
 };
 
-export function BrandSelectAndCreate({ value, onChange }: Props) {
-  const [brands, setBrands] = useState<Brand[]>([]);
-  const [loading, setLoading] = useState(true);
+export function BrandSelectAndCreate({
+  value,
+  onChangeAction,
+  brands,
+  onDataUpdateAction,
+  loading,
+}: Props) {
   const [openModal, setOpenModal] = useState(false);
   const [formBrandId, setFormBrandId] = useState<number | null>(null);
   const [newBrandName, setNewBrandName] = useState("");
   const [newBrandImgHref, setNewBrandImgHref] = useState("");
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetchBrands();
-  }, []);
-
-  async function fetchBrands() {
-    setLoading(true);
-    const { data, error } = await supabase
-      .from("Brands")
-      .select("id, name, imgHref")
-      .order("name");
-    if (error) {
-      console.error("Error fetching brands:", error);
-    } else {
-      setBrands(data || []);
-    }
-    setLoading(false);
-  }
 
   function handleEditBrand(brandId: number) {
     const brand = brands.find((b) => b.id === brandId);
@@ -111,7 +95,7 @@ export function BrandSelectAndCreate({ value, onChange }: Props) {
       }
 
       toast.success(`Brand updated successfully`);
-      fetchBrands();
+      await onDataUpdateAction();
     } else {
       // Create new
       const { data, error: createError } = await supabase
@@ -126,10 +110,10 @@ export function BrandSelectAndCreate({ value, onChange }: Props) {
       }
 
       if (data) {
-        setBrands((prev) => [...prev, data]);
+        await onDataUpdateAction();
         toast.success(`Brand "${data.name}" created successfully`);
         setTimeout(() => {
-          onChange(data.id.toString());
+          onChangeAction(data.id.toString());
         }, 100);
       }
     }
@@ -151,9 +135,9 @@ export function BrandSelectAndCreate({ value, onChange }: Props) {
     <>
       <div className="flex space-x-2 items-center">
         <Select
-          onValueChange={onChange}
+          onValueChange={onChangeAction}
           value={value}
-          disabled={brands.length === 0}
+          disabled={brands.length === 0 || loading}
         >
           <SelectTrigger className="w-full">
             <SelectValue

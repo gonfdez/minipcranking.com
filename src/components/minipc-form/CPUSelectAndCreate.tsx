@@ -20,26 +20,25 @@ import {
 import { supabase } from "@/lib/supabaseClient";
 import { toast } from "sonner";
 import { BrandSelectAndCreate } from "./BrandSelectAndCreate";
-
-type Brand = { id: number; name: string };
-type CPU = {
-  id: number;
-  brand: number;
-  model: string;
-  cores: number;
-  threads: number;
-  baseClockGHz?: number | null;
-  boostClockGHz?: number | null;
-};
+import { BrandData, CPUWithBrand } from "./types";
 
 type Props = {
   value: string | undefined;
-  onChange: (value: string) => void;
+  onChangeAction: (value: string) => void;
+  cpus: CPUWithBrand[];
+  brands: BrandData[];
+  onDataUpdateAction: () => Promise<void>;
+  loading: boolean;
 };
 
-export function CPUSelectAndCreate({ value, onChange }: Props) {
-  const [cpus, setCpus] = useState<CPU[]>([]);
-  const [loading, setLoading] = useState(true);
+export function CPUSelectAndCreate({
+  value,
+  onChangeAction,
+  cpus,
+  brands,
+  onDataUpdateAction,
+  loading,
+}: Props) {
   const [openModal, setOpenModal] = useState(false);
   const [formCpuId, setFormCpuId] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
@@ -52,20 +51,6 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
     baseClockGHz: "",
     boostClockGHz: "",
   });
-
-  useEffect(() => {
-    fetchCPUs();
-  }, []);
-
-  async function fetchCPUs() {
-    setLoading(true);
-    const { data, error } = await supabase
-      .from("CPUs")
-      .select("*")
-      .order("model");
-    if (!error && data) setCpus(data);
-    setLoading(false);
-  }
 
   function resetForm() {
     setFormCpuId(null);
@@ -137,6 +122,7 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
           .eq("id", formCpuId);
         if (error) throw error;
         toast.success("CPU updated successfully");
+        await onDataUpdateAction();
       } else {
         // Insert case
         const { data, error } = await supabase
@@ -146,10 +132,10 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
           .single();
         if (error) throw error;
 
-        await fetchCPUs();
+        await onDataUpdateAction();
         toast.success("CPU created successfully");
         setTimeout(() => {
-          onChange(data.id.toString());
+          onChangeAction(data.id.toString());
         }, 100);
       }
       resetForm();
@@ -163,9 +149,9 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
     <>
       <div className="flex space-x-2 items-center">
         <Select
-          onValueChange={onChange}
+          onValueChange={onChangeAction}
           value={value}
-          disabled={cpus.length === 0}
+          disabled={cpus.length === 0 || loading}
         >
           <SelectTrigger className="w-full">
             <SelectValue
@@ -175,7 +161,7 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
           <SelectContent>
             {cpus.map((cpu) => (
               <SelectItem key={cpu.id} value={cpu.id.toString()}>
-                {cpu.model}
+                {(cpu.brandData && (cpu.brandData as any).name) || "Unknown Brand"} {cpu.model}
               </SelectItem>
             ))}
           </SelectContent>
@@ -223,12 +209,15 @@ export function CPUSelectAndCreate({ value, onChange }: Props) {
               <Label htmlFor="cpu-brand">Brand *</Label>
               <BrandSelectAndCreate
                 value={formData.brand || undefined}
-                onChange={(newBrandId) => {
+                onChangeAction={(newBrandId) => {
                   setFormData((prev) => ({
                     ...prev,
                     brand: newBrandId,
                   }));
                 }}
+                brands={brands}
+                onDataUpdateAction={onDataUpdateAction}
+                loading={loading}
               />
             </div>
 

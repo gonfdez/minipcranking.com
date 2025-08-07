@@ -1,4 +1,6 @@
-import React, { useEffect, useState } from "react";
+"use client"
+
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -19,18 +21,18 @@ import {
 import { supabase } from "@/lib/supabaseClient";
 import { toast } from "sonner";
 import { BrandSelectAndCreate } from "./BrandSelectAndCreate";
-
-interface Graphics {
-  id: number;
-  model: string;
-}
+import { BrandData, GraphicsWithBrand } from "./types";
 
 interface GraphicsSelectAndCreateProps {
   value: string | undefined;
-  onChange: (value: string) => void;
+  onChangeAction: (value: string) => void;
+  graphics: GraphicsWithBrand[];
+  brands: BrandData[];
+  onDataUpdateAction: () => Promise<void>;
+  loading: boolean;
 }
 
-interface FormData {
+interface GraphicsFormData {
   id: number | null;
   integrated: boolean;
   brand: string;
@@ -42,12 +44,14 @@ interface FormData {
 
 export function GraphicsSelectAndCreate({
   value,
-  onChange,
+  onChangeAction,
+  graphics,
+  brands,
+  onDataUpdateAction,
+  loading,
 }: GraphicsSelectAndCreateProps) {
-  const [graphics, setGraphics] = useState<Graphics[]>([]);
-  const [loading, setLoading] = useState(true);
   const [openModal, setOpenModal] = useState(false);
-  const [formData, setFormData] = useState<FormData>({
+  const [formData, setFormData] = useState<GraphicsFormData>({
     id: null,
     integrated: true,
     brand: "",
@@ -57,25 +61,6 @@ export function GraphicsSelectAndCreate({
     graphicCoresCU: "",
   });
   const [error, setError] = useState<string | null>(null);
-
-  useEffect(() => {
-    fetchGraphics();
-  }, []);
-
-  async function fetchGraphics() {
-    setLoading(true);
-    const { data, error } = await supabase
-      .from("Graphics")
-      .select("id, model")
-      .order("model");
-
-    if (error) {
-      console.error("Error fetching graphics:", error);
-    } else {
-      setGraphics(data || []);
-    }
-    setLoading(false);
-  }
 
   function handleEditGraphics(graphicsId: number) {
     supabase
@@ -94,7 +79,10 @@ export function GraphicsSelectAndCreate({
           brand: data.brand.toString(),
           model: data.model,
           frequencyMHz: data.frequencyMHz?.toString() || "",
-          maxTOPS: data.maxTOPS !== null && data.maxTOPS !== undefined ? data.maxTOPS.toString() : "",
+          maxTOPS:
+            data.maxTOPS !== null && data.maxTOPS !== undefined
+              ? data.maxTOPS.toString()
+              : "",
           graphicCoresCU: data.graphicCoresCU?.toString() || "",
         });
         setOpenModal(true);
@@ -152,7 +140,7 @@ export function GraphicsSelectAndCreate({
       }
 
       toast.success("Graphics updated successfully");
-      await fetchGraphics();
+      await onDataUpdateAction();
     } else {
       // Insert case
       const { data, error } = await supabase
@@ -167,10 +155,10 @@ export function GraphicsSelectAndCreate({
       }
 
       if (data) {
-        await fetchGraphics();
+        await onDataUpdateAction();
         toast.success("Graphics created successfully");
         setTimeout(() => {
-          onChange(data.id.toString());
+          onChangeAction(data.id.toString());
         }, 100);
       }
     }
@@ -183,9 +171,9 @@ export function GraphicsSelectAndCreate({
     <>
       <div className="flex space-x-2 items-center w-full">
         <Select
-          onValueChange={onChange}
+          onValueChange={onChangeAction}
           value={value}
-          disabled={graphics.length === 0}
+          disabled={graphics.length === 0 || loading}
         >
           <SelectTrigger className="w-full">
             <SelectValue
@@ -195,7 +183,7 @@ export function GraphicsSelectAndCreate({
           <SelectContent>
             {graphics.map((g) => (
               <SelectItem key={g.id} value={g.id.toString()}>
-                {g.model}
+                {g.brandData?.name || "Unknown Brand"} {g.model}
               </SelectItem>
             ))}
           </SelectContent>
@@ -245,12 +233,15 @@ export function GraphicsSelectAndCreate({
               <Label htmlFor="graphics-brand">Brand *</Label>
               <BrandSelectAndCreate
                 value={formData.brand || undefined}
-                onChange={(newBrandId) => {
+                onChangeAction={(newBrandId) => {
                   setFormData((prev) => ({
                     ...prev,
                     brand: newBrandId,
                   }));
                 }}
+                brands={brands}
+                onDataUpdateAction={onDataUpdateAction}
+                loading={loading}
               />
             </div>
 
