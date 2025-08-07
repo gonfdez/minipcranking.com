@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 export default function DeveloperPanelPage() {
   return (
     <AuthGuard>
-      <div className="min-h-screen flex gap-6">
+      <div className="flex gap-6 max-w-6xl sm:px-6 lg:px-8">
         <Button
           variant={"outline"}
           onClick={() => (window.location.href = "/dev/minipc-table")}

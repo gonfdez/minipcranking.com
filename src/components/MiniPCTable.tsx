@@ -136,7 +136,7 @@ export function MiniPCTable() {
   }
 
   return (
-    <div className="container mx-auto">
+    <div>
       <div className="flex justify-between items-center mb-6">
         <h1 className="text-3xl font-bold">Mini PC's</h1>
         <Button

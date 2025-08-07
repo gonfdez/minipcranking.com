@@ -15,6 +15,7 @@ import {
 } from "@/components/ui/card";
 import { Alert, AlertDescription } from "@/components/ui/alert";
 import { Loader2, Lock, LogOut } from "lucide-react";
+import Link from "next/link";
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -75,7 +76,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
       <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <h1 className="text-xl font-semibold">Developer Panel</h1>
+            <Link href={"/dev"} className="text-xl font-semibold">Developer Panel</Link>
             <div className="flex items-center space-x-4">
               <span className="text-sm text-muted-foreground">
                 {user.email}
@@ -92,7 +93,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
           </div>
         </div>
       </nav>
-      <main className="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">{children}</main>
+      <main className="flex flex-col mx-auto px-4 py-8 md:max-w-3xl lg:max-w-4xl">{children}</main>
     </div>
   );
 }
