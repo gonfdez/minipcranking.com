@@ -169,9 +169,9 @@ export function MiniPCTable() {
               <TableHead>Model</TableHead>
               <TableHead>CPU</TableHead>
               <TableHead>Graphics</TableHead>
-              <TableHead>Max RAM</TableHead>
+              
               <TableHead>Variants</TableHead>
-              <TableHead>Release Year</TableHead>
+              
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -200,18 +200,14 @@ export function MiniPCTable() {
                   <TableCell>
                     {miniPC.graphics.brand.name} {miniPC.graphics.model}
                   </TableCell>
-                  <TableCell>
-                    {miniPC.maxRAMCapacityGB
-                      ? `${miniPC.maxRAMCapacityGB} GB`
-                      : "N/A"}
-                  </TableCell>
+                 
                   <TableCell>
                     <Badge variant="secondary">
                       {miniPC.variants.length} variant
                       {miniPC.variants.length !== 1 ? "s" : ""}
                     </Badge>
                   </TableCell>
-                  <TableCell>{miniPC.releaseYear || "N/A"}</TableCell>
+                  
                   <TableCell>
                     <div className="flex space-x-2">
                       <Button
