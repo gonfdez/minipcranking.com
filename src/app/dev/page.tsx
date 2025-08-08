@@ -2,6 +2,7 @@
 
 import AuthGuard from "@/components/AuthGuard";
 import { Button } from "@/components/ui/button";
+import { SquarePlus, Table } from "lucide-react";
 
 export default function DeveloperPanelPage() {
   return (
@@ -11,13 +12,13 @@ export default function DeveloperPanelPage() {
           variant={"outline"}
           onClick={() => (window.location.href = "/dev/minipc-table")}
         >
-          Go to Mini PC's Table
+         <Table className="h-4 w-4" /> See Mini PC's Table
         </Button>
         <Button
           variant={"outline"}
           onClick={() => (window.location.href = "/dev/minipc-form")}
         >
-          + Add New MiniPC
+          <SquarePlus className="h-4 w-4" /> Create new Mini PC
         </Button>
       </div>
     </AuthGuard>
