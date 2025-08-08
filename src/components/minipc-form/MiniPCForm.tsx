@@ -17,10 +17,7 @@ import { DimensionsInput } from "./DimensionsInput";
 import { ConnectivitySelectAndCreate } from "./ConnectivitySelectAndCreate";
 import { VariantsInput } from "./VariantsInput";
 import { ConfirmationDialog } from "./ConfirmationDialog";
-import {
-  createMiniPC,
-  validateReferences
-} from "./supabase-functions";
+import { createMiniPC, validateReferences } from "./supabase-functions";
 import { supabase } from "@/lib/supabaseClient";
 import {
   BrandData,
@@ -33,7 +30,13 @@ import { Save, SquarePlus, Table, TicketSlash, Trash2 } from "lucide-react";
 const formSchema = z.object({
   model: z.string().min(1, "Model name is required"),
   fromURL: z.url("Product URL is required"),
-  manualURL: z.url("Manual URL must be a valid URL").nullable().optional(),
+  manualURL: z
+    .string()
+    .optional()
+    .refine(
+      (val) => !val || z.string().url().safeParse(val).success,
+      "Manual URL must be a valid URL"
+    ),
   manualCollect: z.boolean(),
   maxRAMCapacityGB: z
     .number()
