@@ -700,7 +700,7 @@ export function MiniPCForm() {
               </>
             ) : (
               <>
-                <Save className="h-4 w-4" /> Create new Mini PC
+                <Save className="h-6 w-6" /> Create new Mini PC
               </>
             )}
           </Button>
