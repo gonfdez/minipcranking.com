@@ -151,7 +151,7 @@ const defaultValues = {
   CPU: "",
   graphics: "",
   manualCollect: true,
-  manualURL: null,
+  manualURL: "",
   mainImgUrl: [{ url: "" }],
   portsImgUrl: [{ url: "" }],
   dimensions: {
