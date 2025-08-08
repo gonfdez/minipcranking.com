@@ -19,7 +19,7 @@ import {
 } from "@/components/ui/dialog";
 import { toast } from "sonner";
 import { supabase } from "@/lib/supabaseClient";
-import { X } from "lucide-react";
+import { Save, SquarePlus, X } from "lucide-react";
 import { ConnectivityData } from "./types";
 
 type Props = {
@@ -195,8 +195,9 @@ export function ConnectivitySelectAndCreate({
               resetForm();
               setOpenModal(true);
             }}
+            title="Create new Connectivity"
           >
-            + Add Connectivity
+            <SquarePlus className="h-4 w-4" />
           </Button>
         </div>
       </div>
@@ -225,12 +226,12 @@ export function ConnectivitySelectAndCreate({
 
             <div className="space-y-2">
               <Label className="text-sm font-medium">Speed (Optional)</Label>
-              <div className="grid grid-cols-2 gap-2">
-                <div>
+              <div className="grid grid-cols-3 gap-2">
+                <div className="col-span-2">
                   <Input
                     type="number"
                     step="0.1"
-                    placeholder="e.g., 2.5"
+                    placeholder="Value (e.g: 2.5)"
                     value={speedValue}
                     onChange={(e) => setSpeedValue(e.target.value)}
                   />
@@ -239,8 +240,9 @@ export function ConnectivitySelectAndCreate({
                   <Select
                     value={speedUnitsValue}
                     onValueChange={setSpeedUnitsValue}
+                    
                   >
-                    <SelectTrigger>
+                    <SelectTrigger className="w-full">
                       <SelectValue placeholder="Units" />
                     </SelectTrigger>
                     <SelectContent>
@@ -269,7 +271,7 @@ export function ConnectivitySelectAndCreate({
                 Cancel
               </Button>
               <Button type="button" onClick={handleSave}>
-                Create Connectivity
+                <Save className="h-4 w-4" /> Create Connectivity
               </Button>
             </div>
           </div>

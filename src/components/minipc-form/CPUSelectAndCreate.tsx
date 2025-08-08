@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -21,6 +21,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { toast } from "sonner";
 import { BrandSelectAndCreate } from "./BrandSelectAndCreate";
 import { BrandData, CPUWithBrand } from "./types";
+import { Edit, Save, SquarePlus } from "lucide-react";
 
 type Props = {
   value: string | undefined;
@@ -177,8 +178,9 @@ export function CPUSelectAndCreate({
             handleEditCPU(parseInt(value));
           }}
           disabled={!value}
+          title="Edit CPU"
         >
-          Edit CPU
+          <Edit className="h-4 w-4" />
         </Button>
 
         <Button
@@ -187,8 +189,9 @@ export function CPUSelectAndCreate({
             resetForm();
             setOpenModal(true);
           }}
+          title="Create new CPU"
         >
-          + Add CPU
+          <SquarePlus className="h-4 w-4" />
         </Button>
       </div>
 
@@ -298,7 +301,7 @@ export function CPUSelectAndCreate({
                 Cancel
               </Button>
               <Button onClick={handleSave}>
-                {formCpuId ? "Save Changes" : "Create CPU"}
+                <Save className="h-4 w-4" /> {formCpuId ? "Save Changes" : "Create CPU"}
               </Button>
             </div>
           </div>

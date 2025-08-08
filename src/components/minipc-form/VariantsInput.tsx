@@ -17,7 +17,7 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Trash2, Plus } from "lucide-react";
+import { Trash2, SquarePlus } from "lucide-react";
 import { FormData } from "./MiniPCForm";
 
 interface VariantsInputProps {
@@ -63,7 +63,7 @@ export function VariantsInput({
       <div className="flex items-center justify-between">
         <Label className="text-lg font-semibold">Variants *</Label>
         <Button type="button" onClick={addVariant}>
-          <Plus className="w-4 h-4 mr-2" />
+          <SquarePlus className="h-4 w-4 mr-2" />
           Add Variant
         </Button>
       </div>
@@ -136,10 +136,11 @@ function VariantCard({
           <CardTitle className="text-lg">Variant {variantIndex + 1}</CardTitle>
           <Button
             type="button"
-            variant="ghost"
+            variant="outline"
             size="sm"
             onClick={onRemove}
             className="text-red-500 hover:text-red-700"
+            title="Remove Variant"
           >
             <Trash2 className="w-4 h-4" />
           </Button>
@@ -273,7 +274,7 @@ function VariantCard({
               variant="outline"
               size="sm"
             >
-              <Plus className="w-4 h-4 mr-1" />
+              <SquarePlus className="h-4 w-4 mr-2" />
               Add Offer
             </Button>
           </div>
@@ -346,11 +347,12 @@ function VariantCard({
               <div className="col-span-1 flex justify-center">
                 <Button
                   type="button"
-                  variant="ghost"
+                  variant="outline"
                   size="sm"
                   onClick={() => removeOffer(offerIndex)}
                   disabled={offerFields.length === 1}
                   className="text-red-500 hover:text-red-700 h-8 w-8 p-0"
+                  title="Remove row"
                 >
                   <Trash2 className="w-4 h-4" />
                 </Button>

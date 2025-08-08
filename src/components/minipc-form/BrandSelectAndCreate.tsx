@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,6 +20,7 @@ import {
 import { supabase } from "@/lib/supabaseClient";
 import { toast } from "sonner";
 import { BrandData } from "./types";
+import { Edit, Save, SquarePlus } from "lucide-react";
 
 type Props = {
   value: string | undefined;
@@ -164,8 +165,9 @@ export function BrandSelectAndCreate({
             handleEditBrand(brandId);
           }}
           disabled={!value}
+          title="Edit Brand"
         >
-          Edit Brand
+          <Edit className="h-4 w-4" />
         </Button>
 
         <Button
@@ -174,8 +176,9 @@ export function BrandSelectAndCreate({
             resetForm();
             setOpenModal(true);
           }}
+          title="Create new Brand"
         >
-          + Add Brand
+          <SquarePlus className="h-4 w-4" />
         </Button>
       </div>
 
@@ -226,7 +229,7 @@ export function BrandSelectAndCreate({
                 Cancel
               </Button>
               <Button onClick={handleSave}>
-                {formBrandId ? "Save Changes" : "Create Brand"}
+                <Save className="h-4 w-4" /> {formBrandId ? "Save Changes" : "Create Brand"}
               </Button>
             </div>
           </div>

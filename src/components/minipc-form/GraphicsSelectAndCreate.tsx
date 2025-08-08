@@ -22,6 +22,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { toast } from "sonner";
 import { BrandSelectAndCreate } from "./BrandSelectAndCreate";
 import { BrandData, GraphicsWithBrand } from "./types";
+import { Edit, Save, SquarePlus } from "lucide-react";
 
 interface GraphicsSelectAndCreateProps {
   value: string | undefined;
@@ -199,8 +200,9 @@ export function GraphicsSelectAndCreate({
             handleEditGraphics(parseInt(value));
           }}
           disabled={!value}
+          title="Edit Graphics"
         >
-          Edit Graphics
+          <Edit className="h-4 w-4" />
         </Button>
 
         <Button
@@ -209,8 +211,9 @@ export function GraphicsSelectAndCreate({
             resetForm();
             setOpenModal(true);
           }}
+          title="Create new Graphics"
         >
-          + Add Graphics
+          <SquarePlus className="h-4 w-4" />
         </Button>
       </div>
 
@@ -323,7 +326,7 @@ export function GraphicsSelectAndCreate({
                 Cancel
               </Button>
               <Button type="button" onClick={handleSave}>
-                {formData.id ? "Save Changes" : "Create Graphics"}
+                <Save className="h-4 w-4" /> {formData.id ? "Save Changes" : "Create Graphics"}
               </Button>
             </div>
           </div>

@@ -30,6 +30,7 @@ import {
   CPUWithBrand,
   GraphicsWithBrand,
 } from "./types";
+import { Save, SquarePlus, TicketSlash, Trash2 } from "lucide-react";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model name is required"),
@@ -343,7 +344,7 @@ export function MiniPCForm() {
   return (
     <div>
       <div className="flex justify-between mb-6">
-        <h1 className="text-3xl font-bold">Create a new Mini PC</h1>
+        <h1 className="text-3xl font-bold">Create new Mini PC</h1>
         <Button
           variant={"outline"}
           onClick={() => (window.location.href = "/dev/minipc-table")}
@@ -431,16 +432,6 @@ export function MiniPCForm() {
 
         <div>
           <Label>Product Images URL *</Label>
-          {fields.length === 0 && (
-            <Button
-              type="button"
-              onClick={() => append({ url: "" })}
-              className="mt-1"
-            >
-              + Add First Image URL
-            </Button>
-          )}
-
           {fields.map((field, index) => (
             <div key={field.id} className="mb-2">
               <div className="flex items-center space-x-2">
@@ -453,8 +444,9 @@ export function MiniPCForm() {
                   variant="destructive"
                   onClick={() => remove(index)}
                   disabled={fields.length === 1}
+                  title="Remove row"
                 >
-                  Remove
+                  <Trash2 className="w-4 h-4" />
                 </Button>
               </div>
               {errors.mainImgUrl?.[index]?.url && (
@@ -465,15 +457,13 @@ export function MiniPCForm() {
             </div>
           ))}
 
-          {fields.length > 0 && (
-            <Button
-              type="button"
-              onClick={() => append({ url: "" })}
-              className="mt-1"
-            >
-              + Add Image URL
-            </Button>
-          )}
+          <Button
+            type="button"
+            onClick={() => append({ url: "" })}
+            className="mt-1"
+          >
+            <SquarePlus className="h-4 w-4" /> Add Image URL
+          </Button>
 
           {errors.mainImgUrl && (
             <span className="text-red-500 block mt-1">
@@ -484,16 +474,6 @@ export function MiniPCForm() {
 
         <div>
           <Label>Ports Images URL *</Label>
-          {portsImagesFields.length === 0 && (
-            <Button
-              type="button"
-              onClick={() => appendPortsImage({ url: "" })}
-              className="mt-1"
-            >
-              + Add First Port Image URL
-            </Button>
-          )}
-
           {portsImagesFields.map((field, index) => (
             <div key={field.id} className="mb-2">
               <div className="flex items-center space-x-2">
@@ -506,8 +486,9 @@ export function MiniPCForm() {
                   variant="destructive"
                   onClick={() => removePortsImage(index)}
                   disabled={portsImagesFields.length === 1}
+                  title="Remove row"
                 >
-                  Remove
+                  <Trash2 className="w-4 h-4" />
                 </Button>
               </div>
               {errors.portsImgUrl?.[index]?.url && (
@@ -518,15 +499,13 @@ export function MiniPCForm() {
             </div>
           ))}
 
-          {portsImagesFields.length > 0 && (
-            <Button
-              type="button"
-              onClick={() => appendPortsImage({ url: "" })}
-              className="mt-1"
-            >
-              + Add Port Image URL
-            </Button>
-          )}
+          <Button
+            type="button"
+            onClick={() => appendPortsImage({ url: "" })}
+            className="mt-1"
+          >
+            <SquarePlus className="h-4 w-4" /> Add Port Image URL
+          </Button>
 
           {errors.portsImgUrl && (
             <span className="text-red-500 block mt-1">
@@ -709,9 +688,19 @@ export function MiniPCForm() {
           />
         </div>
 
-        <Button type="submit" size={"lg"} disabled={isSubmitting}>
-          {isSubmitting ? "Validating..." : "Create Mini PC"}
-        </Button>
+        <div className="mt-10">
+          <Button type="submit" className="font-semibold text-lg w-full" size={"lg"} disabled={isSubmitting}>
+            {isSubmitting ? (
+              <>
+                <TicketSlash className="h-4 w-4" /> Validating...
+              </>
+            ) : (
+              <>
+                <Save className="h-4 w-4" /> Create new Mini PC
+              </>
+            )}
+          </Button>
+        </div>
       </form>
 
       {/* Diálogo de confirmación */}
