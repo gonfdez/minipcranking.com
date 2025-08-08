@@ -30,7 +30,7 @@ import {
   CPUWithBrand,
   GraphicsWithBrand,
 } from "./types";
-import { Save, SquarePlus, TicketSlash, Trash2 } from "lucide-react";
+import { Save, SquarePlus, Table, TicketSlash, Trash2 } from "lucide-react";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model name is required"),
@@ -349,7 +349,7 @@ export function MiniPCForm() {
           variant={"outline"}
           onClick={() => (window.location.href = "/dev/minipc-table")}
         >
-          Go to Mini PC's Table
+          <Table className="h-4 w-4" /> See Mini PC's Table
         </Button>
       </div>
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
@@ -689,7 +689,12 @@ export function MiniPCForm() {
         </div>
 
         <div className="mt-10">
-          <Button type="submit" className="font-semibold text-lg w-full" size={"lg"} disabled={isSubmitting}>
+          <Button
+            type="submit"
+            className="font-semibold text-lg w-full"
+            size={"lg"}
+            disabled={isSubmitting}
+          >
             {isSubmitting ? (
               <>
                 <TicketSlash className="h-4 w-4" /> Validating...

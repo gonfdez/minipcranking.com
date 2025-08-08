@@ -21,7 +21,7 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@/components/ui/dialog";
-import { Eye, Edit, Trash2, Search } from "lucide-react";
+import { Eye, Edit, Trash2, Search, SquarePlus } from "lucide-react";
 
 interface MiniPC {
   id: number;
@@ -143,7 +143,7 @@ export function MiniPCTable() {
           variant={"outline"}
           onClick={() => (window.location.href = "/dev/minipc-form")}
         >
-          + Add New MiniPC
+          <SquarePlus className="h-4 w-4" /> Add new Mini PC
         </Button>
       </div>
 
