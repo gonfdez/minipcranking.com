@@ -8,7 +8,7 @@ import { Monitor, BookOpen, BarChart3, Cpu, Zap, Shield } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Mini PC Ranking - Compare, Review & Find the Best Mini PCs",
-  description: "The ultimate resource for mini PC enthusiasts. Compare specifications, read expert reviews, and discover the perfect mini PC for your needs. Features Intel NUC, ASUS, Beelink and more.",
+  description: "The ultimate resource for mini PC enthusiasts. Compare specifications, read expert reviews, and discover the perfect mini PC for your needs. Find your ideal compact computing solution.",
   
   keywords: [
     "mini pc ranking",
@@ -88,7 +88,7 @@ export default function Home() {
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
             Compare specifications, read expert reviews, and explore the world of mini PCs. 
-            From Intel NUC to ASUS and Beelink - find your ideal compact computing solution.
+            <br/> Find your ideal compact computing solution.
           </p>
         </div>
 
