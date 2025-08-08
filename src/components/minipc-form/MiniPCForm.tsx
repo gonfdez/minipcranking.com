@@ -26,6 +26,7 @@ import {
   GraphicsWithBrand,
 } from "./types";
 import { Save, SquarePlus, Table, TicketSlash, Trash2 } from "lucide-react";
+import { CleanInput } from "../ui/CleanInput";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model name is required"),
@@ -368,7 +369,7 @@ export function MiniPCForm() {
 
         <div>
           <Label>Model name *</Label>
-          <Input
+          <CleanInput
             {...register("model")}
             placeholder="Model name of the Mini PC"
           />

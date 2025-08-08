@@ -23,6 +23,7 @@ import { toast } from "sonner";
 import { BrandSelectAndCreate } from "./BrandSelectAndCreate";
 import { BrandData, GraphicsWithBrand } from "./types";
 import { Edit, Save, SquarePlus } from "lucide-react";
+import { CleanInput } from "../ui/CleanInput";
 
 interface GraphicsSelectAndCreateProps {
   value: string | undefined;
@@ -250,7 +251,7 @@ export function GraphicsSelectAndCreate({
 
             <div className="space-y-2">
               <Label htmlFor="graphics-model">Model *</Label>
-              <Input
+              <CleanInput
                 id="graphics-model"
                 placeholder="Enter graphics model"
                 value={formData.model}

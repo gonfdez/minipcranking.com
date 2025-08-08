@@ -22,6 +22,7 @@ import { toast } from "sonner";
 import { BrandSelectAndCreate } from "./BrandSelectAndCreate";
 import { BrandData, CPUWithBrand } from "./types";
 import { Edit, Save, SquarePlus } from "lucide-react";
+import { CleanInput } from "../ui/CleanInput";
 
 type Props = {
   value: string | undefined;
@@ -226,7 +227,7 @@ export function CPUSelectAndCreate({
 
             <div className="space-y-2">
               <Label htmlFor="cpu-model">Model *</Label>
-              <Input
+              <CleanInput
                 id="cpu-model"
                 placeholder="Enter CPU model"
                 value={formData.model}

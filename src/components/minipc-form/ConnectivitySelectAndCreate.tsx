@@ -21,6 +21,7 @@ import { toast } from "sonner";
 import { supabase } from "@/lib/supabaseClient";
 import { Save, SquarePlus, X } from "lucide-react";
 import { ConnectivityData } from "./types";
+import { CleanInput } from "../ui/CleanInput";
 
 type Props = {
   value: number[];
@@ -216,7 +217,7 @@ export function ConnectivitySelectAndCreate({
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="connectivity-type">Connectivity Type *</Label>
-              <Input
+              <CleanInput
                 id="connectivity-type"
                 placeholder="e.g., Bluetooth 5.2, WiFi 6E"
                 value={newConnectivityType}
@@ -240,7 +241,6 @@ export function ConnectivitySelectAndCreate({
                   <Select
                     value={speedUnitsValue}
                     onValueChange={setSpeedUnitsValue}
-                    
                   >
                     <SelectTrigger className="w-full">
                       <SelectValue placeholder="Units" />

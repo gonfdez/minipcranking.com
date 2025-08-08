@@ -21,6 +21,7 @@ import { supabase } from "@/lib/supabaseClient";
 import { toast } from "sonner";
 import { BrandData } from "./types";
 import { Edit, Save, SquarePlus } from "lucide-react";
+import { CleanInput } from "../ui/CleanInput";
 
 type Props = {
   value: string | undefined;
@@ -198,7 +199,7 @@ export function BrandSelectAndCreate({
           <div className="space-y-4">
             <div className="space-y-2">
               <Label htmlFor="brand-name">Brand Name *</Label>
-              <Input
+              <CleanInput
                 id="brand-name"
                 placeholder="Enter brand name"
                 value={newBrandName}
