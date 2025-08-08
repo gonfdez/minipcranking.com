@@ -82,6 +82,11 @@ export function MiniPCDetailsView({ miniPC, showTitle = true }: MiniPCDetailsPro
     return portNames[portKey] || portKey.toUpperCase();
   };
 
+  const truncateUrl = (url: string, maxLength: number = 50): string => {
+    if (url.length <= maxLength) return url;
+    return url.substring(0, maxLength) + "...";
+  };
+
   const renderPortsInfo = () => {
     if (!miniPC.ports) return null;
     
@@ -271,9 +276,10 @@ export function MiniPCDetailsView({ miniPC, showTitle = true }: MiniPCDetailsPro
               href={miniPC.fromURL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-blue-600 hover:underline break-all"
+              className="text-blue-600 hover:underline"
+              title={miniPC.fromURL}
             >
-              {miniPC.fromURL}
+              {truncateUrl(miniPC.fromURL, 40)}
             </a>
           </div>
           {miniPC.manualURL && (
@@ -283,9 +289,10 @@ export function MiniPCDetailsView({ miniPC, showTitle = true }: MiniPCDetailsPro
                 href={miniPC.manualURL}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-600 hover:underline break-all"
+                className="text-blue-600 hover:underline"
+                title={miniPC.manualURL}
               >
-                {miniPC.manualURL}
+                {truncateUrl(miniPC.manualURL, 40)}
               </a>
             </div>
           )}
@@ -307,7 +314,9 @@ export function MiniPCDetailsView({ miniPC, showTitle = true }: MiniPCDetailsPro
                     e.currentTarget.style.display = "none";
                   }}
                 />
-                <p className="text-sm text-gray-500 break-all">{url}</p>
+                <p className="text-sm text-gray-500" title={url}>
+                  {truncateUrl(url, 40)}
+                </p>
               </div>
             ))}
           </div>
@@ -329,7 +338,9 @@ export function MiniPCDetailsView({ miniPC, showTitle = true }: MiniPCDetailsPro
                     e.currentTarget.style.display = "none";
                   }}
                 />
-                <p className="text-sm text-gray-500 break-all">{url}</p>
+                <p className="text-sm text-gray-500" title={url}>
+                  {truncateUrl(url, 40)}
+                </p>
               </div>
             ))}
           </div>
@@ -368,9 +379,10 @@ export function MiniPCDetailsView({ miniPC, showTitle = true }: MiniPCDetailsPro
                           href={offer.url}
                           target="_blank"
                           rel="noopener noreferrer"
-                          className="text-blue-600 hover:underline text-sm break-all max-w-md"
+                          className="text-blue-600 hover:underline text-sm"
+                          title={offer.url}
                         >
-                          {offer.url}
+                          {truncateUrl(offer.url, 35)}
                         </a>
                       </div>
                     ))}
