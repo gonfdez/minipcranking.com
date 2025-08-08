@@ -19,9 +19,7 @@ import { VariantsInput } from "./VariantsInput";
 import { ConfirmationDialog } from "./ConfirmationDialog";
 import {
   createMiniPC,
-  validateReferences,
-  getFormDataWithLabels,
-  FormDataWithLabels,
+  validateReferences
 } from "./supabase-functions";
 import { supabase } from "@/lib/supabaseClient";
 import {
@@ -179,8 +177,9 @@ const defaultValues = {
 export function MiniPCForm() {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [formDataToSubmit, setFormDataToSubmit] =
-    useState<FormDataWithLabels | null>(null);
+  const [formDataToSubmit, setFormDataToSubmit] = useState<FormData | null>(
+    null
+  );
 
   const [centralData, setCentralData] = useState({
     brands: [] as BrandData[],
@@ -290,11 +289,8 @@ export function MiniPCForm() {
         return;
       }
 
-      // Obtener los labels para mostrar información legible
-      const formDataWithLabels = await getFormDataWithLabels(data);
-
       // Guardar los datos y mostrar el diálogo de confirmación
-      setFormDataToSubmit(formDataWithLabels);
+      setFormDataToSubmit(data);
       setShowConfirmation(true);
     } catch (error) {
       console.error("Error during validation:", error);

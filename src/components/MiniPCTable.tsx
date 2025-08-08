@@ -19,46 +19,11 @@ import {
   DialogContent,
   DialogHeader,
   DialogTitle,
-  DialogTrigger,
 } from "@/components/ui/dialog";
-import { Eye, Edit, Trash2, Search, SquarePlus } from "lucide-react";
+import { Eye, Edit, Search, SquarePlus } from "lucide-react";
+import { MiniPCDetailsView } from "./MiniPCDetailsView";
+import { MiniPC } from "./minipc-form/types";
 
-interface MiniPC {
-  id: number;
-  model: string;
-  brand: {
-    name: string;
-  };
-  CPU: {
-    model: string;
-    brand: {
-      name: string;
-    };
-  };
-  graphics: {
-    model: string;
-    brand: {
-      name: string;
-    };
-  };
-  maxRAMCapacityGB: number | null;
-  maxStorageCapacityGB: number | null;
-  weightKg: number | null;
-  powerConsumptionW: number | null;
-  releaseYear: number | null;
-  fromURL: string;
-  manualCollect: boolean;
-  mainImgUrl: string[];
-  variants: {
-    id: number;
-    RAMGB: number;
-    RAM_type: string;
-    storageGB: number;
-    storage_type: string;
-    offers: { url: string; price: number }[];
-  }[];
-  created_at: string;
-}
 
 export function MiniPCTable() {
   const [miniPCs, setMiniPCs] = useState<MiniPC[]>([]);
@@ -78,25 +43,25 @@ export function MiniPCTable() {
         .from("MiniPCs")
         .select(
           `
-          *,
-          brand:Brands(name),
-          CPU:CPUs(
-            model,
-            brand:Brands(name)
-          ),
-          graphics:Graphics(
-            model,
-            brand:Brands(name)
-          ),
-          variants:Variants(
-            id,
-            RAMGB,
-            RAM_type,
-            storageGB,
-            storage_type,
-            offers
-          )
-        `
+    *,
+    brand:Brands(name),
+    CPU:CPUs(
+      model,
+      brand:Brands(name)
+    ),
+    graphics:Graphics(
+      model,
+      brand:Brands(name)
+    ),
+    variants:Variants(
+      id,
+      RAMGB,
+      RAM_type,
+      storageGB,
+      storage_type,
+      offers
+    )
+  `
         )
         .order("created_at", { ascending: false });
 
@@ -169,9 +134,7 @@ export function MiniPCTable() {
               <TableHead>Model</TableHead>
               <TableHead>CPU</TableHead>
               <TableHead>Graphics</TableHead>
-              
               <TableHead>Variants</TableHead>
-              
               <TableHead>Actions</TableHead>
             </TableRow>
           </TableHeader>
@@ -200,14 +163,14 @@ export function MiniPCTable() {
                   <TableCell>
                     {miniPC.graphics.brand.name} {miniPC.graphics.model}
                   </TableCell>
-                 
+
                   <TableCell>
                     <Badge variant="secondary">
                       {miniPC.variants.length} variant
                       {miniPC.variants.length !== 1 ? "s" : ""}
                     </Badge>
                   </TableCell>
-                  
+
                   <TableCell>
                     <div className="flex space-x-2">
                       <Button
@@ -239,142 +202,14 @@ export function MiniPCTable() {
       {/* Details Dialog */}
       <Dialog open={showDetailsDialog} onOpenChange={setShowDetailsDialog}>
         <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
-          <DialogHeader>
+          <DialogHeader className="mb-4">
             <DialogTitle>
               {selectedMiniPC?.brand.name} {selectedMiniPC?.model}
             </DialogTitle>
           </DialogHeader>
 
           {selectedMiniPC && (
-            <div className="space-y-6">
-              {/* Basic Info */}
-              <div className="grid grid-cols-2 gap-4">
-                <div>
-                  <span className="font-semibold">Brand:</span>{" "}
-                  {selectedMiniPC.brand.name}
-                </div>
-                <div>
-                  <span className="font-semibold">Model:</span>{" "}
-                  {selectedMiniPC.model}
-                </div>
-                <div>
-                  <span className="font-semibold">CPU:</span>{" "}
-                  {selectedMiniPC.CPU.brand.name} {selectedMiniPC.CPU.model}
-                </div>
-                <div>
-                  <span className="font-semibold">Graphics:</span>{" "}
-                  {selectedMiniPC.graphics.brand.name}{" "}
-                  {selectedMiniPC.graphics.model}
-                </div>
-                <div>
-                  <span className="font-semibold">Max RAM:</span>{" "}
-                  {selectedMiniPC.maxRAMCapacityGB
-                    ? `${selectedMiniPC.maxRAMCapacityGB} GB`
-                    : "N/A"}
-                </div>
-                <div>
-                  <span className="font-semibold">Max Storage:</span>{" "}
-                  {selectedMiniPC.maxStorageCapacityGB
-                    ? `${selectedMiniPC.maxStorageCapacityGB} GB`
-                    : "N/A"}
-                </div>
-                <div>
-                  <span className="font-semibold">Weight:</span>{" "}
-                  {selectedMiniPC.weightKg
-                    ? `${selectedMiniPC.weightKg} kg`
-                    : "N/A"}
-                </div>
-                <div>
-                  <span className="font-semibold">Power:</span>{" "}
-                  {selectedMiniPC.powerConsumptionW
-                    ? `${selectedMiniPC.powerConsumptionW} W`
-                    : "N/A"}
-                </div>
-                <div>
-                  <span className="font-semibold">Release Year:</span>{" "}
-                  {selectedMiniPC.releaseYear || "N/A"}
-                </div>
-                <div>
-                  <span className="font-semibold">Manual Collect:</span>{" "}
-                  {selectedMiniPC.manualCollect ? "Yes" : "No"}
-                </div>
-              </div>
-
-              {/* Source URL */}
-              <div>
-                <span className="font-semibold">Source URL:</span>{" "}
-                <a
-                  href={selectedMiniPC.fromURL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-600 hover:underline"
-                >
-                  {selectedMiniPC.fromURL}
-                </a>
-              </div>
-
-              {/* Main Images */}
-              <div>
-                <span className="font-semibold">Main Images:</span>
-                <div className="mt-2 grid grid-cols-2 gap-2">
-                  {selectedMiniPC.mainImgUrl.map((url, index) => (
-                    <img
-                      key={index}
-                      src={url}
-                      alt={`${selectedMiniPC.model} image ${index + 1}`}
-                      className="w-full h-32 object-cover rounded border"
-                      onError={(e) => {
-                        e.currentTarget.style.display = "none";
-                      }}
-                    />
-                  ))}
-                </div>
-              </div>
-
-              {/* Variants */}
-              <div>
-                <span className="font-semibold">Variants:</span>
-                <div className="mt-2 space-y-4">
-                  {selectedMiniPC.variants.map((variant) => (
-                    <div key={variant.id} className="border rounded p-4">
-                      <div className="grid grid-cols-2 gap-4 mb-2">
-                        <div>
-                          <span className="font-medium">RAM:</span>{" "}
-                          {variant.RAMGB} GB ({variant.RAM_type})
-                        </div>
-                        <div>
-                          <span className="font-medium">Storage:</span>{" "}
-                          {variant.storageGB} GB ({variant.storage_type})
-                        </div>
-                      </div>
-                      <div>
-                        <span className="font-medium">Offers:</span>
-                        <div className="mt-1 space-y-1">
-                          {variant.offers.map((offer, index) => (
-                            <div
-                              key={index}
-                              className="flex items-center space-x-2"
-                            >
-                              <span className="font-medium">
-                                ${offer.price}
-                              </span>
-                              <a
-                                href={offer.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-blue-600 hover:underline text-sm"
-                              >
-                                View Offer
-                              </a>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
+            <MiniPCDetailsView miniPC={selectedMiniPC} showTitle={false} />
           )}
         </DialogContent>
       </Dialog>
