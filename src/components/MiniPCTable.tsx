@@ -24,7 +24,6 @@ import { Eye, Edit, Search, SquarePlus } from "lucide-react";
 import { MiniPCDetailsView } from "./MiniPCDetailsView";
 import { MiniPC } from "./minipc-form/types";
 
-
 export function MiniPCTable() {
   const [miniPCs, setMiniPCs] = useState<MiniPC[]>([]);
   const [loading, setLoading] = useState(true);
@@ -43,25 +42,25 @@ export function MiniPCTable() {
         .from("MiniPCs")
         .select(
           `
-    *,
-    brand:Brands(name),
-    CPU:CPUs(
-      model,
-      brand:Brands(name)
-    ),
-    graphics:Graphics(
-      model,
-      brand:Brands(name)
-    ),
-    variants:Variants(
-      id,
-      RAMGB,
-      RAM_type,
-      storageGB,
-      storage_type,
-      offers
-    )
-  `
+          *,
+          brand:Brands(name),
+          CPU:CPUs(
+            model,
+            brand:Brands(name)
+          ),
+          graphics:Graphics(
+            model,
+            brand:Brands(name)
+          ),
+          variants:Variants(
+            id,
+            RAMGB,
+            RAM_type,
+            storageGB,
+            storage_type,
+            offers
+          )
+        `
         )
         .order("created_at", { ascending: false });
 
@@ -70,7 +69,40 @@ export function MiniPCTable() {
         return;
       }
 
-      setMiniPCs(data || []);
+      if (!data || data.length === 0) {
+        setMiniPCs([]);
+        return;
+      }
+
+      // Obtener todos los IDs únicos de connectivity de todos los MiniPCs
+      const allConnectivityIds = new Set<number>();
+      data.forEach((miniPC) => {
+        if (miniPC.connectivity && Array.isArray(miniPC.connectivity)) {
+          miniPC.connectivity.forEach((id: number) => allConnectivityIds.add(id));
+        }
+      });
+
+      // Obtener todos los datos de connectivity de una sola vez
+      const { data: connectivityData } = await supabase
+        .from("Connectivity")
+        .select("id, type, speed")
+        .in("id", Array.from(allConnectivityIds));
+
+      // Crear un mapa para acceso rápido
+      const connectivityMap = new Map();
+      connectivityData?.forEach((conn) => {
+        connectivityMap.set(conn.id, conn);
+      });
+
+      // Mapear los datos de connectivity a cada MiniPC
+      const miniPCsWithConnectivity = data.map((miniPC) => ({
+        ...miniPC,
+        connectivity: (miniPC.connectivity || [])
+          .map((id: number) => connectivityMap.get(id))
+          .filter(Boolean), // Filtrar valores undefined
+      }));
+
+      setMiniPCs(miniPCsWithConnectivity);
     } catch (err) {
       toast.error("An unexpected error occurred");
       console.error("Error fetching Mini PC's:", err);

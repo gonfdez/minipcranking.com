@@ -190,11 +190,26 @@ export function MiniPCDetailsView({ miniPC, showTitle = true }: MiniPCDetailsPro
         <div className="space-y-4">
           <h3 className="text-lg font-semibold border-b pb-2">Connectivity</h3>
           <div className="flex flex-wrap gap-2">
-            {miniPC.connectivity.map((conn, index) => (
-              <Badge key={index} variant="secondary">
-                {conn.type} {conn.speed && `(${conn.speed})`}
-              </Badge>
-            ))}
+            {miniPC.connectivity.map((conn, index) => {
+              const formatSpeed = (speed: string | undefined) => {
+                if (!speed) return '';
+                try {
+                  const speedObj = typeof speed === 'string' ? JSON.parse(speed) : speed;
+                  if (speedObj && speedObj.value && speedObj.units) {
+                    return <span className="text-blue-600">({speedObj.value} {speedObj.units})</span>;
+                  }
+                  return speed;
+                } catch (error) {
+                  return speed;
+                }
+              };
+
+              return (
+                <Badge key={index} variant="secondary">
+                  {conn.type} {formatSpeed(conn.speed)}
+                </Badge>
+              );
+            })}
           </div>
         </div>
       )}

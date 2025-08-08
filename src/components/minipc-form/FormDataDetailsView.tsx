@@ -77,6 +77,7 @@ export function FormDataDetailsView({ formData, showTitle = true }: FormDataDeta
           dimensions: formData.dimensions,
           ports: formData.ports,
           connectivity: connectivityRes.data?.map((conn: any) => ({
+            id: conn.id,
             type: conn.type,
             speed: conn.speed
           })) || [],

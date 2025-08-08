@@ -83,7 +83,7 @@ export interface MiniPC {
     dvi?: number | null;
     thunderbolt?: number | null;
   };
-  connectivity?: Array<{ type: string; speed?: string }>;
+  connectivity: Array<{ id: number; type: string; speed?: string }>;
   builtinMicrophone?: boolean;
   builtinSpeakers?: boolean;
   supportExternalDiscreteGraphicsCard?: boolean;
