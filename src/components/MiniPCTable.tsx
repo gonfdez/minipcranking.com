@@ -78,7 +78,9 @@ export function MiniPCTable() {
       const allConnectivityIds = new Set<number>();
       data.forEach((miniPC) => {
         if (miniPC.connectivity && Array.isArray(miniPC.connectivity)) {
-          miniPC.connectivity.forEach((id: number) => allConnectivityIds.add(id));
+          miniPC.connectivity.forEach((id: number) =>
+            allConnectivityIds.add(id)
+          );
         }
       });
 
@@ -216,8 +218,7 @@ export function MiniPCTable() {
                         variant="outline"
                         size="sm"
                         onClick={() => {
-                          // Implementar edición
-                          toast.info("Edit functionality not implemented yet");
+                          window.location.href = `/dev/minipc-form?id=${miniPC.id}`;
                         }}
                       >
                         <Edit className="h-4 w-4" />

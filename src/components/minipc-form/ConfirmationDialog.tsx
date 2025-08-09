@@ -33,9 +33,9 @@ export function ConfirmationDialog({
         onInteractOutside={(e) => e.preventDefault()}
       >
         <DialogHeader>
-          <DialogTitle>Confirm MiniPC Creation</DialogTitle>
+          <DialogTitle>Confirm Mini PC Information</DialogTitle>
           <DialogDescription>
-            Please review the information below before creating the MiniPC entry.
+            Please review the information below before submitting the MiniPC entry.
           </DialogDescription>
         </DialogHeader>
 
@@ -46,7 +46,7 @@ export function ConfirmationDialog({
             Cancel
           </Button>
           <Button onClick={onConfirm} disabled={isLoading}>
-            <Save className="h-4 w-4" /> {isLoading ? "Creating..." : "Create MiniPC"}
+            <Save className="h-4 w-4" /> {isLoading ? "Sending..." : "Confirm"}
           </Button>
         </DialogFooter>
       </DialogContent>

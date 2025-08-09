@@ -17,7 +17,11 @@ import { DimensionsInput } from "./DimensionsInput";
 import { ConnectivitySelectAndCreate } from "./ConnectivitySelectAndCreate";
 import { VariantsInput } from "./VariantsInput";
 import { ConfirmationDialog } from "./ConfirmationDialog";
-import { createMiniPC, validateReferences } from "./supabase-functions";
+import {
+  createMiniPC,
+  validateReferences,
+  updateMiniPC,
+} from "./supabase-functions";
 import { supabase } from "@/lib/supabaseClient";
 import {
   BrandData,
@@ -27,6 +31,7 @@ import {
 } from "./types";
 import { Save, SquarePlus, Table, TicketSlash, Trash2 } from "lucide-react";
 import { CleanInput } from "../ui/CleanInput";
+import { useSearchParams } from "next/navigation";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model name is required"),
@@ -180,6 +185,86 @@ const defaultValues = {
   variants: [],
 };
 
+// helper para convertir la fila de la BBDD al formato que espera el form
+function mapDbMiniPCToForm(data: any): FormData {
+  if (!data) return defaultValues as unknown as FormData;
+
+  const mapOffers = (offers: any) =>
+    Array.isArray(offers) && offers.length
+      ? offers.map((o: any) =>
+          typeof o === "string"
+            ? { url: o, price: NaN }
+            : {
+                url: o?.url ?? "",
+                price: o?.price !== undefined ? Number(o.price) : NaN,
+              }
+        )
+      : [{ url: "", price: NaN }];
+
+  return {
+    model: data.model ?? "",
+    fromURL: data.fromURL ?? "",
+    manualURL: data.manualURL ?? "",
+    manualCollect: !!data.manualCollect,
+    maxRAMCapacityGB: data.maxRAMCapacityGB ?? undefined,
+    maxStorageCapacityGB: data.maxStorageCapacityGB ?? undefined,
+    weightKg: data.weightKg ?? undefined,
+    powerConsumptionW: data.powerConsumptionW ?? undefined,
+    releaseYear: data.releaseYear ?? undefined,
+    // mainImgUrl en la BBDD es string[] -> en el form es [{ url }]
+    mainImgUrl:
+      Array.isArray(data.mainImgUrl) && data.mainImgUrl.length
+        ? data.mainImgUrl.map((u: string) => ({ url: u }))
+        : [{ url: "" }],
+    description: { en: data.description?.en ?? "" },
+    // brand / CPU / graphics vienen como números (ids). el form quiere string ids.
+    brand: data.brand ? String(data.brand) : "",
+    CPU: data.CPU ? String(data.CPU) : "",
+    graphics: data.graphics ? String(data.graphics) : "",
+    dimensions: {
+      widthMM: data.dimensions?.widthMM ?? null,
+      heightMM: data.dimensions?.heightMM ?? null,
+      lengthMM: data.dimensions?.lengthMM ?? null,
+    },
+    portsImgUrl:
+      Array.isArray(data.portsImgUrl) && data.portsImgUrl.length
+        ? data.portsImgUrl.map((u: string) => ({ url: u }))
+        : [{ url: "" }],
+    ports: {
+      usb3: data.ports?.usb3 ?? null,
+      usb2: data.ports?.usb2 ?? null,
+      usbC: data.ports?.usbC ?? null,
+      hdmi: data.ports?.hdmi ?? null,
+      displayPort: data.ports?.displayPort ?? null,
+      ethernet: data.ports?.ethernet ?? null,
+      jack35mm: data.ports?.jack35mm ?? null,
+      sdCard: data.ports?.sdCard ?? null,
+      microSD: data.ports?.microSD ?? null,
+      vga: data.ports?.vga ?? null,
+      dvi: data.ports?.dvi ?? null,
+      thunderbolt: data.ports?.thunderbolt ?? null,
+    },
+    connectivity: Array.isArray(data.connectivity)
+      ? data.connectivity.map((n: any) => Number(n))
+      : [],
+    builtinMicrophone: !!data.builtinMicrophone,
+    builtinSpeakers: !!data.builtinSpeakers,
+    supportExternalDiscreteGraphicsCard:
+      !!data.supportExternalDiscreteGraphicsCard,
+    // variants: traídas desde la query (ver abajo) -> mapear a la forma del form
+    variants:
+      Array.isArray(data.variants) && data.variants.length
+        ? data.variants.map((v: any) => ({
+            RAMGB: Number(v.RAMGB),
+            RAM_type: v.RAM_type ?? "DDR4",
+            storageGB: Number(v.storageGB),
+            storage_type: v.storage_type ?? "SSD",
+            offers: mapOffers(v.offers),
+          }))
+        : [],
+  };
+}
+
 export function MiniPCForm() {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -194,6 +279,9 @@ export function MiniPCForm() {
     connectivity: [] as ConnectivityData[],
     loading: true,
   });
+
+  const searchParams = useSearchParams();
+  const editId = searchParams.get("id");
 
   const {
     register,
@@ -280,6 +368,43 @@ export function MiniPCForm() {
     fetchAllCentralData();
   }, []);
 
+  useEffect(() => {
+    if (!editId) return;
+
+    // espera a que centralData esté cargado para que los selects (brand/cpu/graphics) puedan mostrar la opción
+    if (centralData.loading) return;
+
+    (async () => {
+      const { data, error } = await supabase
+        .from("MiniPCs")
+        .select(
+          `
+        *,
+        variants:Variants(
+          id,
+          RAMGB,
+          RAM_type,
+          storageGB,
+          storage_type,
+          offers
+        )
+      `
+        )
+        .eq("id", editId)
+        .single();
+
+      if (error) {
+        toast.error("Error loading Mini PC data");
+        console.error(error);
+        return;
+      }
+
+      // transforma y resetea el formulario
+      const formValues = mapDbMiniPCToForm(data);
+      reset(formValues);
+    })();
+  }, [editId, centralData.loading, reset]);
+
   const onSubmit = async (data: FormData) => {
     console.log("Form data:", data);
     console.log("Form errors:", errors);
@@ -312,7 +437,14 @@ export function MiniPCForm() {
     setIsSubmitting(true);
 
     try {
-      const result = await createMiniPC(formDataToSubmit);
+      let result;
+      if (editId) {
+        result = await updateMiniPC(editId, formDataToSubmit);
+        toast.success("Mini PC updated successfully");
+      } else {
+        result = await createMiniPC(formDataToSubmit);
+        toast.success("Mini PC created successfully");
+      }
 
       if (result.success) {
         toast.success("Success!", {
@@ -321,15 +453,16 @@ export function MiniPCForm() {
 
         // Limpiar el formulario
         reset();
-        setShowConfirmation(false);
-        setFormDataToSubmit(null);
+        if (editId) {
+          window.location.href = "/dev/minipc-table";
+        }
       } else {
         toast.error("Error", {
-          description: result.error || "Failed to create Mini PC",
+          description: result.error || "Failed to create/edit Mini PC",
         });
       }
     } catch (error) {
-      console.error("Error creating Mini PC:", error);
+      console.error("Error creating/editing Mini PC:", error);
       toast.error("Error", {
         description: "An unexpected error occurred. Please try again.",
       });
@@ -346,7 +479,9 @@ export function MiniPCForm() {
   return (
     <div>
       <div className="flex justify-between mb-6">
-        <h1 className="text-3xl font-bold">Create new Mini PC</h1>
+        <h1 className="text-3xl font-bold">
+          {editId ? "Edit Mini PC" : "Create new Mini PC"}
+        </h1>
         <Button
           variant={"outline"}
           onClick={() => (window.location.href = "/dev/minipc-table")}
@@ -704,7 +839,8 @@ export function MiniPCForm() {
               </>
             ) : (
               <>
-                <Save className="h-6 w-6" /> Create new Mini PC
+                <Save className="h-6 w-6" />{" "}
+                {editId ? "Save changes" : "Create new Mini PC"}
               </>
             )}
           </Button>

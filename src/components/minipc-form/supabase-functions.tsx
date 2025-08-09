@@ -93,6 +93,99 @@ export async function createMiniPC(
   }
 }
 
+export async function updateMiniPC(
+  minipcId: string,
+  formData: FormData
+): Promise<CreateMiniPCResponse> {
+  try {
+    const miniPCData = {
+      brand: parseInt(formData.brand),
+      model: formData.model,
+      description: formData.description,
+      fromURL: formData.fromURL,
+      manualURL: formData.manualURL,
+      manualCollect: formData.manualCollect,
+      mainImgUrl: formData.mainImgUrl.map((img) => img.url),
+      CPU: parseInt(formData.CPU),
+      maxRAMCapacityGB: formData.maxRAMCapacityGB || null,
+      maxStorageCapacityGB: formData.maxStorageCapacityGB || null,
+      graphics: parseInt(formData.graphics),
+      builtinMicrophone: formData.builtinMicrophone || false,
+      builtinSpeakers: formData.builtinSpeakers || false,
+      supportExternalDiscreteGraphicsCard:
+        formData.supportExternalDiscreteGraphicsCard || false,
+      portsImgUrl: formData.portsImgUrl.map((img) => img.url),
+      dimensions: {
+        widthMM: formData.dimensions.widthMM,
+        heightMM: formData.dimensions.heightMM,
+        lengthMM: formData.dimensions.lengthMM,
+      },
+      weightKg: formData.weightKg || null,
+      powerConsumptionW: formData.powerConsumptionW || null,
+      releaseYear: formData.releaseYear || null,
+      ports: formData.ports,
+      connectivity: formData.connectivity,
+    };
+
+    // Actualizamos MiniPC
+    const { error: miniPCError } = await supabase
+      .from("MiniPCs")
+      .update(miniPCData)
+      .eq("id", minipcId);
+
+    if (miniPCError) {
+      console.error("Error updating MiniPC:", miniPCError);
+      return { success: false, error: miniPCError.message };
+    }
+
+    // Borramos variantes previas
+    const { error: deleteError } = await supabase
+      .from("Variants")
+      .delete()
+      .eq("mini_pc", minipcId);
+
+    if (deleteError) {
+      console.error("Error deleting variants:", deleteError);
+      return { success: false, error: deleteError.message };
+    }
+
+    // Insertamos nuevas variantes
+    const variantsData = formData.variants.map((variant) => ({
+      RAMGB: variant.RAMGB,
+      RAM_type: variant.RAM_type,
+      storageGB: variant.storageGB,
+      storage_type: variant.storage_type,
+      offers: variant.offers,
+      mini_pc: minipcId,
+    }));
+
+    const { data: variantsResult, error: variantsError } = await supabase
+      .from("Variants")
+      .insert(variantsData)
+      .select();
+
+    if (variantsError) {
+      console.error("Error inserting variants:", variantsError);
+      return { success: false, error: variantsError.message };
+    }
+
+    return {
+      success: true,
+      data: {
+        miniPC: { id: minipcId },
+        variants: variantsResult,
+      },
+    };
+  } catch (error) {
+    console.error("Unexpected error:", error);
+    return {
+      success: false,
+      error: error instanceof Error ? error.message : "Unknown error occurred",
+    };
+  }
+}
+
+
 // Función auxiliar para validar que los IDs existen en las tablas referenciadas
 export async function validateReferences(
   formData: FormData
