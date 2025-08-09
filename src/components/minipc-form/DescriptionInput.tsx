@@ -11,7 +11,7 @@ interface DescriptionInputProps {
 export function DescriptionInput({ register, errors }: DescriptionInputProps) {
   return (
     <div className="border border-gray-300 rounded-xl p-4 space-y-4">
-      <Label className="text-lg">Product Description *</Label>
+      <Label className="text-lg">Product Description</Label>
 
       {/* <div>
         <Label>Spanish (ES) *</Label>
@@ -25,7 +25,7 @@ export function DescriptionInput({ register, errors }: DescriptionInputProps) {
       </div> */}
 
       <div>
-        <Label>English (EN) *</Label>
+        <Label>English (EN)</Label>
         <Textarea
           {...register("description.en")}
           placeholder="Description in English"

@@ -35,7 +35,7 @@ const formSchema = z.object({
     .string()
     .optional()
     .refine(
-      (val) => !val || z.string().url().safeParse(val).success,
+      (val) => !val || z.url().safeParse(val).success,
       "Manual URL must be a valid URL"
     ),
   manualCollect: z.boolean(),
@@ -75,7 +75,7 @@ const formSchema = z.object({
     .min(1, "At least one image URL is required"),
   description: z.object({
     // es: z.string().min(1, "Spanish description is required"),
-    en: z.string().min(1, "English description is required"),
+    en: z.string().optional(),
     // it: z.string().min(1, "Italian description is required"),
     // de: z.string().min(1, "German description is required"),
   }),
@@ -156,6 +156,7 @@ const defaultValues = {
   manualURL: "",
   mainImgUrl: [{ url: "" }],
   portsImgUrl: [{ url: "" }],
+  description: { en: "" },
   dimensions: {
     widthMM: null,
     heightMM: null,
