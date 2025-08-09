@@ -10,32 +10,46 @@ export const cleanSpecialChars = (text: string): string => {
     .trim();
 };
 
-interface CleanInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  value?: string;
+interface CleanInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
+  onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onValueChange?: (value: string) => void;
 }
 
 export const CleanInput: React.FC<CleanInputProps> = ({ 
-  value = '', 
   onValueChange,
   onChange,
   onPaste,
   ...props 
 }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const cleanedValue = cleanSpecialChars(e.target.value);
+    const originalValue = e.target.value;
+    const cleanedValue = cleanSpecialChars(originalValue);
     
-    // Actualizar el valor del input si ha cambiado
-    if (cleanedValue !== e.target.value) {
-      e.target.value = cleanedValue;
+    // Si el valor necesita limpieza, actualizarlo
+    if (cleanedValue !== originalValue) {
+      // Modificar el valor del target directamente
+      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value'
+      )?.set;
+      
+      if (nativeInputValueSetter) {
+        nativeInputValueSetter.call(e.target, cleanedValue);
+      }
+      
+      // Crear y disparar un evento de input para que React lo detecte
+      const inputEvent = new Event('input', { bubbles: true });
+      e.target.dispatchEvent(inputEvent);
     }
     
-    onValueChange?.(cleanedValue);
+    // Siempre llamar al onChange original
     onChange?.(e);
+    
+    // Llamar a onValueChange con el valor limpio
+    onValueChange?.(cleanedValue);
   };
 
   const handlePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
-    // Interceptar el paste para limpiar antes de que se pegue
     const pastedText = e.clipboardData.getData('text');
     const cleanedText = cleanSpecialChars(pastedText);
     
@@ -43,32 +57,43 @@ export const CleanInput: React.FC<CleanInputProps> = ({
       e.preventDefault();
       const target = e.target as HTMLInputElement;
       
-      // Insertar el texto limpio en la posición del cursor
+      // Obtener posición del cursor
       const start = target.selectionStart || 0;
       const end = target.selectionEnd || 0;
       const currentValue = target.value;
       
+      // Calcular nuevo valor
       const newValue = currentValue.substring(0, start) + cleanedText + currentValue.substring(end);
-      target.value = newValue;
       
-      // Mover el cursor al final del texto pegado
+      // Usar el setter nativo para actualizar el valor
+      const nativeInputValueSetter = Object.getOwnPropertyDescriptor(
+        window.HTMLInputElement.prototype,
+        'value'
+      )?.set;
+      
+      if (nativeInputValueSetter) {
+        nativeInputValueSetter.call(target, newValue);
+      }
+      
+      // Posicionar cursor
       const newCursorPosition = start + cleanedText.length;
       target.setSelectionRange(newCursorPosition, newCursorPosition);
       
-      onValueChange?.(newValue);
+      // Disparar evento de input para que React lo detecte
+      const inputEvent = new Event('input', { bubbles: true });
+      target.dispatchEvent(inputEvent);
       
-      // Disparar el evento onChange manualmente
-      const changeEvent = new Event('change', { bubbles: true });
-      target.dispatchEvent(changeEvent);
+      // Llamar callbacks
+      onValueChange?.(newValue);
     }
     
+    // Llamar al onPaste original
     onPaste?.(e);
   };
 
   return (
     <Input
       {...props}
-      value={value}
       onChange={handleChange}
       onPaste={handlePaste}
     />

@@ -148,6 +148,7 @@ const formSchema = z.object({
 export type FormData = z.infer<typeof formSchema>;
 
 const defaultValues = {
+  model: "",
   brand: "",
   CPU: "",
   graphics: "",
