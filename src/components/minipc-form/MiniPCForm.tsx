@@ -590,6 +590,7 @@ export function MiniPCForm() {
           <Label>Weight (Kg)</Label>
           <Input
             type="number"
+            step={0.01}
             {...register("weightKg", {
               valueAsNumber: true,
               setValueAs: (value) => (value === "" ? undefined : Number(value)),
