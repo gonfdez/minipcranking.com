@@ -7,7 +7,6 @@ export const cleanSpecialChars = (text: string): string => {
     .replace(/®/g, '') // Registered
     .replace(/©/g, '') // Copyright
     .replace(/℠/g, '') // Service mark
-    .trim();
 };
 
 interface CleanInputProps extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'onChange'> {
