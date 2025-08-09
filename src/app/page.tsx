@@ -87,7 +87,7 @@ export default function Home() {
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-            Explore specs, compare deals,<br className="lg:hidden" /> and dive into reviews and articles from industry experts
+            Explore specs, compare deals<br className="lg:hidden" /> and dive into reviews and articles from industry experts
           </p>
         </div>
 
