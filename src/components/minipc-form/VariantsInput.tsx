@@ -60,13 +60,7 @@ export function VariantsInput({
 
   return (
     <div className="border border-gray-300 rounded-xl p-4 space-y-4">
-      <div className="flex items-center justify-between">
-        <Label className="text-lg font-semibold">Variants *</Label>
-        <Button type="button" onClick={addVariant}>
-          <SquarePlus className="h-4 w-4 mr-2" />
-          Add Variant
-        </Button>
-      </div>
+      <Label className="text-lg font-semibold">Variants *</Label>
 
       {fields.length === 0 && (
         <div className="text-center py-8 text-gray-500">
@@ -90,6 +84,12 @@ export function VariantsInput({
       {errors.variants && (
         <span className="text-red-500">{errors.variants.message}</span>
       )}
+      <div className="flex justify-end">
+        <Button type="button" onClick={addVariant}>
+          <SquarePlus className="h-4 w-4 mr-2" />
+          Add Variant
+        </Button>
+      </div>
     </div>
   );
 }
@@ -285,14 +285,10 @@ function VariantCard({
               <Label className="font-medium text-gray-600">URL</Label>
             </div>
             <div className="col-span-3">
-              <Label className="font-medium text-gray-600">
-                Price (USD)
-              </Label>
+              <Label className="font-medium text-gray-600">Price (USD)</Label>
             </div>
             <div className="col-span-1">
-              <Label className="font-medium text-gray-600">
-                Action
-              </Label>
+              <Label className="font-medium text-gray-600">Action</Label>
             </div>
           </div>
 
