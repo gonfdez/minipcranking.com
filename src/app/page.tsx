@@ -8,7 +8,7 @@ import { Monitor, BookOpen, BarChart3, Cpu, Zap, Shield } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Mini PC Ranking - Compare, Review & Find the Best Mini PCs",
-  description: "The ultimate resource for mini PC enthusiasts. Compare specifications, read expert reviews, and discover the perfect mini PC for your needs. Find your ideal compact computing solution.",
+  description: "The ultimate resource for mini PC enthusiasts. Compare specifications, read expert reviews, and discover the perfect compact computer for your needs. Find your ideal compact computing solution.",
   
   keywords: [
     "mini pc ranking",
@@ -28,7 +28,7 @@ export const metadata: Metadata = {
   
   openGraph: {
     title: "Mini PC Ranking - Compare & Review the Best Mini PCs",
-    description: "The ultimate resource for mini PC enthusiasts. Compare specifications, read expert reviews, and find your perfect mini PC.",
+    description: "The ultimate resource for Mini PC enthusiasts. Compare specifications, read expert reviews, and find your perfect compact computer.",
     url: "https://minipcranking.com",
     siteName: "MiniPCRanking",
     type: "website",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Mini PC Ranking - Compare & Review Mini PCs",
-    description: "The ultimate resource for mini PC enthusiasts. Compare specs, read reviews, and find your perfect mini PC.",
+    description: "The ultimate resource for mini PC enthusiasts. Compare specs, read reviews, and find your perfect compact computer.",
     images: ["/twitter-homepage.jpg"]
   },
 
@@ -87,13 +87,12 @@ export default function Home() {
           </h1>
           
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
-            Compare specifications, read expert reviews, and explore the world of mini PCs. 
-            <br/> Find your ideal compact computing solution.
+            Explore specs, compare deals,<br className="lg:hidden" /> and dive into reviews and articles from industry experts
           </p>
         </div>
 
         {/* Features Grid */}
-        <div className="grid md:grid-cols-3 gap-6 mb-16">
+        <div className="grid md:grid-cols-3 gap-8 md:gap-6 mb-16 mx-6 md:mx-0">
           {/* Specifications Card */}
           <Card className="group hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
             <CardHeader className="text-center pb-4">
