@@ -144,6 +144,7 @@ const formSchema = z.object({
   variants: z
     .array(
       z.object({
+        id: z.number().optional(),
         RAMGB: z
           .number()
           .int()
@@ -277,6 +278,7 @@ function mapDbMiniPCToForm(data: any): FormData {
     variants:
       Array.isArray(data.variants) && data.variants.length
         ? data.variants.map((v: any) => ({
+            id: v.id,
             RAMGB: Number(v.RAMGB),
             RAM_type: v.RAM_type ?? "DDR4",
             storageGB: Number(v.storageGB),
@@ -313,6 +315,7 @@ export function MiniPCForm() {
     watch,
     control,
     reset,
+    getValues
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues,
@@ -868,6 +871,7 @@ export function MiniPCForm() {
               register={register}
               setValue={setValue}
               watch={watch}
+              getValues={getValues}
             />
           </div>
 

@@ -5,6 +5,7 @@ import {
   UseFormRegister,
   UseFormSetValue,
   UseFormWatch,
+  UseFormGetValues,
 } from "react-hook-form";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -26,6 +27,7 @@ interface VariantsInputProps {
   register: UseFormRegister<FormData>;
   setValue: UseFormSetValue<FormData>;
   watch: UseFormWatch<FormData>;
+  getValues: UseFormGetValues<FormData>;
 }
 
 const RAM_TYPES = ["DDR4", "DDR5", "LPDDR4", "LPDDR5", "DDR3", "LPDDR3"];
@@ -38,6 +40,7 @@ export function VariantsInput({
   register,
   setValue,
   watch,
+  getValues
 }: VariantsInputProps) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -68,9 +71,12 @@ export function VariantsInput({
         </div>
       )}
 
-      {fields.map((field, variantIndex) => (
+      {fields.map((field, variantIndex) => {
+        const variantData = getValues(`variants.${variantIndex}`);
+        return (
         <VariantCard
           key={field.id}
+          id={variantData.id}
           variantIndex={variantIndex}
           control={control}
           register={register}
@@ -79,14 +85,20 @@ export function VariantsInput({
           errors={errors}
           onRemove={() => removeVariant(variantIndex)}
         />
-      ))}
+        )
+      })}
 
-      {errors.variants && (
-        <span className="text-red-500">{errors.variants.message}</span>
+      {/* Forzar mostrar error cuando no hay variantes Y hay error */}
+      {(errors.variants || fields.length === 0) && (
+        <span className="text-red-500">
+          {errors.variants?.message ||
+            (fields.length === 0 ? "At least one variant is required" : "")}
+        </span>
       )}
-      <div className="flex justify-end">
+
+      <div className="flex justify-end mt-4">
         <Button type="button" onClick={addVariant}>
-          <SquarePlus className="h-4 w-4 mr-2" />
+          <SquarePlus className="h-4 w-4" />
           Add Variant
         </Button>
       </div>
@@ -95,6 +107,7 @@ export function VariantsInput({
 }
 
 interface VariantCardProps {
+  id: number | undefined;
   variantIndex: number;
   control: Control<FormData>;
   register: UseFormRegister<FormData>;
@@ -105,6 +118,7 @@ interface VariantCardProps {
 }
 
 function VariantCard({
+  id,
   variantIndex,
   control,
   register,
@@ -129,11 +143,18 @@ function VariantCard({
   const currentRAMType = watch(`variants.${variantIndex}.RAM_type`);
   const currentStorageType = watch(`variants.${variantIndex}.storage_type`);
 
+  const getVariantTitle = () => {
+    if (id) {
+      return `Variant ID: ${id}`;
+    }
+    return `New Variant`;
+  };
+
   return (
     <Card className="relative">
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg">Variant {variantIndex + 1}</CardTitle>
+          <CardTitle className="text-lg">{getVariantTitle()}</CardTitle>
           <Button
             type="button"
             variant="outline"

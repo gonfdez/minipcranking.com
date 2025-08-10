@@ -36,7 +36,7 @@ export async function createMiniPC(
       dimensions: {
         widthMM: formData.dimensions.widthMM,
         heightMM: formData.dimensions.heightMM,
-        lengthMM: formData.dimensions.lengthMM
+        lengthMM: formData.dimensions.lengthMM,
       },
       weightKg: formData.weightKg || null,
       powerConsumptionW: formData.powerConsumptionW || null,
@@ -138,42 +138,86 @@ export async function updateMiniPC(
       return { success: false, error: miniPCError.message };
     }
 
-    // Borramos variantes previas
-    const { error: deleteError } = await supabase
+    // Obtenemos las variantes existentes
+    const { data: existingVariants } = await supabase
       .from("Variants")
-      .delete()
+      .select("id")
       .eq("mini_pc", minipcId);
 
-    if (deleteError) {
-      console.error("Error deleting variants:", deleteError);
-      return { success: false, error: deleteError.message };
+    const existingVariantIds = existingVariants?.map((v) => v.id) || [];
+    const formVariantIds = formData.variants
+      .map((v) => v.id)
+      .filter((id) => id !== undefined) as number[];
+    // Borramos variantes que ya no están en el formulario
+    const variantsToDelete = existingVariantIds.filter(
+      (id) => !formVariantIds.includes(id)
+    );
+
+    if (variantsToDelete.length > 0) {
+      const { error: deleteError } = await supabase
+        .from("Variants")
+        .delete()
+        .in("id", variantsToDelete);
+
+      if (deleteError) {
+        console.error("Error deleting variants:", deleteError);
+        return { success: false, error: deleteError.message };
+      }
     }
 
-    // Insertamos nuevas variantes
-    const variantsData = formData.variants.map((variant) => ({
-      RAMGB: variant.RAMGB,
-      RAM_type: variant.RAM_type,
-      storageGB: variant.storageGB,
-      storage_type: variant.storage_type,
-      offers: variant.offers,
-      mini_pc: minipcId,
-    }));
+    // Separamos variantes nuevas de las que se van a actualizar
+    const variantsToUpdate = formData.variants.filter((v) => v.id);
+    const variantsToCreate = formData.variants.filter((v) => !v.id);
 
-    const { data: variantsResult, error: variantsError } = await supabase
-      .from("Variants")
-      .insert(variantsData)
-      .select();
+    // Actualizamos variantes existentes
+    for (const variant of variantsToUpdate) {
+      const { error: updateError } = await supabase
+        .from("Variants")
+        .update({
+          RAMGB: variant.RAMGB,
+          RAM_type: variant.RAM_type,
+          storageGB: variant.storageGB,
+          storage_type: variant.storage_type,
+          offers: variant.offers,
+        })
+        .eq("id", variant.id);
 
-    if (variantsError) {
-      console.error("Error inserting variants:", variantsError);
-      return { success: false, error: variantsError.message };
+      if (updateError) {
+        console.error("Error updating variant:", updateError);
+        return { success: false, error: updateError.message };
+      }
+    }
+
+    // Creamos variantes nuevas
+    if (variantsToCreate.length > 0) {
+      const variantsData = variantsToCreate.map((variant) => ({
+        RAMGB: variant.RAMGB,
+        RAM_type: variant.RAM_type,
+        storageGB: variant.storageGB,
+        storage_type: variant.storage_type,
+        offers: variant.offers,
+        mini_pc: minipcId,
+      }));
+
+      const { error: variantsError } = await supabase
+        .from("Variants")
+        .insert(variantsData);
+
+      if (variantsError) {
+        console.error("Error inserting new variants:", variantsError);
+        return { success: false, error: variantsError.message };
+      }
     }
 
     return {
       success: true,
       data: {
         miniPC: { id: minipcId },
-        variants: variantsResult,
+        variants: {
+          deleted: variantsToDelete,
+          updated: variantsToUpdate,
+          created: variantsToCreate,
+        },
       },
     };
   } catch (error) {
@@ -184,7 +228,6 @@ export async function updateMiniPC(
     };
   }
 }
-
 
 // Función auxiliar para validar que los IDs existen en las tablas referenciadas
 export async function validateReferences(
