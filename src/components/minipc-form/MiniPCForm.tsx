@@ -88,9 +88,24 @@ const formSchema = z.object({
   CPU: z.string().min(1, "CPU is required"),
   graphics: z.string().min(1, "Graphics is required"),
   dimensions: z.object({
-    widthMM: z.number().positive().nullable().optional(),
-    heightMM: z.number().positive().nullable().optional(),
-    lengthMM: z.number().positive().nullable().optional(),
+    widthMM: z
+      .number()
+      .positive()
+      .nullable()
+      .optional()
+      .or(z.nan().transform(() => null)),
+    heightMM: z
+      .number()
+      .positive()
+      .nullable()
+      .optional()
+      .or(z.nan().transform(() => null)),
+    lengthMM: z
+      .number()
+      .positive()
+      .nullable()
+      .optional()
+      .or(z.nan().transform(() => null)),
   }),
   portsImgUrl: z
     .array(
