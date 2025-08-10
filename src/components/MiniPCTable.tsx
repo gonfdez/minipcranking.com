@@ -20,7 +20,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Eye, Edit, Search, SquarePlus } from "lucide-react";
+import { Eye, Edit, Search, SquarePlus, Loader2 } from "lucide-react";
 import { MiniPCDetailsView } from "./MiniPCDetailsView";
 import { MiniPC } from "./minipc-form/types";
 
@@ -126,25 +126,32 @@ export function MiniPCTable() {
     setShowDetailsDialog(true);
   };
 
+  const MiniPCTableTitle = () => (
+    <div className="flex justify-between items-center mb-6">
+      <h1 className="text-3xl font-bold">Mini PC's</h1>
+      <Button
+        variant={"outline"}
+        onClick={() => (window.location.href = "/dev/minipc-form")}
+      >
+        <SquarePlus className="h-4 w-4" /> Add new Mini PC
+      </Button>
+    </div>
+  );
+
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-64">
-        <div className="text-lg">Loading Mini PC's...</div>
+      <div>
+        <MiniPCTableTitle />
+        <div className="flex justify-center items-center h-64">
+          <Loader2 className="h-8 w-8 animate-spin text-gray-800 dark:text-gray-200" />
+        </div>
       </div>
     );
   }
 
   return (
     <div>
-      <div className="flex justify-between items-center mb-6">
-        <h1 className="text-3xl font-bold">Mini PC's</h1>
-        <Button
-          variant={"outline"}
-          onClick={() => (window.location.href = "/dev/minipc-form")}
-        >
-          <SquarePlus className="h-4 w-4" /> Add new Mini PC
-        </Button>
-      </div>
+      <MiniPCTableTitle />
 
       {/* Search Bar */}
       <div className="mb-6">
