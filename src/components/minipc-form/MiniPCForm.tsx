@@ -451,8 +451,10 @@ export function MiniPCForm() {
           description: "Mini PC created successfully",
         });
 
-        // Limpiar el formulario
         reset();
+        setShowConfirmation(false);
+        setFormDataToSubmit(null);
+
         if (editId) {
           window.location.href = "/dev/minipc-table";
         }
