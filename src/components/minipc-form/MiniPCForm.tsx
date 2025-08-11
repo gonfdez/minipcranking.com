@@ -126,6 +126,7 @@ const formSchema = z.object({
   ports: z.object({
     usb3: z.number().int().nonnegative().nullable().optional(),
     usb2: z.number().int().nonnegative().nullable().optional(),
+    usb4: z.number().int().nonnegative().nullable().optional(),
     usbC: z.number().int().nonnegative().nullable().optional(),
     hdmi: z.number().int().nonnegative().nullable().optional(),
     displayPort: z.number().int().nonnegative().nullable().optional(),
@@ -195,6 +196,7 @@ const defaultValues = {
   ports: {
     usb3: null,
     usb2: null,
+    usb4: null,
     usbC: null,
     hdmi: null,
     displayPort: null,
@@ -258,6 +260,7 @@ function mapDbMiniPCToForm(data: any): FormData {
     ports: {
       usb3: data.ports?.usb3 ?? null,
       usb2: data.ports?.usb2 ?? null,
+      usb4: data.ports?.usb4 ?? null,
       usbC: data.ports?.usbC ?? null,
       hdmi: data.ports?.hdmi ?? null,
       displayPort: data.ports?.displayPort ?? null,

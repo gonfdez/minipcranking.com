@@ -72,6 +72,7 @@ export interface MiniPC {
   ports?: {
     usb3?: number | null;
     usb2?: number | null;
+    usb4?: number | null;
     usbC?: number | null;
     hdmi?: number | null;
     displayPort?: number | null;

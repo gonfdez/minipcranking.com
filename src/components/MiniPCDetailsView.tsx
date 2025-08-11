@@ -36,6 +36,7 @@ interface MiniPCDetailsProps {
     ports?: {
       usb3?: number | null;
       usb2?: number | null;
+      usb4?: number | null;
       usbC?: number | null;
       hdmi?: number | null;
       displayPort?: number | null;
@@ -66,9 +67,10 @@ interface MiniPCDetailsProps {
 export function MiniPCDetailsView({ miniPC, showTitle = true }: MiniPCDetailsProps) {
   const formatPortName = (portKey: string): string => {
     const portNames: Record<string, string> = {
-      usb3: "USB 3.0",
+      usb3: "USB 3.2",
       usb2: "USB 2.0",
       usbC: "USB-C",
+      usb4: "USB 4.0",
       hdmi: "HDMI",
       displayPort: "DisplayPort",
       ethernet: "Ethernet",
@@ -242,24 +244,24 @@ export function MiniPCDetailsView({ miniPC, showTitle = true }: MiniPCDetailsPro
           <div className="space-y-2">
             <div>
               <span className="font-semibold">English:</span>
-              <p className="mt-1 text-gray-700">{miniPC.description.en}</p>
+              <p className="mt-1 text-gray-700">{miniPC.description.en || "---"}</p>
             </div>
             {miniPC.description.es && (
               <div>
                 <span className="font-semibold">Spanish:</span>
-                <p className="mt-1 text-gray-700">{miniPC.description.es}</p>
+                <p className="mt-1 text-gray-700">{miniPC.description.es || "---"}</p>
               </div>
             )}
             {miniPC.description.it && (
               <div>
                 <span className="font-semibold">Italian:</span>
-                <p className="mt-1 text-gray-700">{miniPC.description.it}</p>
+                <p className="mt-1 text-gray-700">{miniPC.description.it || "---"}</p>
               </div>
             )}
             {miniPC.description.de && (
               <div>
                 <span className="font-semibold">German:</span>
-                <p className="mt-1 text-gray-700">{miniPC.description.de}</p>
+                <p className="mt-1 text-gray-700">{miniPC.description.de || "---"}</p>
               </div>
             )}
           </div>
