@@ -1,0 +1,19 @@
+.minipcform label {
+    margin-bottom: 5px;
+}
+
+.tabError {
+  animation: errorBlink 1.5s ease-in-out infinite;
+}
+
+@keyframes errorBlink {
+  0%, 100% { 
+    border-color: transparent; 
+    background-color: transparent;
+  }
+  50% { 
+    border-color: rgb(239 68 68); 
+    border-width: 2px;
+    background-color: rgba(239, 68, 68, 0.5);
+  }
+}

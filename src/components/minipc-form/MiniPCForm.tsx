@@ -1,5 +1,6 @@
 "use client";
 
+import styles from "./minipcform.module.css";
 import { useForm, useFieldArray } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -39,6 +40,7 @@ import {
 } from "lucide-react";
 import { CleanInput } from "../ui/CleanInput";
 import { useSearchParams } from "next/navigation";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
 const formSchema = z.object({
   model: z.string().min(1, "Model name is required"),
@@ -315,11 +317,40 @@ export function MiniPCForm() {
     watch,
     control,
     reset,
-    getValues
+    getValues,
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
     defaultValues,
   });
+
+  const [tabsWithErrors, setTabsWithErrors] = useState<string[]>([]);
+  const checkTabErrors = (errors: any) => {
+    const tabErrors = [];
+    // Errores en basicInfo (todos los campos excepto variants)
+    const hasBasicInfoErrors = Object.keys(errors).some(
+      (field) => field !== "variants"
+    );
+    if (hasBasicInfoErrors) {
+      tabErrors.push("basicInfo");
+    }
+    // Errores en variants
+    if (errors.variants) {
+      tabErrors.push("variants");
+    }
+    return tabErrors;
+  };
+  useEffect(() => {
+    const tabErrors = checkTabErrors(errors);
+    setTabsWithErrors(tabErrors);
+
+    // Si hay errores, hacer scroll hacia arriba para ver las tabs
+    if (tabErrors.length > 0) {
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    }
+  }, [errors]);
 
   const brandValue = watch("brand");
   const onBrandChange = (value: string) => setValue("brand", value);
@@ -508,7 +539,7 @@ export function MiniPCForm() {
 
   return (
     <div>
-      <div className="flex justify-between mb-6">
+      <div className="flex justify-between mb-4">
         <h1 className="text-3xl font-bold">
           {editId ? "Edit Mini PC" : "Create new Mini PC"}
         </h1>
@@ -528,352 +559,386 @@ export function MiniPCForm() {
           </div>
         )}
 
-        <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
-          <div>
-            <Label>Brand *</Label>
-            <BrandSelectAndCreate
-              value={brandValue}
-              onChangeAction={onBrandChange}
-              brands={centralData.brands}
-              onDataUpdateAction={fetchAllCentralData}
-              loading={centralData.loading}
-            />
-            {errors.brand && (
-              <span className="text-red-500">{errors.brand.message}</span>
-            )}
-          </div>
+        <form onSubmit={handleSubmit(onSubmit)} className={styles.minipcform}>
+          <Tabs defaultValue="basicInfo">
+            <TabsList className="mb-6 gap-2">
+              <TabsTrigger
+                className={`text-lg p-3 ${
+                  tabsWithErrors.includes("basicInfo") ? styles.tabError : ""
+                }`}
+                value="basicInfo"
+              >
+                Basic information
+              </TabsTrigger>
+              <TabsTrigger
+                className={`text-lg p-3 ${
+                  tabsWithErrors.includes("variants") ? styles.tabError : ""
+                }`}
+                value="variants"
+              >
+                Variants & offers
+              </TabsTrigger>
+            </TabsList>
 
-          <div>
-            <Label>Model name *</Label>
-            <CleanInput
-              {...register("model")}
-              placeholder="Model name of the Mini PC"
-            />
-            {errors.model && (
-              <span className="text-red-500">{errors.model.message}</span>
-            )}
-          </div>
+            <TabsContent value="basicInfo" className="space-y-4">
+              <div>
+                <Label>Brand *</Label>
+                <BrandSelectAndCreate
+                  value={brandValue}
+                  onChangeAction={onBrandChange}
+                  brands={centralData.brands}
+                  onDataUpdateAction={fetchAllCentralData}
+                  loading={centralData.loading}
+                />
+                {errors.brand && (
+                  <span className="text-red-500">{errors.brand.message}</span>
+                )}
+              </div>
 
-          <div>
-            <Label>CPU *</Label>
-            <CPUSelectAndCreate
-              value={cpuValue}
-              onChangeAction={onCPUChange}
-              cpus={centralData.cpus}
-              brands={centralData.brands}
-              onDataUpdateAction={fetchAllCentralData}
-              loading={centralData.loading}
-            />
-            {errors.CPU && (
-              <span className="text-red-500">{errors.CPU.message}</span>
-            )}
-          </div>
+              <div>
+                <Label>Model name *</Label>
+                <CleanInput
+                  {...register("model")}
+                  placeholder="Model name of the Mini PC"
+                />
+                {errors.model && (
+                  <span className="text-red-500">{errors.model.message}</span>
+                )}
+              </div>
 
-          <div>
-            <Label>Graphics *</Label>
-            <GraphicsSelectAndCreate
-              value={graphicsValue}
-              onChangeAction={onGraphicsChange}
-              graphics={centralData.graphics}
-              brands={centralData.brands}
-              onDataUpdateAction={fetchAllCentralData}
-              loading={centralData.loading}
-            />
-            {errors.graphics && (
-              <span className="text-red-500">{errors.graphics.message}</span>
-            )}
-          </div>
+              <div>
+                <Label>CPU *</Label>
+                <CPUSelectAndCreate
+                  value={cpuValue}
+                  onChangeAction={onCPUChange}
+                  cpus={centralData.cpus}
+                  brands={centralData.brands}
+                  onDataUpdateAction={fetchAllCentralData}
+                  loading={centralData.loading}
+                />
+                {errors.CPU && (
+                  <span className="text-red-500">{errors.CPU.message}</span>
+                )}
+              </div>
 
-          <div>
-            <Label>Product manual URL</Label>
-            <Input
-              {...register("manualURL")}
-              placeholder="URL of the product manual "
-            />
-            {errors.manualURL && (
-              <span className="text-red-500">{errors.manualURL.message}</span>
-            )}
-          </div>
-
-          <div>
-            <Label>Product URL *</Label>
-            <Input
-              {...register("fromURL")}
-              placeholder="URL of the product where you are taking the data"
-            />
-            {errors.fromURL && (
-              <span className="text-red-500">{errors.fromURL.message}</span>
-            )}
-          </div>
-
-          <div>
-            <Label>Product Images URL *</Label>
-            {fields.map((field, index) => (
-              <div key={field.id} className="mb-2">
-                <div className="flex items-center space-x-2">
-                  <Input
-                    {...register(`mainImgUrl.${index}.url`)}
-                    placeholder="https://example.com/minipc_main_image.jpg"
-                  />
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    onClick={() => remove(index)}
-                    disabled={fields.length === 1}
-                    title="Remove row"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
-                {errors.mainImgUrl?.[index]?.url && (
-                  <span className="text-red-500 block mt-1">
-                    {errors.mainImgUrl[index].url.message}
+              <div>
+                <Label>Graphics *</Label>
+                <GraphicsSelectAndCreate
+                  value={graphicsValue}
+                  onChangeAction={onGraphicsChange}
+                  graphics={centralData.graphics}
+                  brands={centralData.brands}
+                  onDataUpdateAction={fetchAllCentralData}
+                  loading={centralData.loading}
+                />
+                {errors.graphics && (
+                  <span className="text-red-500">
+                    {errors.graphics.message}
                   </span>
                 )}
               </div>
-            ))}
 
-            <Button
-              type="button"
-              onClick={() => append({ url: "" })}
-              className="mt-1"
-            >
-              <SquarePlus className="h-4 w-4" /> Add Image URL
-            </Button>
-
-            {errors.mainImgUrl && (
-              <span className="text-red-500 block mt-1">
-                {errors.mainImgUrl.message}
-              </span>
-            )}
-          </div>
-
-          <div>
-            <Label>Ports Images URL *</Label>
-            {portsImagesFields.map((field, index) => (
-              <div key={field.id} className="mb-2">
-                <div className="flex items-center space-x-2">
-                  <Input
-                    {...register(`portsImgUrl.${index}.url`)}
-                    placeholder="https://example.com/minipc_ports_image.jpg"
-                  />
-                  <Button
-                    type="button"
-                    variant="destructive"
-                    onClick={() => removePortsImage(index)}
-                    disabled={portsImagesFields.length === 1}
-                    title="Remove row"
-                  >
-                    <Trash2 className="w-4 h-4" />
-                  </Button>
-                </div>
-                {errors.portsImgUrl?.[index]?.url && (
-                  <span className="text-red-500 block mt-1">
-                    {errors.portsImgUrl[index].url.message}
+              <div>
+                <Label>Product manual URL</Label>
+                <Input
+                  {...register("manualURL")}
+                  placeholder="URL of the product manual "
+                />
+                {errors.manualURL && (
+                  <span className="text-red-500">
+                    {errors.manualURL.message}
                   </span>
                 )}
               </div>
-            ))}
 
-            <Button
-              type="button"
-              onClick={() => appendPortsImage({ url: "" })}
-              className="mt-1"
-            >
-              <SquarePlus className="h-4 w-4" /> Add Port Image URL
-            </Button>
+              <div>
+                <Label>Product URL *</Label>
+                <Input
+                  {...register("fromURL")}
+                  placeholder="URL of the product where you are taking the data"
+                />
+                {errors.fromURL && (
+                  <span className="text-red-500">{errors.fromURL.message}</span>
+                )}
+              </div>
 
-            {errors.portsImgUrl && (
-              <span className="text-red-500 block mt-1">
-                {errors.portsImgUrl.message}
-              </span>
-            )}
-          </div>
-
-          <div className="border border-gray-300 rounded-xl p-4 space-y-4">
-            <Label className="text-lg font-semibold block">
-              Ports Quantity *
-            </Label>
-            <div className="grid grid-cols-2 gap-4 mt-2">
-              {Object.keys(defaultValues.ports).map((portKey) => (
-                <div key={portKey}>
-                  <Label>{portKey.toUpperCase()}</Label>
-                  <Input
-                    type="number"
-                    min="0"
-                    {...register(
-                      `ports.${portKey as keyof typeof defaultValues.ports}`,
-                      { valueAsNumber: true }
+              <div>
+                <Label>Product Images URL *</Label>
+                {fields.map((field, index) => (
+                  <div key={field.id} className="mb-2">
+                    <div className="flex items-center space-x-2">
+                      <Input
+                        {...register(`mainImgUrl.${index}.url`)}
+                        placeholder="https://example.com/minipc_main_image.jpg"
+                      />
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        onClick={() => remove(index)}
+                        disabled={fields.length === 1}
+                        title="Remove row"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    {errors.mainImgUrl?.[index]?.url && (
+                      <span className="text-red-500 block mt-1">
+                        {errors.mainImgUrl[index].url.message}
+                      </span>
                     )}
-                  />
+                  </div>
+                ))}
+
+                <Button
+                  type="button"
+                  onClick={() => append({ url: "" })}
+                  className="mt-1"
+                >
+                  <SquarePlus className="h-4 w-4" /> Add Image URL
+                </Button>
+
+                {errors.mainImgUrl && (
+                  <span className="text-red-500 block mt-1">
+                    {errors.mainImgUrl.message}
+                  </span>
+                )}
+              </div>
+
+              <div>
+                <Label>Ports Images URL *</Label>
+                {portsImagesFields.map((field, index) => (
+                  <div key={field.id} className="mb-2">
+                    <div className="flex items-center space-x-2">
+                      <Input
+                        {...register(`portsImgUrl.${index}.url`)}
+                        placeholder="https://example.com/minipc_ports_image.jpg"
+                      />
+                      <Button
+                        type="button"
+                        variant="destructive"
+                        onClick={() => removePortsImage(index)}
+                        disabled={portsImagesFields.length === 1}
+                        title="Remove row"
+                      >
+                        <Trash2 className="w-4 h-4" />
+                      </Button>
+                    </div>
+                    {errors.portsImgUrl?.[index]?.url && (
+                      <span className="text-red-500 block mt-1">
+                        {errors.portsImgUrl[index].url.message}
+                      </span>
+                    )}
+                  </div>
+                ))}
+
+                <Button
+                  type="button"
+                  onClick={() => appendPortsImage({ url: "" })}
+                  className="mt-1"
+                >
+                  <SquarePlus className="h-4 w-4" /> Add Port Image URL
+                </Button>
+
+                {errors.portsImgUrl && (
+                  <span className="text-red-500 block mt-1">
+                    {errors.portsImgUrl.message}
+                  </span>
+                )}
+              </div>
+
+              <div className="border border-gray-300 rounded-xl p-4 space-y-4">
+                <Label className="text-lg font-semibold block">
+                  Ports Quantity *
+                </Label>
+                <div className="grid grid-cols-2 gap-4 mt-2">
+                  {Object.keys(defaultValues.ports).map((portKey) => (
+                    <div key={portKey}>
+                      <Label>{portKey.toUpperCase()}</Label>
+                      <Input
+                        type="number"
+                        min="0"
+                        {...register(
+                          `ports.${
+                            portKey as keyof typeof defaultValues.ports
+                          }`,
+                          { valueAsNumber: true }
+                        )}
+                      />
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
-          </div>
+              </div>
 
-          <div>
-            <Label>Connectivity *</Label>
-            <ConnectivitySelectAndCreate
-              value={connectivityValue}
-              onChangeAction={onConnectivityChange}
-              connectivity={centralData.connectivity}
-              onDataUpdateAction={fetchAllCentralData}
-              loading={centralData.loading}
-            />
-            {errors.connectivity && (
-              <span className="text-red-500">
-                {errors.connectivity.message}
-              </span>
-            )}
-          </div>
+              <div>
+                <Label>Connectivity *</Label>
+                <ConnectivitySelectAndCreate
+                  value={connectivityValue}
+                  onChangeAction={onConnectivityChange}
+                  connectivity={centralData.connectivity}
+                  onDataUpdateAction={fetchAllCentralData}
+                  loading={centralData.loading}
+                />
+                {errors.connectivity && (
+                  <span className="text-red-500">
+                    {errors.connectivity.message}
+                  </span>
+                )}
+              </div>
 
-          <div>
-            <DescriptionInput register={register} errors={errors} />
-          </div>
+              <div>
+                <DescriptionInput register={register} errors={errors} />
+              </div>
 
-          <div>
-            <Label>Max RAM Capacity (GB)</Label>
-            <Input
-              type="number"
-              {...register("maxRAMCapacityGB", {
-                valueAsNumber: true,
-                setValueAs: (value) =>
-                  value === "" ? undefined : Number(value),
-              })}
-            />
-            {errors.maxRAMCapacityGB && (
-              <span className="text-red-500">
-                {errors.maxRAMCapacityGB.message}
-              </span>
-            )}
-          </div>
+              <div>
+                <Label>Max RAM Capacity (GB)</Label>
+                <Input
+                  type="number"
+                  {...register("maxRAMCapacityGB", {
+                    valueAsNumber: true,
+                    setValueAs: (value) =>
+                      value === "" ? undefined : Number(value),
+                  })}
+                />
+                {errors.maxRAMCapacityGB && (
+                  <span className="text-red-500">
+                    {errors.maxRAMCapacityGB.message}
+                  </span>
+                )}
+              </div>
 
-          <div>
-            <Label>Max Storage Capacity (GB)</Label>
-            <Input
-              type="number"
-              {...register("maxStorageCapacityGB", {
-                valueAsNumber: true,
-                setValueAs: (value) =>
-                  value === "" ? undefined : Number(value),
-              })}
-            />
-            {errors.maxStorageCapacityGB && (
-              <span className="text-red-500">
-                {errors.maxStorageCapacityGB.message}
-              </span>
-            )}
-          </div>
+              <div>
+                <Label>Max Storage Capacity (GB)</Label>
+                <Input
+                  type="number"
+                  {...register("maxStorageCapacityGB", {
+                    valueAsNumber: true,
+                    setValueAs: (value) =>
+                      value === "" ? undefined : Number(value),
+                  })}
+                />
+                {errors.maxStorageCapacityGB && (
+                  <span className="text-red-500">
+                    {errors.maxStorageCapacityGB.message}
+                  </span>
+                )}
+              </div>
 
-          <div>
-            <Label>Weight (Kg)</Label>
-            <Input
-              type="number"
-              step={0.01}
-              {...register("weightKg", {
-                valueAsNumber: true,
-                setValueAs: (value) =>
-                  value === "" ? undefined : Number(value),
-              })}
-            />
-            {errors.weightKg && (
-              <span className="text-red-500">{errors.weightKg.message}</span>
-            )}
-          </div>
+              <div>
+                <Label>Weight (Kg)</Label>
+                <Input
+                  type="number"
+                  step={0.01}
+                  {...register("weightKg", {
+                    valueAsNumber: true,
+                    setValueAs: (value) =>
+                      value === "" ? undefined : Number(value),
+                  })}
+                />
+                {errors.weightKg && (
+                  <span className="text-red-500">
+                    {errors.weightKg.message}
+                  </span>
+                )}
+              </div>
 
-          <div>
-            <DimensionsInput errors={errors} register={register} />
-          </div>
+              <div>
+                <DimensionsInput errors={errors} register={register} />
+              </div>
 
-          <div>
-            <Label>Power Consumption (W)</Label>
-            <Input
-              type="number"
-              {...register("powerConsumptionW", {
-                valueAsNumber: true,
-                setValueAs: (value) =>
-                  value === "" ? undefined : Number(value),
-              })}
-            />
-            {errors.powerConsumptionW && (
-              <span className="text-red-500">
-                {errors.powerConsumptionW.message}
-              </span>
-            )}
-          </div>
+              <div>
+                <Label>Power Consumption (W)</Label>
+                <Input
+                  type="number"
+                  {...register("powerConsumptionW", {
+                    valueAsNumber: true,
+                    setValueAs: (value) =>
+                      value === "" ? undefined : Number(value),
+                  })}
+                />
+                {errors.powerConsumptionW && (
+                  <span className="text-red-500">
+                    {errors.powerConsumptionW.message}
+                  </span>
+                )}
+              </div>
 
-          <div>
-            <Label>Release Year</Label>
-            <Input
-              type="number"
-              {...register("releaseYear", {
-                valueAsNumber: true,
-                setValueAs: (value) =>
-                  value === "" ? undefined : Number(value),
-              })}
-            />
-            {errors.releaseYear && (
-              <span className="text-red-500">{errors.releaseYear.message}</span>
-            )}
-          </div>
+              <div>
+                <Label>Release Year</Label>
+                <Input
+                  type="number"
+                  {...register("releaseYear", {
+                    valueAsNumber: true,
+                    setValueAs: (value) =>
+                      value === "" ? undefined : Number(value),
+                  })}
+                />
+                {errors.releaseYear && (
+                  <span className="text-red-500">
+                    {errors.releaseYear.message}
+                  </span>
+                )}
+              </div>
 
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="manualCollect"
-              checked={watch("manualCollect")}
-              onCheckedChange={(checked) =>
-                setValue("manualCollect", !!checked)
-              }
-              disabled
-            />
-            <Label htmlFor="manualCollect">Manual Collect *</Label>
-          </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="manualCollect"
+                  checked={watch("manualCollect")}
+                  onCheckedChange={(checked) =>
+                    setValue("manualCollect", !!checked)
+                  }
+                  disabled
+                />
+                <Label htmlFor="manualCollect">Manual Collect *</Label>
+              </div>
 
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="builtinMicrophone"
-              checked={watch("builtinMicrophone")}
-              onCheckedChange={(checked) =>
-                setValue("builtinMicrophone", !!checked)
-              }
-            />
-            <Label htmlFor="builtinMicrophone">Builtin Microphone</Label>
-          </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="builtinMicrophone"
+                  checked={watch("builtinMicrophone")}
+                  onCheckedChange={(checked) =>
+                    setValue("builtinMicrophone", !!checked)
+                  }
+                />
+                <Label htmlFor="builtinMicrophone">Builtin Microphone</Label>
+              </div>
 
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="builtinSpeakers"
-              checked={watch("builtinSpeakers")}
-              onCheckedChange={(checked) =>
-                setValue("builtinSpeakers", !!checked)
-              }
-            />
-            <Label htmlFor="builtinSpeakers">Builtin Speakers</Label>
-          </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="builtinSpeakers"
+                  checked={watch("builtinSpeakers")}
+                  onCheckedChange={(checked) =>
+                    setValue("builtinSpeakers", !!checked)
+                  }
+                />
+                <Label htmlFor="builtinSpeakers">Builtin Speakers</Label>
+              </div>
 
-          <div className="flex items-center space-x-2">
-            <Checkbox
-              id="supportExternalDiscreteGraphicsCard"
-              checked={watch("supportExternalDiscreteGraphicsCard")}
-              onCheckedChange={(checked) =>
-                setValue("supportExternalDiscreteGraphicsCard", !!checked)
-              }
-            />
-            <Label htmlFor="supportExternalDiscreteGraphicsCard">
-              Supports External Discrete Graphics Card
-            </Label>
-          </div>
-
-          <div>
-            <VariantsInput
-              control={control}
-              errors={errors}
-              register={register}
-              setValue={setValue}
-              watch={watch}
-              getValues={getValues}
-            />
-          </div>
+              <div className="flex items-center space-x-2">
+                <Checkbox
+                  id="supportExternalDiscreteGraphicsCard"
+                  checked={watch("supportExternalDiscreteGraphicsCard")}
+                  onCheckedChange={(checked) =>
+                    setValue("supportExternalDiscreteGraphicsCard", !!checked)
+                  }
+                />
+                <Label htmlFor="supportExternalDiscreteGraphicsCard">
+                  Supports External Discrete Graphics Card
+                </Label>
+              </div>
+            </TabsContent>
+            <TabsContent value="variants">
+              <div>
+                <VariantsInput
+                  control={control}
+                  errors={errors}
+                  register={register}
+                  setValue={setValue}
+                  watch={watch}
+                  getValues={getValues}
+                />
+              </div>
+            </TabsContent>
+          </Tabs>
 
           <div className="mt-10">
             <Button
@@ -896,6 +961,7 @@ export function MiniPCForm() {
           </div>
         </form>
       </div>
+
       {/* Diálogo de confirmación */}
       {formDataToSubmit && (
         <ConfirmationDialog

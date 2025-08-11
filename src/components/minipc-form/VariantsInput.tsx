@@ -40,7 +40,7 @@ export function VariantsInput({
   register,
   setValue,
   watch,
-  getValues
+  getValues,
 }: VariantsInputProps) {
   const { fields, append, remove } = useFieldArray({
     control,
@@ -62,9 +62,7 @@ export function VariantsInput({
   };
 
   return (
-    <div className="border border-gray-300 rounded-xl p-4 space-y-4">
-      <Label className="text-lg font-semibold">Variants *</Label>
-
+    <div className="rounded-xl space-y-4">
       {fields.length === 0 && (
         <div className="text-center py-8 text-gray-500">
           <p>No variants added yet. Click "Add Variant" to start.</p>
@@ -74,18 +72,18 @@ export function VariantsInput({
       {fields.map((field, variantIndex) => {
         const variantData = getValues(`variants.${variantIndex}`);
         return (
-        <VariantCard
-          key={field.id}
-          id={variantData.id}
-          variantIndex={variantIndex}
-          control={control}
-          register={register}
-          setValue={setValue}
-          watch={watch}
-          errors={errors}
-          onRemove={() => removeVariant(variantIndex)}
-        />
-        )
+          <VariantCard
+            key={field.id}
+            id={variantData.id}
+            variantIndex={variantIndex}
+            control={control}
+            register={register}
+            setValue={setValue}
+            watch={watch}
+            errors={errors}
+            onRemove={() => removeVariant(variantIndex)}
+          />
+        );
       })}
 
       {/* Forzar mostrar error cuando no hay variantes Y hay error */}
@@ -169,124 +167,126 @@ function VariantCard({
       </CardHeader>
 
       <CardContent className="space-y-4">
-        {/* RAM Configuration */}
-        <div className="space-y-2">
-          <Label className=" font-medium">RAM Configuration *</Label>
-          <div className="flex gap-4">
-            <div className="w-1/2">
-              <Label htmlFor={`ram-capacity-${variantIndex}`} className="">
-                Capacity (GB)
-              </Label>
-              <Input
-                id={`ram-capacity-${variantIndex}`}
-                type="number"
-                min="1"
-                placeholder="e.g., 16"
-                {...register(`variants.${variantIndex}.RAMGB`, {
-                  valueAsNumber: true,
-                  required: "RAM capacity is required",
-                })}
-              />
-              {errors.variants?.[variantIndex]?.RAMGB && (
-                <span className="text-red-500 ">
-                  {errors.variants[variantIndex].RAMGB.message}
-                </span>
-              )}
-            </div>
+        <div className="flex flex-col md:flex-row gap-4">
+          {/* RAM Configuration */}
+          <div className="w-full md:w-1/2 space-y-2">
+            <Label className="font-medium">RAM Configuration *</Label>
+            <div className="flex gap-4">
+              {/* Capacity */}
+              <div className="w-2/3">
+                <Label htmlFor={`ram-capacity-${variantIndex}`}>
+                  Capacity (GB)
+                </Label>
+                <Input
+                  id={`ram-capacity-${variantIndex}`}
+                  type="number"
+                  min="1"
+                  placeholder="e.g., 16"
+                  {...register(`variants.${variantIndex}.RAMGB`, {
+                    valueAsNumber: true,
+                    required: "RAM capacity is required",
+                  })}
+                />
+                {errors.variants?.[variantIndex]?.RAMGB && (
+                  <span className="text-red-500">
+                    {errors.variants[variantIndex].RAMGB.message}
+                  </span>
+                )}
+              </div>
 
-            <div className="w-1/2">
-              <Label htmlFor={`ram-type-${variantIndex}`} className="">
-                Type
-              </Label>
-              <Select
-                value={currentRAMType}
-                onValueChange={(value) =>
-                  setValue(`variants.${variantIndex}.RAM_type`, value)
-                }
-              >
-                <SelectTrigger
-                  id={`ram-type-${variantIndex}`}
-                  className="w-full"
+              {/* Type */}
+              <div className="w-1/3">
+                <Label htmlFor={`ram-type-${variantIndex}`}>Type</Label>
+                <Select
+                  value={currentRAMType}
+                  onValueChange={(value) =>
+                    setValue(`variants.${variantIndex}.RAM_type`, value)
+                  }
                 >
-                  <SelectValue placeholder="Select RAM type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {RAM_TYPES.map((type) => (
-                    <SelectItem key={type} value={type}>
-                      {type}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.variants?.[variantIndex]?.RAM_type && (
-                <span className="text-red-500 ">
-                  {errors.variants[variantIndex].RAM_type.message}
-                </span>
-              )}
+                  <SelectTrigger
+                    id={`ram-type-${variantIndex}`}
+                    className="w-full"
+                  >
+                    <SelectValue placeholder="Select RAM type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {RAM_TYPES.map((type) => (
+                      <SelectItem key={type} value={type}>
+                        {type}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.variants?.[variantIndex]?.RAM_type && (
+                  <span className="text-red-500">
+                    {errors.variants[variantIndex].RAM_type.message}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Storage Configuration */}
-        <div className="space-y-2">
-          <Label className=" font-medium">Storage Configuration *</Label>
-          <div className="flex gap-4">
-            <div className="w-1/2">
-              <Label htmlFor={`storage-capacity-${variantIndex}`} className="">
-                Capacity (GB)
-              </Label>
-              <Input
-                id={`storage-capacity-${variantIndex}`}
-                type="number"
-                min="1"
-                placeholder="e.g., 512"
-                {...register(`variants.${variantIndex}.storageGB`, {
-                  valueAsNumber: true,
-                  required: "Storage capacity is required",
-                })}
-              />
-              {errors.variants?.[variantIndex]?.storageGB && (
-                <span className="text-red-500 ">
-                  {errors.variants[variantIndex].storageGB.message}
-                </span>
-              )}
-            </div>
+          {/* Storage Configuration */}
+          <div className="w-full md:w-1/2 space-y-2">
+            <Label className="font-medium">Storage Configuration *</Label>
+            <div className="flex gap-4">
+              {/* Capacity */}
+              <div className="w-2/3">
+                <Label htmlFor={`storage-capacity-${variantIndex}`}>
+                  Capacity (GB)
+                </Label>
+                <Input
+                  id={`storage-capacity-${variantIndex}`}
+                  type="number"
+                  min="1"
+                  placeholder="e.g., 512"
+                  {...register(`variants.${variantIndex}.storageGB`, {
+                    valueAsNumber: true,
+                    required: "Storage capacity is required",
+                  })}
+                />
+                {errors.variants?.[variantIndex]?.storageGB && (
+                  <span className="text-red-500">
+                    {errors.variants[variantIndex].storageGB.message}
+                  </span>
+                )}
+              </div>
 
-            <div className="w-1/2">
-              <Label htmlFor={`storage-type-${variantIndex}`} className="">
-                Type
-              </Label>
-              <Select
-                value={currentStorageType}
-                onValueChange={(value) =>
-                  setValue(`variants.${variantIndex}.storage_type`, value)
-                }
-              >
-                <SelectTrigger
-                  id={`storage-type-${variantIndex}`}
-                  className="w-full"
+              {/* Type */}
+              <div className="w-1/3">
+                <Label htmlFor={`storage-type-${variantIndex}`}>Type</Label>
+                <Select
+                  value={currentStorageType}
+                  onValueChange={(value) =>
+                    setValue(`variants.${variantIndex}.storage_type`, value)
+                  }
                 >
-                  <SelectValue placeholder="Select storage type" />
-                </SelectTrigger>
-                <SelectContent>
-                  {STORAGE_TYPES.map((type) => (
-                    <SelectItem key={type} value={type}>
-                      {type}
-                    </SelectItem>
-                  ))}
-                </SelectContent>
-              </Select>
-              {errors.variants?.[variantIndex]?.storage_type && (
-                <span className="text-red-500 ">
-                  {errors.variants[variantIndex].storage_type.message}
-                </span>
-              )}
+                  <SelectTrigger
+                    id={`storage-type-${variantIndex}`}
+                    className="w-full"
+                  >
+                    <SelectValue placeholder="Select storage type" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {STORAGE_TYPES.map((type) => (
+                      <SelectItem key={type} value={type}>
+                        {type}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+                {errors.variants?.[variantIndex]?.storage_type && (
+                  <span className="text-red-500">
+                    {errors.variants[variantIndex].storage_type.message}
+                  </span>
+                )}
+              </div>
             </div>
           </div>
         </div>
 
         {/* Offers Section */}
-        <div className="border-t pt-4">
+        <div className="border-t pt-4 overflow-x-auto">
           <div className="flex items-center justify-between mb-3">
             <Label className="font-medium">Offers *</Label>
             <Button
@@ -361,14 +361,14 @@ function VariantCard({
                   </span>
                 )}
               </div>
-              <div className="col-span-1 flex justify-center">
+              <div className="col-span-1 flex h-9 justify-center">
                 <Button
                   type="button"
                   variant="outline"
                   size="sm"
                   onClick={() => removeOffer(offerIndex)}
                   disabled={offerFields.length === 1}
-                  className="text-red-500 hover:text-red-700 h-8 w-8 p-0"
+                  className="text-red-500 hover:text-red-700 h-full p-0"
                   title="Remove row"
                 >
                   <Trash2 className="w-4 h-4" />
