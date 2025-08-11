@@ -11,7 +11,7 @@ interface DimensionsInputProps {
 export function DimensionsInput({ register, errors }: DimensionsInputProps) {
   return (
     <div className="border border-gray-300 rounded-xl p-4 space-y-4">
-      <Label className="text-lg font-semibold block">Dimensions (mm)</Label>
+      <Label className="text-lg font-semibold block">Dimensions</Label>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
         <div className="flex-1">
           <Label
