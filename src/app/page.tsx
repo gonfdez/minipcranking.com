@@ -75,7 +75,7 @@ export default function Home() {
     <TooltipProvider>
       <div className="flex-1 flex flex-col justify-center max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         {/* Hero Section */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-6">
           <Badge variant="secondary" className="mb-6 text-sm font-medium">
             Your Ultimate Mini PC Resource
           </Badge>
@@ -86,7 +86,7 @@ export default function Home() {
             for Your Needs
           </h1>
           
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8 leading-relaxed">
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
             Explore specs, compare deals<br className="lg:hidden" /> and dive into reviews and articles from industry experts
           </p>
         </div>
