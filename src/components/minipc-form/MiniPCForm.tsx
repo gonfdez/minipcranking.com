@@ -561,7 +561,7 @@ export function MiniPCForm() {
 
         <form onSubmit={handleSubmit(onSubmit)} className={styles.minipcform}>
           <Tabs defaultValue="basicInfo">
-            <TabsList className="mb-6 gap-2">
+            <TabsList className="mb-4 gap-2">
               <TabsTrigger
                 className={`text-lg p-3 ${
                   tabsWithErrors.includes("basicInfo") ? styles.tabError : ""
