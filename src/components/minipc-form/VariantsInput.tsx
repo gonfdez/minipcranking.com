@@ -143,7 +143,7 @@ function VariantCard({
 
   const getVariantTitle = () => {
     if (id) {
-      return `Variant ID: ${id}`;
+      return <>Existing Variant <span className="text-sm text-gray-600">(ID: {id})</span></>;
     }
     return `New Variant`;
   };
@@ -152,7 +152,7 @@ function VariantCard({
     <Card className="relative">
       <CardHeader>
         <div className="flex items-center justify-between">
-          <CardTitle className="text-lg">{getVariantTitle()}</CardTitle>
+          <CardTitle className="text-xl font-bold">{getVariantTitle()}</CardTitle>
           <Button
             type="button"
             variant="outline"
@@ -170,8 +170,8 @@ function VariantCard({
         <div className="flex flex-col md:flex-row gap-4">
           {/* RAM Configuration */}
           <div className="w-full md:w-1/2 space-y-2">
-            <Label className="font-medium">RAM Configuration *</Label>
-            <div className="flex gap-4">
+            <Label className="text-lg">RAM Configuration *</Label>
+            <div className="flex gap-4 mt-2">
               {/* Capacity */}
               <div className="w-2/3">
                 <Label htmlFor={`ram-capacity-${variantIndex}`}>
@@ -228,8 +228,8 @@ function VariantCard({
 
           {/* Storage Configuration */}
           <div className="w-full md:w-1/2 space-y-2">
-            <Label className="font-medium">Storage Configuration *</Label>
-            <div className="flex gap-4">
+            <Label className="text-lg">Storage Configuration *</Label>
+            <div className="flex gap-4 mt-2">
               {/* Capacity */}
               <div className="w-2/3">
                 <Label htmlFor={`storage-capacity-${variantIndex}`}>
@@ -287,8 +287,8 @@ function VariantCard({
 
         {/* Offers Section */}
         <div className="border-t pt-4 overflow-x-auto">
-          <div className="flex items-center justify-between mb-3">
-            <Label className="font-medium">Offers *</Label>
+          <div className="flex items-center justify-between">
+            <Label className="text-lg">Offers *</Label>
             <Button
               type="button"
               onClick={addOffer}
@@ -301,15 +301,15 @@ function VariantCard({
           </div>
 
           {/* Headers para las columnas de ofertas */}
-          <div className="grid grid-cols-12 gap-2 mb-2">
+          <div className="grid grid-cols-12 gap-2 mt-2">
             <div className="col-span-8">
-              <Label className="font-medium text-gray-600">URL</Label>
+              <Label className="font-medium">URL</Label>
             </div>
             <div className="col-span-3">
-              <Label className="font-medium text-gray-600">Price (USD)</Label>
+              <Label className="font-medium">Price (USD)</Label>
             </div>
             <div className="col-span-1">
-              <Label className="font-medium text-gray-600">Action</Label>
+              <Label className="font-medium">Action</Label>
             </div>
           </div>
 
