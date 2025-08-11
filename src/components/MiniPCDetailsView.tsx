@@ -34,8 +34,8 @@ interface MiniPCDetailsProps {
       lengthMM?: number | null;
     };
     ports?: {
-      usb3?: number | null;
       usb2?: number | null;
+      usb3?: number | null;
       usb4?: number | null;
       usbC?: number | null;
       hdmi?: number | null;
@@ -67,10 +67,10 @@ interface MiniPCDetailsProps {
 export function MiniPCDetailsView({ miniPC, showTitle = true }: MiniPCDetailsProps) {
   const formatPortName = (portKey: string): string => {
     const portNames: Record<string, string> = {
-      usb3: "USB 3.2",
       usb2: "USB 2.0",
-      usbC: "USB-C",
+      usb3: "USB 3.2",
       usb4: "USB 4.0",
+      usbC: "USB-C",
       hdmi: "HDMI",
       displayPort: "DisplayPort",
       ethernet: "Ethernet",
