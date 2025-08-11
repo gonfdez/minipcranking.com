@@ -97,7 +97,7 @@ export function VariantsInput({
       <div className="flex justify-end mt-4">
         <Button type="button" onClick={addVariant}>
           <SquarePlus className="h-4 w-4" />
-          Add Variant
+          Add new Variant
         </Button>
       </div>
     </div>
