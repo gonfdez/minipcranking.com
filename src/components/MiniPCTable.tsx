@@ -194,7 +194,7 @@ export function MiniPCTable() {
             ) : (
               filteredMiniPCs.map((miniPC) => (
                 <TableRow key={miniPC.id}>
-                  <TableCell className="font-medium">
+                  <TableCell>
                     {miniPC.brand.name}
                   </TableCell>
                   <TableCell>{miniPC.model}</TableCell>
