@@ -540,6 +540,25 @@ export function MiniPCForm() {
     setFormDataToSubmit(null);
   };
 
+  // Desactiva cambiar valores de inputs numericos con la rueda del raton
+  useEffect(() => {
+    const handleWheel = (e: WheelEvent) => {
+      const target = e.target as HTMLElement;
+      if (
+        target.tagName === "INPUT" &&
+        (target as HTMLInputElement).type === "number" &&
+        document.activeElement === target
+      ) {
+        e.preventDefault();
+      }
+    };
+
+    document.addEventListener("wheel", handleWheel, { passive: false });
+    return () => {
+      document.removeEventListener("wheel", handleWheel);
+    };
+  }, []);
+
   return (
     <div>
       <div className="flex justify-between mb-4">
