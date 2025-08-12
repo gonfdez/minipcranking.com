@@ -100,7 +100,7 @@ export function MiniPCDetailsView({ miniPC, showTitle = true }: MiniPCDetailsPro
       <div className="flex flex-wrap gap-2">
         {activePorts.map(([portKey, count]) => (
           <Badge key={portKey} variant="outline" className="text-sm">
-            {formatPortName(portKey)}: {count}
+            <span className="text-gray-600">{formatPortName(portKey)}:</span> {count}
           </Badge>
         ))}
       </div>
