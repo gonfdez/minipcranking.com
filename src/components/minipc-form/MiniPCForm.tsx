@@ -348,6 +348,7 @@ export function MiniPCForm() {
 
     // Si hay errores, hacer scroll hacia arriba para ver las tabs
     if (tabErrors.length > 0) {
+      console.info("Form validation errors:", errors);
       window.scrollTo({
         top: 0,
         behavior: "smooth",
@@ -468,8 +469,7 @@ export function MiniPCForm() {
   }, [editId, centralData.loading, reset]);
 
   const onSubmit = async (data: FormData) => {
-    console.log("Form data:", data);
-    console.log("Form errors:", errors);
+    console.info("Form data to submit:", data);
 
     try {
       // Validar referencias antes de mostrar el diálogo
