@@ -329,12 +329,12 @@ export function MiniPCForm() {
   const [tabsWithErrors, setTabsWithErrors] = useState<string[]>([]);
   const checkTabErrors = (errors: any) => {
     const tabErrors = [];
-    // Errores en basicInfo (todos los campos excepto variants)
+    // Errores en modelInfo (todos los campos excepto variants)
     const hasBasicInfoErrors = Object.keys(errors).some(
       (field) => field !== "variants"
     );
     if (hasBasicInfoErrors) {
-      tabErrors.push("basicInfo");
+      tabErrors.push("modelInfo");
     }
     // Errores en variants
     if (errors.variants) {
@@ -582,15 +582,15 @@ export function MiniPCForm() {
         )}
 
         <form onSubmit={handleSubmit(onSubmit)} className={styles.minipcform}>
-          <Tabs defaultValue="basicInfo">
+          <Tabs defaultValue="modelInfo">
             <TabsList className="mb-4 gap-2">
               <TabsTrigger
                 className={`text-lg p-3 ${
-                  tabsWithErrors.includes("basicInfo") ? styles.tabError : ""
+                  tabsWithErrors.includes("modelInfo") ? styles.tabError : ""
                 }`}
-                value="basicInfo"
+                value="modelInfo"
               >
-                Basic information
+                Model info
               </TabsTrigger>
               <TabsTrigger
                 className={`text-lg p-3 ${
@@ -602,7 +602,7 @@ export function MiniPCForm() {
               </TabsTrigger>
             </TabsList>
 
-            <TabsContent value="basicInfo" className="space-y-4">
+            <TabsContent value="modelInfo" className="space-y-4">
               <div>
                 <Label>Brand *</Label>
                 <BrandSelectAndCreate
