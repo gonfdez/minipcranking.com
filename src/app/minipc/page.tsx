@@ -298,9 +298,9 @@ export default function MiniPCPage() {
           <CollapsibleTrigger asChild className="px-3 py-1">
             <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors gap-0">
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
+                <div className={`flex items-center gap-3 ${ activeFiltersCount === 0 ? "text-muted-foreground" : ""}`}>
                   <Filter className="h-4 w-4" />
-                  <CardTitle className="text-md font-normal pl-1">
+                  <CardTitle className="text-md font-normal">
                     Filters
                   </CardTitle>
                   {activeFiltersCount > 0 && (
