@@ -148,26 +148,38 @@ const formSchema = z.object({
     .array(
       z.object({
         id: z.number().optional(),
-        RAMGB: z
-          .number()
-          .int()
-          .positive()
-          .min(1, "RAM capacity must be at least 1GB"),
+        RAMGB: z.preprocess<number | undefined, z.ZodNumber, number>(
+          (val) =>
+            typeof val === "number" && Number.isNaN(val) ? undefined : val,
+          z
+            .number({ error: "RAM capacity is required" })
+            .int("Must be an integer")
+            .min(1, "RAM capacity must be at least 1GB")
+        ),
         RAM_type: z.string().min(1, "RAM type is required"),
-        storageGB: z
-          .number()
-          .int()
-          .positive()
-          .min(1, "Storage capacity must be at least 1GB"),
+        storageGB: z.preprocess<number | undefined, z.ZodNumber, number>(
+          (val) =>
+            typeof val === "number" && Number.isNaN(val) ? undefined : val,
+          z
+            .number({ error: "Storage capacity is required" })
+            .int("Must be an integer")
+            .min(1, "Storage capacity must be at least 1GB")
+        ),
         storage_type: z.string().min(1, "Storage type is required"),
         offers: z
           .array(
             z.object({
-              url: z.url().min(1, "Offer URL is required"),
-              price: z
-                .number()
-                .positive()
-                .min(0.01, "Price must be greater than 0"),
+              url: z.url("Offer URL is required and must be a valid URL").min(1, "Offer URL is required"),
+              price: z.preprocess<number | undefined, z.ZodNumber, number>(
+                (val) =>
+                  typeof val === "number" && Number.isNaN(val)
+                    ? undefined
+                    : val,
+                z
+                  .number({ error: "Price is required" })
+                  .int("Must be an integer")
+                  .min(0.01, "Price must be at least 0.01")
+              ),
             })
           )
           .min(1, "At least one offer is required for each variant"),
