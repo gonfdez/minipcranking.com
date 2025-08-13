@@ -293,18 +293,18 @@ export default function MiniPCPage() {
       </div>
 
       {/* Filtros Colapsibles */}
-      <Card className="mb-8 p-0">
+      <Card className="mb-8 p-0 rounded-md">
         <Collapsible open={isFiltersOpen} onOpenChange={setIsFiltersOpen}>
-          <CollapsibleTrigger asChild>
-            <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors py-2 px-6 rounded-lg gap-0">
+          <CollapsibleTrigger asChild className="px-3 py-1">
+            <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors gap-0">
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
-                  <Filter className="h-5 w-5" />
-                  <CardTitle className="text-md font-semibold">
+                  <Filter className="h-4 w-4" />
+                  <CardTitle className="text-md font-normal pl-1">
                     Filters
                   </CardTitle>
                   {activeFiltersCount > 0 && (
-                    <span className="bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full">
+                    <span className="bg-primary text-primary-foreground text-xs px-1 rounded-full">
                       {activeFiltersCount}
                     </span>
                   )}
@@ -318,7 +318,7 @@ export default function MiniPCPage() {
                         e.stopPropagation();
                         clearFilters();
                       }}
-                      className="h-8 px-2 text-muted-foreground hover:text-foreground"
+                      className="h-6 px-2 text-muted-foreground hover:text-foreground"
                     >
                       <X className="h-4 w-4 mr-1" />
                       Clear
