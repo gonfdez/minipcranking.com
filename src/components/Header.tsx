@@ -18,14 +18,12 @@ export function Header() {
   const [isOpen, setIsOpen] = useState(false);
 
   const navigationItems = [
+    { href: "/minipc", label: "Mini PC's" },
     { href: "/blog", label: "Blog" },
-    // Puedes añadir más elementos de navegación aquí
-    // { href: "/reviews", label: "Reviews" },
-    // { href: "/guides", label: "Guides" },
   ];
 
   return (
-    <header className="max-w-7xl mx-auto w-full px-4 sm:px-6 lg:px-8 py-2 flex justify-between items-center">
+    <header className="w-full px-6 py-3 flex justify-between items-center">
       {/* Logo */}
       <Link
         href="/"
@@ -33,7 +31,7 @@ export function Header() {
       >
         <Image
           src="/android-chrome-192x192.png"
-          alt="Trophy"
+          alt="Logo"
           width={32}
           height={32}
           className="inline-block"
@@ -41,15 +39,15 @@ export function Header() {
         minipcranking.com
       </Link>
 
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-[80px]">
         {/* Desktop Navigation */}
         <nav className="hidden md:block">
-          <ul className="flex items-center space-x-6">
+          <ul className="flex items-center space-x-12">
             {navigationItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="text-sm font-medium hover:text-primary transition-colors"
+                  className="text-sm font-medium hover:text-primary hover:underline transition-colors"
                 >
                   {item.label}
                 </Link>

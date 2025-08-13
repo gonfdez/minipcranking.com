@@ -74,7 +74,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
   return (
     <div>
       <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="px-6">
           <div className="flex justify-between items-center h-16">
             <Link href={"/dev"} className="text-xl font-semibold">Developer Panel</Link>
             <div className="flex items-center space-x-4">
