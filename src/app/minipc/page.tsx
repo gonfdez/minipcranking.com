@@ -502,7 +502,7 @@ export default function MiniPCPage() {
             <Link key={miniPC.id} href={`/minipc/${miniPC.id}`}>
               <Card className="group overflow-hidden hover:shadow-xl transition-shadow cursor-pointer p-0 gap-0">
                 {/* Imagen sin blur */}
-                <div className="relative h-48 w-full">
+                <div className="relative h-48 w-full overflow-hidden">
                   <Image
                     src={miniPC.mainImgUrl[0] || "/placeholder-minipc.jpg"}
                     alt={`${miniPC.brand.name} ${miniPC.model}`}
@@ -512,7 +512,7 @@ export default function MiniPCPage() {
                   />
 
                   {/* Nombre del PC con fondo blur - sobre la imagen */}
-                  <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm p-3">
+                  <div className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-sm p-3 w-fit rounded-tr-lg">
                     <h3 className="text-white font-semibold text-lg leading-tight">
                       {miniPC.brand.name} {miniPC.model}
                     </h3>
