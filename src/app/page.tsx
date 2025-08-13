@@ -110,7 +110,7 @@ export default function Home() {
         {/* Features Grid */}
         <div className="grid md:grid-cols-3 gap-8 md:gap-6 mb-16 mx-6 md:mx-0">
           {/* Specifications Card */}
-          <Card className="group hover:shadow-lg transition-all duration-300 flex flex-col justify-between">
+          <Card className="group hover:shadow-lg transition-all duration-300 ring-2 ring-primary/20 flex flex-col justify-between">
             <CardHeader className="text-center pb-4">
               <div className="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mx-auto mb-4 group-hover:bg-primary/20 transition-colors">
                 <Monitor className="w-6 h-6 text-primary" />
