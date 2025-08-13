@@ -602,7 +602,7 @@ export function MiniPCForm() {
                 }`}
                 value="modelInfo"
               >
-                Model info
+                Model information
               </TabsTrigger>
               <TabsTrigger
                 className={`text-lg p-3 ${
