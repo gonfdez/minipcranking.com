@@ -105,8 +105,8 @@ export default function MiniPCPage() {
 
   // Contar filtros activos
   const getActiveFiltersCount = () => {
-    return Object.entries(filters).filter(([key, value]) => 
-      key !== 'search' && value !== ""
+    return Object.entries(filters).filter(
+      ([key, value]) => key !== "search" && value !== ""
     ).length;
   };
 
@@ -300,7 +300,9 @@ export default function MiniPCPage() {
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <Filter className="h-5 w-5" />
-                  <CardTitle className="text-md font-semibold">Filters</CardTitle>
+                  <CardTitle className="text-md font-semibold">
+                    Filters
+                  </CardTitle>
                   {activeFiltersCount > 0 && (
                     <span className="bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full">
                       {activeFiltersCount}
@@ -331,21 +333,28 @@ export default function MiniPCPage() {
               </div>
             </CardHeader>
           </CollapsibleTrigger>
-          
+
           <CollapsibleContent>
             <CardContent className="p-4">
               {/* Primera fila - Filtros principales */}
               <div className="space-y-6">
                 <div>
-                  <h4 className="text-sm font-medium mb-3 text-muted-foreground">Brand & Specifications</h4>
+                  <h4 className="text-sm font-medium mb-3 text-muted-foreground">
+                    Brand & Specifications
+                  </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {/* Marca */}
                     <div className="space-y-2">
-                      <label className="text-xs font-medium text-muted-foreground">Brand</label>
+                      <label className="text-xs font-medium text-muted-foreground">
+                        Brand
+                      </label>
                       <Select
                         value={filters.brand}
                         onValueChange={(value) =>
-                          handleFilterChange("brand", value === "all" ? "" : value)
+                          handleFilterChange(
+                            "brand",
+                            value === "all" ? "" : value
+                          )
                         }
                       >
                         <SelectTrigger>
@@ -354,7 +363,10 @@ export default function MiniPCPage() {
                         <SelectContent>
                           <SelectItem value="all">All brands</SelectItem>
                           {brands.map((brand) => (
-                            <SelectItem key={brand.id} value={brand.id.toString()}>
+                            <SelectItem
+                              key={brand.id}
+                              value={brand.id.toString()}
+                            >
                               {brand.name}
                             </SelectItem>
                           ))}
@@ -364,11 +376,16 @@ export default function MiniPCPage() {
 
                     {/* CPU Brand */}
                     <div className="space-y-2">
-                      <label className="text-xs font-medium text-muted-foreground">Processor</label>
+                      <label className="text-xs font-medium text-muted-foreground">
+                        Processor
+                      </label>
                       <Select
                         value={filters.cpuBrand}
                         onValueChange={(value) =>
-                          handleFilterChange("cpuBrand", value === "all" ? "" : value)
+                          handleFilterChange(
+                            "cpuBrand",
+                            value === "all" ? "" : value
+                          )
                         }
                       >
                         <SelectTrigger>
@@ -377,7 +394,10 @@ export default function MiniPCPage() {
                         <SelectContent>
                           <SelectItem value="all">All processors</SelectItem>
                           {cpuBrands.map((brand) => (
-                            <SelectItem key={brand.id} value={brand.id.toString()}>
+                            <SelectItem
+                              key={brand.id}
+                              value={brand.id.toString()}
+                            >
                               {brand.name}
                             </SelectItem>
                           ))}
@@ -387,11 +407,16 @@ export default function MiniPCPage() {
 
                     {/* RAM mínima */}
                     <div className="space-y-2">
-                      <label className="text-xs font-medium text-muted-foreground">Memory (RAM)</label>
+                      <label className="text-xs font-medium text-muted-foreground">
+                        Memory (RAM)
+                      </label>
                       <Select
                         value={filters.minRam}
                         onValueChange={(value) =>
-                          handleFilterChange("minRam", value === "all" ? "" : value)
+                          handleFilterChange(
+                            "minRam",
+                            value === "all" ? "" : value
+                          )
                         }
                       >
                         <SelectTrigger>
@@ -411,15 +436,22 @@ export default function MiniPCPage() {
 
                 {/* Segunda fila - Filtros adicionales */}
                 <div>
-                  <h4 className="text-sm font-medium mb-3 text-muted-foreground">Additional Filters</h4>
+                  <h4 className="text-sm font-medium mb-3 text-muted-foreground">
+                    Additional Filters
+                  </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {/* Año de lanzamiento */}
                     <div className="space-y-2">
-                      <label className="text-xs font-medium text-muted-foreground">Release Year</label>
+                      <label className="text-xs font-medium text-muted-foreground">
+                        Release Year
+                      </label>
                       <Select
                         value={filters.releaseYear}
                         onValueChange={(value) =>
-                          handleFilterChange("releaseYear", value === "all" ? "" : value)
+                          handleFilterChange(
+                            "releaseYear",
+                            value === "all" ? "" : value
+                          )
                         }
                       >
                         <SelectTrigger>
@@ -438,7 +470,9 @@ export default function MiniPCPage() {
 
                     {/* Gráficos integrados */}
                     <div className="space-y-2">
-                      <label className="text-xs font-medium text-muted-foreground">Graphics Type</label>
+                      <label className="text-xs font-medium text-muted-foreground">
+                        Graphics Type
+                      </label>
                       <Select
                         value={filters.integratedGraphics}
                         onValueChange={(value) =>
@@ -453,16 +487,20 @@ export default function MiniPCPage() {
                         </SelectTrigger>
                         <SelectContent>
                           <SelectItem value="all">Any graphics</SelectItem>
-                          <SelectItem value="true">Integrated Graphics</SelectItem>
-                          <SelectItem value="false">Dedicated Graphics</SelectItem>
+                          <SelectItem value="true">
+                            Integrated Graphics
+                          </SelectItem>
+                          <SelectItem value="false">
+                            Dedicated Graphics
+                          </SelectItem>
                         </SelectContent>
                       </Select>
                     </div>
 
                     {/* Espacio para futuro filtro o botón */}
                     <div className="flex items-end">
-                      <Button 
-                        variant="outline" 
+                      <Button
+                        variant="outline"
                         onClick={clearFilters}
                         className="w-full"
                         disabled={activeFiltersCount === 0}
@@ -490,9 +528,33 @@ export default function MiniPCPage() {
       {/* Grid de Mini PC's - Nuevo diseño con overlay */}
       {loading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <Card key={i} className="animate-pulse">
-              <div className="bg-muted h-64 rounded"></div>
+          {Array.from({ length: 12 }).map((_, i) => (
+            <Card
+              key={i}
+              className="group overflow-hidden p-0 gap-0 animate-pulse"
+            >
+              {/* Skeleton de la imagen */}
+              <div className="relative h-48 w-full bg-muted">
+                {/* Skeleton del overlay del título */}
+                <div className="absolute bottom-0 left-0 bg-muted-foreground/20 backdrop-blur-sm p-3 w-fit rounded-tr-lg">
+                  <div className="h-6 w-32 bg-muted-foreground/30 rounded"></div>
+                </div>
+              </div>
+
+              {/* Skeleton del contenido */}
+              <CardContent className="p-4">
+                <div className="space-y-2">
+                  <div className="flex items-center">
+                    <div className="w-4 h-4 bg-muted rounded mr-2"></div>
+                    <div className="h-4 w-24 bg-muted rounded"></div>
+                  </div>
+
+                  <div className="flex items-center">
+                    <div className="w-4 h-4 bg-muted rounded mr-2"></div>
+                    <div className="h-4 w-28 bg-muted rounded"></div>
+                  </div>
+                </div>
+              </CardContent>
             </Card>
           ))}
         </div>
