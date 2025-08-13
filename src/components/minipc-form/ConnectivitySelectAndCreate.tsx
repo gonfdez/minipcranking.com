@@ -179,7 +179,7 @@ export function ConnectivitySelectAndCreate({
                     <SelectItem key={c.id} value={c.id.toString()}>
                       {c.type}
                       {c.speed && (
-                        <span className="text-blue-600 ml-1">
+                        <span className="text-blue-600">
                           ({c.speed.value} {c.speed.units})
                         </span>
                       )}
