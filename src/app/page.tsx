@@ -2,14 +2,26 @@ import { Metadata } from "next";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import { Monitor, BookOpen, BarChart3, Cpu, Zap, Shield } from "lucide-react";
 
 export const metadata: Metadata = {
   title: "Mini PC Ranking - Compare, Review & Find the Best Mini PCs",
-  description: "The ultimate resource for mini PC enthusiasts. Compare specifications, read expert reviews, and discover the perfect compact computer for your needs. Find your ideal compact computing solution.",
-  
+  description:
+    "The ultimate resource for mini PC enthusiasts. Compare specifications, read expert reviews, and discover the perfect compact computer for your needs. Find your ideal compact computing solution.",
+
   keywords: [
     "mini pc ranking",
     "mini pc comparison",
@@ -21,14 +33,15 @@ export const metadata: Metadata = {
     "compact computer",
     "small form factor pc",
     "mini pc buying guide",
-    "best mini pc"
+    "best mini pc",
   ],
 
   authors: [{ name: "gfs-studio" }],
-  
+
   openGraph: {
     title: "Mini PC Ranking - Compare & Review the Best Mini PCs",
-    description: "The ultimate resource for Mini PC enthusiasts. Compare specifications, read expert reviews, and find your perfect compact computer.",
+    description:
+      "The ultimate resource for Mini PC enthusiasts. Compare specifications, read expert reviews, and find your perfect compact computer.",
     url: "https://minipcranking.com",
     siteName: "MiniPCRanking",
     type: "website",
@@ -38,16 +51,17 @@ export const metadata: Metadata = {
         url: "/og-homepage.jpg",
         width: 1200,
         height: 630,
-        alt: "Mini PC Ranking - The Ultimate Mini PC Resource"
-      }
-    ]
+        alt: "Mini PC Ranking - The Ultimate Mini PC Resource",
+      },
+    ],
   },
 
   twitter: {
     card: "summary_large_image",
     title: "Mini PC Ranking - Compare & Review Mini PCs",
-    description: "The ultimate resource for mini PC enthusiasts. Compare specs, read reviews, and find your perfect compact computer.",
-    images: ["/twitter-homepage.jpg"]
+    description:
+      "The ultimate resource for mini PC enthusiasts. Compare specs, read reviews, and find your perfect compact computer.",
+    images: ["/twitter-homepage.jpg"],
   },
 
   robots: {
@@ -63,11 +77,11 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: "https://minipcranking.com"
+    canonical: "https://minipcranking.com",
   },
 
   category: "technology",
-  classification: "Mini PCs, Hardware Reviews, Technology Comparison"
+  classification: "Mini PCs, Hardware Reviews, Technology Comparison",
 };
 
 export default function Home() {
@@ -79,15 +93,17 @@ export default function Home() {
           <Badge variant="secondary" className="mb-6 text-sm font-medium">
             Your Ultimate Mini PC Resource
           </Badge>
-          
+
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight mb-6">
             Discover the Perfect
             <span className="text-primary block mt-2">Mini PC</span>
             for Your Needs
           </h1>
-          
+
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            Explore specs, compare deals<br className="lg:hidden" /> and dive into reviews and articles from industry experts
+            Explore specs, compare deals
+            <br className="lg:hidden" /> and dive into reviews and articles from
+            industry experts
           </p>
         </div>
 
@@ -105,23 +121,12 @@ export default function Home() {
               </CardDescription>
             </CardHeader>
             <CardContent className="text-center">
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <div>
-                  <Button 
-                    variant="outline" 
-                    className="w-full"
-                    disabled
-                  >
-                    <Cpu className="w-4 h-4 mr-2" />
-                    View Specifications
-                  </Button>
-                  </div>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Coming Soon! Comprehensive spec database in development</p>
-                </TooltipContent>
-              </Tooltip>
+              <Button asChild className="w-full">
+                <Link href="/minipc">
+                  <Cpu className="w-4 h-4 mr-2" />
+                  View Specifications
+                </Link>
+              </Button>
             </CardContent>
           </Card>
 
@@ -161,14 +166,10 @@ export default function Home() {
               <Tooltip>
                 <TooltipTrigger asChild>
                   <div>
-                  <Button 
-                    variant="outline" 
-                    className="w-full"
-                    disabled
-                  >
-                    <BarChart3 className="w-4 h-4 mr-2" />
-                    Compare Mini PCs
-                  </Button>
+                    <Button variant="outline" className="w-full" disabled>
+                      <BarChart3 className="w-4 h-4 mr-2" />
+                      Compare Mini PCs
+                    </Button>
                   </div>
                 </TooltipTrigger>
                 <TooltipContent>
