@@ -74,6 +74,12 @@ export default function BlogClient({ posts }: BlogClientProps) {
 
   return (
     <div className="flex flex-col gap-6">
+      <div>
+        <h1 className="text-4xl font-bold mb-2">Blog</h1>
+        <p className="text-muted-foreground">
+          Latest Mini PC news, tips, and expert reviews at your fingertips.
+        </p>
+      </div>
       {/* Barra de búsqueda */}
       <div className="relative">
         <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground h-4 w-4" />
