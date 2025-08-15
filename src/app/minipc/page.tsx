@@ -273,7 +273,7 @@ export default function MiniPCPage() {
 
   return (
     <div className="container mx-auto px-4 py-8 md:max-w-3xl lg:max-w-4xl">
-      <div className="mb-8">
+      <div className="mb-4">
         <h1 className="text-4xl font-bold mb-2">Mini PC's</h1>
         <p className="text-muted-foreground mb-6">
           Explore our collection of Mini PC's with detailed specifications and
