@@ -23,7 +23,7 @@ export function Header() {
   ];
 
   return (
-    <header className="w-full px-6 py-3 flex justify-between items-center">
+    <header className="w-full px-4 py-3 flex justify-between items-center sm:px-6">
       {/* Logo */}
       <Link
         href="/"
