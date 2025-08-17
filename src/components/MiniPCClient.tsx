@@ -33,7 +33,7 @@ import {
   ChevronDown,
   ChevronUp,
   X,
-  DollarSign,
+  BadgeDollarSign,
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -538,8 +538,8 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
 
                     {/* Mostrar precio también en el contenido si no hay precio en la imagen */}
                     {miniPC.minPrice && (
-                      <div className="flex items-center pt-1">
-                        <DollarSign className="w-4 h-4 mr-2 text-green-600" />
+                      <div className="flex items-center">
+                        <BadgeDollarSign className="w-4 h-4 mr-2 text-green-600" />
                         <span className="text-green-600 font-semibold">
                           From {formatPrice(miniPC.minPrice)}
                         </span>
