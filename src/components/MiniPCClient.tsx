@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useTransition } from "react";
+import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
@@ -104,13 +104,36 @@ interface Props {
   initialFilters: any;
 }
 
+// Componente de Loading para las tarjetas
+const LoadingCard = () => (
+  <Card className="group overflow-hidden p-0 gap-0 animate-pulse">
+    <div className="relative h-48 w-full bg-muted">
+      <div className="absolute bottom-0 left-0 bg-muted-foreground/20 backdrop-blur-sm p-3 w-fit rounded-tr-lg">
+        <div className="h-6 w-32 bg-muted-foreground/30 rounded"></div>
+      </div>
+    </div>
+    <CardContent className="p-4">
+      <div className="space-y-2">
+        <div className="flex items-center">
+          <div className="w-4 h-4 bg-muted rounded mr-2"></div>
+          <div className="h-4 w-24 bg-muted rounded"></div>
+        </div>
+        <div className="flex items-center">
+          <div className="w-4 h-4 bg-muted rounded mr-2"></div>
+          <div className="h-4 w-28 bg-muted rounded"></div>
+        </div>
+      </div>
+    </CardContent>
+  </Card>
+);
+
 export function MiniPCClient({ initialData, brandsData, initialFilters }: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const [isPending, startTransition] = useTransition();
   
   const [data, setData] = useState<MiniPCData>(initialData);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
   const [filters, setFilters] = useState<Filters>({
     search: initialFilters.search || "",
     brand: initialFilters.brand || "",
@@ -128,7 +151,7 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
     ).length;
   };
 
-  // Actualizar URL y datos
+  // Actualizar URL y datos - SIN useTransition
   const updateFilters = (newFilters: Partial<Filters>) => {
     const updatedFilters = { ...filters, ...newFilters };
     setFilters(updatedFilters);
@@ -144,19 +167,17 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
       params.delete('page');
     }
 
-    startTransition(() => {
-      router.push(`/minipc?${params.toString()}`);
-    });
+    // Navegación directa sin transición
+    router.push(`/minipc?${params.toString()}`);
   };
 
-  // Manejar cambio de página
+  // Manejar cambio de página - SIN useTransition
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams);
     params.set('page', page.toString());
     
-    startTransition(() => {
-      router.push(`/minipc?${params.toString()}`);
-    });
+    // Navegación directa sin transición
+    router.push(`/minipc?${params.toString()}`);
   };
 
   const handleFilterChange = (key: keyof Filters, value: string) => {
@@ -174,9 +195,8 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
       integratedGraphics: "",
     });
     
-    startTransition(() => {
-      router.push('/minipc');
-    });
+    // Navegación directa sin transición
+    router.push('/minipc');
   };
 
   const formatPrice = (price: number | null) => {
@@ -189,22 +209,44 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
     }).format(price);
   };
 
+  // Función para validar si los datos están completos
+  const isDataValid = (data: MiniPCData) => {
+    return data && 
+           typeof data.totalCount === 'number' && 
+           typeof data.currentPage === 'number' && 
+           typeof data.totalPages === 'number' && 
+           typeof data.itemsPerPage === 'number' &&
+           Array.isArray(data.data) &&
+           !isNaN(data.totalCount) &&
+           !isNaN(data.currentPage) &&
+           !isNaN(data.totalPages) &&
+           !isNaN(data.itemsPerPage);
+  };
+
   // Actualizar datos cuando cambian los searchParams
   useEffect(() => {
     const fetchData = async () => {
       try {
+        setIsLoading(true);
         const params = new URLSearchParams(searchParams);
         const response = await fetch(`/api/miniPCs?${params.toString()}`);
         if (response.ok) {
           const newData = await response.json();
-          setData(newData);
+          if (isDataValid(newData)) {
+            setData(newData);
+          }
         }
       } catch (error) {
         console.error('Error fetching data:', error);
+      } finally {
+        setIsLoading(false);
       }
     };
 
-    fetchData();
+    // Solo hacer fetch si los datos actuales no son válidos o si han cambiado los params
+    if (!isDataValid(data) || searchParams.toString() !== '') {
+      fetchData();
+    }
   }, [searchParams]);
 
   const activeFiltersCount = getActiveFiltersCount();
@@ -217,6 +259,22 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
     }
     return years;
   };
+
+  // Valores seguros para mostrar información - con más validaciones
+  const safeData = isDataValid(data) ? data : {
+    data: [],
+    totalCount: 0,
+    currentPage: 1,
+    totalPages: 1,
+    itemsPerPage: 12
+  };
+
+  // Cálculos seguros para la paginación
+  const safeCurrentPage = Math.max(1, safeData.currentPage || 1);
+  const safeItemsPerPage = Math.max(1, safeData.itemsPerPage || 12);
+  const safeTotalCount = Math.max(0, safeData.totalCount || 0);
+  const startItem = Math.max(1, (safeCurrentPage - 1) * safeItemsPerPage + 1);
+  const endItem = Math.min(safeCurrentPage * safeItemsPerPage, safeTotalCount);
 
   return (
     <>
@@ -462,44 +520,25 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
 
       {/* Resultados y paginación info */}
       <div className="flex justify-between items-center mb-6">
-        <p className="text-muted-foreground">
-          Showing {(data.currentPage - 1) * data.itemsPerPage + 1} -{" "}
-          {Math.min(data.currentPage * data.itemsPerPage, data.totalCount)} of {data.totalCount}{" "}
-          Mini PC's
-        </p>
+        {isLoading ? (
+          <div className="h-5 w-48 bg-muted animate-pulse rounded"></div>
+        ) : (
+          <p className="text-muted-foreground">
+            Showing {startItem} - {endItem} of {safeTotalCount} Mini PC's
+          </p>
+        )}
       </div>
 
       {/* Grid de Mini PC's */}
-      {isPending ? (
+      {isLoading ? (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {Array.from({ length: 12 }).map((_, i) => (
-            <Card
-              key={i}
-              className="group overflow-hidden p-0 gap-0 animate-pulse"
-            >
-              <div className="relative h-48 w-full bg-muted">
-                <div className="absolute bottom-0 left-0 bg-muted-foreground/20 backdrop-blur-sm p-3 w-fit rounded-tr-lg">
-                  <div className="h-6 w-32 bg-muted-foreground/30 rounded"></div>
-                </div>
-              </div>
-              <CardContent className="p-4">
-                <div className="space-y-2">
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-muted rounded mr-2"></div>
-                    <div className="h-4 w-24 bg-muted rounded"></div>
-                  </div>
-                  <div className="flex items-center">
-                    <div className="w-4 h-4 bg-muted rounded mr-2"></div>
-                    <div className="h-4 w-28 bg-muted rounded"></div>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+            <LoadingCard key={i} />
           ))}
         </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-          {data.data.map((miniPC) => (
+          {safeData.data.map((miniPC) => (
             <Link key={miniPC.id} href={`/minipc/${miniPC.id}`}>
               <Card className="group overflow-hidden hover:shadow-xl transition-shadow cursor-pointer p-0 gap-0">
                 <div className="relative h-48 w-full overflow-hidden">
@@ -554,7 +593,7 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
       )}
 
       {/* Mensaje si no hay resultados */}
-      {!isPending && data.data.length === 0 && (
+      {!isLoading && safeData.data.length === 0 && (
         <div className="text-center py-12">
           <p className="text-muted-foreground text-lg mb-4">
             No Mini PC's found with the applied filters
@@ -566,45 +605,43 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
       )}
 
       {/* Paginación */}
-      {data.totalPages > 1 && (
+      {safeData.totalPages > 1 && !isLoading && (
         <div className="mt-8 flex justify-center">
           <div className="flex items-center space-x-2">
             <Button
               variant="outline"
               size="sm"
-              onClick={() => handlePageChange(Math.max(data.currentPage - 1, 1))}
-              disabled={data.currentPage === 1 || isPending}
+              onClick={() => handlePageChange(Math.max(safeCurrentPage - 1, 1))}
+              disabled={safeCurrentPage === 1}
             >
               <ChevronLeft className="h-4 w-4" />
               Previous
             </Button>
 
             <div className="flex items-center space-x-1">
-              {Array.from({ length: Math.min(5, data.totalPages) }, (_, i) => {
+              {Array.from({ length: Math.min(5, safeData.totalPages) }, (_, i) => {
                 const pageNum = i + 1;
                 return (
                   <Button
                     key={pageNum}
-                    variant={data.currentPage === pageNum ? "default" : "outline"}
+                    variant={safeCurrentPage === pageNum ? "default" : "outline"}
                     size="sm"
                     onClick={() => handlePageChange(pageNum)}
-                    disabled={isPending}
                   >
                     {pageNum}
                   </Button>
                 );
               })}
 
-              {data.totalPages > 5 && (
+              {safeData.totalPages > 5 && (
                 <>
                   <span className="px-2">...</span>
                   <Button
-                    variant={data.currentPage === data.totalPages ? "default" : "outline"}
+                    variant={safeCurrentPage === safeData.totalPages ? "default" : "outline"}
                     size="sm"
-                    onClick={() => handlePageChange(data.totalPages)}
-                    disabled={isPending}
+                    onClick={() => handlePageChange(safeData.totalPages)}
                   >
-                    {data.totalPages}
+                    {safeData.totalPages}
                   </Button>
                 </>
               )}
@@ -613,8 +650,8 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
             <Button
               variant="outline"
               size="sm"
-              onClick={() => handlePageChange(Math.min(data.currentPage + 1, data.totalPages))}
-              disabled={data.currentPage === data.totalPages || isPending}
+              onClick={() => handlePageChange(Math.min(safeCurrentPage + 1, safeData.totalPages))}
+              disabled={safeCurrentPage === safeData.totalPages}
             >
               Next
               <ChevronRight className="h-4 w-4" />
