@@ -109,10 +109,10 @@ export function CPUSelectAndCreate({
         cores: parseInt(formData.cores),
         threads: parseInt(formData.threads),
         baseClockGHz: formData.baseClockGHz
-          ? parseInt(formData.baseClockGHz)
+          ? parseFloat(formData.baseClockGHz)
           : null,
         boostClockGHz: formData.boostClockGHz
-          ? parseInt(formData.boostClockGHz)
+          ? parseFloat(formData.boostClockGHz)
           : null,
       };
 
