@@ -240,7 +240,7 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
       </div>
 
       {/* Filtros Colapsibles */}
-      <Card className="mb-8 p-0 rounded-md">
+      <Card className="mb-8 p-0 rounded-md shadow-xs">
         <Collapsible open={isFiltersOpen} onOpenChange={setIsFiltersOpen}>
           <CollapsibleTrigger asChild className="px-3 py-1 h-9 items-center">
             <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors gap-0">
