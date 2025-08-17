@@ -579,7 +579,7 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
                     {miniPC.minPrice && (
                       <div className="flex items-center">
                         <BadgeDollarSign className="w-4 h-4 mr-2 text-green-600" />
-                        <span className="text-green-600 font-semibold">
+                        <span className="text-green-600 font-bold">
                           From {formatPrice(miniPC.minPrice)}
                         </span>
                       </div>
