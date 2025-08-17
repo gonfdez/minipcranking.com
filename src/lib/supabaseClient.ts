@@ -7,4 +7,4 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey);
 
 const supabaseBackKey = process.env.NEXT_SUPABASE_SERVICE_KEY!;
 
-export const backendSupabase = createClient(supabaseUrl, supabaseBackKey);
+export const backendSupabase = createClient(supabaseUrl, supabaseBackKey || "none");
