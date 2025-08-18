@@ -117,10 +117,14 @@ const LoadingCard = () => (
   </Card>
 );
 
-export function MiniPCClient({ initialData, brandsData, initialFilters }: Props) {
+export function MiniPCClient({
+  initialData,
+  brandsData,
+  initialFilters,
+}: Props) {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
+
   const [data, setData] = useState<MiniPCData>(initialData);
   const [isFiltersOpen, setIsFiltersOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -149,10 +153,10 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
     Object.entries(updatedFilters).forEach(([key, value]) => {
       if (value) params.set(key, value);
     });
-    
+
     // Reset page si no es una navegación de página
-    if (!newFilters.hasOwnProperty('page')) {
-      params.delete('page');
+    if (!newFilters.hasOwnProperty("page")) {
+      params.delete("page");
     }
 
     // Navegación directa sin transición
@@ -162,8 +166,8 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
   // Manejar cambio de página - SIN useTransition
   const handlePageChange = (page: number) => {
     const params = new URLSearchParams(searchParams);
-    params.set('page', page.toString());
-    
+    params.set("page", page.toString());
+
     // Navegación directa sin transición
     router.push(`/minipc?${params.toString()}`);
   };
@@ -180,16 +184,16 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
       maxPrice: "",
       integratedGraphics: "",
     });
-    
+
     // Navegación directa sin transición
-    router.push('/minipc');
+    router.push("/minipc");
   };
 
   const formatPrice = (price: number | null) => {
     if (!price) return null;
-    return new Intl.NumberFormat('en-US', {
-      style: 'currency',
-      currency: 'USD',
+    return new Intl.NumberFormat("en-US", {
+      style: "currency",
+      currency: "USD",
       minimumFractionDigits: 0,
       maximumFractionDigits: 0,
     }).format(price);
@@ -197,16 +201,18 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
 
   // Función para validar si los datos están completos
   const isDataValid = (data: MiniPCData) => {
-    return data && 
-           typeof data.totalCount === 'number' && 
-           typeof data.currentPage === 'number' && 
-           typeof data.totalPages === 'number' && 
-           typeof data.itemsPerPage === 'number' &&
-           Array.isArray(data.data) &&
-           !isNaN(data.totalCount) &&
-           !isNaN(data.currentPage) &&
-           !isNaN(data.totalPages) &&
-           !isNaN(data.itemsPerPage);
+    return (
+      data &&
+      typeof data.totalCount === "number" &&
+      typeof data.currentPage === "number" &&
+      typeof data.totalPages === "number" &&
+      typeof data.itemsPerPage === "number" &&
+      Array.isArray(data.data) &&
+      !isNaN(data.totalCount) &&
+      !isNaN(data.currentPage) &&
+      !isNaN(data.totalPages) &&
+      !isNaN(data.itemsPerPage)
+    );
   };
 
   // Actualizar datos cuando cambian los searchParams
@@ -223,14 +229,14 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
           }
         }
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("Error fetching data:", error);
       } finally {
         setIsLoading(false);
       }
     };
 
     // Solo hacer fetch si los datos actuales no son válidos o si han cambiado los params
-    if (!isDataValid(data) || searchParams.toString() !== '') {
+    if (!isDataValid(data) || searchParams.toString() !== "") {
       fetchData();
     }
   }, [searchParams]);
@@ -247,13 +253,15 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
   };
 
   // Valores seguros para mostrar información - con más validaciones
-  const safeData = isDataValid(data) ? data : {
-    data: [],
-    totalCount: 0,
-    currentPage: 1,
-    totalPages: 1,
-    itemsPerPage: 12
-  };
+  const safeData = isDataValid(data)
+    ? data
+    : {
+        data: [],
+        totalCount: 0,
+        currentPage: 1,
+        totalPages: 1,
+        itemsPerPage: 12,
+      };
 
   // Cálculos seguros para la paginación
   const safeCurrentPage = Math.max(1, safeData.currentPage || 1);
@@ -289,11 +297,13 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
           <CollapsibleTrigger asChild className="px-3 py-1 h-9 items-center">
             <CardHeader className="cursor-pointer hover:bg-muted/50 transition-colors gap-0">
               <div className="flex items-center justify-between">
-                <div className={`flex items-center gap-3 ${activeFiltersCount === 0 ? "text-muted-foreground" : ""}`}>
+                <div
+                  className={`flex items-center gap-3 ${
+                    activeFiltersCount === 0 ? "text-muted-foreground" : ""
+                  }`}
+                >
                   <Filter className="h-4 w-4" />
-                  <CardTitle className="text-md font-normal">
-                    Filters
-                  </CardTitle>
+                  <CardTitle className="text-md font-normal">Filters</CardTitle>
                   {activeFiltersCount > 0 && (
                     <span className="bg-primary text-primary-foreground text-xs px-1 rounded-full">
                       {activeFiltersCount}
@@ -329,14 +339,11 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
             <CardContent className="p-4">
               <div className="space-y-6">
                 <div>
-                  <h4 className="text-sm font-medium mb-3 text-muted-foreground">
-                    Brand & Specifications
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                  <div className="grid grid-cols-1 gap-4">
                     {/* Marca */}
                     <div className="space-y-2">
-                      <label className="text-xs font-medium text-muted-foreground">
-                        Brand
+                      <label className="text-muted-foreground">
+                        Mini PC Brand
                       </label>
                       <Select
                         value={filters.brand}
@@ -366,8 +373,8 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
 
                     {/* CPU Brand */}
                     <div className="space-y-2">
-                      <label className="text-xs font-medium text-muted-foreground">
-                        Processor
+                      <label className="text-muted-foreground">
+                        Processor (CPU)
                       </label>
                       <Select
                         value={filters.cpuBrand}
@@ -393,55 +400,6 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
                           ))}
                         </SelectContent>
                       </Select>
-                    </div>
-
-                  </div>
-                </div>
-
-                <div>
-                  <h4 className="text-sm font-medium mb-3 text-muted-foreground">
-                    Additional Filters
-                  </h4>
-                  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-
-                    {/* Gráficos integrados */}
-                    <div className="space-y-2">
-                      <label className="text-xs font-medium text-muted-foreground">
-                        Graphics Type
-                      </label>
-                      <Select
-                        value={filters.integratedGraphics}
-                        onValueChange={(value) =>
-                          handleFilterChange(
-                            "integratedGraphics",
-                            value === "all" ? "" : value
-                          )
-                        }
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Any graphics" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="all">Any graphics</SelectItem>
-                          <SelectItem value="true">
-                            Integrated Graphics
-                          </SelectItem>
-                          <SelectItem value="false">
-                            Dedicated Graphics
-                          </SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
-
-                    <div className="flex items-end">
-                      <Button
-                        variant="outline"
-                        onClick={clearFilters}
-                        className="w-full"
-                        disabled={activeFiltersCount === 0}
-                      >
-                        Reset All Filters
-                      </Button>
                     </div>
                   </div>
                 </div>
@@ -552,25 +510,34 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
             </Button>
 
             <div className="flex items-center space-x-1">
-              {Array.from({ length: Math.min(5, safeData.totalPages) }, (_, i) => {
-                const pageNum = i + 1;
-                return (
-                  <Button
-                    key={pageNum}
-                    variant={safeCurrentPage === pageNum ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => handlePageChange(pageNum)}
-                  >
-                    {pageNum}
-                  </Button>
-                );
-              })}
+              {Array.from(
+                { length: Math.min(5, safeData.totalPages) },
+                (_, i) => {
+                  const pageNum = i + 1;
+                  return (
+                    <Button
+                      key={pageNum}
+                      variant={
+                        safeCurrentPage === pageNum ? "default" : "outline"
+                      }
+                      size="sm"
+                      onClick={() => handlePageChange(pageNum)}
+                    >
+                      {pageNum}
+                    </Button>
+                  );
+                }
+              )}
 
               {safeData.totalPages > 5 && (
                 <>
                   <span className="px-2">...</span>
                   <Button
-                    variant={safeCurrentPage === safeData.totalPages ? "default" : "outline"}
+                    variant={
+                      safeCurrentPage === safeData.totalPages
+                        ? "default"
+                        : "outline"
+                    }
                     size="sm"
                     onClick={() => handlePageChange(safeData.totalPages)}
                   >
@@ -583,7 +550,11 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
             <Button
               variant="outline"
               size="sm"
-              onClick={() => handlePageChange(Math.min(safeCurrentPage + 1, safeData.totalPages))}
+              onClick={() =>
+                handlePageChange(
+                  Math.min(safeCurrentPage + 1, safeData.totalPages)
+                )
+              }
               disabled={safeCurrentPage === safeData.totalPages}
             >
               Next
