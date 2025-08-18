@@ -305,7 +305,7 @@ export function MiniPCClient({
                   <Filter className="h-4 w-4" />
                   <CardTitle className="text-md font-normal">Filters</CardTitle>
                   {activeFiltersCount > 0 && (
-                    <span className="bg-primary text-primary-foreground text-xs px-1 rounded-full">
+                    <span className="bg-primary text-primary-foreground text-xs px-2 py-1 rounded-full">
                       {activeFiltersCount}
                     </span>
                   )}
