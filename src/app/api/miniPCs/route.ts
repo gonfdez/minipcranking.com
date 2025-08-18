@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { backendSupabase as supabase } from '@/lib/supabaseClient';
+import { backendSupabase as supabase } from '../supabaseBackClient';
 
 interface QueryFilters {
   search?: string;
