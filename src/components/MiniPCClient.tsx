@@ -47,8 +47,6 @@ interface Brand {
 interface CPU {
   id: number;
   model: string;
-  cores: number;
-  threads: number;
   brand: Brand;
 }
 
@@ -62,16 +60,10 @@ interface Graphics {
 interface MiniPC {
   id: number;
   model: string;
-  description: { en?: string };
   mainImgUrl: string[];
   brand: Brand;
   CPU: CPU;
   graphics: Graphics;
-  maxRAMCapacityGB?: number;
-  maxStorageCapacityGB?: number;
-  releaseYear?: number;
-  powerConsumptionW?: number;
-  weightKg?: number;
   minPrice?: number | null;
 }
 
@@ -92,9 +84,7 @@ interface Filters {
   search: string;
   brand: string;
   cpuBrand: string;
-  minRam: string;
   maxPrice: string;
-  releaseYear: string;
   integratedGraphics: string;
 }
 
@@ -138,9 +128,7 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
     search: initialFilters.search || "",
     brand: initialFilters.brand || "",
     cpuBrand: initialFilters.cpuBrand || "",
-    minRam: initialFilters.minRam || "",
     maxPrice: initialFilters.maxPrice || "",
-    releaseYear: initialFilters.releaseYear || "",
     integratedGraphics: initialFilters.integratedGraphics || "",
   });
 
@@ -189,9 +177,7 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
       search: "",
       brand: "",
       cpuBrand: "",
-      minRam: "",
       maxPrice: "",
-      releaseYear: "",
       integratedGraphics: "",
     });
     
@@ -409,32 +395,6 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
                       </Select>
                     </div>
 
-                    {/* RAM mínima */}
-                    <div className="space-y-2">
-                      <label className="text-xs font-medium text-muted-foreground">
-                        Memory (RAM)
-                      </label>
-                      <Select
-                        value={filters.minRam}
-                        onValueChange={(value) =>
-                          handleFilterChange(
-                            "minRam",
-                            value === "all" ? "" : value
-                          )
-                        }
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Any RAM" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="all">Any RAM</SelectItem>
-                          <SelectItem value="8">8GB or more</SelectItem>
-                          <SelectItem value="16">16GB or more</SelectItem>
-                          <SelectItem value="32">32GB or more</SelectItem>
-                          <SelectItem value="64">64GB or more</SelectItem>
-                        </SelectContent>
-                      </Select>
-                    </div>
                   </div>
                 </div>
 
@@ -443,33 +403,6 @@ export function MiniPCClient({ initialData, brandsData, initialFilters }: Props)
                     Additional Filters
                   </h4>
                   <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {/* Año de lanzamiento */}
-                    <div className="space-y-2">
-                      <label className="text-xs font-medium text-muted-foreground">
-                        Release Year
-                      </label>
-                      <Select
-                        value={filters.releaseYear}
-                        onValueChange={(value) =>
-                          handleFilterChange(
-                            "releaseYear",
-                            value === "all" ? "" : value
-                          )
-                        }
-                      >
-                        <SelectTrigger>
-                          <SelectValue placeholder="Any year" />
-                        </SelectTrigger>
-                        <SelectContent>
-                          <SelectItem value="all">Any year</SelectItem>
-                          {getYearOptions().map((year) => (
-                            <SelectItem key={year} value={year.toString()}>
-                              {year}
-                            </SelectItem>
-                          ))}
-                        </SelectContent>
-                      </Select>
-                    </div>
 
                     {/* Gráficos integrados */}
                     <div className="space-y-2">

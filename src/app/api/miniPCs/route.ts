@@ -5,8 +5,6 @@ interface QueryFilters {
   search?: string;
   brand?: string;
   cpuBrand?: string;
-  minRam?: string;
-  releaseYear?: string;
   integratedGraphics?: string;
   page?: string;
 }
@@ -20,8 +18,6 @@ export async function GET(request: NextRequest) {
       search: searchParams.get('search') || undefined,
       brand: searchParams.get('brand') || undefined,
       cpuBrand: searchParams.get('cpuBrand') || undefined,
-      minRam: searchParams.get('minRam') || undefined,
-      releaseYear: searchParams.get('releaseYear') || undefined,
       integratedGraphics: searchParams.get('integratedGraphics') || undefined,
       page: searchParams.get('page') || '1',
     };
@@ -33,19 +29,11 @@ export async function GET(request: NextRequest) {
       `
         id,
         model,
-        description,
         mainImgUrl,
-        maxRAMCapacityGB,
-        maxStorageCapacityGB,
-        releaseYear,
-        powerConsumptionW,
-        weightKg,
         brand:Brands!inner(id, name, imgHref),
         CPU:CPUs!inner(
           id,
           model,
-          cores,
-          threads,
           brand:Brands!inner(id, name)
         ),
         graphics:Graphics!inner(
@@ -71,14 +59,6 @@ export async function GET(request: NextRequest) {
 
     if (filters.cpuBrand) {
       query = query.eq("CPU.brand.id", filters.cpuBrand);
-    }
-
-    if (filters.minRam) {
-      query = query.gte("maxRAMCapacityGB", parseInt(filters.minRam));
-    }
-
-    if (filters.releaseYear) {
-      query = query.eq("releaseYear", parseInt(filters.releaseYear));
     }
 
     if (filters.integratedGraphics === "true") {
@@ -137,11 +117,6 @@ export async function GET(request: NextRequest) {
           model: miniPC.model,
           description: miniPC.description,
           mainImgUrl: miniPC.mainImgUrl,
-          maxRAMCapacityGB: miniPC.maxRAMCapacityGB,
-          maxStorageCapacityGB: miniPC.maxStorageCapacityGB,
-          releaseYear: miniPC.releaseYear,
-          powerConsumptionW: miniPC.powerConsumptionW,
-          weightKg: miniPC.weightKg,
           brand: miniPC.brand,
           CPU: miniPC.CPU,
           graphics: miniPC.graphics,
