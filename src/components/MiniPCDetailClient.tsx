@@ -14,6 +14,13 @@ import {
   CarouselPrevious,
 } from "@/components/ui/carousel";
 import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import {
   ChevronLeft,
   Cpu,
   Gpu,
@@ -234,7 +241,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
             </Carousel>
 
             {/* Descripción debajo del carousel */}
-            {(miniPC.description?.en && miniPC.description?.en.length > 0 ) && (
+            {miniPC.description?.en && miniPC.description?.en.length > 0 && (
               <div className="mt-4">
                 <h4 className="font-medium text-sm mb-2">Description</h4>
                 <p className="text-muted-foreground text-xs leading-relaxed">
@@ -567,75 +574,149 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
         </div>
       </div>
 
-      {/* Variants Grid - 3 columnas */}
+      {/* Variants and Offers Section */}
       <div className="space-y-6">
-        <h2 className="text-2xl font-bold">Available Configurations</h2>
+        <h2 className="text-2xl font-bold">
+          Available Configurations & Offers
+        </h2>
         {miniPC.variants && miniPC.variants.length > 0 ? (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            {miniPC.variants.map((variant, index) => (
-              <Card
-                key={variant.id}
-                className={`cursor-pointer transition-all hover:shadow-md ${
-                  selectedVariant?.id === variant.id
-                    ? "border-primary shadow-md"
-                    : "border-border"
-                }`}
-                onClick={() => setSelectedVariant(variant)}
-              >
-                <CardHeader className="pb-3">
-                  <CardTitle className="text-lg">
-                    <div className="flex flex-col">
-                      <div className="flex items-center gap-2">
-                        <MemoryStick className="h-4 w-4 text-muted-foreground" />
-                        {variant.RAMGB}GB RAM {variant.RAM_type}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-3 gap-x-8">
+            {/* Left Column - Variants Selection */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Select Configuration</h3>
+
+              {/* Mobile: Select dropdown */}
+              <div className="block lg:hidden">
+                <Select
+                  value={selectedVariant?.id.toString() || ""}
+                  onValueChange={(value) => {
+                    const variant = miniPC.variants.find(
+                      (v) => v.id.toString() === value
+                    );
+                    setSelectedVariant(variant || null);
+                  }}
+                >
+                  <SelectTrigger>
+                    <SelectValue placeholder="Choose RAM and Storage configuration" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {miniPC.variants.map((variant) => (
+                      <SelectItem
+                        key={variant.id}
+                        value={variant.id.toString()}
+                      >
+                        <div className="flex items-center gap-3">
+                          <div className="flex items-center gap-1">
+                            <MemoryStick className="h-3 w-3" />
+                            {variant.RAMGB}GB {variant.RAM_type}
+                          </div>
+                          <div className="flex items-center gap-1">
+                            <Package2 className="h-3 w-3" />
+                            {variant.storageGB}GB {variant.storage_type}
+                          </div>
+                          {getMinPrice(variant) && (
+                            <span className="text-green-600 font-semibold ml-2">
+                              From {formatPrice(getMinPrice(variant)!)}
+                            </span>
+                          )}
+                        </div>
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
+              </div>
+
+              {/* Desktop: Cards grid */}
+              <div className="hidden lg:block space-y-3">
+                {miniPC.variants.map((variant) => (
+                  <Card
+                    key={variant.id}
+                    className={`cursor-pointer transition-all hover:shadow-md ${
+                      selectedVariant?.id === variant.id
+                        ? "border-primary shadow-md bg-primary/5"
+                        : "border-border"
+                    }`}
+                    onClick={() => setSelectedVariant(variant)}
+                  >
+                    <CardContent>
+                      <div className="space-y-2">
+                        <div className="flex items-center gap-2">
+                          <MemoryStick className="h-4 w-4 text-muted-foreground" />
+                          <span className="font-medium">
+                            {variant.RAMGB}GB RAM {variant.RAM_type}
+                          </span>
+                        </div>
+                        <div className="flex items-center gap-2">
+                          <Package2 className="h-4 w-4 text-muted-foreground" />
+                          <span className="font-medium">
+                            {variant.storageGB}GB {variant.storage_type}
+                          </span>
+                        </div>
+                        {getMinPrice(variant) && (
+                          <p className="text-lg font-bold text-green-600">
+                            From {formatPrice(getMinPrice(variant)!)}
+                          </p>
+                        )}
                       </div>
-                      <div className="flex items-center gap-2">
-                        <Package2 className="h-4 w-4 text-muted-foreground" />
-                        {variant.storageGB}GB {variant.storage_type}
-                      </div>
-                    </div>
-                  </CardTitle>
-                  {getMinPrice(variant) && (
-                    <p className="text-xl font-bold text-green-600">
-                      From {formatPrice(getMinPrice(variant)!)}
-                    </p>
-                  )}
-                </CardHeader>
-                <CardContent className="space-y-3">
-                  {/* Offers */}
-                  {variant.offers && variant.offers.length > 0 && (
-                    <div className="space-y-2">
-                      <p className="text-sm text-muted-foreground">
-                        {variant.offers.length} offer
-                        {variant.offers.length > 1 ? "s" : ""} available
-                      </p>
-                      <div className="space-y-2 max-h-32 overflow-y-auto">
-                        {variant.offers.map((offer, offerIndex) => (
-                          <div
-                            key={offerIndex}
-                            className="flex justify-between items-center p-2 bg-muted/50 rounded-md"
-                          >
-                            <span className="font-semibold text-green-600 text-sm">
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+
+            {/* Right Column - Offers */}
+            <div className="space-y-4">
+              <h3 className="text-lg font-semibold">Available Offers</h3>
+              {selectedVariant &&
+              selectedVariant.offers &&
+              selectedVariant.offers.length > 0 ? (
+                <div className="space-y-3">
+                  <p className="text-sm text-muted-foreground">
+                    Showing offers for {selectedVariant.RAMGB}GB RAM +{" "}
+                    {selectedVariant.storageGB}GB {selectedVariant.storage_type}
+                  </p>
+                  {selectedVariant.offers.map((offer, offerIndex) => (
+                    <Card
+                      key={offerIndex}
+                      className="hover:shadow-md transition-shadow"
+                    >
+                      <CardContent>
+                        <div className="flex justify-between items-center">
+                          <div className="flex items-center gap-4">
+                            <span className="text-2xl font-bold text-green-600">
                               {formatPrice(offer.price)}
                             </span>
-                            <Button size="sm" asChild>
-                              <Link
-                                href={offer.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                              >
-                                <ShoppingCart className="h-3 w-3 mr-1" />
-                                Buy
-                              </Link>
-                            </Button>
+                            <span className="text-sm text-muted-foreground">
+                              Offer {offerIndex + 1}
+                            </span>
                           </div>
-                        ))}
-                      </div>
-                    </div>
-                  )}
-                </CardContent>
-              </Card>
-            ))}
+                          <Button asChild>
+                            <Link
+                              href={offer.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                            >
+                              <ShoppingCart className="h-4 w-4 mr-2" />
+                              Buy Now
+                            </Link>
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <Card>
+                  <CardContent className="p-6 text-center">
+                    <p className="text-muted-foreground">
+                      {selectedVariant
+                        ? "No offers available for this configuration"
+                        : "Select a configuration to see available offers"}
+                    </p>
+                  </CardContent>
+                </Card>
+              )}
+            </div>
           </div>
         ) : (
           <Card>
