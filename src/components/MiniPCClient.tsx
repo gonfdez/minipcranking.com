@@ -37,6 +37,7 @@ import {
 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { generateSlug } from "@/app/minipc/[slug]/generateSlug";
 
 interface Brand {
   id: number;
@@ -243,15 +244,6 @@ export function MiniPCClient({
 
   const activeFiltersCount = getActiveFiltersCount();
 
-  const getYearOptions = () => {
-    const currentYear = new Date().getFullYear();
-    const years = [];
-    for (let year = currentYear; year >= 2018; year--) {
-      years.push(year);
-    }
-    return years;
-  };
-
   // Valores seguros para mostrar información - con más validaciones
   const safeData = isDataValid(data)
     ? data
@@ -430,7 +422,7 @@ export function MiniPCClient({
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-6">
           {safeData.data.map((miniPC) => (
-            <Link key={miniPC.id} href={`/minipc/${miniPC.id}`}>
+            <Link key={miniPC.id} href={`/minipc/${generateSlug(miniPC.brand.name, miniPC.model, miniPC.CPU.model, miniPC.graphics.model)}`}>
               <Card className="group overflow-hidden hover:shadow-xl transition-shadow cursor-pointer p-0 gap-0">
                 <div className="relative h-48 w-full overflow-hidden">
                   <Image
