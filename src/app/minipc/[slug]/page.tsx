@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { MiniPCDetailClient } from "@/components/MiniPCDetailClient";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Skeleton } from "@/components/ui/skeleton";
+import { generateSlug } from "./generateSlug";
 
 interface Params {
   slug: string;
@@ -10,16 +11,6 @@ interface Params {
 
 interface Props {
   params: Promise<Params>;
-}
-
-// Función para generar slug SEO-friendly
-export function generateSlug(brand: string, model: string, cpuModel: string, graphicsModel: string): string {
-  const brandSlug = brand.toLowerCase().replace(/[^a-z0-9]/g, '-');
-  const modelSlug = model.toLowerCase().replace(/[^a-z0-9]/g, '-');
-  const cpuSlug = cpuModel.toLowerCase().replace(/[^a-z0-9]/g, '-');
-  const graphicsSlug = graphicsModel.toLowerCase().replace(/[^a-z0-9]/g, '-');
-  
-  return `${brandSlug}-${modelSlug}-${cpuSlug}-${graphicsSlug}`.replace(/-+/g, '-');
 }
 
 // Función para parsear slug y extraer información
