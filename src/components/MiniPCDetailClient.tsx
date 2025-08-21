@@ -234,7 +234,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
             </Carousel>
 
             {/* Descripción debajo del carousel */}
-            {miniPC.description?.en && (
+            {(miniPC.description?.en && miniPC.description?.en.length > 0 ) && (
               <div className="mt-4">
                 <h4 className="font-medium text-sm mb-2">Description</h4>
                 <p className="text-muted-foreground text-xs leading-relaxed">
@@ -247,7 +247,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
           {/* CPU Details */}
-          <Card>
+          <Card className="h-fit">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
                 <Cpu className="h-4 w-4" />
@@ -291,7 +291,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
           </Card>
 
           {/* Graphics Details */}
-          <Card>
+          <Card className="h-fit">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
                 <Gpu className="h-4 w-4" />
@@ -341,7 +341,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
           </Card>
 
           {/* Model Specifications */}
-          <Card>
+          <Card className="h-fit">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
                 <Ruler className="h-4 w-4" />
@@ -415,7 +415,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
           </Card>
 
           {/* Connectivity */}
-          <Card>
+          <Card className="h-fit">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base">
                 <Cable className="h-4 w-4" />
