@@ -165,7 +165,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
       <nav className="flex items-center space-x-2 mb-6 text-sm">
         <Link
           href="/minipc"
-          className="text-muted-foreground hover:text-foreground"
+          className="text-muted-foreground hover:text-foreground flex items-center"
         >
           <ChevronLeft className="h-4 w-4 inline mr-1" />
           Mini PC's
