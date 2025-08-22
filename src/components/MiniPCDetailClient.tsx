@@ -35,6 +35,7 @@ import {
   Package2,
   MemoryStick,
 } from "lucide-react";
+import Autoplay from "embla-carousel-autoplay";
 
 interface Brand {
   id: number;
@@ -208,7 +209,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
       {/* Main content grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-12">
         {/* Product & ports images carousel */}
-        <Card className="h-fit">
+        <Card className="h-fit gap-2">
           <CardHeader>
             <CardTitle className="flex items-center gap-2 text-base">
               <Monitor className="h-4 w-4" />
@@ -216,7 +217,16 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <Carousel className="mx-9 my-5">
+            <Carousel
+              opts={{
+                loop: true,
+              }}
+              plugins={[
+                Autoplay({
+                  delay: 3000,
+                }),
+              ]}
+            >
               <CarouselContent>
                 {miniPC.mainImgUrl
                   .concat(miniPC.portsImgUrl)
@@ -236,8 +246,8 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     </CarouselItem>
                   ))}
               </CarouselContent>
-              <CarouselPrevious />
-              <CarouselNext />
+              {/* <CarouselPrevious />
+              <CarouselNext /> */}
             </Carousel>
 
             {/* Descripción debajo del carousel */}
@@ -580,13 +590,13 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
           Available Configurations & Offers
         </h2>
         {miniPC.variants && miniPC.variants.length > 0 ? (
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-y-3 gap-x-8">
+          <div className="grid grid-cols-1 lg:grid-cols-4 gap-y-3 gap-x-8">
             {/* Left Column - Variants Selection */}
-            <div className="space-y-4">
+            <div className="space-y-4 lg:col-span-1">
               <h3 className="text-lg font-semibold">Select Configuration</h3>
 
               {/* Mobile: Select dropdown */}
-              <div className="block lg:hidden">
+              <div className="block lg:hidden m-0">
                 <Select
                   value={selectedVariant?.id.toString() || ""}
                   onValueChange={(value) => {
@@ -631,14 +641,14 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                 {miniPC.variants.map((variant) => (
                   <Card
                     key={variant.id}
-                    className={`cursor-pointer transition-all hover:shadow-md ${
+                    className={`cursor-pointer transition-all hover:shadow-md px-6 py-4 ${
                       selectedVariant?.id === variant.id
                         ? "border-primary shadow-md bg-primary/5"
                         : "border-border"
                     }`}
                     onClick={() => setSelectedVariant(variant)}
                   >
-                    <CardContent>
+                    <CardContent className="p-0">
                       <div className="space-y-2">
                         <div className="flex items-center gap-2">
                           <MemoryStick className="h-4 w-4 text-muted-foreground" />
@@ -665,7 +675,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
             </div>
 
             {/* Right Column - Offers */}
-            <div className="space-y-4">
+            <div className="space-y-4 lg:col-span-3">
               <h3 className="text-lg font-semibold">Available Offers</h3>
               {selectedVariant &&
               selectedVariant.offers &&
@@ -675,7 +685,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     Showing offers for {selectedVariant.RAMGB}GB RAM +{" "}
                     {selectedVariant.storageGB}GB {selectedVariant.storage_type}
                   </p>
-                  {selectedVariant.offers.map((offer, offerIndex) => (
+                  {selectedVariant.offers.sort((a,b)=> a.price - b.price).map((offer, offerIndex) => (
                     <Card
                       key={offerIndex}
                       className="hover:shadow-md transition-shadow"
