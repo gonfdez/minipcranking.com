@@ -688,11 +688,11 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                   {selectedVariant.offers.sort((a,b)=> a.price - b.price).map((offer, offerIndex) => (
                     <Card
                       key={offerIndex}
-                      className="hover:shadow-md transition-shadow"
+                      className="hover:shadow-md transition-shadow px-6 py-4 w-fit"
                     >
-                      <CardContent>
+                      <CardContent className="p-0">
                         <div className="flex justify-between items-center">
-                          <div className="flex items-center gap-4">
+                          <div className="flex items-center gap-8 mr-8">
                             <span className="text-2xl font-bold text-green-600">
                               {formatPrice(offer.price)}
                             </span>
