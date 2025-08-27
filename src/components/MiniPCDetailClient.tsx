@@ -644,8 +644,8 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     key={variant.id}
                     className={`cursor-pointer transition-all hover:shadow-md px-6 py-4 ${
                       selectedVariant?.id === variant.id
-                        ? "border-primary shadow-md bg-primary/5"
-                        : "border-border"
+                        ? "shadow-md bg-primary/4"
+                        : ""
                     }`}
                     onClick={() => setSelectedVariant(variant)}
                   >
