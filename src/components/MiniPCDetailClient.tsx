@@ -200,7 +200,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
           {miniPC.releaseYear && (
             <span className="flex items-center gap-1">
               <Calendar className="h-4 w-4" />
-              {miniPC.releaseYear}
+              Release in {miniPC.releaseYear}
             </span>
           )}
         </div>
