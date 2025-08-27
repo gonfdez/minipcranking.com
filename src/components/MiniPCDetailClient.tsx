@@ -251,7 +251,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
             </Carousel>
 
             {/* Descripción debajo del carousel */}
-            {miniPC.description?.en && miniPC.description?.en.length > 0 && (
+            {miniPC.description?.en && miniPC.description?.en.trim().length > 0 && (
               <div className="mt-4">
                 <h4 className="font-medium text-sm mb-2">Description</h4>
                 <p className="text-muted-foreground text-xs leading-relaxed">
@@ -400,7 +400,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
               </div>
               <div className="flex justify-between text-sm">
                 <span className="flex items-center gap-1 text-muted-foreground">
-                  External GPU
+                  Supports external GPU
                 </span>
                 <span className="font-medium">
                   {miniPC.supportExternalDiscreteGraphicsCard ? "Yes" : "No"}
@@ -442,7 +442,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
             <CardContent>
               <div className="grid grid-cols-2 gap-y-3 gap-x-4 overflow-y-auto">
                 {/* USB Ports */}
-                {miniPC.ports.usb3 && miniPC.ports.usb3 > 0 && (
+                {miniPC.ports.usb3! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <Cable className="h-3 w-3 text-blue-500" />
                     <span className="text-muted-foreground">
@@ -450,7 +450,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     </span>
                   </div>
                 )}
-                {miniPC.ports.usb2 && miniPC.ports.usb2 > 0 && (
+                {miniPC.ports.usb2! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <Cable className="h-3 w-3 text-blue-400" />
                     <span className="text-muted-foreground">
@@ -458,7 +458,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     </span>
                   </div>
                 )}
-                {miniPC.ports.usb4 && miniPC.ports.usb4 > 0 && (
+                {miniPC.ports.usb4! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <Cable className="h-3 w-3 text-blue-600" />
                     <span className="text-muted-foreground">
@@ -466,7 +466,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     </span>
                   </div>
                 )}
-                {miniPC.ports.usbC && miniPC.ports.usbC > 0 && (
+                {miniPC.ports.usbC! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <Cable className="h-3 w-3 text-purple-500" />
                     <span className="text-muted-foreground">
@@ -474,7 +474,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     </span>
                   </div>
                 )}
-                {miniPC.ports.thunderbolt && miniPC.ports.thunderbolt > 0 && (
+                {miniPC.ports.thunderbolt! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <Cable className="h-3 w-3 text-yellow-500" />
                     <span className="text-muted-foreground">
@@ -484,7 +484,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                 )}
 
                 {/* Display Ports */}
-                {miniPC.ports.hdmi && miniPC.ports.hdmi > 0 && (
+                {miniPC.ports.hdmi! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <Monitor className="h-3 w-3 text-red-500" />
                     <span className="text-muted-foreground">
@@ -492,7 +492,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     </span>
                   </div>
                 )}
-                {miniPC.ports.displayPort && miniPC.ports.displayPort > 0 && (
+                {miniPC.ports.displayPort! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <Monitor className="h-3 w-3 text-green-500" />
                     <span className="text-muted-foreground">
@@ -500,7 +500,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     </span>
                   </div>
                 )}
-                {miniPC.ports.vga && miniPC.ports.vga > 0 && (
+                {miniPC.ports.vga! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <Monitor className="h-3 w-3 text-gray-500" />
                     <span className="text-muted-foreground">
@@ -508,7 +508,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     </span>
                   </div>
                 )}
-                {miniPC.ports.dvi && miniPC.ports.dvi > 0 && (
+                {miniPC.ports.dvi! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <Monitor className="h-3 w-3 text-gray-600" />
                     <span className="text-muted-foreground">
@@ -518,7 +518,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                 )}
 
                 {/* Network & Other */}
-                {miniPC.ports.ethernet && miniPC.ports.ethernet > 0 && (
+                {miniPC.ports.ethernet! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <Wifi className="h-3 w-3 text-green-600" />
                     <span className="text-muted-foreground">
@@ -526,7 +526,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     </span>
                   </div>
                 )}
-                {miniPC.ports.jack35mm && miniPC.ports.jack35mm > 0 && (
+                {miniPC.ports.jack35mm! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <Speaker className="h-3 w-3 text-orange-500" />
                     <span className="text-muted-foreground">
@@ -536,7 +536,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                 )}
 
                 {/* Storage Ports */}
-                {miniPC.ports.sdCard && miniPC.ports.sdCard > 0 && (
+                {miniPC.ports.sdCard! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <HardDrive className="h-3 w-3 text-indigo-500" />
                     <span className="text-muted-foreground">
@@ -544,7 +544,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     </span>
                   </div>
                 )}
-                {miniPC.ports.microSD && miniPC.ports.microSD > 0 && (
+                {miniPC.ports.microSD! > 0 && (
                   <div className="flex items-center gap-2 text-sm">
                     <HardDrive className="h-3 w-3 text-indigo-400" />
                     <span className="text-muted-foreground">
@@ -557,7 +557,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
               {/* Wireless Connectivity */}
               {miniPC.connectivity && miniPC.connectivity.length > 0 && (
                 <div className="mt-4 pt-4 border-t">
-                  <h5 className="text-sm font-medium mb-2">Wireless</h5>
+                  <h5 className="text-md font-medium mb-2">Wireless</h5>
 
                   {miniPC.connectivity.map((conn, index) => (
                     <div
