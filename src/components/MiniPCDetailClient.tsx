@@ -34,6 +34,8 @@ import {
   ShoppingCart,
   Package2,
   MemoryStick,
+  Settings,
+  BadgeDollarSign
 } from "lucide-react";
 import Autoplay from "embla-carousel-autoplay";
 
@@ -592,7 +594,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
           <div className="grid grid-cols-1 lg:grid-cols-4 gap-y-3 gap-x-8">
             {/* Left Column - Variants Selection */}
             <div className="space-y-4 lg:col-span-1">
-              <h3 className="text-lg font-semibold">Select Configuration</h3>
+              <h3 className="text-lg flex items-center gap-2 font-semibold"><Settings className="h-4 w-4" /> Select Configuration</h3>
 
               {/* Mobile: Select dropdown */}
               <div className="block lg:hidden m-0">
@@ -675,7 +677,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
 
             {/* Right Column - Offers */}
             <div className="space-y-4 lg:col-span-3">
-              <h3 className="text-lg font-semibold">Available Offers</h3>
+              <h3 className="text-lg flex items-center gap-2 font-semibold"><BadgeDollarSign className="h-4 w-4" /> Available Offers</h3>
               {selectedVariant &&
               selectedVariant.offers &&
               selectedVariant.offers.length > 0 ? (
@@ -689,7 +691,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     .map((offer, offerIndex) => (
                       <Card
                         key={offerIndex}
-                        className="hover:shadow-md transition-shadow px-6 py-4 w-fit"
+                        className="hover:shadow-md transition-shadow px-6 py-4 w-full"
                       >
                         <CardContent className="p-0">
                           <div className="flex justify-between items-center">
