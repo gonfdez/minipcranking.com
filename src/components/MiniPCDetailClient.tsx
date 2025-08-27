@@ -464,14 +464,6 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     </span>
                   </div>
                 )}
-                {miniPC.ports.thunderbolt! > 0 && (
-                  <div className="flex items-center gap-2 text-sm">
-                    <Cable className="h-3 w-3 text-yellow-500" />
-                    <span className="text-muted-foreground">
-                      {miniPC.ports.thunderbolt}× Thunderbolt
-                    </span>
-                  </div>
-                )}
 
                 {/* Display Ports */}
                 {miniPC.ports.hdmi! > 0 && (
@@ -539,6 +531,14 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     <HardDrive className="h-3 w-3 text-indigo-400" />
                     <span className="text-muted-foreground">
                       {miniPC.ports.microSD}× MicroSD
+                    </span>
+                  </div>
+                )}
+                {miniPC.ports.thunderbolt! > 0 && (
+                  <div className="flex items-center gap-2 text-sm col-span-2">
+                    <Cable className="h-3 w-3 text-yellow-500" />
+                    <span className="text-muted-foreground">
+                      {miniPC.ports.thunderbolt}× Thunderbolt
                     </span>
                   </div>
                 )}
