@@ -390,7 +390,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
               </div>
               <div className="flex justify-between text-sm">
                 <span className="flex items-center gap-1 text-muted-foreground">
-                  Supports external GPU
+                  Support external GPU
                 </span>
                 <span className="font-medium">
                   {miniPC.supportExternalDiscreteGraphicsCard ? "Yes" : "No"}
