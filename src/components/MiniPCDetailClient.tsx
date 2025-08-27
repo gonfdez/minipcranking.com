@@ -249,16 +249,6 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
               {/* <CarouselPrevious />
               <CarouselNext /> */}
             </Carousel>
-
-            {/* Descripción debajo del carousel */}
-            {miniPC.description?.en && miniPC.description?.en.trim().length > 0 && (
-              <div className="mt-4">
-                <h4 className="font-medium text-sm mb-2">Description</h4>
-                <p className="text-muted-foreground text-xs leading-relaxed">
-                  {miniPC.description.en}
-                </p>
-              </div>
-            )}
           </CardContent>
         </Card>
 
@@ -584,6 +574,15 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
         </div>
       </div>
 
+      {/* Descripción debajo del carousel */}
+      {miniPC.description?.en && miniPC.description?.en.trim().length > 0 && (
+        <div className="my-8">
+          <p className="text-muted-foreground leading-relaxed">
+            {miniPC.description.en}
+          </p>
+        </div>
+      )}
+
       {/* Variants and Offers Section */}
       <div className="space-y-6">
         <h2 className="text-2xl font-bold">
@@ -685,35 +684,37 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                     Showing offers for {selectedVariant.RAMGB}GB RAM +{" "}
                     {selectedVariant.storageGB}GB {selectedVariant.storage_type}
                   </p>
-                  {selectedVariant.offers.sort((a,b)=> a.price - b.price).map((offer, offerIndex) => (
-                    <Card
-                      key={offerIndex}
-                      className="hover:shadow-md transition-shadow px-6 py-4 w-fit"
-                    >
-                      <CardContent className="p-0">
-                        <div className="flex justify-between items-center">
-                          <div className="flex items-center gap-8 mr-8">
-                            <span className="text-2xl font-bold text-green-600">
-                              {formatPrice(offer.price)}
-                            </span>
-                            <span className="text-sm text-muted-foreground">
-                              Offer {offerIndex + 1}
-                            </span>
+                  {selectedVariant.offers
+                    .sort((a, b) => a.price - b.price)
+                    .map((offer, offerIndex) => (
+                      <Card
+                        key={offerIndex}
+                        className="hover:shadow-md transition-shadow px-6 py-4 w-fit"
+                      >
+                        <CardContent className="p-0">
+                          <div className="flex justify-between items-center">
+                            <div className="flex items-center gap-8 mr-8">
+                              <span className="text-2xl font-bold text-green-600">
+                                {formatPrice(offer.price)}
+                              </span>
+                              <span className="text-sm text-muted-foreground">
+                                Offer {offerIndex + 1}
+                              </span>
+                            </div>
+                            <Button asChild>
+                              <Link
+                                href={offer.url}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                <ShoppingCart className="h-4 w-4 mr-2" />
+                                Buy Now
+                              </Link>
+                            </Button>
                           </div>
-                          <Button asChild>
-                            <Link
-                              href={offer.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                            >
-                              <ShoppingCart className="h-4 w-4 mr-2" />
-                              Buy Now
-                            </Link>
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                        </CardContent>
+                      </Card>
+                    ))}
                 </div>
               ) : (
                 <Card>
