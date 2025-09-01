@@ -707,7 +707,7 @@ export function MiniPCDetailClient({ miniPCData }: Props) {
                               <Link
                                 href={offer.url}
                                 target="_blank"
-                                rel="noopener noreferrer"
+                                rel="noopener"
                               >
                                 <ShoppingCart className="h-4 w-4 mr-2" />
                                 Buy Now
