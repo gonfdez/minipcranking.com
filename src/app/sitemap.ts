@@ -1,19 +1,25 @@
-import { MetadataRoute } from 'next'
- 
+import { MetadataRoute } from "next";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
     {
-      url: 'https://minipcranking.com',
+      url: "https://minipcranking.com",
       lastModified: new Date(),
-      changeFrequency: 'monthly',
+      changeFrequency: "monthly",
       priority: 1,
     },
     {
-      url: 'https://minipcranking.com/blog',
+      url: "https://minipcranking.com/blog",
       lastModified: new Date(),
-      changeFrequency: 'daily',
+      changeFrequency: "daily",
+      priority: 0.8,
+    },
+    {
+      url: "https://minipcranking.com/minipc",
+      lastModified: new Date(),
+      changeFrequency: "daily",
       priority: 0.8,
     },
     // Añadir más URLs de tu sitio
-  ]
+  ];
 }

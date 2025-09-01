@@ -81,7 +81,7 @@ export const metadata: Metadata = {
   },
 
   category: "technology",
-  classification: "Mini PCs, Hardware Reviews, Technology Comparison",
+  classification: "Mini PCs, Hardware Reviews, Technology Comparison, Offers Comparison",
 };
 
 export default function Home() {

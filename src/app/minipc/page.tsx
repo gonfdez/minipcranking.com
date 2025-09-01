@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { MiniPCClient } from "@/components/MiniPCClient";
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Search, Filter, ChevronDown } from "lucide-react";
+import { Metadata } from "next";
 
 interface SearchParams {
   search?: string;
@@ -176,10 +177,33 @@ export default async function MiniPCPage({ searchParams }: Props) {
 }
 
 // Generar metadata dinámicamente
-export async function generateMetadata({ searchParams }: Props) {
+export async function generateMetadata({ searchParams }: Props): Promise<Metadata> {
   return {
     title: "Mini PCs Collection",
     description:
       "Explore our collection of Mini PCs with detailed specifications and updated deals",
+    keywords: [
+      "mini PC",
+      "mini PCs",
+      "mini computer",
+      "mini computers",
+      "mini PC comparison",
+      "best mini PC",
+      "mini PC deals",
+      "mini PC reviews",
+      "mini PC ranking",
+      "mini PC for gaming",
+      "mini PC for work",
+      "mini PC for home",
+      "Windows mini PC",
+      "Linux mini PC",
+      "Intel mini PC",
+      "AMD mini PC",
+      "mini PC specs",
+      "mini PC brands",
+      "small form factor PC",
+      "compact PC",
+      "mini desktop PC"
+    ]
   };
 }
